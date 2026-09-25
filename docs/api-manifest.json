@@ -1,0 +1,40 @@
+{
+  "adapter_sha256": "6b54123ecb6a7722c21313381e96e4ec6b7f1d5137f7f3a1601d626f76490b54",
+  "analyzed_source_revision": "1d75897ca64f74953b02f3e1f9c7f12f8abf4e67",
+  "api_sha256": "65bf229a88b4ef8dff114311f0eeaf9a8b3b8551cf892ffa0a70ad8e0fdc2f7b",
+  "docgen_revision": "97d4ecdfc8e09e7f511724c25e303d448de6a3db",
+  "format": 1,
+  "generator": "scripts/generate_api.py",
+  "inputs": {
+    "GroupRings.lean": "331ef29d82a9a73bcc199779b5583978348331a34399ef579569c4208494fafe",
+    "GroupRings/FreeAbelian/LaurentPolynomial.lean": "b75d039e385ed10b699654146cbaaa448a82bc7e8e81d518cd891227ae327c55",
+    "lake-manifest.json": "41bba0f32d61cefe597d14db1d62172e44880b5ad3e0784f0345377c09278e3c",
+    "lakefile.toml": "055ec280673673d2c8efe45ab6981788460ee3c466430e391665ae93ee986b08",
+    "lean-toolchain": "8190e75a201741065fe508b28955dd64dd72d090babe5f70ce6848879d68ae88",
+    "tests/GeneratorSimpClient.lean": "afe3684c037f925a74a8c680cc9b720d40d41e8a5b0388f7013dbcdc983bc00c",
+    "tests/PublicAPIClient.lean": "57ca966114c0970ee93b6fb50cdab8d0aff3d3e4f788e12d3dcd5fda9df2a6e5"
+  },
+  "modules": [
+    "GroupRings.FreeAbelian.LaurentPolynomial",
+    "GroupRings",
+    "PublicAPIClient",
+    "GeneratorSimpClient"
+  ],
+  "native_record_sha256": {
+    "GeneratorSimpClient": "170f242cb5c2e461da57655f5f0802702af23e617d64b7cad684d2e59dc4e723",
+    "GroupRings": "49be20d80e961551f3f37101252c5cdd670ac08f6580a9f951f099ea6015c347",
+    "GroupRings.FreeAbelian.LaurentPolynomial": "0c8df006efa4b28de2035a8c6021ee15154ca7b6c4c4766a40d45e80c51d0daa",
+    "PublicAPIClient": "4cd04fd320338634e7344ce999fcfacd525be2c8a1ac615ef151818988e47106"
+  },
+  "proof_certification": false,
+  "public_declarations": [
+    "MvLaurentPolynomial",
+    "AddEquiv.monoidAlgebraMultiplicativeEquivMvLaurentPolynomial",
+    "AddEquiv.monoidAlgebraMultiplicativeEquivMvLaurentPolynomial_single",
+    "AddEquiv.monoidAlgebraMultiplicativeEquivMvLaurentPolynomial_symm_single",
+    "FreeAbelianGroup.monoidAlgebraEquivMvLaurentPolynomial",
+    "FreeAbelianGroup.monoidAlgebraEquivMvLaurentPolynomial_single",
+    "FreeAbelianGroup.monoidAlgebraEquivMvLaurentPolynomial_symm_single",
+    "FreeAbelianGroup.monoidAlgebraEquivMvLaurentPolynomial_generator"
+  ]
+}
