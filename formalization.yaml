@@ -1,19 +1,26 @@
 version: "v0.4"
 
 project:
-  name: "Group rings and free abelian Laurent coordinates"
+  name: "Group rings, Laurent coordinates and finite-abelian Fourier convolution"
   description: >-
     Reusable Lean algebra equivalences from group algebras equipped with explicit
     free-abelian coordinates to multivariable Laurent polynomial algebras, with
     canonical FreeAbelianGroup specialization and forward/inverse basis and
     free-generator laws. Laurent monomials are finitely supported integer
     exponent vectors; no finite-variable or decidable-equality premise is added.
+    Separately, field-valued finite-abelian characters give evaluation bases
+    when enough roots exist; right convolution has positive-character
+    eigenvalues, diagonalization and a Nat.card rank formula. Neither result
+    asserts a new group-algebra/convolution bridge.
   authors:
     - "Formal Frontier Agents"
     - "Prism (AI agent; source diagnostic, mathematical implementation, setup, integration, native interfaces, clients, metadata and documentation adaptation)"
     - "Anchor (AI agent; predecessor Markdown documentation adapter, tests and recipe)"
+    - "Beacon (AI agent; original finite-abelian character experiment and responsible maintainer for its delivery)"
+    - "Worker-b Hive Tasks (AI agents; original incubator Fourier implementation, public-module repair, e37 destination transfer and release-readiness prose; exact identities below)"
   responsible_maintainers:
     - "Prism (on behalf of the source-maintainer team)"
+    - "Beacon (responsible for this bounded finite-abelian Fourier contribution, review and release follow-through)"
   license: "Apache-2.0"
 
 sources:
@@ -51,8 +58,16 @@ related_formalizations:
     note: >-
       The only direct library dependency. Uses FreeAbelianGroup.equivFinsupp,
       AddMonoidAlgebra.toMultiplicativeAlgEquiv and AddMonoidAlgebra.domCongr,
-      with their native injectivity and single-term laws. Imports
-      Mathlib.Algebra.FreeAbelianGroup.Finsupp and Mathlib.Algebra.MonoidAlgebra.Basic;
+      with their native injectivity and single-term laws. The Laurent leaf
+      imports Mathlib.Algebra.FreeAbelianGroup.Finsupp and
+      Mathlib.Algebra.MonoidAlgebra.Basic; the separate Fourier leaf imports
+      Mathlib.GroupTheory.FiniteAbelian.Duality,
+      Mathlib.LinearAlgebra.FiniteDimensional.Lemmas,
+      Mathlib.LinearAlgebra.LinearIndependent.Basic,
+      Mathlib.LinearAlgebra.Matrix.Rank and
+      Mathlib.Analysis.Fourier.FiniteAbelian.PontryaginDuality. It reuses
+      native character independence, finite duality, matrix rank and
+      AddChar.complexBasis; no mathlib implementation is vendored.
       it does not introduce another group-algebra quotient or algebra class.
       Dependency implementation is not vendored; upstream authorship and notices
       remain upstream. The Lake manifest is generated dependency resolution
@@ -71,9 +86,45 @@ related_formalizations:
       the production group premise is explicitly AddCommGroup. The source-local
       FreeAbelianGroupRing abbreviation is not a production export. This is
       identified internal reuse, not a wholly new proof-expression claim.
+  - id: "incubator@67e1f44bb4009df7fa591d7112a8f650bc7cf4f0:Incubator/Analysis/Fourier/FiniteAbelian/RightConvolution.lean"
+    relationship: "adapts"
+    note: >-
+      Accepted finite-abelian Fourier producer and its six private tests are
+      the expression origin of the separate generic-field addition. The
+      producer originally adapted Beacon's finite-abelian character experiment
+      at source experiment commit 4457d01b7397a1b431bdf0e566f11202227de187.
+      Original implementation: worker-b Task
+      hive-request-463616387133379beaef446d80cf547b5f475217,
+      UID 6baba0b3-2702-448c-99b0-87925b4466b1; subsequent public-module
+      repair: worker-b Task hive-request-485dac1da11e46e88fdd51d0c7df9b3e246fdcdb,
+      UID 183381ed-5f4a-45d7-a4e9-f6cf0a1889be. Original focused
+      mathematical review f77759a887dc92b973424efe197268c4103cb44d
+      and module-repair review a5ded90d70306e1611abef41d67543570fcc7a94
+      concerned exact origin revisions, not this destination. The accepted
+      origin native evidence is separate; neither origin acceptance nor this
+      adaptation declares source correspondence or coverage.
 
 status:
   scope: >-
+    At this 2026-09-28 author checkpoint, the finite-abelian Fourier addition
+    at development commit
+    ea4f7d558bde207387f4f53e751ec5d530f8f55d (tree
+    4299a62d1b0417e3341a893f42d52b30625f9643) was independently reviewed,
+    accepted by Beacon and integrated into protected main. Original native CI
+    run 702 passed both default targets and a complete private/generated-inclusive
+    transitive standard-axiom audit on its unchanged Lean and dependency inputs.
+    This later documentary release-readiness successor is unreviewed; the
+    Fourier contribution is not yet separately released or published. Previous
+    verified official public release 6f1439d1cd78b74bf3f7a0a0e516e84a009cba2c
+    has tree a2fdf2cb4e67ca84587bbe8ad8e9c748ed768469. Previous internal
+    release-prep remains 434535933f1881c1e4381ca3ad010a0ed0f0b7e2.
+    The expanded tree has 21 tracked files, including six Lean modules. Eleven
+    appended selected public Fourier objects plus eight retained Laurent objects
+    give 19 selected rows, not the CI census of 61 actual-origin declarations
+    (35 private). The generated four-module/eight-Laurent API reference is
+    historical; its old --check cannot verify the extended current root. The
+    following older Laurent readiness narrative is a dated historical
+    author-time snapshot, not a statement of current release status.
     Author-time review snapshot, 2026-09-25 21:33 UTC, not a live release registry.
     This public-documentation update extends the separately proposed lifecycle
     correction fe121a046bd40691bba6cf275273a71cd5d7d007 (PR12) and
@@ -96,7 +147,7 @@ status:
     not retrospectively approve those separate PRs.
     The sixteen-file assembly ships one mathematical leaf, an aggregate root,
     two private test modules and twelve documentation/metadata/tool/configuration files.
-    The eight entries below are principal public APIs, not a compiled
+    The original eight Laurent entries below are principal public APIs, not a compiled
     public/private/generated declaration census. The loaded environment also
     exposes the coordinate definition's generated eq_1 theorem, absent from
     native doc-gen4's authored-declaration list. The twenty public-API clients
@@ -144,6 +195,39 @@ status:
     - declaration: "FreeAbelianGroup.monoidAlgebraEquivMvLaurentPolynomial_generator"
       file: "GroupRings/FreeAbelian/LaurentPolynomial.lean"
       note: "The free generator of i maps to exponent Finsupp.single i 1, with arbitrary coefficient a."
+    - declaration: "AddChar.linearIndependent_field"
+      file: "GroupRings/FiniteAbelian/RightConvolution.lean"
+      note: "Dedekind independence of evaluations AddChar G K into G → K over a field, without finiteness or enough-roots assumptions."
+    - declaration: "AddChar.finite_of_field"
+      file: "GroupRings/FiniteAbelian/RightConvolution.lean"
+      note: "A finite additive abelian group has finitely many field-valued characters, without an enough-roots assumption."
+    - declaration: "AddChar.natCard_eq_of_hasEnoughRootsOfUnity"
+      file: "GroupRings/FiniteAbelian/RightConvolution.lean"
+      note: "The dual and G have the same Nat.card given finiteness and enough roots of unity of the group exponent."
+    - declaration: "AddChar.basisOfEnoughRootsOfUnity"
+      file: "GroupRings/FiniteAbelian/RightConvolution.lean"
+      note: "Character-evaluation basis for G → K under Finite G, Field K and enough roots of unity."
+    - declaration: "AddChar.coe_basisOfEnoughRootsOfUnity"
+      file: "GroupRings/FiniteAbelian/RightConvolution.lean"
+      note: "Coercion of the basis to functions is precisely evaluation of characters."
+    - declaration: "AddChar.basisOfEnoughRootsOfUnity_apply"
+      file: "GroupRings/FiniteAbelian/RightConvolution.lean"
+      note: "Each basis vector at psi equals psi as a function on G."
+    - declaration: "FiniteFourier.rightConvolution"
+      file: "GroupRings/FiniteAbelian/RightConvolution.lean"
+      note: "Matrix indexed by G with entries f (-sigma + tau), under Fintype G and Field K."
+    - declaration: "FiniteFourier.rightConvolutionEigenvalue"
+      file: "GroupRings/FiniteAbelian/RightConvolution.lean"
+      note: "Positive-character coefficient ∑ x, f x * psi x, without an enough-roots assumption."
+    - declaration: "FiniteFourier.rightConvolution_mulVec_addChar"
+      file: "GroupRings/FiniteAbelian/RightConvolution.lean"
+      note: "Character eigenvector law for right convolution without requiring enough roots."
+    - declaration: "FiniteFourier.toMatrix_rightConvolution"
+      file: "GroupRings/FiniteAbelian/RightConvolution.lean"
+      note: "Diagonalization in the character basis; character-index Fintype and DecidableEq remain explicit public binders."
+    - declaration: "FiniteFourier.rank_rightConvolution"
+      file: "GroupRings/FiniteAbelian/RightConvolution.lean"
+      note: "Rank is Nat.card of characters with nonzero positive-character eigenvalue, without a public character Fintype binder."
 
 automation:
   methods:
@@ -179,8 +263,37 @@ automation:
         interfaces, exact coefficient/universe hypotheses, basis/generator laws,
         boundary clients, pinned reproduction and independent exact-candidate
         review. Source-specific consequences were explicitly excluded.
+    - method: "agent"
+      framework: "Hive-managed AI agent using Lean and Lake"
+      tool_setup: >-
+        Original finite-abelian character experiment: Beacon, commit
+        4457d01b7397a1b431bdf0e566f11202227de187. Generic-field incubator
+        implementation and six tests: worker-b Task
+        hive-request-463616387133379beaef446d80cf547b5f475217,
+        UID 6baba0b3-2702-448c-99b0-87925b4466b1. Public-module repair:
+        worker-b Task hive-request-485dac1da11e46e88fdd51d0c7df9b3e246fdcdb,
+        UID 183381ed-5f4a-45d7-a4e9-f6cf0a1889be. This group-rings
+        destination transfer and adaptation: worker-b Task
+        hive-request-feb04c5ec7b2344e44fa8376f4fe22688559c96a,
+        UID 4d2785b4-35e5-40d8-bcbc-ea53c2a89208; Lean v4.34.0-rc2,
+        mathlib e37d88a26f3791ed5a93daa1f949af1021b8d103.
+        The existing Laurent expression, scripts, generated reference and
+        resolved nine-package manifest are retained unchanged.
+      prompting_notes: >-
+        Preserve the generic-field API, proof bodies and ordinary-import
+        clients; add standalone documentation and truthful origin credit.
+        Do not claim an independent destination review, source coverage or
+        a new group-algebra/convolution bridge.
   notes: >-
     Code, proofs, documentation and this metadata are AI-agent contributions.
+    This release-readiness prose was prepared by worker-b Hive Task
+    hive-request-60d57875b5ded531242507f31dc12582d6de02d5,
+    UID fdec958a-3674-4aa5-83c8-3b9969e53193, without editing Lean,
+    build inputs, the 19 selected result objects or the historical generated
+    reference. The independent destination static review was supplied by
+    worker-a Hive Task hive-request-dcc332f19e575da64ae9054c49c2f761a46ab845,
+    UID 4e1208bf-4c98-4bb5-b25a-807a60e37c3b; its verdict concerns the
+    exact Fourier contribution, not this later release candidate.
     No human mathematical review, source-author endorsement or complete model,
     runtime or spending measurement is asserted. AI generation does not establish
     correctness, originality, copyright ownership or redistribution clearance.
@@ -198,10 +311,34 @@ fidelity:
     not a theorem about native one-variable LaurentPolynomial, automatic basis
     selection, augmentation ideals, ideal generation, projective freeness or
     nonabelian groups. No full source example or K-theory coverage is claimed.
+    The separate Fourier construction assumes a field and an additive abelian
+    group; character independence needs no finiteness, its finite witness needs
+    no enough-roots condition, and a complete evaluation basis and rank formula
+    need enough roots of unity. Right-convolution eigenvalues use positive
+    characters. There is no formal group-algebra bridge or additional
+    source-coverage claim for the Fourier addition.
 
 review:
   status: "unchecked"
   notes: >-
+    At this 2026-09-28 author checkpoint, the unchecked status describes this
+    newly authored documentary release
+    candidate, not the accepted mathematical development commit or the previous
+    official publication. Exact destination Fourier commit
+    ea4f7d558bde207387f4f53e751ec5d530f8f55d was approved by independent
+    worker-a Task hive-request-dcc332f19e575da64ae9054c49c2f761a46ab845,
+    UID 4e1208bf-4c98-4bb5-b25a-807a60e37c3b (static review 4470), then
+    accepted and protected-integrated by Beacon on 2026-09-28. Native CI run
+    702 succeeded for its six-module, private/generated-inclusive build and
+    complete standard-three transitive axiom audit. Earlier origin mathematical
+    review f77759a887dc92b973424efe197268c4103cb44d and module-repair
+    review a5ded90d70306e1611abef41d67543570fcc7a94 concern separate
+    incubator revisions; they are provenance, not the independent release
+    verdict. This successor needs independent documentation, metadata,
+    whole-history and rights review, followed by Beacon's distinct internal
+    and public release acceptance, promotion and publication readback. No new
+    Lean check is claimed for unchanged computational inputs. The historical
+    note that follows describes an earlier Laurent checkpoint.
     The unchecked value is the author-time snapshot at 2026-09-25 21:33 UTC:
     this public-documentation update had not been independently reviewed.
     It is not a claim about later exact-candidate decisions or a live release
@@ -253,5 +390,10 @@ acknowledgements: >-
   formalization authorship. Original project contributions and identified
   internal adaptations use the operator-selected Apache-2.0 license; no ownership
   of, or permission to relicense, third-party expression is asserted. The
+  finite-abelian addition credits Beacon's experiment, the actual original,
+  module-repair and destination worker-b Hive Tasks, and its independent
+  worker-a reviewer; this documentary successor credits its own worker-b Task.
+  Those credits are not a source-specific formalization or rights-clearance
+  verdict. The
   formalization.yaml standard supplies the field vocabulary; this filled-in
   metadata prose is a project contribution, not upstream schema implementation.

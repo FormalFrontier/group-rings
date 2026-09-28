@@ -13,4 +13,4 @@ name = "GroupRings"
 [[lean_lib]]
 name = "GroupRingsTest"
 srcDir = "tests"
-roots = ["PublicAPIClient", "GeneratorSimpClient"]
+roots = ["PublicAPIClient", "GeneratorSimpClient", "FiniteAbelianRightConvolutionClient"]

@@ -1,10 +1,17 @@
 # API reference generation
 
-[API.md](API.md) is generated Markdown for the eight authored public declarations defined
-by group-rings: native displayed signatures with implicit parameters, source
+[API.md](API.md) is a **retained historical Laurent-slice snapshot** for eight
+authored public declarations, not a current whole-library reference. It has
+native displayed signatures with implicit parameters, source
 docstrings and relative links to this same checkout. The root README supplies
-the mathematical overview and ordinary-import example. Private tests and
-generated helpers still require a separate complete proof audit.
+the mathematical overview; the new Fourier API is documented in the
+[handwritten finite-abelian guide](FiniteAbelianRightConvolution.md), which
+documents the current standalone Fourier API. The accepted expanded development
+commit passed its original native complete private/generated-inclusive build and
+transitive standard-axiom CI audit; no separate stored-proof replay or new
+whole-library docgen run is claimed for this documentary successor. At its
+September 28, 2026 author checkpoint, its release candidate and complete
+rights/history await independent review.
 
 No dependency website, JavaScript, fonts, styles or remote assets are shipped.
 This reference does not offer interactive search or document all of Lean/mathlib.
@@ -20,7 +27,13 @@ with `lake build doc-gen4`. If needed, add the directory containing `elan which
 lean` to the build process's PATH to expose the runtime compiler wrapper. Do not
 change either project's manifest or mathematical pins to install the tool.
 
-Fetch group-rings' matching mathlib cache before building its four modules.
+Fetch group-rings' matching mathlib cache before any build. The four modules
+below identify the **old analysis inputs**, not the complete expanded root:
+`GroupRings` now publicly imports the Fourier module and the default test
+target now includes a third client. The retained generated reference and
+`api-manifest.json` remain unchanged. The old `--check` cannot pass as a
+current whole-library binding after this root extension; do not rebind it
+silently or represent an old snapshot check as acceptance of the new API.
 Run the native executable in this project's `lake env`, not the tool's, and
 analyze every module below into one fresh database. The test lean_lib uses
 `srcDir = "tests"`, so its file paths differ from its module names.
@@ -32,10 +45,13 @@ analyze every module below into one fresh database. The test lean_lib uses
 | `PublicAPIClient` | `tests/PublicAPIClient.lean` |
 | `GeneratorSimpClient` | `tests/GeneratorSimpClient.lean` |
 
-For example, replace executable/output paths and `FULL_SOURCE_COMMIT` with the
-full source revision used for the native analysis. To reproduce the retained
-reference, use `analyzed_source_revision` from `api-manifest.json`; its seven
-source/pin inputs must match this checkout exactly. That historical object need
+The commands below document reproduction of the **historical Laurent-only
+snapshot** with its original four source inputs; they are not a runnable
+`--check` prescription for the expanded checkout. Replace executable/output
+paths and `FULL_SOURCE_COMMIT` with the full source revision used for that
+native analysis. To reproduce the retained reference at its historical
+revision, use `analyzed_source_revision` from `api-manifest.json`; its seven
+source/pin inputs must match that revision exactly. That historical object need
 not exist in a source-only or independent parentless checkout:
 
 ```sh
@@ -92,9 +108,11 @@ proof-audit scope, together with private clients and any other generated content
 
 `api-manifest.json` binds the analyzed commit, four source hashes, toolchain/Lake
 configuration/manifest hashes, adapter hash, native-record hashes and reference
-hash. Later documentation-only commits may retain it when those inputs remain
-identical. Any source/pin change requires fresh native generation and an explicit
-new binding. A mutable manifest is not self-authenticating: jointly forged inputs
+hash. At the bound revision, documentation-only commits can retain it when those
+inputs remain identical. The present root/test extension instead leaves it as
+a labeled historical artifact; any new whole-library binding would require
+fresh native generation and an explicit new binding, outside this contribution.
+A mutable manifest is not self-authenticating: jointly forged inputs
 and hashes are outside this comparison's guarantee. Independent evidence binds
 the final full candidate commit/tree, actual native run and reviewed file bytes;
 the manifest does not attempt to contain its own future commit ID. `--check`
@@ -115,5 +133,7 @@ Beacon supplied related portability design advice, not copied implementation.
 Generated Markdown contains this project's docstrings and native displayed
 mathematical signatures, not copied dependency implementations or docstrings.
 No doc-gen4 web assets are shipped. Lean, mathlib and doc-gen4 retain their credit
-and licenses upstream. Exact generated artifacts, adapted tooling, notices and
-proposed public history still require independent rights review.
+and licenses upstream. Exact generated artifacts, adapted tooling and notices
+retain the previous publication's reviewed provenance. The changed documentary
+successor and its proposed public history await independent rights review at
+this author checkpoint.
