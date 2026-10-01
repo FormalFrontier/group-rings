@@ -38,6 +38,8 @@ class Controls(unittest.TestCase):
         raw, manifest = api.render(records, REV, sources)
         facts = json.loads(manifest)
         self.assertEqual(raw.count(b"\n## "), 8)
+        self.assertIn(b"Historical four-module snapshot: eight authored public Laurent declarations", raw)
+        self.assertIn(b"[handwritten Fourier guide](FiniteAbelianRightConvolution.md)", raw)
         self.assertEqual(facts["api_sha256"], api.digest(raw))
         self.assertEqual(set(facts["inputs"]), set(api.INPUTS))
         self.assertNotIn(b"example.invalid", raw + manifest)

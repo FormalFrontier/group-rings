@@ -1,39 +1,45 @@
-# API reference generation
+# API reference and historical binding
 
 [API.md](API.md) is a **retained historical Laurent-slice snapshot** for eight
 authored public declarations, not a current whole-library reference. It has
 native displayed signatures with implicit parameters, source
 docstrings and relative links to this same checkout. The root README supplies
-the mathematical overview; the new Fourier API is documented in the
+the mathematical overview; the Fourier API is documented in the
 [handwritten finite-abelian guide](FiniteAbelianRightConvolution.md), which
-documents the current standalone Fourier API. The accepted expanded development
-commit passed its original native complete private/generated-inclusive build and
-transitive standard-axiom CI audit; no separate stored-proof replay or new
-whole-library docgen run is claimed for this documentary successor. At its
-September 28, 2026 author checkpoint, its release candidate and complete
-rights/history await independent review.
+documents the same-checkout Fourier API. The snapshot's historical
+four-module native records do not claim to inventory the current six-module
+library or certify its proofs. Ordinary users can import and build `GroupRings`
+without native documentation records or any other private artifacts.
 
 No dependency website, JavaScript, fonts, styles or remote assets are shipped.
 This reference does not offer interactive search or document all of Lean/mathlib.
 Displayed headers may use short names in their source namespace; they are not
 standalone proof-bearing Lean commands.
 
-## Reproduction
+## Historical snapshot replay (optional)
 
-Use Python 3 and unchanged native doc-gen4 at
+Replaying the historical binding requires its **exact old** source/pin files
+and all four native records, which are not bundled with this repository.
+The historical analyzed source commit and hashes appear in
+[api-manifest.json](api-manifest.json); this is not a setup step for using
+the current library. For a genuine historical replay, use Python 3 and
+unchanged native doc-gen4 at
 `97d4ecdfc8e09e7f511724c25e303d448de6a3db`, with its committed five-dependency
 manifest and Lean `v4.34.0-rc2`, in a separate checkout. Build the core-only tool
 with `lake build doc-gen4`. If needed, add the directory containing `elan which
 lean` to the build process's PATH to expose the runtime compiler wrapper. Do not
 change either project's manifest or mathematical pins to install the tool.
 
-Fetch group-rings' matching mathlib cache before any build. The four modules
+Fetch the matching mathlib cache before any build. The four modules
 below identify the **old analysis inputs**, not the complete expanded root:
 `GroupRings` now publicly imports the Fourier module and the default test
-target now includes a third client. The retained generated reference and
-`api-manifest.json` remain unchanged. The old `--check` cannot pass as a
-current whole-library binding after this root extension; do not rebind it
-silently or represent an old snapshot check as acceptance of the new API.
+target now includes a third client. The source snapshot and native-record
+binding remain historical; the Markdown preamble and adapter digest can be
+updated as a separately reviewed presentation-only transformation of those
+retained signatures. Neither that transformation nor the old `--check` passes
+as current whole-library native generation. Do not silently refresh the
+historical binding or represent an old snapshot check as acceptance of the
+new API.
 Run the native executable in this project's `lake env`, not the tool's, and
 analyze every module below into one fresh database. The test lean_lib uses
 `srcDir = "tests"`, so its file paths differ from its module names.
@@ -45,14 +51,12 @@ analyze every module below into one fresh database. The test lean_lib uses
 | `PublicAPIClient` | `tests/PublicAPIClient.lean` |
 | `GeneratorSimpClient` | `tests/GeneratorSimpClient.lean` |
 
-The commands below document reproduction of the **historical Laurent-only
-snapshot** with its original four source inputs; they are not a runnable
-`--check` prescription for the expanded checkout. Replace executable/output
-paths and `FULL_SOURCE_COMMIT` with the full source revision used for that
-native analysis. To reproduce the retained reference at its historical
-revision, use `analyzed_source_revision` from `api-manifest.json`; its seven
-source/pin inputs must match that revision exactly. That historical object need
-not exist in a source-only or independent parentless checkout:
+The commands below document the **historical Laurent-only snapshot**, not
+an instruction to run `--check` on this expanded checkout. They apply only
+after checking out the exact `analyzed_source_revision` from the manifest,
+obtaining its seven matching source/pin inputs and authentic original native
+records. That Git object and the records need not be available to an ordinary
+consumer or in a source-only/independent parentless checkout:
 
 ```sh
 mkdir /tmp/group-docs
@@ -71,23 +75,22 @@ python3 -B scripts/generate_api.py --native-data /tmp/group-render/doc-data --so
 python3 -B scripts/test_generate_api.py
 ```
 
-By default, generation and `--check` first validate the **existing** manifest's
+At the original revision, generation and `--check` first validate the **existing** manifest's
 exact source/pin hashes, native-record hashes, analyzed revision, tool and module/
 public inventories. They never read Git history or silently adopt changed inputs.
-Generation reproduces outputs and records the current adapter hash; `--check`
-compares the entire generated reference and manifest without writing. Thus an
-adapter change requires explicit regeneration and fresh review, not an ignored
-hash difference. Retained native records are still needed to replay this check;
-they are evidence rather than bundled dependency documentation.
+Generation reproduces outputs and records the selected adapter hash; `--check`
+compares the entire generated reference and manifest without writing. A
+presentation-only update to this page and its literal renderer preamble can be
+reviewed against the preserved eight sections and old binding without claiming
+fresh native records or a passing `--check` on today's inputs. Retained native
+records are still needed for genuine historical replay; they are evidence,
+not bundled dependency documentation.
 
-For an intentionally new native analysis, including first generation, use
-`--refresh-binding` instead of `--check`. This authoring mode requires the chosen
-full source commit to be available locally and checks every source/pin blob
-against it before writing a new binding. Supply freshly generated native records
-for that same revision; preserve the actual run, exact graph and source/artifact
-evidence and obtain independent review. The flag is not a way to accept stale
-records or a certification of their origin. It cannot be combined with `--check`.
-Ordinary reproduction of an existing binding never needs that authoring flag.
+For an intentionally **new** native analysis, `--refresh-binding` is authoring:
+it requires an actual new source Git object, matching source/pin blobs and
+freshly generated native records for that same revision, with independent
+review. It is not a drift fix for the old snapshot and cannot certify the
+origin of records by itself. It cannot be combined with `--check`.
 
 Retain both exact dependency graphs, effective search path and native receipts.
 Generator warnings are findings, not silent passes. Intermediate HTML and its
@@ -108,10 +111,11 @@ proof-audit scope, together with private clients and any other generated content
 
 `api-manifest.json` binds the analyzed commit, four source hashes, toolchain/Lake
 configuration/manifest hashes, adapter hash, native-record hashes and reference
-hash. At the bound revision, documentation-only commits can retain it when those
-inputs remain identical. The present root/test extension instead leaves it as
-a labeled historical artifact; any new whole-library binding would require
-fresh native generation and an explicit new binding, outside this contribution.
+hash. At the bound revision, documentation-only commits can retain their
+historical native records. The present root/test extension leaves those records
+and their source binding historical; the two output/adapter hashes reflect
+only a presentation update, whose acceptance is revision-specific. A new
+whole-library binding requires fresh native generation and an explicit binding.
 A mutable manifest is not self-authenticating: jointly forged inputs
 and hashes are outside this comparison's guarantee. Independent evidence binds
 the final full candidate commit/tree, actual native run and reviewed file bytes;
@@ -122,10 +126,10 @@ prove remote source-URL availability, approve a public history or recheck proofs
 ## Provenance
 
 Authors: Formal Frontier Agents. Original project contributions are Apache-2.0.
-Prism (AI agent) adapted Anchor's (AI agent) generator, tests and recipe from
-ideal-completion at `f0c8c34386109116e4912fb425a8ad15d9dc42a4`, modifying the
-inventory, test paths, signatures, assumptions and binding. That input was
-unreviewed; neither its tests nor status approve this adaptation.
+Prism (AI agent) adapted Anchor's (AI agent) Ideal Completion generator, tests
+and recipe, modifying the module inventory, test paths, native signatures,
+assumptions and binding. The donor's tests and status do not approve this
+adaptation.
 Prism subsequently added the retained-input/explicit-refresh split and parentless
 controls after reproducing the old recipe's internal-Git-object dependency.
 Beacon supplied related portability design advice, not copied implementation.
@@ -133,7 +137,6 @@ Beacon supplied related portability design advice, not copied implementation.
 Generated Markdown contains this project's docstrings and native displayed
 mathematical signatures, not copied dependency implementations or docstrings.
 No doc-gen4 web assets are shipped. Lean, mathlib and doc-gen4 retain their credit
-and licenses upstream. Exact generated artifacts, adapted tooling and notices
-retain the previous publication's reviewed provenance. The changed documentary
-successor and its proposed public history await independent rights review at
-this author checkpoint.
+and licenses upstream. Provenance and rights for an exact published version
+are subject to that version's independent review and release record; the
+historical binding alone does not establish acceptance of new native inputs.

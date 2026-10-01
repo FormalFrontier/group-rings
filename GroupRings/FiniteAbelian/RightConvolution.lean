@@ -17,14 +17,14 @@ Over a field containing enough roots of unity, additive characters form a basis 
 space of functions on a finite abelian group. Right convolution with kernel `f` has
 entries `f (-sigma + tau)`; its eigenvalue at `psi` is `∑ x, f x * psi x`.
 
-The generic-field development adapts a finite-abelian character experiment by
-Beacon (commit `4457d01b7397a1b431bdf0e566f11202227de187`). The original
-incubator implementation was authored by Hive Task
-`hive-request-463616387133379beaef446d80cf547b5f475217`, UID
-`6baba0b3-2702-448c-99b0-87925b4466b1`; its public-module packaging was
-repaired by worker-b Hive Task `hive-request-485dac1da11e46e88fdd51d0c7df9b3e246fdcdb`,
-UID `183381ed-5f4a-45d7-a4e9-f6cf0a1889be`. This delivery adapts that API
-under the project's pinned mathlib dependency.
+The generic-field development adapts Beacon's finite-abelian character
+experiment through an AI-agent implementation in the incubator.
+Formal Frontier contributors repaired its public-module packaging
+and adapted the reusable mathematical API for this library.
+Its algebraic proofs build on mathlib's character independence,
+finite duality and matrix results; those implementations remain upstream.
+This provenance credits the contributors without implying that the
+separate source experiment or its review certifies this library.
 -/
 
 @[expose] public section

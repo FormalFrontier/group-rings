@@ -17,10 +17,10 @@ project:
     - "Prism (AI agent; source diagnostic, mathematical implementation, setup, integration, native interfaces, clients, metadata and documentation adaptation)"
     - "Anchor (AI agent; predecessor Markdown documentation adapter, tests and recipe)"
     - "Beacon (AI agent; original finite-abelian character experiment and responsible maintainer for its delivery)"
-    - "Worker-b Hive Tasks (AI agents; original incubator Fourier implementation, public-module repair, e37 destination transfer and release-readiness prose; exact identities below)"
+    - "Formal Frontier AI contributors (incubator Fourier implementation, public-module repair and adaptation for this library)"
   responsible_maintainers:
     - "Prism (on behalf of the source-maintainer team)"
-    - "Beacon (responsible for this bounded finite-abelian Fourier contribution, review and release follow-through)"
+    - "Beacon (finite-abelian Fourier mathematical contributor)"
   license: "Apache-2.0"
 
 sources:
@@ -42,15 +42,10 @@ sources:
       Laurent-PID, Quillen-Suslin, Bass-Quillen, stable-freeness, nonabelian
       group-ring or K-theory result follows. Bibliographic authorship is distinct
       from Lean expression provenance, and source-specific correspondence and
-      coverage decisions remain in the source repository.
-      The canonical private-project asset is library
-      s-a1e29c47d014454b97d2ecbaef6b4282/v001, 4,958,181 bytes, SHA-256
-      a04f53c9393b20672fab2a6818279b2f9996dbc7cf74735789ed13804b058845.
-      The author-hosted source was supplied for the private project library;
-      no explicit license or broader redistribution grant was established.
-      Pagination differs from the AMS print edition. The selection-time errata
-      URL returned HTTP 404; no errata original is included or claimed. No book
-      PDF, scan or quoted passage is shipped in this repository.
+      coverage decisions remain in the source repository. Pagination here
+      follows the cited complete-book build, not the AMS print edition.
+      No redistribution license for the book is asserted; no book PDF, scan,
+      proof excerpt or dependency asset is distributed with this library.
 
 related_formalizations:
   - id: "https://github.com/leanprover-community/mathlib4/tree/e37d88a26f3791ed5a93daa1f949af1021b8d103"
@@ -73,103 +68,45 @@ related_formalizations:
       remain upstream. The Lake manifest is generated dependency resolution
       metadata, not original dependency implementation. No inter-deliverable
       development dependency is declared.
-  - id: "source-weibel-k-book@99b7f9213a895fef2aebe6d7210fb7fc24ccd14d:WeibelKBook/Experiments/ExampleI212FreeAbelianGroupRingDiagnostic.lean"
+  - id: "README.md#references-provenance-and-ai-involvement"
     relationship: "adapts"
     note: >-
-      Prism's earlier integer-coefficient source diagnostic, 3,670 bytes, SHA-256
-      a10a581bad005acc226c1f7c40464508a4d45fcc49d1e31e507a53c4972fa288,
-      is an actual expression predecessor, not merely a mathematical citation.
-      Production commit e82f26a6a29bae597fa3b0d6011ef7c43dfc3ede adapts
-      its two-equivalence composition, forward-single local have/injectivity/simp
-      proof, canonical specialization and generator rw/simp structure. It adds
-      inverse-single laws, coefficient generality and independent universes;
-      the production group premise is explicitly AddCommGroup. The source-local
-      FreeAbelianGroupRing abbreviation is not a production export. This is
-      identified internal reuse, not a wholly new proof-expression claim.
-  - id: "incubator@67e1f44bb4009df7fa591d7112a8f650bc7cf4f0:Incubator/Analysis/Fourier/FiniteAbelian/RightConvolution.lean"
+      The linked shipped provenance section identifies Prism's earlier integral
+      source diagnostic as an actual expression predecessor, not just a
+      mathematical citation. This library adapts its two-equivalence composition,
+      forward basis proof and canonical/generator pattern and adds inverse laws,
+      commutative-semiring coefficient generality and independent universes.
+      The source-local abbreviation is not an export. The integer generator
+      client also follows a later source adapter's expression; restricted-simp
+      and priority tests are separate work, not a source-graph build.
+  - id: "docs/FiniteAbelianRightConvolution.md#reproduction-and-provenance"
     relationship: "adapts"
     note: >-
-      Accepted finite-abelian Fourier producer and its six private tests are
-      the expression origin of the separate generic-field addition. The
-      producer originally adapted Beacon's finite-abelian character experiment
-      at source experiment commit 4457d01b7397a1b431bdf0e566f11202227de187.
-      Original implementation: worker-b Task
-      hive-request-463616387133379beaef446d80cf547b5f475217,
-      UID 6baba0b3-2702-448c-99b0-87925b4466b1; subsequent public-module
-      repair: worker-b Task hive-request-485dac1da11e46e88fdd51d0c7df9b3e246fdcdb,
-      UID 183381ed-5f4a-45d7-a4e9-f6cf0a1889be. Original focused
-      mathematical review f77759a887dc92b973424efe197268c4103cb44d
-      and module-repair review a5ded90d70306e1611abef41d67543570fcc7a94
-      concerned exact origin revisions, not this destination. The accepted
-      origin native evidence is separate; neither origin acceptance nor this
-      adaptation declares source correspondence or coverage.
+      The linked shipped guide credits Beacon's earlier finite-abelian character
+      experiment, its generic-field incubator implementation and public-module
+      repair by AI contributors, and the subsequent adaptation of that
+      mathematical expression for this library with six private clients.
+      Independent review of the origin and of this destination have separate
+      scopes; neither establishes source-specific correspondence or coverage.
 
 status:
   scope: >-
-    At this 2026-09-28 author checkpoint, the finite-abelian Fourier addition
-    at development commit
-    ea4f7d558bde207387f4f53e751ec5d530f8f55d (tree
-    4299a62d1b0417e3341a893f42d52b30625f9643) was independently reviewed,
-    accepted by Beacon and integrated into protected main. Original native CI
-    run 702 passed both default targets and a complete private/generated-inclusive
-    transitive standard-axiom audit on its unchanged Lean and dependency inputs.
-    This later documentary release-readiness successor is unreviewed; the
-    Fourier contribution is not yet separately released or published. Previous
-    verified official public release 6f1439d1cd78b74bf3f7a0a0e516e84a009cba2c
-    has tree a2fdf2cb4e67ca84587bbe8ad8e9c748ed768469. Previous internal
-    release-prep remains 434535933f1881c1e4381ca3ad010a0ed0f0b7e2.
-    The expanded tree has 21 tracked files, including six Lean modules. Eleven
-    appended selected public Fourier objects plus eight retained Laurent objects
-    give 19 selected rows, not the CI census of 61 actual-origin declarations
-    (35 private). The generated four-module/eight-Laurent API reference is
-    historical; its old --check cannot verify the extended current root. The
-    following older Laurent readiness narrative is a dated historical
-    author-time snapshot, not a statement of current release status.
-    Author-time review snapshot, 2026-09-25 21:33 UTC, not a live release registry.
-    This public-documentation update extends the separately proposed lifecycle
-    correction fe121a046bd40691bba6cf275273a71cd5d7d007 (PR12) and
-    docs-portability repair f6d56a56d36755c237cd6cda06ac78db487357a5 (PR11).
-    Its ordinary-development base 110b9fc7f382e3379568ae6921c49b0525101e91
-    (PR9), tree f3b6c3a317bcaac4913250c621a2bc9da424446d, was independently
-    approved by Beacon3065, accepted by owner41417 and integrated by protected
-    fast-forward41426. That ordinary acceptance covers the complete base
-    assembly, including code, native exports, clients, LICENSE, metadata and
-    generated documentation; it does not approve the portability repair or
-    these later README/metadata changes. At this dated checkpoint, Beacon3081
-    had passed PR11 technical portability/API checks but requested a lifecycle
-    correction; PR12 was under separate review, and this later update had not
-    been independently accepted. Subsequent decisions must identify their exact
-    candidate and are not implied by this author-time snapshot. The base incorporated
-    ordinary input b259885b3ccc90fa4c439993c2eac320890122db (PR7), metadata
-    input a854833ab7ba11e61c3feeff6d1014c6fc0cf678 (PR6) and their assembly
-    c7d38f60eb6ee906356d4bbf0397c9fc84a725f0 (PR8). Their original separate
-    author checkpoints were unreviewed; the later exact combined review does
-    not retrospectively approve those separate PRs.
-    The sixteen-file assembly ships one mathematical leaf, an aggregate root,
-    two private test modules and twelve documentation/metadata/tool/configuration files.
-    The original eight Laurent entries below are principal public APIs, not a compiled
-    public/private/generated declaration census. The loaded environment also
-    exposes the coordinate definition's generated eq_1 theorem, absent from
-    native doc-gen4's authored-declaration list. The twenty public-API clients
-    and eight generator clients are tests, not new exported mathematics.
-    Pins remain Lean v4.34.0-rc2 and
-    mathlib e37d88a26f3791ed5a93daa1f949af1021b8d103, with unchanged Lake
-    manifest SHA-256 41bba0f32d61cefe597d14db1d62172e44880b5ad3e0784f0345377c09278e3c.
-    Independent base review3065 reports fresh checking of all 37 raw declarations
-    and stored bodies, including the generated equation and 28 private clients.
-    All four Lean inputs and mathematical pins remain unchanged here; applying
-    their evidence to a successor requires exact review, not a new
-    proof-run claim. The proposed generator repair separates retained source/pin/
-    native-record validation from explicit fresh binding; its author reports
-    source-only and parentless reproduction without the old internal Git object.
-    Complete acceptance of that proposal had not occurred at this checkpoint.
-    Neither a mutable manifest nor its tests
-    authenticate native provenance or a proposed public history. No official
-    release or source-coverage decision is claimed. Base review found no concrete
-    unresolved current-tree rights defect; the changed successor and future
-    public history need their own applicable rights assessment. Tested generator
-    priority 1100, statements and proofs are unchanged. Base compatibility and
-    narrow convention dispositions are recorded below, not transferred approval.
+    Reusable Laurent-coordinate algebra equivalences and canonical free-abelian
+    specialization coexist with generic-field additive-character results and
+    algebraic finite-abelian right convolution. The Laurent abbreviation has
+    semiring coefficients; equivalences require commutative semirings and
+    supplied additive coordinates, not chosen coordinates. Character
+    independence needs neither finiteness nor enough roots; character finiteness
+    needs a finite group but no roots. The evaluation basis, convolution
+    diagonalization and Nat.card rank formula require enough roots of unity.
+    The nineteen selected public results below (eight Laurent and eleven
+    Fourier) are not a census of private/generated declarations or client tests.
+    The four-module/eight-Laurent generated API page retains a historical
+    native-record binding; its current preamble labels that slice, not a new
+    whole-library native analysis. The separate handwritten Fourier guide
+    describes the current Fourier interface. Formal source correspondence,
+    proof-integrity checks and official release acceptance are separate
+    revision-specific decisions, not inferred from this metadata.
   main_results:
     - declaration: "MvLaurentPolynomial"
       file: "GroupRings/FreeAbelian/LaurentPolynomial.lean"
@@ -234,69 +171,49 @@ automation:
     - method: "agent"
       framework: "Hive-managed AI agent using Lean and Lake"
       tool_setup: >-
-        Prism wrote the source diagnostic, then the reusable library and
-        project assembly using native mathlib interfaces, compiler feedback
-        and Lean tactics, and authored this metadata and its later assembly
-        with the native-module/default-client readiness work. Initial setup is
-        597ca4c89cdf2d6974ddddaaa53aa3786394b02e; implementation is
-        e82f26a6a29bae597fa3b0d6011ef7c43dfc3ede. No pooled worker
-        Task authored this unit, so no Task UID is invented. Lattice's historical
-        independent-review role is not mathematical implementation authorship.
-        Prism adapted Anchor's AI-authored Markdown generator, tests and recipe
-        from ideal-completion f0c8c34386109116e4912fb425a8ad15d9dc42a4,
-        an explicitly unreviewed input. The native doc-gen4 tool is pinned at
-        97d4ecdfc8e09e7f511724c25e303d448de6a3db in a separate checkout;
-        no dependency implementation or web assets are shipped. The adaptation
-        handles this library's four-module inventory, implicit assumptions,
-        actual native declaration kinds/source ranges and output binding.
-        Prism added the retained-input/explicit-refresh portability repair and
-        its controls. Beacon supplied related design advice, not implementation
-        expression; no approval is transferred from that discussion.
-        The first four named private tests preserve earlier development-client
-        expression. The integer generator regression follows the source adapter
-        at 4cd8df74596bae9a81bb4515cde0165f3b02eb46, file
-        WeibelKBook/Experiments/ExampleI212FreeAbelianGroupRingAdapter.lean;
-        the restricted-simp and priority comparisons are new diagnostic work.
-        This is identified internal expression reuse, not a source-graph build.
+        Prism wrote the integral source diagnostic and the reusable Laurent
+        library and assembly using mathlib interfaces, Lean and Lake.
+        The Laurent equivalence composition, forward basis proof and
+        canonical/generator pattern adapt that diagnostic; inverse laws,
+        coefficient generality and independent universes were added.
+        The integer generator regression follows a later source adapter's
+        expression, whereas restricted-simp and priority comparisons are
+        separate diagnostic work. Lattice independently reviewed the original
+        mathematical contribution, not authored its implementation.
+        Prism adapted Anchor's Ideal Completion Markdown adapter, tests and
+        recipe to this library's module inventory, native kinds, source ranges
+        and binding, then added retained-input and source-only/parentless
+        controls. Beacon gave related design advice, not copied implementation.
+        Native doc-gen4 and dependency implementations are not shipped here.
       prompting_notes: >-
-        The implementation scope required source-independent supplied-coordinate
-        interfaces, exact coefficient/universe hypotheses, basis/generator laws,
-        boundary clients, pinned reproduction and independent exact-candidate
-        review. Source-specific consequences were explicitly excluded.
+        The reusable scope uses supplied-coordinate interfaces, exact
+        coefficient/universe hypotheses, basis/generator laws and boundary
+        clients. Source-specific projective-freeness consequences are excluded.
     - method: "agent"
       framework: "Hive-managed AI agent using Lean and Lake"
       tool_setup: >-
-        Original finite-abelian character experiment: Beacon, commit
-        4457d01b7397a1b431bdf0e566f11202227de187. Generic-field incubator
-        implementation and six tests: worker-b Task
-        hive-request-463616387133379beaef446d80cf547b5f475217,
-        UID 6baba0b3-2702-448c-99b0-87925b4466b1. Public-module repair:
-        worker-b Task hive-request-485dac1da11e46e88fdd51d0c7df9b3e246fdcdb,
-        UID 183381ed-5f4a-45d7-a4e9-f6cf0a1889be. This group-rings
-        destination transfer and adaptation: worker-b Task
-        hive-request-feb04c5ec7b2344e44fa8376f4fe22688559c96a,
-        UID 4d2785b4-35e5-40d8-bcbc-ea53c2a89208; Lean v4.34.0-rc2,
-        mathlib e37d88a26f3791ed5a93daa1f949af1021b8d103.
-        The existing Laurent expression, scripts, generated reference and
-        resolved nine-package manifest are retained unchanged.
+        Beacon's finite-abelian character experiment was developed into
+        generic-field character and convolution mathematics by AI contributors
+        in the incubator. Other contributors repaired its public-module
+        packaging and adapted its API and six private clients for group-rings.
+        This uses Lean v4.34.0-rc2 and mathlib
+        e37d88a26f3791ed5a93daa1f949af1021b8d103. Earlier Laurent
+        mathematical expression and the nine-package dependency graph are
+        separately maintained; neither source coverage nor an unreviewed
+        origin approval is inferred.
       prompting_notes: >-
-        Preserve the generic-field API, proof bodies and ordinary-import
-        clients; add standalone documentation and truthful origin credit.
-        Do not claim an independent destination review, source coverage or
-        a new group-algebra/convolution bridge.
+        The generic-field API includes ordinary-import clients and standalone
+        documentation. Neither origin credit nor reviewed delivery implies
+        source coverage or a group-algebra/convolution bridge.
   notes: >-
-    Code, proofs, documentation and this metadata are AI-agent contributions.
-    This release-readiness prose was prepared by worker-b Hive Task
-    hive-request-60d57875b5ded531242507f31dc12582d6de02d5,
-    UID fdec958a-3674-4aa5-83c8-3b9969e53193, without editing Lean,
-    build inputs, the 19 selected result objects or the historical generated
-    reference. The independent destination static review was supplied by
-    worker-a Hive Task hive-request-dcc332f19e575da64ae9054c49c2f761a46ab845,
-    UID 4e1208bf-4c98-4bb5-b25a-807a60e37c3b; its verdict concerns the
-    exact Fourier contribution, not this later release candidate.
-    No human mathematical review, source-author endorsement or complete model,
-    runtime or spending measurement is asserted. AI generation does not establish
-    correctness, originality, copyright ownership or redistribution clearance.
+    Code, proofs, documentation and metadata are AI-agent contributions.
+    Prism authored Laurent mathematics and adapted the documentation tooling;
+    Beacon's experiment informed the Fourier result, with subsequent incubator,
+    packaging and group-rings contributions by Formal Frontier AI agents.
+    Original mathematical reviews and release decisions have distinct scopes.
+    No human mathematical review or source-author endorsement is claimed.
+    AI generation does not establish correctness, originality, copyright
+    ownership or redistribution clearance.
 
 fidelity:
   divergences: >-
@@ -319,68 +236,21 @@ fidelity:
     source-coverage claim for the Fourier addition.
 
 review:
-  status: "unchecked"
+  status: "other"
   notes: >-
-    At this 2026-09-28 author checkpoint, the unchecked status describes this
-    newly authored documentary release
-    candidate, not the accepted mathematical development commit or the previous
-    official publication. Exact destination Fourier commit
-    ea4f7d558bde207387f4f53e751ec5d530f8f55d was approved by independent
-    worker-a Task hive-request-dcc332f19e575da64ae9054c49c2f761a46ab845,
-    UID 4e1208bf-4c98-4bb5-b25a-807a60e37c3b (static review 4470), then
-    accepted and protected-integrated by Beacon on 2026-09-28. Native CI run
-    702 succeeded for its six-module, private/generated-inclusive build and
-    complete standard-three transitive axiom audit. Earlier origin mathematical
-    review f77759a887dc92b973424efe197268c4103cb44d and module-repair
-    review a5ded90d70306e1611abef41d67543570fcc7a94 concern separate
-    incubator revisions; they are provenance, not the independent release
-    verdict. This successor needs independent documentation, metadata,
-    whole-history and rights review, followed by Beacon's distinct internal
-    and public release acceptance, promotion and publication readback. No new
-    Lean check is claimed for unchanged computational inputs. The historical
-    note that follows describes an earlier Laurent checkpoint.
-    The unchecked value is the author-time snapshot at 2026-09-25 21:33 UTC:
-    this public-documentation update had not been independently reviewed.
-    It is not a claim about later exact-candidate decisions or a live release
-    registry. Base acceptance, author tests or schema validity do not approve
-    a changed assembly. Independent Beacon3065
-    approved only ordinary integration of exact PR9
-    110b9fc7f382e3379568ae6921c49b0525101e91; owner41417 and integration41426
-    are in the group-rings issue10 record. The complete sixteen-file review
-    included mathematical/API scope, fresh 37-raw/37-body and allowed-axiom
-    checks, generated/private clients, native documentation, metadata and
-    current-tree origins/rights. It explicitly withheld complete release
-    preparation because source-only and parentless documentation reproduction
-    needed an unavailable historical Git object. Review3081 on exact PR11
-    f6d56a56d36755c237cd6cda06ac78db487357a5 passed technical portability/API
-    preservation but requested a lifecycle correction. Exact PR12
-    fe121a046bd40691bba6cf275273a71cd5d7d007 was under separate review at
-    the checkpoint. Those candidates and this later public-documentation update
-    are not approved by the original ordinary verdict. Development hashes and
-    review identifiers locate retained provenance; they do not promise those
-    internal objects or records in an independently rooted public history.
-    Review may use exact unchanged proof/native inputs only
-    after assessing their applicability; no new Lean/native/proof run is claimed.
-    Historical PR2 review2146/comment23250 by Lattice approved exact
-    e82f26a6a29bae597fa3b0d6011ef7c43dfc3ede, whose complete tree matches
-    then-accepted main 2afbb9012bdde098cf6d22133ba623e3bbffdf1f. Its scope
-    was the explicit-coordinate equivalence, canonical specialization, basis
-    laws, export/docs and bounded reproduction/provenance checks, including
-    actual module/root external-checker runs and a seven-name axiom audit.
-    That historical verdict alone did not supply fresh metadata/rights review or
-    a complete stored/private/generated-proof census; the later exact combined
-    review3065 has the separately stated scope above. Ordinary Lean elaboration,
-    -T0 and axiom prints are not an external proof checker. Review3065 accepted
-    only the base's truthful no-invented-holder header and private default-test
-    conventions; strict header/privateModule failures remain, not lint passes.
-    Its supplemental generic-inventory SYMLINK_PATH NONPASS is also retained;
-    the dependency-aware inventory and final tracked-byte checks closed the
-    bounded source question without changing that failed receipt. Root LICENSE
-    is the canonical Apache-2.0 text, not proof of title. Neither the predecessor
-    docs recipe nor its tests approve this successor. Applicable final-file,
-    generated-documentation and public-history rights review, official internal
-    promotion and later public publication remain separate. Metadata license
-    selection and schema validity certify none of those decisions.
+    Review is revision-specific. Laurent and Fourier mathematical contributions
+    each have independent agent reviews of their own exact code candidates;
+    approval of an origin or development revision does not approve changed
+    documentation or another release. Consult the official release record for
+    acceptance and build/standard-axiom evidence of the exact published
+    revision. Metadata and generated API signature hashes do not certify Lean
+    proofs, native-record provenance, independent review, rights or source
+    coverage. This repository does not claim a separate stored-proof replay,
+    strict syntax/header lint pass or external proof checker. Original project
+    headers do not invent a copyright holder, and the deliberately private
+    default-test modules remain private; neither is represented as strict-lint
+    compliance. The Apache-2.0 LICENSE is not proof of title or a license for
+    third-party source material.
 
 acknowledgements: >-
   The mathlib community supplies the underlying formal mathematics and retains
@@ -390,9 +260,9 @@ acknowledgements: >-
   formalization authorship. Original project contributions and identified
   internal adaptations use the operator-selected Apache-2.0 license; no ownership
   of, or permission to relicense, third-party expression is asserted. The
-  finite-abelian addition credits Beacon's experiment, the actual original,
-  module-repair and destination worker-b Hive Tasks, and its independent
-  worker-a reviewer; this documentary successor credits its own worker-b Task.
+  finite-abelian addition credits Beacon's experiment, the original
+  incubator implementation, module repair and destination adaptation by
+  Formal Frontier AI contributors and independent mathematical review.
   Those credits are not a source-specific formalization or rights-clearance
   verdict. The
   formalization.yaml standard supplies the field vocabulary; this filled-in

@@ -196,9 +196,13 @@ def render(records, revision, sources):
     require(found == EXPECTED, "missing public declaration")
     rows.sort(key=lambda row: row["line"])
     lines = ["# Generated API reference", "",
-             "This reference covers the eight authored public declarations of group-rings.",
+             "Historical four-module snapshot: eight authored public Laurent declarations,",
+             "not all public declarations of the current group-rings library.",
              "Import `GroupRings`; its leaf is `GroupRings.FreeAbelian.LaurentPolynomial`.",
              "`PublicAPIClient` and `GeneratorSimpClient` contain private checked clients, not public API.", "",
+             "The separate Fourier character, basis and right-convolution results are documented in",
+             "the [handwritten Fourier guide](FiniteAbelianRightConvolution.md); see also the",
+             "[current mathematical overview](../README.md#headline-results).", "",
              "The compiled environment also exposes the generated equation lemma",
              "`AddEquiv.monoidAlgebraMultiplicativeEquivMvLaurentPolynomial.eq_1` for the",
              "coordinate definition. Native doc-gen4 does not list it as an authored declaration.",
@@ -207,8 +211,11 @@ def render(records, revision, sources):
              "with proof bodies. Short names use the source's `AddEquiv` or `FreeAbelianGroup`",
              "namespace, `open Multiplicative` and imports. Implicit parameters are displayed;",
              "`u`, `v` and `w` are universes. Source links target this same checkout.", "",
-             "The source/pin hashes and generation provenance are in [api-manifest.json](api-manifest.json).",
-             "See [generation instructions](README.md) and the [mathematical overview](../README.md).", ""]
+             "The [historical manifest](api-manifest.json) binds the original four-module native",
+             "records and source/pin inputs, not a new analysis of the current expanded root.",
+             "This page's preamble is a presentation update; its eight signatures, docstrings",
+             "and source anchors remain the retained historical output. Replay needs the exact",
+             "old sources and native records; see [generation instructions](README.md).", ""]
     for row in rows:
         lines += ["## " + row["name"], "", "```lean", row["header"], "```", "",
                   row["doc"], "", f"[Source](../{row['path']}#L{row['line']}) (line {row['line']}).", ""]

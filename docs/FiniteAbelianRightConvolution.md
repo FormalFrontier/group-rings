@@ -1,7 +1,8 @@
 # Finite-abelian characters and right convolution
 
 Import `GroupRings` to use the character-basis and convolution API from
-`GroupRings.FiniteAbelian.RightConvolution`. The development is algebraic:
+[`GroupRings.FiniteAbelian.RightConvolution`](../GroupRings/FiniteAbelian/RightConvolution.lean).
+The development is algebraic:
 `G : Type u` is an additive commutative group and `K : Type v` is a field, with
 independent universes. No topology, complex coefficients, characteristic-zero
 assumption or group-algebra identification is needed.
@@ -82,38 +83,18 @@ and its weaker semiring and possibly infinite-index assumptions remain intact.
 
 The checkout pins Lean `v4.34.0-rc2`, mathlib
 `e37d88a26f3791ed5a93daa1f949af1021b8d103` and its resolved Lake
-manifest. From the repository root, install the pinned toolchain, then run
-`lake exe cache get` **before** `lake build --wfail`; the `GroupRingsTest`
-target includes six private ordinary-import Fourier client checks in
-`tests/FiniteAbelianRightConvolutionClient.lean`, alongside the existing
-Laurent clients. The original native CI run on accepted development commit
-`ea4f7d558bde207387f4f53e751ec5d530f8f55d` passed both targets and the
-full private/generated-inclusive transitive standard-axiom audit, covering all
-six modules and 61 actual-origin declarations (35 private). Author-only checks
-alone would not have established this result. This guide and the other
-release-readiness prose are later documentary changes, not a new checked proof
-input; at their September 28, 2026 author checkpoint, the release candidate
-still awaits independent acceptance and publication. See the root
-README for measured, cache-contextualized build and CI cost guidance.
+manifest. From the repository root, install the pinned toolchain and run
+`lake exe cache get` **before** `lake build --wfail`. This builds the
+`GroupRings` and `GroupRingsTest` default roots, including the six private
+ordinary-import Fourier checks in
+[`tests/FiniteAbelianRightConvolutionClient.lean`](../tests/FiniteAbelianRightConvolutionClient.lean).
+See the [root README](../README.md#reproducible-build-and-checks) for
+historical, cache-contextualized cost observations, not performance guarantees.
 
-This generic-field work adapts Beacon's finite-abelian character experiment
-(commit `4457d01b7397a1b431bdf0e566f11202227de187`). Its original
-incubator author was worker-b Hive Task
-`hive-request-463616387133379beaef446d80cf547b5f475217`, UID
-`6baba0b3-2702-448c-99b0-87925b4466b1`. Worker-b Hive Task
-`hive-request-485dac1da11e46e88fdd51d0c7df9b3e246fdcdb`, UID
-`183381ed-5f4a-45d7-a4e9-f6cf0a1889be`, repaired public-module packaging;
-this group's adaptation was prepared by
-worker-b Hive Task `hive-request-feb04c5ec7b2344e44fa8376f4fe22688559c96a`,
-UID `4d2785b4-35e5-40d8-bcbc-ea53c2a89208`. The original mathematical
-review and module-repair review apply to their respective exact origin
-revisions, not automatically to this destination. Worker-a Hive Task
-`hive-request-dcc332f19e575da64ae9054c49c2f761a46ab845`, UID
-`4e1208bf-4c98-4bb5-b25a-807a60e37c3b`, supplied the independent static
-review of this exact destination; Beacon accepted and integrated it on
-September 28, 2026. Worker-b Hive Task
-`hive-request-60d57875b5ded531242507f31dc12582d6de02d5`, UID
-`fdec958a-3674-4aa5-83c8-3b9969e53193`, prepared this unreviewed
-release-readiness documentation successor. The proofs build on native
-mathlib character independence, finite duality, matrix rank and complex-basis
-ingredients. No source-specific coverage decision follows from this library.
+This generic-field work adapts Beacon's finite-abelian character experiment,
+subsequently developed in the incubator and adapted for this library. Mathlib's
+character independence, finite duality, matrix rank and complex-basis results
+remain distinct upstream contributions; no dependency implementation is copied.
+The [root provenance summary](../README.md#references-provenance-and-ai-involvement)
+credits the AI-agent contributors. A reusable library result alone makes no
+source-specific coverage claim.

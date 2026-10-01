@@ -1,7 +1,7 @@
 {
-  "adapter_sha256": "6b54123ecb6a7722c21313381e96e4ec6b7f1d5137f7f3a1601d626f76490b54",
+  "adapter_sha256": "5d46563e5e62dcb99f740ce2e7b53b72b80c9c8748b07aff54e40b16379467af",
   "analyzed_source_revision": "1d75897ca64f74953b02f3e1f9c7f12f8abf4e67",
-  "api_sha256": "65bf229a88b4ef8dff114311f0eeaf9a8b3b8551cf892ffa0a70ad8e0fdc2f7b",
+  "api_sha256": "4f23997d41cd7a21e6f69f3285d43e2a4036a2089eeb8da22538867ab79e7748",
   "docgen_revision": "97d4ecdfc8e09e7f511724c25e303d448de6a3db",
   "format": 1,
   "generator": "scripts/generate_api.py",
