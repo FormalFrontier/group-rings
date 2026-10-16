@@ -14,6 +14,9 @@ The restricted client distinguishes retaining the registration from deleting it.
 These are private tests, not new API. The `Fin 0` case is explicitly vacuous.
 -/
 
+-- These regression clients deliberately export no declarations.
+set_option linter.privateModule false
+
 noncomputable section
 
 universe u v

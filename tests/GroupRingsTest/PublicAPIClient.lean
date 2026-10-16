@@ -14,6 +14,9 @@ preserve the original development client's examples; the remaining checks cover
 the abbreviation, inverse basis laws, degenerate coefficients and algebra laws.
 -/
 
+-- These regression clients deliberately export no declarations.
+set_option linter.privateModule false
+
 noncomputable section
 
 universe u v w

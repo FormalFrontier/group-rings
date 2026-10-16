@@ -12,15 +12,7 @@ project:
     when enough roots exist; right convolution has positive-character
     eigenvalues, diagonalization and a Nat.card rank formula. Neither result
     asserts a new group-algebra/convolution bridge.
-  authors:
-    - "Formal Frontier Agents"
-    - "Prism (AI agent; source diagnostic, mathematical implementation, setup, integration, native interfaces, clients, metadata and documentation adaptation)"
-    - "Anchor (AI agent; predecessor Markdown documentation adapter, tests and recipe)"
-    - "Beacon (AI agent; original finite-abelian character experiment and responsible maintainer for its delivery)"
-    - "Formal Frontier AI contributors (incubator Fourier implementation, public-module repair and adaptation for this library)"
-  responsible_maintainers:
-    - "Prism (on behalf of the source-maintainer team)"
-    - "Beacon (finite-abelian Fourier mathematical contributor)"
+  authors: [Formal Frontier Agents]
   license: "Apache-2.0"
 
 sources:
@@ -48,7 +40,7 @@ sources:
       proof excerpt or dependency asset is distributed with this library.
 
 related_formalizations:
-  - id: "https://github.com/leanprover-community/mathlib4/tree/e37d88a26f3791ed5a93daa1f949af1021b8d103"
+  - id: "https://github.com/leanprover-community/mathlib4/tree/83abb3e776bdefcbc447a1e44d0debe4010039e5"
     relationship: "builds-on"
     note: >-
       The only direct library dependency. Uses FreeAbelianGroup.equivFinsupp,
@@ -68,26 +60,21 @@ related_formalizations:
       remain upstream. The Lake manifest is generated dependency resolution
       metadata, not original dependency implementation. No inter-deliverable
       development dependency is declared.
-  - id: "README.md#references-provenance-and-ai-involvement"
+  - id: "CREDITS.md"
     relationship: "adapts"
     note: >-
-      The linked shipped provenance section identifies Prism's earlier integral
-      source diagnostic as an actual expression predecessor, not just a
-      mathematical citation. This library adapts its two-equivalence composition,
-      forward basis proof and canonical/generator pattern and adds inverse laws,
-      commutative-semiring coefficient generality and independent universes.
-      The source-local abbreviation is not an export. The integer generator
-      client also follows a later source adapter's expression; restricted-simp
-      and priority tests are separate work, not a source-graph build.
-  - id: "docs/FiniteAbelianRightConvolution.md#reproduction-and-provenance"
-    relationship: "adapts"
-    note: >-
-      The linked shipped guide credits Beacon's earlier finite-abelian character
-      experiment, its generic-field incubator implementation and public-module
-      repair by AI contributors, and the subsequent adaptation of that
-      mathematical expression for this library with six private clients.
-      Independent review of the origin and of this destination have separate
-      scopes; neither establishes source-specific correspondence or coverage.
+      Prism's integral source diagnostic is an actual Lean expression
+      predecessor of the Laurent equivalence composition, forward basis proof
+      and canonical/generator pattern, extended here by inverse laws,
+      commutative-semiring coefficients and independent universes. The integer
+      generator client also follows a source adapter's expression; restricted-simp
+      and priority tests are separate work. The source-local abbreviation is not
+      exported. Beacon's character experiment is the expression predecessor of
+      the generic-field Fourier API; Formal Frontier AI contributors supplied
+      its implementation, public-module repair and API/client adaptation.
+      CREDITS.md also identifies Anchor's documentation adapter and other
+      contributor and upstream credit. None of these results asserts source
+      coverage or a group-algebra/convolution bridge.
 
 status:
   scope: >-
@@ -101,12 +88,9 @@ status:
     diagonalization and Nat.card rank formula require enough roots of unity.
     The nineteen selected public results below (eight Laurent and eleven
     Fourier) are not a census of private/generated declarations or client tests.
-    The four-module/eight-Laurent generated API page retains a historical
-    native-record binding; its current preamble labels that slice, not a new
-    whole-library native analysis. The separate handwritten Fourier guide
-    describes the current Fourier interface. Formal source correspondence,
-    proof-integrity checks and official release acceptance are separate
-    revision-specific decisions, not inferred from this metadata.
+    The generated API page is a historical four-module/eight-Laurent snapshot
+    with its original native-record binding, not a current whole-library
+    analysis. The handwritten Fourier guide describes the current Fourier API.
   main_results:
     - declaration: "MvLaurentPolynomial"
       file: "GroupRings/FreeAbelian/LaurentPolynomial.lean"
@@ -169,48 +153,17 @@ status:
 automation:
   methods:
     - method: "agent"
-      framework: "Hive-managed AI agent using Lean and Lake"
+      framework: "AI agents using Lean and Lake"
       tool_setup: >-
-        Prism wrote the integral source diagnostic and the reusable Laurent
-        library and assembly using mathlib interfaces, Lean and Lake.
-        The Laurent equivalence composition, forward basis proof and
-        canonical/generator pattern adapt that diagnostic; inverse laws,
-        coefficient generality and independent universes were added.
-        The integer generator regression follows a later source adapter's
-        expression, whereas restricted-simp and priority comparisons are
-        separate diagnostic work. Lattice independently reviewed the original
-        mathematical contribution, not authored its implementation.
-        Prism adapted Anchor's Ideal Completion Markdown adapter, tests and
-        recipe to this library's module inventory, native kinds, source ranges
-        and binding, then added retained-input and source-only/parentless
-        controls. Beacon gave related design advice, not copied implementation.
-        Native doc-gen4 and dependency implementations are not shipped here.
+        Agents wrote and adapted proofs, interfaces, clients and documentation
+        using Lean v4.34.0-rc2, Lake and mathlib
+        83abb3e776bdefcbc447a1e44d0debe4010039e5.
       prompting_notes: >-
-        The reusable scope uses supplied-coordinate interfaces, exact
-        coefficient/universe hypotheses, basis/generator laws and boundary
-        clients. Source-specific projective-freeness consequences are excluded.
-    - method: "agent"
-      framework: "Hive-managed AI agent using Lean and Lake"
-      tool_setup: >-
-        Beacon's finite-abelian character experiment was developed into
-        generic-field character and convolution mathematics by AI contributors
-        in the incubator. Other contributors repaired its public-module
-        packaging and adapted its API and six private clients for group-rings.
-        This uses Lean v4.34.0-rc2 and mathlib
-        e37d88a26f3791ed5a93daa1f949af1021b8d103. Earlier Laurent
-        mathematical expression and the nine-package dependency graph are
-        separately maintained; neither source coverage nor an unreviewed
-        origin approval is inferred.
-      prompting_notes: >-
-        The generic-field API includes ordinary-import clients and standalone
-        documentation. Neither origin credit nor reviewed delivery implies
-        source coverage or a group-algebra/convolution bridge.
+        Supplied coordinates, coefficient/universe hypotheses, basis laws,
+        Fourier sign and boundary clients guide the reusable interfaces.
   notes: >-
-    Code, proofs, documentation and metadata are AI-agent contributions.
-    Prism authored Laurent mathematics and adapted the documentation tooling;
-    Beacon's experiment informed the Fourier result, with subsequent incubator,
-    packaging and group-rings contributions by Formal Frontier AI agents.
-    Original mathematical reviews and release decisions have distinct scopes.
+    Code, proofs, documentation and metadata include AI-agent contributions;
+    expression origins and contributor credit are recorded in CREDITS.md.
     No human mathematical review or source-author endorsement is claimed.
     AI generation does not establish correctness, originality, copyright
     ownership or redistribution clearance.
@@ -238,32 +191,17 @@ fidelity:
 review:
   status: "other"
   notes: >-
-    Review is revision-specific. Laurent and Fourier mathematical contributions
-    each have independent agent reviews of their own exact code candidates;
-    approval of an origin or development revision does not approve changed
-    documentation or another release. Consult the official release record for
-    acceptance and build/standard-axiom evidence of the exact published
-    revision. Metadata and generated API signature hashes do not certify Lean
-    proofs, native-record provenance, independent review, rights or source
-    coverage. This repository does not claim a separate stored-proof replay,
-    strict syntax/header lint pass or external proof checker. Original project
-    headers do not invent a copyright holder, and the deliberately private
-    default-test modules remain private; neither is represented as strict-lint
-    compliance. The Apache-2.0 LICENSE is not proof of title or a license for
-    third-party source material.
+    Agent mathematical review is revision-specific, not human review or
+    source-author endorsement. Metadata and historical API signature hashes
+    do not certify proofs, current native analysis, source coverage or rights.
 
 acknowledgements: >-
-  The mathlib community supplies the underlying formal mathematics and retains
-  its authorship and license notices. Lean and Lake supply the proof assistant
-  and build system. Lattice supplied the identified historical independent
-  development review. Weibel's bibliographic authorship is distinct from project
-  formalization authorship. Original project contributions and identified
-  internal adaptations use the operator-selected Apache-2.0 license; no ownership
-  of, or permission to relicense, third-party expression is asserted. The
-  finite-abelian addition credits Beacon's experiment, the original
-  incubator implementation, module repair and destination adaptation by
-  Formal Frontier AI contributors and independent mathematical review.
-  Those credits are not a source-specific formalization or rights-clearance
-  verdict. The
-  formalization.yaml standard supplies the field vocabulary; this filled-in
-  metadata prose is a project contribution, not upstream schema implementation.
+  The mathlib community supplies the underlying formal mathematics; Lean and
+  Lake supply the proof assistant and build system. CREDITS.md preserves the
+  identified Prism, Anchor, Beacon, Lattice and other AI contributor credit,
+  as well as upstream Lean, mathlib and doc-gen4 attribution. Weibel's book
+  authorship is distinct from Lean expression provenance. Original project
+  contributions and identified project adaptations use Apache-2.0; no ownership
+  of, or permission to relicense, third-party expression is asserted. Upstream
+  notices remain intact. The formalization.yaml standard supplies the field
+  vocabulary, not this project's metadata prose.

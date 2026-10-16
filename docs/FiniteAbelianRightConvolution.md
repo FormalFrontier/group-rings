@@ -82,19 +82,19 @@ and its weaker semiring and possibly infinite-index assumptions remain intact.
 ## Reproduction and provenance
 
 The checkout pins Lean `v4.34.0-rc2`, mathlib
-`e37d88a26f3791ed5a93daa1f949af1021b8d103` and its resolved Lake
+`83abb3e776bdefcbc447a1e44d0debe4010039e5` and its resolved Lake
 manifest. From the repository root, install the pinned toolchain and run
 `lake exe cache get` **before** `lake build --wfail`. This builds the
 `GroupRings` and `GroupRingsTest` default roots, including the six private
 ordinary-import Fourier checks in
-[`tests/FiniteAbelianRightConvolutionClient.lean`](../tests/FiniteAbelianRightConvolutionClient.lean).
-See the [root README](../README.md#reproducible-build-and-checks) for
-historical, cache-contextualized cost observations, not performance guarantees.
+[`tests/GroupRingsTest/FiniteAbelianRightConvolutionClient.lean`](../tests/GroupRingsTest/FiniteAbelianRightConvolutionClient.lean).
+See the [root README](../README.md#reproducible-build-and-checks) for the complete
+build and individual client-check commands.
 
-This generic-field work adapts Beacon's finite-abelian character experiment,
-subsequently developed in the incubator and adapted for this library. Mathlib's
-character independence, finite duality, matrix rank and complex-basis results
-remain distinct upstream contributions; no dependency implementation is copied.
-The [root provenance summary](../README.md#references-provenance-and-ai-involvement)
-credits the AI-agent contributors. A reusable library result alone makes no
-source-specific coverage claim.
+This generic-field work adapts Beacon's finite-abelian character experiment.
+Formal Frontier AI contributors supplied the generic-field implementation,
+public-module repair and API/client adaptation; [credits](../CREDITS.md) identify
+these and the other contributions. Mathlib's character independence, finite
+duality, matrix rank and complex-basis results remain distinct upstream
+contributions; no dependency implementation is copied. A reusable library result
+alone makes no source-specific coverage claim.

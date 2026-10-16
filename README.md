@@ -89,7 +89,22 @@ diagonalizes convolution and its rank is the `Nat.card` of characters with
 nonzero eigenvalue. This does not identify convolution with a group-algebra
 operator or assert a nonabelian Fourier basis.
 
-## Public API and use
+## Using the library
+
+Add the dependency to your `lakefile.toml`:
+
+```toml
+[[require]]
+name = "group-rings"
+git = "https://github.com/FormalFrontier/group-rings.git"
+rev = "main"
+```
+
+GitHub `main` contains only reviewed releases. Lake resolves a release when you
+add or update the dependency; `lake-manifest.json` locks that commit until the
+next update. For a specific release, replace `main` with its full commit from
+that history. Libraries used together must share a compatible Lean toolchain
+and the same mathlib revision.
 
 Import `GroupRings`. The leaf module is
 `GroupRings.FreeAbelian.LaurentPolynomial` for Laurent coordinates and
@@ -143,13 +158,13 @@ example (A : Type*) [CommSemiring A] (σ : Type*) (i : σ) (a : A) :
 The inverse formula sends a basis vector with exponent `m` to the group element
 whose coordinates are `m`. As algebra equivalences, the constructions preserve
 addition, multiplication and coefficients and satisfy both inverse laws. The
-persistent [ordinary-import clients](tests/PublicAPIClient.lean) exercise these
+persistent [ordinary-import clients](tests/GroupRingsTest/PublicAPIClient.lean) exercise these
 properties, empty/infinite indices, reducibility and degenerate coefficients.
-The [generator regression clients](tests/GeneratorSimpClient.lean) also check
+The [generator regression clients](tests/GroupRingsTest/GeneratorSimpClient.lean) also check
 generic `simp`, named `rw`, explicit `simp only`, and restricted simplification
 with both general single laws disabled. Together these are 28 Laurent private
 tests in the default build, not additional exported API. Six further private
-checks in the [Fourier client](tests/FiniteAbelianRightConvolutionClient.lean)
+checks in the [Fourier client](tests/GroupRingsTest/FiniteAbelianRightConvolutionClient.lean)
 exercise the ordinary public import, positive point-mass sign and comparison
 with mathlib's `AddChar.complexBasis`. The generator test with
 `i : Fin 0` is vacuous; the separate empty-index equivalence still checks the
@@ -166,7 +181,7 @@ every custom simp set or a performance improvement.
 
 Install [elan](https://github.com/leanprover/elan). The checkout pins Lean
 `leanprover/lean4:v4.34.0-rc2`, mathlib
-`e37d88a26f3791ed5a93daa1f949af1021b8d103`, and eight transitive packages in
+`83abb3e776bdefcbc447a1e44d0debe4010039e5`, and eight transitive packages in
 `lake-manifest.json`. There are no other Formal Frontier library dependencies.
 The native module interface requires the pinned toolchain; an older Lean release
 is not supported by this checkout.
@@ -177,35 +192,15 @@ cache, then build both default targets, including the existing and new clients:
 ```sh
 lake exe cache get
 lake build --wfail
-lake env lean -DwarningAsError=true tests/PublicAPIClient.lean
-lake env lean -DwarningAsError=true tests/GeneratorSimpClient.lean
-lake env lean -DwarningAsError=true tests/FiniteAbelianRightConvolutionClient.lean
+lake env lean -DwarningAsError=true tests/GroupRingsTest/PublicAPIClient.lean
+lake env lean -DwarningAsError=true tests/GroupRingsTest/GeneratorSimpClient.lean
+lake env lean -DwarningAsError=true tests/GroupRingsTest/FiniteAbelianRightConvolutionClient.lean
 ```
 
 To check a saved copy of the example above, run `lake env lean MyClient.lean`
 from the same project environment. A dependent Lake project should pin an
 officially published revision and compatible dependency graph, then import
 `GroupRings` normally. No private native records are needed to use the library.
-
-Historical four-module Laurent-only baseline, measured on x86-64 Linux with
-`LEAN_NUM_THREADS=2` on September 25, 2026: the matching cache setup took 111.26s
-(8,892 dependency artifacts, reusing the local download cache). After deleting
-only this package's build outputs, `lake --no-cache build --wfail` compiled all
-four project modules in 5.15s (1,232 total Lake jobs including cached dependency
-jobs). Its largest measured child RSS is recorded with the command, not an
-aggregate peak memory measurement;
-the runtime had a 23GiB memory limit. The dependency/build directory occupied
-about 7.7GiB. Commands and raw observations are retained in the author readiness
-record. These are environment-specific initial measurements, not a speedup or
-portable resource guarantee. Dependency cache setup is separate from compiling
-this library.
-
-For an earlier six-module revision, a CI run spanned about 2 minutes 28 seconds,
-including cache unpack of 8,892 artifacts, both targets (2,844 Lake jobs) and
-a transitive axiom audit. This was a whole-run interval, not a cold-build
-benchmark or peak-memory measurement. `LEAN_NUM_THREADS=2` does not bound
-aggregate subprocess memory. Both historical measurements depend on the runner
-and cache; neither guarantees current cost or certifies another revision.
 
 ## References, provenance and AI involvement
 
@@ -218,30 +213,10 @@ August 29, 2013, Example I.2.1.2. Only the algebra-identification premise motiva
 this unit, not its following projective-freeness conclusion. No source PDF or
 source proof excerpt is distributed here.
 
-This formalization was developed with AI agents. Prism authored the original
-integral source diagnostic and the coefficient-generic Laurent implementation;
-Lattice independently reviewed its initial mathematical contribution. The
-Laurent equivalence composition, forward basis proof and canonical/generator
-pattern adapt that diagnostic, while inverse basis laws, coefficient generality
-and independent universes are added. The integer generator client also follows
-an expression in a later source adapter; restricted-simp and priority tests
-are separate diagnostic work. These are identified expression origins, not a
-claim of an entirely original proof or a build of the source project's graph.
-
-Prism adapted this project's Markdown generator, tests and instructions from
-Anchor's Ideal Completion documentation adapter, including module inventory,
-native signature/source-range handling and binding. Prism later added retained
-input hashes and explicit source-only/parentless refresh controls. Beacon
-provided related portability design advice, not copied implementation.
-Generated Markdown displays this project's docstrings and native signatures,
-not dependency implementation, docstrings or website assets. Upstream Lean,
-mathlib and doc-gen4 authorship and license notices remain upstream.
-
-Beacon's finite-abelian character experiment led to the generic-field Fourier
-implementation in the incubator, followed by public-module repair and an
-adapted destination contribution here, independently reviewed for that
-mathematical addition. Beacon and Prism maintain these APIs with the wider
-source-maintainer team. Detailed source correspondence stays with the source
-repository; this library asserts neither source coverage nor a redistribution
-right to Weibel's book. No private project artifact is required to import and
-use `GroupRings`.
+AI agents contributed the code, proofs, clients, documentation and metadata.
+[Credits](CREDITS.md) identify Prism's Laurent expression, Anchor's documentation
+adapter, Beacon's character experiment and design advice, other Formal Frontier
+AI contributions, Lattice's mathematical review and the upstream work followed.
+These credits distinguish actual Lean expression origins from bibliographic
+sources; they assert neither source coverage nor a redistribution right to
+Weibel's book. No private project artifact is needed to import and use `GroupRings`.
