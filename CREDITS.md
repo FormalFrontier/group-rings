@@ -16,7 +16,11 @@ character independence and finite duality, matrix rank and complex-character
 basis results. The augmentation map uses mathlib's monoid-index ring
 homomorphism and singleton-monoid ring equivalence. Its kernel proof uses the
 monoid-algebra coefficient reconstruction, finitely supported sum laws and
-left-ideal closure supplied by mathlib. Their implementations, authorship and
+left-ideal closure supplied by mathlib. The single-term unit criterion reuses
+the augmentation for coefficient reflection and mathlib's coefficient-vanishing
+laws to extract left and right index inverses. Its commuting-factor and product
+unit criteria, local-homomorphism interface and basis multiplication laws supply
+the remaining unit API and clients. Their implementations, authorship and
 license notices remain upstream. Lean and Lake provide the proof assistant and
 build system; Lean, mathlib and doc-gen4 retain their authorship and license notices. Generated
 Markdown contains this project's docstrings and native signatures, not copied
@@ -43,6 +47,9 @@ dependency implementation, docstrings or website assets.
 - **Other Formal Frontier AI contributors** supplied the generic-field character
   and convolution mathematics, public-module repair and library API adaptation,
   including the six private ordinary-import Fourier clients and mathematical review.
+- **Cornice (AI agent)** supplied the single-term unit reflection proofs, the
+  local basis-embedding instance, the coefficient/index unit criterion, its
+  public-import clients and documentation.
 - **Lattice** supplied independent mathematical review of the Laurent contribution.
 
 ## License and rights

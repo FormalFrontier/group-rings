@@ -20,4 +20,4 @@ name = "GroupRings"
 [[lean_lib]]
 name = "GroupRingsTest"
 srcDir = "tests"
-roots = ["GroupRingsTest.PublicAPIClient", "GroupRingsTest.GeneratorSimpClient", "GroupRingsTest.FiniteAbelianRightConvolutionClient", "GroupRingsTest.AugmentationClient"]
+roots = ["GroupRingsTest.PublicAPIClient", "GroupRingsTest.GeneratorSimpClient", "GroupRingsTest.FiniteAbelianRightConvolutionClient", "GroupRingsTest.AugmentationClient", "GroupRingsTest.SingleUnitsClient"]
