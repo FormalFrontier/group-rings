@@ -15,6 +15,13 @@ records scope and attribution, not a live release registry.
 
 ## Headline results
 
+- **Coefficient change.** For any unital homomorphism `φ : R →+* S` from
+  a possibly noncommutative ring to a semiring, and any monoid `M`,
+  [coefficient change](GroupRings/MonoidAlgebra/CoefficientChange.lean)
+  maps the augmentation ideal of `R[M]` onto that of `S[M]` as an ideal.
+  The homomorphism need not be surjective. Naturality and the kernel
+  preimage formula hold for arbitrary semiring coefficients.
+
 - **Subgroup augmentation ideals.** For any possibly noncommutative ring `R`,
   group `G` and subgroup `H`, the [left ideal of subgroup differences](GroupRings/MonoidAlgebra/SubgroupIdeals.lean)
   consists exactly of elements with zero coefficient sums on every left coset
@@ -183,6 +190,7 @@ Import `GroupRings`, or one of its leaf modules:
 | `GroupRings.MonoidAlgebra.SubgroupIdeals` | Left coset coefficient sums and subgroup left ideals, inclusion and normality. |
 | `GroupRings.MonoidAlgebra.Units` | Single-term units and reflection by the basis embedding. |
 | `GroupRings.MonoidAlgebra.Augmentation` | Coefficient-sum augmentation and left-ideal kernel generators. |
+| `GroupRings.MonoidAlgebra.CoefficientChange` | Naturality, kernel preimages and ideal images under coefficient change. |
 | `GroupRings.MonoidAlgebra.AugmentationGenerators` | Kernel generators from monoid or subgroup generating sets. |
 | `GroupRings.RingTheory.Ideal.MonoidHom` | Difference-membership propagation through monoid and subgroup closure in any ring's left ideals. |
 | `GroupRings.LinearAlgebra.Finsupp.SumKernel` | Pointed coefficient-sum kernel equivalence for modules over semirings. |

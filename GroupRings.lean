@@ -8,6 +8,7 @@ public import GroupRings.FreeAbelian.LaurentPolynomial
 public import GroupRings.FiniteAbelian.RightConvolution
 public import GroupRings.MonoidAlgebra.AugmentationBasis
 public import GroupRings.MonoidAlgebra.AugmentationGenerators
+public import GroupRings.MonoidAlgebra.CoefficientChange
 public import GroupRings.MonoidAlgebra.Units
 public import GroupRings.MonoidAlgebra.SubgroupIdeals
 
