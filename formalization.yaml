@@ -52,6 +52,14 @@ project:
     map is also surjective the full target is available. No nontriviality or
     commutativity is imposed, and the target coefficients need only be a semiring.
     No sufficient-condition converse is asserted.
+    Over a nontrivial possibly noncommutative ring with prime p equal to zero,
+    nilpotence of the augmentation kernel implies one common p-power exponent
+    for an arbitrary group, hence IsPGroup p G, without finiteness. Uniform
+    vanishing of mixed ordered products gives the same conclusion. A generic
+    left-ideal power API over any semiring identifies zero powers with
+    vanishing of every ordered product of that length, including degree zero.
+    The finite-p-group forward cardinality bound and finite equivalence are
+    not provided.
     No group-algebra/convolution bridge is asserted.
   authors: [Formal Frontier Agents]
   license: "Apache-2.0"
@@ -198,6 +206,24 @@ status:
     with its original native-record binding, not a current whole-library
     analysis. The handwritten Fourier guide describes the current Fourier API.
   main_results:
+    - declaration: "Ideal.pow_le_iff_forall_list_prod_mem"
+      file: "GroupRings/RingTheory/Ideal/Powers.lean"
+      note: "Universal property of powers of arbitrary left ideals over semirings via ordered mixed lists, including length zero; no two-sidedness or nontriviality."
+    - declaration: "Ideal.pow_eq_bot_iff_forall_list_prod_eq_zero"
+      file: "GroupRings/RingTheory/Ideal/Powers.lean"
+      note: "The n-th power vanishes exactly when every ordered length-n mixed product vanishes, including n=0."
+    - declaration: "MonoidAlgebra.forall_pow_eq_one_of_augmentation_pow_eq_bot"
+      file: "GroupRings/MonoidAlgebra/AugmentationNilpotence.lean"
+      note: "Over a nontrivial ring with prime p=0, a zero n-th augmentation power forces every p^k at least n to be a common group exponent."
+    - declaration: "MonoidAlgebra.exists_pow_eq_one_of_isNilpotent_augmentation"
+      file: "GroupRings/MonoidAlgebra/AugmentationNilpotence.lean"
+      note: "Nilpotence forces one common p-power exponent for an arbitrary group, not only pointwise p-power torsion."
+    - declaration: "MonoidAlgebra.exists_pow_eq_one_of_augmentation_products_eq_zero"
+      file: "GroupRings/MonoidAlgebra/AugmentationNilpotence.lean"
+      note: "Uniform mixed-product nilpotence has the same common-exponent consequence without a finite-group assumption."
+    - declaration: "MonoidAlgebra.isPGroup_of_isNilpotent_augmentation"
+      file: "GroupRings/MonoidAlgebra/AugmentationNilpotence.lean"
+      note: "The common exponent gives IsPGroup p G as a corollary for nontrivial rings with prime p=0."
     - declaration: "MonoidAlgebra.mem_map_singleOneRingHom_iff"
       file: "GroupRings/MonoidAlgebra/CoefficientIdeals.lean"
       note: "For every left ideal over any semiring and any monoid, extension by constants is equivalent to membership of every coefficient."

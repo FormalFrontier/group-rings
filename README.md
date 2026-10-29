@@ -15,6 +15,17 @@ records scope and attribution, not a live release registry.
 
 ## Headline results
 
+- **Uniform exponents from augmentation nilpotence.** For a prime `p`, a
+  **nontrivial**, possibly noncommutative ring `R` with `(p : R) = 0`, and
+  **any group** `G`, nilpotence of `ker (augmentation R G)` implies
+  `∃ k, ∀ g : G, g ^ (p ^ k) = 1`, hence `IsPGroup p G`. The same conclusion
+  follows from uniform vanishing of mixed ordered augmentation products.
+  The supporting left-ideal API over **any semiring** identifies vanishing
+  of the `n`-th power with vanishing of all length-`n` ordered products,
+  including degree zero. See the [augmentation-nilpotence guide](docs/AugmentationNilpotence.md).
+  The finite-`p`-group forward cardinality bound and finite equivalence are
+  not yet provided.
+
 - **Augmentation cotangents.** For any unital ring `R`, monoid `M` and left
   `R`-module `V`, linear maps from `I/I²` to `V` are naturally equivalent, as a
   **set**, to monoid homomorphisms `M →* Multiplicative V`. For a group `G`,
@@ -273,6 +284,8 @@ Import `GroupRings`, or one of its leaf modules:
 | `GroupRings.MonoidAlgebra.MapDomain` | Coefficient projection retracts pushforward and commutes with right multiplication by a group image. |
 | `GroupRings.RingTheory.Noetherian` | Ideal extension-contraction and left-Noetherian descent for additive right retractions. |
 | `GroupRings.MonoidAlgebra.Units` | Single-term units and reflection by the basis embedding. |
+| `GroupRings.MonoidAlgebra.AugmentationNilpotence` | Uniform group exponents from augmentation nilpotence over nontrivial rings of prime characteristic. |
+| `GroupRings.RingTheory.Ideal.Powers` | Ordered mixed-product membership and universal properties for left-ideal powers over semirings. |
 | `GroupRings.MonoidAlgebra.Augmentation` | Coefficient-sum augmentation and left-ideal kernel generators. |
 | `GroupRings.MonoidAlgebra.CoefficientIdeals` | Ordinary left coefficient ideals, coefficient kernels and quotient equivalences. |
 | `GroupRings.MonoidAlgebra.MixedQuotient` | Simultaneous coefficient/index kernels and range or surjective quotients. |
@@ -401,6 +414,7 @@ lake env lean -DwarningAsError=true tests/GroupRingsTest/AugmentationGeneratorsC
 lake env lean -DwarningAsError=true tests/GroupRingsTest/SubgroupIdealsClient.lean
 lake env lean -DwarningAsError=true tests/GroupRingsTest/SubgroupIdealsFGClient.lean
 lake env lean -DwarningAsError=true tests/GroupRingsTest/NoetherianClient.lean
+lake env lean -DwarningAsError=true tests/GroupRingsTest/AugmentationNilpotenceClient.lean
 ```
 
 To check a saved copy of the example above, run `lake env lean MyClient.lean`

@@ -61,6 +61,11 @@ bridges use `Polynomial.toFinsuppIso` and
 quotients transport Mathlib's first-isomorphism equivalences. The mixed kernel
 uses the group-to-monoid kernel theorem in this library together with Mathlib's
 coefficient/index naturality and ring-to-ring ideal extension-contraction.
+Augmentation nilpotence uses Mathlib's ideal-power membership and vanishing
+lemmas, the prime-characteristic commuting binomial identity and the injective
+monoid-algebra basis embedding. The ordered-list power API uses its additive
+closure of set powers and finite-list representation of ordered set products.
+The uniform exponent argument combines these interfaces directly.
 Lean and Lake provide the proof assistant and
 build system; Lean, mathlib and doc-gen4 retain their authorship and license notices. Generated
 Markdown contains this project's docstrings and native signatures, not copied
@@ -105,7 +110,9 @@ dependency implementation, docstrings or website assets.
   projection compatibility and arbitrary-semiring group-subalgebra descent are
   also Cornice contributions. Cornice supplied the general coefficient-ideal
   membership and kernel theorem, polynomial transport bridges and simultaneous
-  coefficient/index kernel and quotient API.
+  coefficient/index kernel and quotient API. Cornice also supplied the
+  ordered-list left-ideal power API and arbitrary-group uniform augmentation-
+  nilpotence converse, their public-import clients and documentation.
 - **Lattice** supplied independent mathematical review of the Laurent contribution.
 
 ## License and rights

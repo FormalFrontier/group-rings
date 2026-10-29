@@ -5,6 +5,10 @@ set-valued universal property for any coefficient ring and monoid, and the
 `R`-linear integer-tensor comparison for groups, without commutativity or
 freeness assumptions.
 
+The [augmentation-nilpotence guide](AugmentationNilpotence.md) describes the
+uniform exponent consequence for arbitrary groups and the ordered-product
+universal property for powers of left ideals over semirings.
+
 The [Noetherian guide](Noetherian.md) describes group-subalgebra descent,
 coefficient projection and the generic additive-right-retraction criterion.
 
