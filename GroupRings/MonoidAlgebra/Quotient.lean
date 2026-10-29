@@ -5,6 +5,7 @@ Authors: Formal Frontier Agents
 module
 
 public import GroupRings.MonoidAlgebra.Augmentation
+public import GroupRings.MonoidAlgebra.AugmentationGenerators
 public import GroupRings.MonoidAlgebra.SubgroupIdeals
 public import Mathlib.GroupTheory.QuotientGroup.Basic
 public import Mathlib.RingTheory.Ideal.Quotient.Operations
@@ -49,6 +50,26 @@ theorem ker_mapDomainRingHom_mk' (N : Subgroup G) [N.Normal] :
   ext f
   rw [RingHom.mem_ker, mem_span_subgroup_iff,
     ← coeff_mapDomainRingHom_mk', coeff_eq_zero]
+
+/-- Quotienting a group by a normal cyclic subgroup imposes the single
+left-ideal relation `single z 1 - 1`. Coefficients need not commute. -/
+theorem ker_mapDomainRingHom_mk'_zpowers (z : G) [(Subgroup.zpowers z).Normal] :
+    RingHom.ker (mapDomainRingHom R (QuotientGroup.mk' (Subgroup.zpowers z))) =
+      Ideal.span ({single z (1 : R) - 1} : Set (MonoidAlgebra R G)) := by
+  rw [ker_mapDomainRingHom_mk']
+  apply le_antisymm
+  · refine Ideal.span_le.mpr ?_
+    rintro _ ⟨n, rfl⟩
+    apply Ideal.sub_one_mem_of_mem_subgroup_closure (Ideal.span {single z (1 : R) - 1})
+      (of R G) (S := {z})
+    · intro s hs
+      obtain rfl := Set.mem_singleton_iff.mp hs
+      exact Ideal.subset_span (Set.mem_singleton _)
+    · simpa only [← Subgroup.zpowers_eq_closure] using n.property
+  · refine Ideal.span_le.mpr ?_
+    intro x hx
+    obtain rfl := Set.mem_singleton_iff.mp hx
+    exact Ideal.subset_span ⟨⟨z, Subgroup.mem_zpowers z⟩, rfl⟩
 
 /-- Normality makes the left span of the subgroup relations a two-sided ideal. -/
 instance instIsTwoSidedSpanSubgroup (N : Subgroup G) [N.Normal] :

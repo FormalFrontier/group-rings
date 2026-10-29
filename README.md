@@ -15,16 +15,16 @@ records scope and attribution, not a live release registry.
 
 ## Headline results
 
-- **Uniform exponents from augmentation nilpotence.** For a prime `p`, a
-  **nontrivial**, possibly noncommutative ring `R` with `(p : R) = 0`, and
-  **any group** `G`, nilpotence of `ker (augmentation R G)` implies
-  `∃ k, ∀ g : G, g ^ (p ^ k) = 1`, hence `IsPGroup p G`. The same conclusion
-  follows from uniform vanishing of mixed ordered augmentation products.
-  The supporting left-ideal API over **any semiring** identifies vanishing
-  of the `n`-th power with vanishing of all length-`n` ordered products,
-  including degree zero. See the [augmentation-nilpotence guide](docs/AugmentationNilpotence.md).
-  The finite-`p`-group forward cardinality bound and finite equivalence are
-  not yet provided.
+- **Augmentation nilpotence and finite `p`-groups.** For a prime `p`, any
+  possibly noncommutative ring `R` with `(p : R) = 0`, and a finite `p`-group
+  `G`, the [augmentation kernel has zero `Nat.card G`-th power](GroupRings/MonoidAlgebra/AugmentationNilpotence/Finite.lean).
+  Thus every mixed ordered product of that length vanishes, including over
+  the zero coefficient ring. Conversely, for **nontrivial** `R` and **any**
+  group `G`, nilpotence implies `∃ k, ∀ g : G, g ^ (p ^ k) = 1`, hence
+  `IsPGroup p G`. This gives the finite-group iff. The supporting left-ideal
+  API over **any semiring** identifies zero `n`-th powers with vanishing of
+  all length-`n` ordered products, including degree zero. See the
+  [augmentation-nilpotence guide](docs/AugmentationNilpotence.md).
 
 - **Augmentation cotangents.** For any unital ring `R`, monoid `M` and left
   `R`-module `V`, linear maps from `I/I²` to `V` are naturally equivalent, as a
@@ -285,7 +285,8 @@ Import `GroupRings`, or one of its leaf modules:
 | `GroupRings.RingTheory.Noetherian` | Ideal extension-contraction and left-Noetherian descent for additive right retractions. |
 | `GroupRings.MonoidAlgebra.Units` | Single-term units and reflection by the basis embedding. |
 | `GroupRings.MonoidAlgebra.AugmentationNilpotence` | Uniform group exponents from augmentation nilpotence over nontrivial rings of prime characteristic. |
-| `GroupRings.RingTheory.Ideal.Powers` | Ordered mixed-product membership and universal properties for left-ideal powers over semirings. |
+| `GroupRings.MonoidAlgebra.AugmentationNilpotence.Finite` | Exact cardinality bound for finite p-groups over any ring with p=0, and the finite-group criterion. |
+| `GroupRings.RingTheory.Ideal.Powers` | Ordered mixed products, ideal-power iteration and extension bounds over semirings. |
 | `GroupRings.MonoidAlgebra.Augmentation` | Coefficient-sum augmentation and left-ideal kernel generators. |
 | `GroupRings.MonoidAlgebra.CoefficientIdeals` | Ordinary left coefficient ideals, coefficient kernels and quotient equivalences. |
 | `GroupRings.MonoidAlgebra.MixedQuotient` | Simultaneous coefficient/index kernels and range or surjective quotients. |

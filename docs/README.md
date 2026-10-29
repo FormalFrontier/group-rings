@@ -6,8 +6,10 @@ set-valued universal property for any coefficient ring and monoid, and the
 freeness assumptions.
 
 The [augmentation-nilpotence guide](AugmentationNilpotence.md) describes the
-uniform exponent consequence for arbitrary groups and the ordered-product
-universal property for powers of left ideals over semirings.
+exact cardinality bound for finite p-groups over arbitrary rings with p=0,
+the finite-group criterion over nontrivial rings, the uniform exponent
+consequence for arbitrary groups, and ordered mixed products and ideal powers
+over semirings.
 
 The [Noetherian guide](Noetherian.md) describes group-subalgebra descent,
 coefficient projection and the generic additive-right-retraction criterion.

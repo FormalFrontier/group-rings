@@ -24,8 +24,10 @@ characteristic identifies this with `single (g ^ (p ^ k)) 1 - 1`. Injectivity of
 the basis embedding then recovers the group equation. Only commutation with one
 is used, not commutativity of the group ring.
 
-This module does not prove the converse implication for finite `p`-groups, its
-exact cardinality bound, or a finite-group equivalence.
+The companion `GroupRings.MonoidAlgebra.AugmentationNilpotence.Finite` proves
+the finite-`p`-group forward implication with exact cardinality bound over
+all coefficient rings with `p = 0`, and the finite-group equivalence over
+nontrivial coefficient rings.
 -/
 
 @[expose] public section

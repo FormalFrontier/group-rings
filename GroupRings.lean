@@ -6,7 +6,7 @@ module
 
 public import GroupRings.FreeAbelian.LaurentPolynomial
 public import GroupRings.FiniteAbelian.RightConvolution
-public import GroupRings.MonoidAlgebra.AugmentationNilpotence
+public import GroupRings.MonoidAlgebra.AugmentationNilpotence.Finite
 public import GroupRings.MonoidAlgebra.AugmentationBasis
 public import GroupRings.MonoidAlgebra.AugmentationCotangent.Tensor
 public import GroupRings.MonoidAlgebra.AugmentationGenerators
@@ -34,9 +34,12 @@ any semiring, with its kernel generated as a left ideal by basis differences
 over any ring. A monoid generating set, or a subgroup generating set for a
 group, suffices for these left-ideal generators. The kernel also has a left
 coefficient-ring module basis indexed by the nonidentity monoid elements.
+For finite `p`-groups over any ring with prime `p = 0`, the augmentation
+kernel has zero `Nat.card G`-th power, including over the zero ring.
 Over nontrivial rings with prime `p = 0`, uniform augmentation-ideal
 nilpotence forces a common `p`-power exponent for an arbitrary group,
-without finiteness or commutativity. Vanishing of ideal powers over any semiring
+without finiteness or commutativity; for finite groups this gives an iff.
+Vanishing of ideal powers over any semiring
 is equivalent to vanishing of all ordered mixed products of the given length,
 including zero.
 Single-term units over a nontrivial semiring are characterized by unit

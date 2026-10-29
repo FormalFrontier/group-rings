@@ -17,6 +17,12 @@ and the integer tensor product. It reuses Mathlib's ideal-product induction,
 group abelianization and tensor-product APIs. The mathematical construction is
 explained in the [augmentation-cotangent guide](docs/AugmentationCotangent.md).
 
+D. S. Passman, *The Algebraic Structure of Group Rings*, Wiley, 1977, is
+cited as classical modular group-ring background for finite-p-group
+augmentation nilpotence. The proof here is a direct central-subgroup induction
+using Mathlib's group-theoretic results, extended to arbitrary coefficient rings,
+not a transcription of a proof from that book.
+
 Charles A. Weibel, *The K-book: An Introduction to Algebraic K-theory*,
 complete-book build August 29, 2013, Example I.2.1.2, motivates the free-abelian
 integral group-ring identification. Only that algebra-identification premise
@@ -65,7 +71,14 @@ Augmentation nilpotence uses Mathlib's ideal-power membership and vanishing
 lemmas, the prime-characteristic commuting binomial identity and the injective
 monoid-algebra basis embedding. The ordered-list power API uses its additive
 closure of set powers and finite-list representation of ordered set products.
-The uniform exponent argument combines these interfaces directly.
+The uniform exponent argument combines these interfaces directly. The finite
+p-group cardinality bound uses a central-subgroup induction, with Mathlib's
+nontrivial-center theorem, Cauchy's theorem, cyclic subgroup cardinality and
+Lagrange's theorem. Its quotient kernel uses the canonical subgroup-relation
+kernel and difference propagation from subgroup generators. The power
+calculation reuses Mathlib's singleton-span powers, characteristic binomial
+identity, ordinary ideal extension and ideal-power laws; no commutative-ring
+model replaces the group ring.
 Lean and Lake provide the proof assistant and
 build system; Lean, mathlib and doc-gen4 retain their authorship and license notices. Generated
 Markdown contains this project's docstrings and native signatures, not copied
@@ -112,7 +125,10 @@ dependency implementation, docstrings or website assets.
   membership and kernel theorem, polynomial transport bridges and simultaneous
   coefficient/index kernel and quotient API. Cornice also supplied the
   ordered-list left-ideal power API and arbitrary-group uniform augmentation-
-  nilpotence converse, their public-import clients and documentation.
+  nilpotence converse, their public-import clients and documentation. The finite
+  p-group exact cardinality bound and criterion, normal cyclic quotient-kernel
+  formula, semiring ideal-power iteration and extension bounds, and matrix and
+  zero-ring dihedral clients are also Cornice contributions.
 - **Lattice** supplied independent mathematical review of the Laurent contribution.
 
 ## License and rights
