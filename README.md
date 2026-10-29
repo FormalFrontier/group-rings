@@ -32,6 +32,16 @@ records scope and attribution, not a live release registry.
   No commutativity or finiteness is assumed; the [guide](docs/SubgroupIdeals.md)
   explains the coefficient module, hypotheses and nonnormal matrix-ring example.
 
+- **Finite generation of subgroup ideals.** Over any ring, a finitely generated
+  subgroup gives a [finitely generated left group-ring ideal](GroupRings/MonoidAlgebra/SubgroupIdealsFG.lean).
+  Over a **nontrivial** ring the converse holds, without normality or
+  commutativity. In particular, the augmentation kernel is finitely generated
+  as a left ideal exactly when the group is finitely generated. The forward
+  implication allows the zero ring. This is finite generation over `R[G]`,
+  not over `R`; the [public-import client](tests/GroupRingsTest/SubgroupIdealsFGClient.lean)
+  illustrates matrix coefficients, an infinite cyclic group and the zero-ring
+  boundary for an infinite-rank free abelian group.
+
 - **Single-term units.** For any semiring `R` and monoid `M` in independent
   universes, a unit `single m r` has a unit coefficient `r`, even when `R` is
   trivial. Over a **nontrivial** semiring, the
@@ -188,6 +198,7 @@ Import `GroupRings`, or one of its leaf modules:
 | Module | Contents |
 | --- | --- |
 | `GroupRings.MonoidAlgebra.SubgroupIdeals` | Left coset coefficient sums and subgroup left ideals, inclusion and normality. |
+| `GroupRings.MonoidAlgebra.SubgroupIdealsFG` | Finite generation of subgroup left ideals and augmentation kernels. |
 | `GroupRings.MonoidAlgebra.Units` | Single-term units and reflection by the basis embedding. |
 | `GroupRings.MonoidAlgebra.Augmentation` | Coefficient-sum augmentation and left-ideal kernel generators. |
 | `GroupRings.MonoidAlgebra.CoefficientChange` | Naturality, kernel preimages and ideal images under coefficient change. |
@@ -207,6 +218,8 @@ is required by consumers.
 | `MonoidAlgebra.mem_span_subgroup_iff` | Subgroup left-span membership iff every left-coset coefficient sum vanishes, over any ring. |
 | `MonoidAlgebra.single_sub_one_mem_span_subgroup_iff`, `span_subgroup_le_iff` | Over a nontrivial ring, reflect subgroup membership and inclusion. |
 | `MonoidAlgebra.span_subgroup_isTwoSided`, `span_subgroup_isTwoSided_iff` | Normality implies two-sidedness over any ring; the converse needs nontriviality. |
+| `MonoidAlgebra.span_subgroup_fg_of_fg`, `span_subgroup_fg_iff` | Subgroup FG implies left-ideal FG over any ring; equivalence over nontrivial rings. |
+| `MonoidAlgebra.ker_augmentation_fg`, `ker_augmentation_fg_iff` | Group FG implies augmentation-kernel FG over any ring; equivalence over nontrivial rings. |
 | `MonoidAlgebra.isUnit_coeff_of_single` | A unit single term has a unit coefficient over any semiring. |
 | `MonoidAlgebra.isLocalHom_of` | Basis embedding reflects units over a nontrivial semiring. |
 | `MonoidAlgebra.isUnit_single_iff` | A single term is a unit iff its coefficient and index are units, over a nontrivial semiring. |
@@ -304,6 +317,7 @@ lake env lean -DwarningAsError=true tests/GroupRingsTest/SingleUnitsClient.lean
 lake env lean -DwarningAsError=true tests/GroupRingsTest/AugmentationBasisClient.lean
 lake env lean -DwarningAsError=true tests/GroupRingsTest/AugmentationGeneratorsClient.lean
 lake env lean -DwarningAsError=true tests/GroupRingsTest/SubgroupIdealsClient.lean
+lake env lean -DwarningAsError=true tests/GroupRingsTest/SubgroupIdealsFGClient.lean
 ```
 
 To check a saved copy of the example above, run `lake env lean MyClient.lean`

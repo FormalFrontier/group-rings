@@ -30,7 +30,10 @@ unit criteria, local-homomorphism interface and basis multiplication laws supply
 the remaining unit API and clients. The subgroup-ideal proofs use mathlib's
 coefficient-linear reindexing, left coset equality, quotient representatives,
 finite coefficient reconstruction and ordinary ideal spans. These mathlib interfaces
-retain their upstream authorship and license notices. Lean and Lake provide the proof assistant and
+retain their upstream authorship and license notices. Subgroup-ideal finite
+generation uses mathlib's finite-subset-of-span, finite-span and group-finiteness
+interfaces, combined with the subgroup-difference closure and inclusion-reflection
+results. Lean and Lake provide the proof assistant and
 build system; Lean, mathlib and doc-gen4 retain their authorship and license notices. Generated
 Markdown contains this project's docstrings and native signatures, not copied
 dependency implementation, docstrings or website assets.
@@ -65,7 +68,9 @@ dependency implementation, docstrings or website assets.
   their augmentation generating-set applications and the free-monoid and
   infinite-cyclic public-import clients. The subgroup coset-sum API, its
   characteristic left-span theorem, membership/order/normality reflection and
-  nonnormal matrix-ring client are also Cornice contributions.
+  nonnormal matrix-ring client are also Cornice contributions. Cornice supplied
+  the subgroup-ideal and augmentation-kernel finite-generation equivalences,
+  their all-ring forward implications and matrix/zero-ring public-import clients.
 - **Lattice** supplied independent mathematical review of the Laurent contribution.
 
 ## License and rights

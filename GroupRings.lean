@@ -11,6 +11,7 @@ public import GroupRings.MonoidAlgebra.AugmentationGenerators
 public import GroupRings.MonoidAlgebra.CoefficientChange
 public import GroupRings.MonoidAlgebra.Units
 public import GroupRings.MonoidAlgebra.SubgroupIdeals
+public import GroupRings.MonoidAlgebra.SubgroupIdealsFG
 
 /-!
 # Monoid-algebra units, augmentation, Laurent coordinates and character convolution
@@ -28,5 +29,7 @@ coefficients and unit monoid indices, without commutativity or
 cancellation assumptions; coefficient-unit reflection needs no nontriviality.
 Subgroup differences generate the left ideal of elements with zero coefficient
 sums on left cosets, over any ring. Over a nontrivial ring these ideals detect
-subgroup membership and order, and two-sidedness detects normality.
+subgroup membership and order, and two-sidedness detects normality. The subgroup
+left ideal is finitely generated whenever the subgroup is; over a nontrivial
+ring the converse holds, including for the augmentation kernel and the whole group.
 -/

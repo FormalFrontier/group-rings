@@ -27,6 +27,9 @@ project:
     Over a nontrivial ring these ideals reflect subgroup membership and inclusion,
     and two-sidedness is equivalent to subgroup normality. No group or coefficient
     commutativity or finiteness is needed. The coset map itself is semiring-general.
+    Subgroup finite generation implies finite generation of its left group-ring
+    ideal over any ring; over a nontrivial ring the converse holds. For the whole
+    group this characterizes finite generation of the augmentation kernel.
     No group-algebra/convolution bridge is asserted.
   authors: [Formal Frontier Agents]
   license: "Apache-2.0"
@@ -90,7 +93,10 @@ related_formalizations:
       stabilizer submonoid and subgroup, pullback actions and closure order laws.
       Subgroup ideals use stock coefficient-linear reindexing, left coset equality,
       chosen quotient representatives and ideal spans, without a new generic
-      reindexing framework or quotient-ring model.
+      reindexing framework or quotient-ring model. Subgroup-ideal finite generation
+      reuses mathlib's finite subset of the original spanning set, finite-span FG
+      and subgroup FG interfaces, together with the closure and inclusion-reflection
+      theorems for subgroup differences.
   - id: "CREDITS.md"
     relationship: "adapts"
     note: >-
@@ -140,7 +146,12 @@ status:
     nontriviality. Membership and order reflection, and the converse from
     two-sidedness to normality, require nontrivial coefficients; normality implies
     two-sidedness over every ring. The target uses the left coset type as a module
-    index, not a quotient group or ring for nonnormal subgroups.
+    index, not a quotient group or ring for nonnormal subgroups. A finitely
+    generated subgroup gives a finitely generated left ideal over any ring. The
+    converse requires Nontrivial R, but no normality. For the top subgroup this
+    yields the same all-ring forward and nontrivial-ring equivalence between
+    augmentation-kernel FG and Group.FG. These ideals are generated over R[G],
+    not as coefficient-ring modules.
     The selected public interfaces below are not a census of private/generated declarations or
     client tests.
     The generated API page is a historical four-module/eight-Laurent snapshot
@@ -165,6 +176,18 @@ status:
     - declaration: "MonoidAlgebra.span_subgroup_isTwoSided_iff"
       file: "GroupRings/MonoidAlgebra/SubgroupIdeals.lean"
       note: "Over a nontrivial ring, two-sidedness of the subgroup left ideal iff the subgroup is normal."
+    - declaration: "MonoidAlgebra.span_subgroup_fg_of_fg"
+      file: "GroupRings/MonoidAlgebra/SubgroupIdealsFG.lean"
+      note: "For any Ring R and Group G in independent universes, H.FG implies FG of the ordinary left ideal spanned by single h 1 - 1; no normality or nontriviality is required."
+    - declaration: "MonoidAlgebra.span_subgroup_fg_iff"
+      file: "GroupRings/MonoidAlgebra/SubgroupIdealsFG.lean"
+      note: "Over a nontrivial Ring R, the subgroup left ideal is FG iff H is FG, with scalars R[G], not R."
+    - declaration: "MonoidAlgebra.ker_augmentation_fg"
+      file: "GroupRings/MonoidAlgebra/SubgroupIdealsFG.lean"
+      note: "For a Group.FG group over any Ring R, including the zero ring, the augmentation kernel is a finitely generated left ideal."
+    - declaration: "MonoidAlgebra.ker_augmentation_fg_iff"
+      file: "GroupRings/MonoidAlgebra/SubgroupIdealsFG.lean"
+      note: "Over a nontrivial Ring R, the augmentation kernel is FG as a left ideal iff Group.FG G."
     - declaration: "MonoidAlgebra.isUnit_coeff_of_single"
       file: "GroupRings/MonoidAlgebra/Units.lean"
       note: "Under Semiring R and Monoid M, a unit single m r has unit coefficient r, without a nontriviality assumption."
