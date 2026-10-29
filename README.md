@@ -15,6 +15,16 @@ records scope and attribution, not a live release registry.
 
 ## Headline results
 
+- **Subgroup augmentation ideals.** For any possibly noncommutative ring `R`,
+  group `G` and subgroup `H`, the [left ideal of subgroup differences](GroupRings/MonoidAlgebra/SubgroupIdeals.lean)
+  consists exactly of elements with zero coefficient sums on every left coset
+  `gH`. The coset-sum map itself needs only a semiring. Over a **nontrivial**
+  ring, these ideals reflect subgroup membership and inclusion, and are
+  two-sided exactly when `H` is normal. Characteristic membership, forward
+  inclusion and normality implying two-sidedness also allow the zero ring.
+  No commutativity or finiteness is assumed; the [guide](docs/SubgroupIdeals.md)
+  explains the coefficient module, hypotheses and nonnormal matrix-ring example.
+
 - **Single-term units.** For any semiring `R` and monoid `M` in independent
   universes, a unit `single m r` has a unit coefficient `r`, even when `R` is
   trivial. Over a **nontrivial** semiring, the
@@ -170,6 +180,7 @@ Import `GroupRings`, or one of its leaf modules:
 
 | Module | Contents |
 | --- | --- |
+| `GroupRings.MonoidAlgebra.SubgroupIdeals` | Left coset coefficient sums and subgroup left ideals, inclusion and normality. |
 | `GroupRings.MonoidAlgebra.Units` | Single-term units and reflection by the basis embedding. |
 | `GroupRings.MonoidAlgebra.Augmentation` | Coefficient-sum augmentation and left-ideal kernel generators. |
 | `GroupRings.MonoidAlgebra.AugmentationGenerators` | Kernel generators from monoid or subgroup generating sets. |
@@ -184,6 +195,10 @@ is required by consumers.
 
 | Declaration | Purpose |
 | --- | --- |
+| `MonoidAlgebra.cosetSum`, `cosetSum_single`, `cosetSum_apply` | Coefficient-linear coset projection, basis simp law and finite-support formula. |
+| `MonoidAlgebra.mem_span_subgroup_iff` | Subgroup left-span membership iff every left-coset coefficient sum vanishes, over any ring. |
+| `MonoidAlgebra.single_sub_one_mem_span_subgroup_iff`, `span_subgroup_le_iff` | Over a nontrivial ring, reflect subgroup membership and inclusion. |
+| `MonoidAlgebra.span_subgroup_isTwoSided`, `span_subgroup_isTwoSided_iff` | Normality implies two-sidedness over any ring; the converse needs nontriviality. |
 | `MonoidAlgebra.isUnit_coeff_of_single` | A unit single term has a unit coefficient over any semiring. |
 | `MonoidAlgebra.isLocalHom_of` | Basis embedding reflects units over a nontrivial semiring. |
 | `MonoidAlgebra.isUnit_single_iff` | A single term is a unit iff its coefficient and index are units, over a nontrivial semiring. |
@@ -280,6 +295,7 @@ lake env lean -DwarningAsError=true tests/GroupRingsTest/AugmentationClient.lean
 lake env lean -DwarningAsError=true tests/GroupRingsTest/SingleUnitsClient.lean
 lake env lean -DwarningAsError=true tests/GroupRingsTest/AugmentationBasisClient.lean
 lake env lean -DwarningAsError=true tests/GroupRingsTest/AugmentationGeneratorsClient.lean
+lake env lean -DwarningAsError=true tests/GroupRingsTest/SubgroupIdealsClient.lean
 ```
 
 To check a saved copy of the example above, run `lake env lean MyClient.lean`

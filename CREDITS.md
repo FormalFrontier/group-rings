@@ -27,8 +27,10 @@ extension-minus-sum correction. The single-term unit criterion reuses
 the augmentation for coefficient reflection and mathlib's coefficient-vanishing
 laws to extract left and right index inverses. Its commuting-factor and product
 unit criteria, local-homomorphism interface and basis multiplication laws supply
-the remaining unit API and clients. Their implementations, authorship and
-license notices remain upstream. Lean and Lake provide the proof assistant and
+the remaining unit API and clients. The subgroup-ideal proofs use mathlib's
+coefficient-linear reindexing, left coset equality, quotient representatives,
+finite coefficient reconstruction and ordinary ideal spans. These mathlib interfaces
+retain their upstream authorship and license notices. Lean and Lake provide the proof assistant and
 build system; Lean, mathlib and doc-gen4 retain their authorship and license notices. Generated
 Markdown contains this project's docstrings and native signatures, not copied
 dependency implementation, docstrings or website assets.
@@ -61,7 +63,9 @@ dependency implementation, docstrings or website assets.
   specialization, characteristic laws and matrix-ring client. Cornice also
   supplied the arbitrary-ring left-ideal difference-membership interfaces,
   their augmentation generating-set applications and the free-monoid and
-  infinite-cyclic public-import clients.
+  infinite-cyclic public-import clients. The subgroup coset-sum API, its
+  characteristic left-span theorem, membership/order/normality reflection and
+  nonnormal matrix-ring client are also Cornice contributions.
 - **Lattice** supplied independent mathematical review of the Laurent contribution.
 
 ## License and rights

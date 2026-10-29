@@ -22,6 +22,11 @@ project:
     Single-term units over nontrivial semirings are exactly the terms whose
     coefficient and monoid index are both units. Coefficient-unit reflection
     holds over every semiring, including the trivial one.
+    For an arbitrary subgroup of a group, its left ideal of basis differences
+    consists of exactly the elements with zero coefficient sums on left cosets.
+    Over a nontrivial ring these ideals reflect subgroup membership and inclusion,
+    and two-sidedness is equivalent to subgroup normality. No group or coefficient
+    commutativity or finiteness is needed. The coset map itself is semiring-general.
     No group-algebra/convolution bridge is asserted.
   authors: [Formal Frontier Agents]
   license: "Apache-2.0"
@@ -83,6 +88,9 @@ related_formalizations:
       augmentation formulas reuse the kernel theorem and generic
       difference-membership lemmas, implemented via the left module quotient,
       stabilizer submonoid and subgroup, pullback actions and closure order laws.
+      Subgroup ideals use stock coefficient-linear reindexing, left coset equality,
+      chosen quotient representatives and ideal spans, without a new generic
+      reindexing framework or quotient-ring model.
   - id: "CREDITS.md"
     relationship: "adapts"
     note: >-
@@ -126,13 +134,37 @@ status:
     criterion assumes only a nontrivial semiring and an arbitrary monoid in
     independent universes; the coefficient-reflection direction does not require
     nontriviality. The basis embedding reflects units under the same
-    nontriviality hypothesis, expressed as IsLocalHom. The selected public
-    interfaces below are not a census of private/generated declarations or
+    nontriviality hypothesis, expressed as IsLocalHom.
+    For any subgroup of a group, the subgroup-difference left ideal consists of
+    exactly the elements with zero coset coefficient sums, without normality or
+    nontriviality. Membership and order reflection, and the converse from
+    two-sidedness to normality, require nontrivial coefficients; normality implies
+    two-sidedness over every ring. The target uses the left coset type as a module
+    index, not a quotient group or ring for nonnormal subgroups.
+    The selected public interfaces below are not a census of private/generated declarations or
     client tests.
     The generated API page is a historical four-module/eight-Laurent snapshot
     with its original native-record binding, not a current whole-library
     analysis. The handwritten Fourier guide describes the current Fourier API.
   main_results:
+    - declaration: "MonoidAlgebra.cosetSum"
+      file: "GroupRings/MonoidAlgebra/SubgroupIdeals.lean"
+      note: "Over any semiring and group, sum coefficients on left cosets into the existing finitely supported coefficient module; cosetSum_single and cosetSum_apply give its basis and finite-support laws."
+    - declaration: "MonoidAlgebra.mem_span_subgroup_iff"
+      file: "GroupRings/MonoidAlgebra/SubgroupIdeals.lean"
+      note: "Over any ring, membership in the ordinary left span of subgroup differences iff the coset sum is zero; no normality or nontriviality assumption."
+    - declaration: "MonoidAlgebra.single_sub_one_mem_span_subgroup_iff"
+      file: "GroupRings/MonoidAlgebra/SubgroupIdeals.lean"
+      note: "Over a nontrivial ring, a basis difference belongs to the subgroup left ideal iff its index is in the subgroup."
+    - declaration: "MonoidAlgebra.span_subgroup_le_iff"
+      file: "GroupRings/MonoidAlgebra/SubgroupIdeals.lean"
+      note: "Over a nontrivial ring, inclusion of subgroup left ideals iff inclusion of subgroups. Forward monotonicity needs no nontriviality and follows from span_mono."
+    - declaration: "MonoidAlgebra.span_subgroup_isTwoSided"
+      file: "GroupRings/MonoidAlgebra/SubgroupIdeals.lean"
+      note: "Normality implies two-sidedness over any possibly trivial or noncommutative ring."
+    - declaration: "MonoidAlgebra.span_subgroup_isTwoSided_iff"
+      file: "GroupRings/MonoidAlgebra/SubgroupIdeals.lean"
+      note: "Over a nontrivial ring, two-sidedness of the subgroup left ideal iff the subgroup is normal."
     - declaration: "MonoidAlgebra.isUnit_coeff_of_single"
       file: "GroupRings/MonoidAlgebra/Units.lean"
       note: "Under Semiring R and Monoid M, a unit single m r has unit coefficient r, without a nontriviality assumption."

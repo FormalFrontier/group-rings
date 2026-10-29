@@ -9,6 +9,7 @@ public import GroupRings.FiniteAbelian.RightConvolution
 public import GroupRings.MonoidAlgebra.AugmentationBasis
 public import GroupRings.MonoidAlgebra.AugmentationGenerators
 public import GroupRings.MonoidAlgebra.Units
+public import GroupRings.MonoidAlgebra.SubgroupIdeals
 
 /-!
 # Monoid-algebra units, augmentation, Laurent coordinates and character convolution
@@ -24,4 +25,7 @@ coefficient-ring module basis indexed by the nonidentity monoid elements.
 Single-term units over a nontrivial semiring are characterized by unit
 coefficients and unit monoid indices, without commutativity or
 cancellation assumptions; coefficient-unit reflection needs no nontriviality.
+Subgroup differences generate the left ideal of elements with zero coefficient
+sums on left cosets, over any ring. Over a nontrivial ring these ideals detect
+subgroup membership and order, and two-sidedness detects normality.
 -/
