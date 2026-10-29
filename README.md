@@ -41,6 +41,15 @@ records scope and attribution, not a live release registry.
   exactly when it sends all `single n 1` to one. No commutativity,
   nontriviality or finiteness is assumed; see the [quotient guide](docs/Quotient.md).
 
+- **Kernel and range quotients.** For any group-to-monoid homomorphism `φ`,
+  the unchanged-coefficient map on group rings has kernel the left span of
+  `single n 1 - 1` for `n ∈ φ.ker`. The quotient is canonically ring-equivalent
+  to the algebra of the range submonoid, with full coefficient formulas and
+  unique factorization into any semiring. Only surjective `φ` gives the whole
+  target algebra. The coefficient ring may be noncommutative or zero, and no
+  group structure on the target is assumed; see the
+  [kernel and range guide](docs/KernelRange.md).
+
 - **Coefficient change.** For any unital homomorphism `φ : R →+* S` from
   a possibly noncommutative ring to a semiring, and any monoid `M`,
   [coefficient change](GroupRings/MonoidAlgebra/CoefficientChange.lean)

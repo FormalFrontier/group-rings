@@ -160,8 +160,6 @@ theorem comp_mapDomainRingHom_mk'_single (N : Subgroup G) [N.Normal]
     (θ : MonoidAlgebra R G →+* S) (ψ : MonoidAlgebra R (G ⧸ N) →+* S)
     (hψ : ψ.comp (mapDomainRingHom R (QuotientGroup.mk' N)) = θ) (g : G) (r : R) :
     ψ (single (QuotientGroup.mk' N g) r) = θ (single g r) := by
-  have h := DFunLike.congr_fun hψ (single g r)
-  change ψ (mapDomain (QuotientGroup.mk' N) (single g r)) = θ (single g r) at h
-  simpa only [mapDomain_single] using h
+  exact comp_mapDomainRingHom_single R (QuotientGroup.mk' N) θ ψ hψ g r
 
 end MonoidAlgebra

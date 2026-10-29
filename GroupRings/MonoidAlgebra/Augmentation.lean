@@ -25,9 +25,21 @@ is the sum of `single 1 r * (single m 1 - 1)` over its coefficients `r` at indic
 
 noncomputable section
 
-universe u v w
+universe u v w z
 
 namespace MonoidAlgebra
+
+/-- Every factor through an index pushforward preserves all original basis
+coefficients. -/
+theorem comp_mapDomainRingHom_single (R : Type u) [Semiring R]
+    {A : Type v} {M : Type w} [Monoid A] [Monoid M]
+    {S : Type z} [Semiring S] (φ : A →* M) (θ : MonoidAlgebra R A →+* S)
+    (ψ : MonoidAlgebra R M →+* S) (hψ : ψ.comp (mapDomainRingHom R φ) = θ)
+    (g : A) (r : R) :
+    ψ (single (φ g) r) = θ (single g r) := by
+  have h := DFunLike.congr_fun hψ (single g r)
+  change ψ (mapDomain φ (single g r)) = θ (single g r) at h
+  simpa only [mapDomain_single] using h
 
 variable (R : Type u) (M : Type v)
 

@@ -13,6 +13,7 @@ public import GroupRings.MonoidAlgebra.Units
 public import GroupRings.MonoidAlgebra.SubgroupIdeals
 public import GroupRings.MonoidAlgebra.SubgroupIdealsFG
 public import GroupRings.MonoidAlgebra.Quotient
+public import GroupRings.MonoidAlgebra.KernelRange
 public import GroupRings.MonoidAlgebra.Noetherian
 public import GroupRings.MonoidAlgebra.MapDomain
 public import GroupRings.RingTheory.Noetherian
@@ -43,4 +44,8 @@ Over every semiring, left-Noetherianity descends from a monoid algebra to the
 algebra of any embedded group, hence to every subgroup algebra. Coefficient
 projection supplies an additive right retraction, and a generic ideal
 extension-contraction criterion transports the ascending chain condition.
+
+For a group-to-monoid homomorphism, its group-ring pushforward has kernel the
+left ideal of kernel-subgroup relations. The quotient is the monoid algebra of
+the range submonoid, with unique factorization into any semiring target.
 -/

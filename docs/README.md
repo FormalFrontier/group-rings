@@ -6,6 +6,11 @@ coefficient projection and the generic additive-right-retraction criterion.
 The [normal-subgroup quotient guide](Quotient.md) describes the canonical ring
 equivalence, its coefficient formulas, and factorization into semiring targets.
 
+The [kernel and range guide](KernelRange.md) extends this to group-to-monoid
+homomorphisms: the independent relation ideal is the pushforward kernel, and
+the quotient is the algebra of the range submonoid, with unique factorization
+into arbitrary semirings.
+
 [API.md](API.md) is a **retained historical Laurent-slice snapshot** for eight
 authored public declarations, not a current whole-library reference. It has
 native displayed signatures with implicit parameters, source
