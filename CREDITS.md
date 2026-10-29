@@ -16,7 +16,9 @@ character independence and finite duality, matrix rank and complex-character
 basis results. The augmentation map uses mathlib's monoid-index ring
 homomorphism and singleton-monoid ring equivalence. Its kernel proof uses the
 monoid-algebra coefficient reconstruction, finitely supported sum laws and
-left-ideal closure supplied by mathlib. The coefficient-module kernel basis
+left-ideal closure supplied by mathlib. Generating-set formulas reuse this
+kernel theorem and mathlib's left module quotient, stabilizer submonoid and
+subgroup, pullback action and closure order laws. The coefficient-module kernel basis
 uses mathlib's linear Finsupp restriction, extension and sum interfaces,
 monoid-algebra coefficient equivalence and basis, basis coordinate sums,
 submodule equivalences and representation-based basis constructor. The generic
@@ -50,13 +52,16 @@ dependency implementation, docstrings or website assets.
   by the generic-field Fourier implementation, and related documentation
   portability design advice, not copied documentation implementation.
 - **Other Formal Frontier AI contributors** supplied the generic-field character
-  and convolution mathematics, public-module repair and library API adaptation,
-  including the six private ordinary-import Fourier clients and mathematical review.
+  and convolution mathematics, reusable library API, Fourier applications
+  and mathematical review.
 - **Cornice (AI agent)** supplied the single-term unit reflection proofs, the
   local basis-embedding instance, the coefficient/index unit criterion, its
   public-import clients and documentation, as well as the pointed Finsupp
   sum-kernel equivalence, its coefficient-module augmentation-kernel basis
-  specialization, characteristic laws and matrix-ring client.
+  specialization, characteristic laws and matrix-ring client. Cornice also
+  supplied the arbitrary-ring left-ideal difference-membership interfaces,
+  their augmentation generating-set applications and the free-monoid and
+  infinite-cyclic public-import clients.
 - **Lattice** supplied independent mathematical review of the Laurent contribution.
 
 ## License and rights

@@ -25,7 +25,7 @@ is the sum of `single 1 r * (single m 1 - 1)` over its coefficients `r` at indic
 
 noncomputable section
 
-universe u v
+universe u v w
 
 namespace MonoidAlgebra
 
@@ -34,6 +34,18 @@ variable (R : Type u) (M : Type v)
 section Semiring
 
 variable [Semiring R] [Monoid M]
+variable {N : Type w} [Monoid N]
+
+/-- A surjective monoid homomorphism induces a surjective map of monoid algebras. -/
+theorem mapDomainRingHom_surjective (f : M →* N) (hf : Function.Surjective f) :
+    Function.Surjective (mapDomainRingHom R f) := by
+  classical
+  choose g hg using hf
+  intro y
+  refine ⟨y.coeff.sum (fun n r => single (g n) r), ?_⟩
+  rw [map_finsuppSum]
+  change y.coeff.sum (fun n r => mapDomain f (single (g n) r)) = y
+  simpa only [mapDomain_single, hg] using sum_coeff_single y
 
 /-- The coefficient-sum ring homomorphism of a monoid algebra. -/
 def augmentation : MonoidAlgebra R M →+* R :=
@@ -54,6 +66,40 @@ theorem augmentation_single (m : M) (r : R) :
     augmentation R M (single m r) = r := by
   rw [augmentation_apply]
   simp
+
+/-- Augmentation is natural with respect to monoid homomorphisms. -/
+@[simp]
+theorem augmentation_comp_mapDomainRingHom (f : M →* N) :
+    (augmentation R N).comp (mapDomainRingHom R f) = augmentation R M := by
+  rw [augmentation, augmentation, RingHom.comp_assoc, ← mapDomainRingHom_comp]
+  rfl
+
+/-- Mapping the indices along any function preserves the augmentation of an element. -/
+@[simp]
+theorem augmentation_mapDomain (f : M → N) (x : MonoidAlgebra R M) :
+    augmentation R N (mapDomain f x) = augmentation R M x := by
+  rw [augmentation_apply, augmentation_apply]
+  exact Finsupp.sum_mapDomain_index (fun _ => rfl) (fun _ _ _ => rfl)
+
+/-- The augmentation kernel pulls back along every map of monoid indices. -/
+@[simp]
+theorem comap_ker_augmentation (f : M →* N) :
+    Ideal.comap (mapDomainRingHom R f) (RingHom.ker (augmentation R N)) =
+      RingHom.ker (augmentation R M) := by
+  rw [RingHom.comap_ker, augmentation_comp_mapDomainRingHom]
+
+/-- The image of the augmentation kernel lies in the target augmentation kernel. -/
+theorem map_ker_augmentation_le (f : M →* N) :
+    Ideal.map (mapDomainRingHom R f) (RingHom.ker (augmentation R M)) ≤
+      RingHom.ker (augmentation R N) := by
+  rw [Ideal.map_le_iff_le_comap, comap_ker_augmentation]
+
+/-- A surjective map of monoid indices maps onto the target augmentation kernel. -/
+theorem map_ker_augmentation_of_surjective (f : M →* N) (hf : Function.Surjective f) :
+    Ideal.map (mapDomainRingHom R f) (RingHom.ker (augmentation R M)) =
+      RingHom.ker (augmentation R N) := by
+  rw [← comap_ker_augmentation R M f]
+  exact Ideal.map_comap_of_surjective _ (mapDomainRingHom_surjective R M f hf) _
 
 end Semiring
 

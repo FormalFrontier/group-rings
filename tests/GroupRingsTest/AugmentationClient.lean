@@ -19,7 +19,7 @@ open MonoidAlgebra
 
 noncomputable section
 
-universe u v
+universe u v w
 
 example :
     (single (Multiplicative.ofAdd (1 : ℕ)) (1 : ℤ) - 1 :
@@ -43,3 +43,27 @@ example (R : Type u) (M : Type v) [Ring R] [Monoid M] (r : R) (m n : M) :
       Ideal.span (Set.range (fun m : M => single m (1 : R) - 1)) :=
     Ideal.subset_span ⟨m, rfl⟩
   simpa [mul_sub] using (Ideal.span _).mul_mem_left (single n r) hgen
+
+section Naturality
+
+variable (R : Type u) (M : Type v) (N : Type w)
+variable [Semiring R] [Monoid M] [Monoid N] (f : M →* N)
+
+example : (augmentation R N).comp (mapDomainRingHom R f) = augmentation R M :=
+  augmentation_comp_mapDomainRingHom R M f
+
+example (g : M → N) (x : MonoidAlgebra R M) :
+    augmentation R N (mapDomain g x) = augmentation R M x := by
+  simp
+
+example :
+    Ideal.map (mapDomainRingHom R f) (RingHom.ker (augmentation R M)) ≤
+      RingHom.ker (augmentation R N) :=
+  map_ker_augmentation_le R M f
+
+example (hf : Function.Surjective f) :
+    Ideal.map (mapDomainRingHom R f) (RingHom.ker (augmentation R M)) =
+      RingHom.ker (augmentation R N) :=
+  map_ker_augmentation_of_surjective R M f hf
+
+end Naturality

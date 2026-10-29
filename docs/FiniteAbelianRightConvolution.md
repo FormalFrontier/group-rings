@@ -92,9 +92,10 @@ See the [root README](../README.md#reproducible-build-and-checks) for the comple
 build and individual client-check commands.
 
 This generic-field work adapts Beacon's finite-abelian character experiment.
-Formal Frontier AI contributors supplied the generic-field implementation,
-public-module repair and API/client adaptation; [credits](../CREDITS.md) identify
-these and the other contributions. Mathlib's character independence, finite
+Formal Frontier AI contributors supplied the generic-field character and
+convolution mathematics, reusable library API and Fourier applications;
+[credits](../CREDITS.md) identify these and the other contributions.
+Mathlib's character independence, finite
 duality, matrix rank and complex-basis results remain distinct upstream
 contributions; no dependency implementation is copied. A reusable library result
 alone makes no source-specific coverage claim.

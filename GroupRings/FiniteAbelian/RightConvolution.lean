@@ -17,14 +17,11 @@ Over a field containing enough roots of unity, additive characters form a basis 
 space of functions on a finite abelian group. Right convolution with kernel `f` has
 entries `f (-sigma + tau)`; its eigenvalue at `psi` is `∑ x, f x * psi x`.
 
-The generic-field development adapts Beacon's finite-abelian character
-experiment through an AI-agent implementation in the incubator.
-Formal Frontier contributors repaired its public-module packaging
-and adapted the reusable mathematical API for this library.
+The generic-field theory is based on Beacon's finite-abelian character
+experiment, with reusable mathematical API contributions from Formal Frontier
+contributors.
 Its algebraic proofs build on mathlib's character independence,
-finite duality and matrix results; those implementations remain upstream.
-This provenance credits the contributors without implying that the
-separate source experiment or its review certifies this library.
+finite duality and matrix results.
 -/
 
 @[expose] public section
