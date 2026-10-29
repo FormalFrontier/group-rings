@@ -53,6 +53,14 @@ pushforward, Finsupp retraction and single-term multiplication laws. The generic
 additive-right-retraction criterion uses its ideal span induction and
 well-founded-order characterization of Noetherianity, and agrees with its
 ideal inclusion for ring-homomorphism retractions.
+Coefficient-ideal membership uses Mathlib's ordinary left ideal span induction,
+ordered convolution and finite coefficient reconstruction. Its polynomial
+bridges use `Polynomial.toFinsuppIso` and
+`AddMonoidAlgebra.toMultiplicative`, relating the result to
+`Ideal.mem_map_C_iff` and `Polynomial.ker_mapRingHom`. Coefficient and mixed
+quotients transport Mathlib's first-isomorphism equivalences. The mixed kernel
+uses the group-to-monoid kernel theorem in this library together with Mathlib's
+coefficient/index naturality and ring-to-ring ideal extension-contraction.
 Lean and Lake provide the proof assistant and
 build system; Lean, mathlib and doc-gen4 retain their authorship and license notices. Generated
 Markdown contains this project's docstrings and native signatures, not copied
@@ -95,7 +103,9 @@ dependency implementation, docstrings or website assets.
   consequence of left-Noetherianity, with the stock coefficient-descent client.
   The additive-right-retraction ideal and Noetherianity criterion, coefficient
   projection compatibility and arbitrary-semiring group-subalgebra descent are
-  also Cornice contributions.
+  also Cornice contributions. Cornice supplied the general coefficient-ideal
+  membership and kernel theorem, polynomial transport bridges and simultaneous
+  coefficient/index kernel and quotient API.
 - **Lattice** supplied independent mathematical review of the Laurent contribution.
 
 ## License and rights

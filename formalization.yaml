@@ -39,6 +39,18 @@ project:
     algebra is therefore left-Noetherian, without finite index or normality.
     The generic criterion uses an additive right retraction and ideal
     extension-contraction; no target cancellation or freeness is assumed.
+    Every left ideal of an arbitrary semiring extends along monoid-algebra
+    constants to exactly the elements whose coefficients lie in that ideal.
+    Coefficient-change kernels are therefore extended coefficient kernels.
+    With ring source and semiring target coefficients, surjectivity identifies
+    the quotient with the target monoid algebra; otherwise it is the range
+    subsemiring. Polynomial transport preserves constants, every coefficient,
+    ideal extension and coefficient-change kernels. For a group-to-monoid map,
+    simultaneous coefficient/index change over a ring source has kernel the
+    sum of the subgroup-relation ideal and the extended coefficient kernel.
+    Surjective coefficients give the algebra of the index range; if the index
+    map is also surjective the full target is available. No nontriviality or
+    commutativity is imposed, and the target coefficients need only be a semiring.
     No sufficient-condition converse is asserted.
     No group-algebra/convolution bridge is asserted.
   authors: [Formal Frontier Agents]
@@ -186,6 +198,24 @@ status:
     with its original native-record binding, not a current whole-library
     analysis. The handwritten Fourier guide describes the current Fourier API.
   main_results:
+    - declaration: "MonoidAlgebra.mem_map_singleOneRingHom_iff"
+      file: "GroupRings/MonoidAlgebra/CoefficientIdeals.lean"
+      note: "For every left ideal over any semiring and any monoid, extension by constants is equivalent to membership of every coefficient."
+    - declaration: "MonoidAlgebra.ker_mapRingHom"
+      file: "GroupRings/MonoidAlgebra/CoefficientIdeals.lean"
+      note: "The kernel of coefficient change is the extension of the coefficient kernel, without commutativity, nontriviality, additive inverses or surjectivity."
+    - declaration: "MonoidAlgebra.quotientCoeffKerEquiv"
+      file: "GroupRings/MonoidAlgebra/CoefficientIdeals.lean"
+      note: "For Ring R, Semiring S and surjective f, the coefficient-kernel quotient is S[M], characterized on all classes and every basis coefficient."
+    - declaration: "MonoidAlgebra.ker_mapDomainRingHom_comp_mapRingHom"
+      file: "GroupRings/MonoidAlgebra/MixedQuotient.lean"
+      note: "For Ring R, Semiring S, Group G and Monoid M, the simultaneous kernel is the sum of the subgroup-difference ideal and extended coefficient kernel, with no surjectivity assumptions."
+    - declaration: "MonoidAlgebra.quotientMixedKerEquivMrange"
+      file: "GroupRings/MonoidAlgebra/MixedQuotient.lean"
+      note: "Surjective coefficients identify the mixed quotient with the monoid algebra of the index range; simultaneous surjectivity also gives the full target. Arbitrary maps instead have the composite range subsemiring as quotient target."
+    - declaration: "Polynomial.map_ker_toMultiplicative_toFinsuppIso"
+      file: "GroupRings/Polynomial/CoefficientIdeals.lean"
+      note: "The stock polynomial equivalence followed by the additive-to-multiplicative index equivalence transports coefficient kernels; companion laws preserve arbitrary coefficient ideals, polynomials and constants."
     - declaration: "MonoidAlgebra.isNoetherianRing_of_injective"
       file: "GroupRings/MonoidAlgebra/Noetherian.lean"
       note: "Over any semiring, an injective group-to-monoid homomorphism descends regular-left Noetherianity of monoid algebras, in three independent universes."

@@ -26,6 +26,30 @@ records scope and attribution, not a live release registry.
   [group tensor module](GroupRings/MonoidAlgebra/AugmentationCotangent/Tensor.lean)
   and [augmentation-cotangent guide](docs/AugmentationCotangent.md).
 
+- **Coefficient ideals and kernels.** For any semiring `R`, monoid `M`, and
+  ordinary **left** ideal `I`, extension along the constants map consists
+  exactly of elements whose every coefficient belongs to `I`. Thus for any
+  homomorphism `f : R →+* S` between independently universed semirings,
+  `ker (mapRingHom M f) = Ideal.map singleOneRingHom (ker f)`, with no
+  commutativity, inverses, finiteness, nontriviality or surjectivity assumption.
+  With **Ring R**, **Semiring S** and surjective `f`, the quotient is `S[M]`;
+  without surjectivity it is the map's range subsemiring. The
+  [coefficient-ideal module](GroupRings/MonoidAlgebra/CoefficientIdeals.lean)
+  supplies membership, all-basis, class and uniqueness formulas. The
+  [polynomial transport](GroupRings/Polynomial/CoefficientIdeals.lean) preserves
+  all coefficients, constants, ideals and coefficient change.
+
+- **Simultaneous coefficient/index kernels.** For **Ring R**, **Semiring S**,
+  **Group G**, **Monoid M**, `f : R →+* S` and `φ : G →* M`, the
+  [mixed-map kernel](GroupRings/MonoidAlgebra/MixedQuotient.lean) is the sum of
+  the left span of `single n 1 - 1` for `n ∈ φ.ker` and the extended coefficient
+  kernel. Neither map need be surjective, and `M` need not be cancellative or
+  a group. Under surjective `f`, the quotient is `S[MonoidHom.mrange φ]`;
+  if `φ` is also surjective it is `S[M]`. For arbitrary maps the target is the
+  composite's range subsemiring. No nontriviality or commutativity is assumed;
+  all four universes are independent. The [guide](docs/CoefficientIdeals.md)
+  explains the factorization and collision boundary.
+
 - **Left-Noetherian group subalgebras.** For any semiring `R`, group `H`, monoid
   `M` and injective `j : H →* M` in independent universes, left-Noetherianity of
   `R[M]` implies that of `R[H]`. Thus every subgroup algebra of a left-Noetherian
@@ -56,7 +80,7 @@ records scope and attribution, not a live release registry.
   the unchanged-coefficient map on group rings has kernel the left span of
   `single n 1 - 1` for `n ∈ φ.ker`. The quotient is canonically ring-equivalent
   to the algebra of the range submonoid, with full coefficient formulas and
-  unique factorization into any semiring. Only surjective `φ` gives the whole
+  unique factorization into any semiring. Surjective `φ` also gives the whole
   target algebra. The coefficient ring may be noncommutative or zero, and no
   group structure on the target is assumed; see the
   [kernel and range guide](docs/KernelRange.md).
@@ -250,6 +274,9 @@ Import `GroupRings`, or one of its leaf modules:
 | `GroupRings.RingTheory.Noetherian` | Ideal extension-contraction and left-Noetherian descent for additive right retractions. |
 | `GroupRings.MonoidAlgebra.Units` | Single-term units and reflection by the basis embedding. |
 | `GroupRings.MonoidAlgebra.Augmentation` | Coefficient-sum augmentation and left-ideal kernel generators. |
+| `GroupRings.MonoidAlgebra.CoefficientIdeals` | Ordinary left coefficient ideals, coefficient kernels and quotient equivalences. |
+| `GroupRings.MonoidAlgebra.MixedQuotient` | Simultaneous coefficient/index kernels and range or surjective quotients. |
+| `GroupRings.Polynomial.CoefficientIdeals` | Constant, coefficient, ideal and kernel transport from polynomials. |
 | `GroupRings.MonoidAlgebra.CoefficientChange` | Naturality, kernel preimages and ideal images under coefficient change. |
 | `GroupRings.MonoidAlgebra.AugmentationGenerators` | Kernel generators from monoid or subgroup generating sets. |
 | `GroupRings.RingTheory.Ideal.MonoidHom` | Difference-membership propagation through monoid and subgroup closure in any ring's left ideals. |
