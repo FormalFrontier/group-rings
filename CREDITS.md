@@ -13,9 +13,12 @@ redistributes the book or its proof excerpts nor claims a license to them.
 
 The mathlib community supplies the algebra transports, free-abelian coordinates,
 character independence and finite duality, matrix rank and complex-character
-basis results. Their implementations, authorship and license notices remain
-upstream. Lean and Lake provide the proof assistant and build system; Lean,
-mathlib and doc-gen4 retain their authorship and license notices. Generated
+basis results. The augmentation map uses mathlib's monoid-index ring
+homomorphism and singleton-monoid ring equivalence. Its kernel proof uses the
+monoid-algebra coefficient reconstruction, finitely supported sum laws and
+left-ideal closure supplied by mathlib. Their implementations, authorship and
+license notices remain upstream. Lean and Lake provide the proof assistant and
+build system; Lean, mathlib and doc-gen4 retain their authorship and license notices. Generated
 Markdown contains this project's docstrings and native signatures, not copied
 dependency implementation, docstrings or website assets.
 
