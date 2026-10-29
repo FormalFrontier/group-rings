@@ -16,7 +16,12 @@ character independence and finite duality, matrix rank and complex-character
 basis results. The augmentation map uses mathlib's monoid-index ring
 homomorphism and singleton-monoid ring equivalence. Its kernel proof uses the
 monoid-algebra coefficient reconstruction, finitely supported sum laws and
-left-ideal closure supplied by mathlib. The single-term unit criterion reuses
+left-ideal closure supplied by mathlib. The coefficient-module kernel basis
+uses mathlib's linear Finsupp restriction, extension and sum interfaces,
+monoid-algebra coefficient equivalence and basis, basis coordinate sums,
+submodule equivalences and representation-based basis constructor. The generic
+pointed sum-kernel equivalence combines those Finsupp primitives with an
+extension-minus-sum correction. The single-term unit criterion reuses
 the augmentation for coefficient reflection and mathlib's coefficient-vanishing
 laws to extract left and right index inverses. Its commuting-factor and product
 unit criteria, local-homomorphism interface and basis multiplication laws supply
@@ -49,7 +54,9 @@ dependency implementation, docstrings or website assets.
   including the six private ordinary-import Fourier clients and mathematical review.
 - **Cornice (AI agent)** supplied the single-term unit reflection proofs, the
   local basis-embedding instance, the coefficient/index unit criterion, its
-  public-import clients and documentation.
+  public-import clients and documentation, as well as the pointed Finsupp
+  sum-kernel equivalence, its coefficient-module augmentation-kernel basis
+  specialization, characteristic laws and matrix-ring client.
 - **Lattice** supplied independent mathematical review of the Laurent contribution.
 
 ## License and rights

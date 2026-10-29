@@ -6,7 +6,7 @@ module
 
 public import GroupRings.FreeAbelian.LaurentPolynomial
 public import GroupRings.FiniteAbelian.RightConvolution
-public import GroupRings.MonoidAlgebra.Augmentation
+public import GroupRings.MonoidAlgebra.AugmentationBasis
 public import GroupRings.MonoidAlgebra.Units
 
 /-!
@@ -17,7 +17,8 @@ algebra equivalence and canonical free-abelian specialization with basis laws,
 as well as generic-field character bases, right convolution, diagonalization
 and rank on finite abelian groups. Monoid-algebra augmentation is available over
 any semiring, with its kernel generated as a left ideal by basis differences
-over any ring. Single-term units over a nontrivial semiring are characterized
-by unit coefficients and unit monoid indices, without commutativity or
+over any ring, and a left coefficient-ring module basis indexed by the
+nonidentity monoid elements. Single-term units over a nontrivial semiring are
+characterized by unit coefficients and unit monoid indices, without commutativity or
 cancellation assumptions; coefficient-unit reflection needs no nontriviality.
 -/

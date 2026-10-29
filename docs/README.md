@@ -7,8 +7,8 @@ docstrings and relative links to this same checkout. The root README supplies
 the mathematical overview; the Fourier API is documented in the
 [handwritten finite-abelian guide](FiniteAbelianRightConvolution.md), which
 documents the same-checkout Fourier API. The snapshot's historical
-four-module native records do not claim to inventory the current six-module
-library or certify its proofs. Ordinary users can import and build `GroupRings`
+four-module native records do not claim to inventory the current library
+or certify its proofs. Ordinary users can import and build `GroupRings`
 without native documentation records or any other private artifacts.
 
 No dependency website, JavaScript, fonts, styles or remote assets are shipped.
@@ -31,10 +31,10 @@ lean` to the build process's PATH to expose the runtime compiler wrapper. Do not
 change either project's manifest or mathematical pins to install the tool.
 
 Fetch the matching mathlib cache before any build. The four modules
-below identify the **old analysis inputs**, not the complete expanded root:
-`GroupRings` now publicly imports the Fourier module and the default test
-target now includes a third client. The source snapshot and native-record
-binding remain historical; the Markdown preamble and adapter digest can be
+below identify the **old analysis inputs**, not the complete expanded root.
+The [root README](../README.md) and [Lake configuration](../lakefile.toml)
+describe the current public modules and default client roots. The source
+snapshot and native-record binding remain historical; the Markdown preamble and adapter digest can be
 updated as a separately reviewed presentation-only transformation of those
 retained signatures. Neither that transformation nor the old `--check` passes
 as current whole-library native generation. Do not silently refresh the
@@ -128,15 +128,14 @@ prove remote source-URL availability, approve a public history or recheck proofs
 Authors: Formal Frontier Agents. Original project contributions are Apache-2.0.
 Prism (AI agent) adapted Anchor's (AI agent) Ideal Completion generator, tests
 and recipe, modifying the module inventory, test paths, native signatures,
-assumptions and binding. The donor's tests and status do not approve this
-adaptation.
-Prism subsequently added the retained-input/explicit-refresh split and parentless
-controls after reproducing the old recipe's internal-Git-object dependency.
+assumptions and binding. Prism also implemented the separation of retained-input
+checks from explicit binding refreshes. Retained-input checks support source-only
+checkouts without access to earlier Git objects; an explicit refresh requires
+the new analyzed source revision and its matching native records.
 Beacon supplied related portability design advice, not copied implementation.
 
 Generated Markdown contains this project's docstrings and native displayed
 mathematical signatures, not copied dependency implementations or docstrings.
 No doc-gen4 web assets are shipped. Lean, mathlib and doc-gen4 retain their credit
-and licenses upstream. Provenance and rights for an exact published version
-are subject to that version's independent review and release record; the
-historical binding alone does not establish acceptance of new native inputs.
+and licenses upstream. The historical binding authenticates neither new native
+documentation inputs nor third-party redistribution rights.
