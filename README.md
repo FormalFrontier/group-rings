@@ -15,6 +15,13 @@ records scope and attribution, not a live release registry.
 
 ## Headline results
 
+- **Normal-subgroup quotients.** For any ring `R`, group `G` and normal subgroup
+  `N`, the canonical index map identifies `R[G/N]` with the quotient of `R[G]`
+  by the left span of `single n 1 - 1`. The equivalence preserves every
+  coefficient. A unital ring homomorphism into any semiring factors uniquely
+  exactly when it sends all `single n 1` to one. No commutativity,
+  nontriviality or finiteness is assumed; see the [quotient guide](docs/Quotient.md).
+
 - **Coefficient change.** For any unital homomorphism `φ : R →+* S` from
   a possibly noncommutative ring to a semiring, and any monoid `M`,
   [coefficient change](GroupRings/MonoidAlgebra/CoefficientChange.lean)

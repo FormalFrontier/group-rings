@@ -1,5 +1,8 @@
 # API reference and historical binding
 
+The [normal-subgroup quotient guide](Quotient.md) describes the canonical ring
+equivalence, its coefficient formulas, and factorization into semiring targets.
+
 [API.md](API.md) is a **retained historical Laurent-slice snapshot** for eight
 authored public declarations, not a current whole-library reference. It has
 native displayed signatures with implicit parameters, source

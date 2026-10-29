@@ -12,6 +12,7 @@ public import GroupRings.MonoidAlgebra.CoefficientChange
 public import GroupRings.MonoidAlgebra.Units
 public import GroupRings.MonoidAlgebra.SubgroupIdeals
 public import GroupRings.MonoidAlgebra.SubgroupIdealsFG
+public import GroupRings.MonoidAlgebra.Quotient
 
 /-!
 # Monoid-algebra units, augmentation, Laurent coordinates and character convolution

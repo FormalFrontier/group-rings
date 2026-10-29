@@ -158,6 +158,15 @@ status:
     with its original native-record binding, not a current whole-library
     analysis. The handwritten Fourier guide describes the current Fourier API.
   main_results:
+    - declaration: "MonoidAlgebra.ker_mapDomainRingHom_mk'"
+      file: "GroupRings/MonoidAlgebra/Quotient.lean"
+      note: "For arbitrary ring coefficients, the kernel of the normal-quotient index map is the independently specified left span of the subgroup differences."
+    - declaration: "MonoidAlgebra.quotientSpanSubgroupEquiv"
+      file: "GroupRings/MonoidAlgebra/Quotient.lean"
+      note: "The first-isomorphism ring equivalence has all-element and full single g r characteristic formulas and is uniquely characterized by its values on quotient classes."
+    - declaration: "MonoidAlgebra.existsUnique_comp_mapDomainRingHom_mk'_iff"
+      file: "GroupRings/MonoidAlgebra/Quotient.lean"
+      note: "An arbitrary unital ring homomorphism into any semiring factors uniquely through the quotient index map exactly when every subgroup basis unit maps to one; the three universes are independent."
     - declaration: "MonoidAlgebra.cosetSum"
       file: "GroupRings/MonoidAlgebra/SubgroupIdeals.lean"
       note: "Over any semiring and group, sum coefficients on left cosets into the existing finitely supported coefficient module; cosetSum_single and cosetSum_apply give its basis and finite-support laws."
