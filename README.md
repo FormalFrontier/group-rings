@@ -15,6 +15,15 @@ records scope and attribution, not a live release registry.
 
 ## Headline results
 
+- **Left-Noetherian group subalgebras.** For any semiring `R`, group `H`, monoid
+  `M` and injective `j : H →* M` in independent universes, left-Noetherianity of
+  `R[M]` implies that of `R[H]`. Thus every subgroup algebra of a left-Noetherian
+  group algebra is left-Noetherian, without finite index or normality. No
+  commutativity, nontriviality, additive inverses, cancellation or target-group
+  assumption is needed. The [Noetherian guide](docs/Noetherian.md) describes the
+  additive right retraction, ideal extension-contraction and the distinction
+  between right compatibility and ordinary regular-left Noetherianity.
+
 - **Left-Noetherian necessary conditions.** If `R[M]` is left-Noetherian, then
   `R` is left-Noetherian, for any semiring `R` and monoid `M`: augmentation is
   surjective, so Mathlib's generic surjective-homomorphism theorem applies.
@@ -216,7 +225,9 @@ Import `GroupRings`, or one of its leaf modules:
 | --- | --- |
 | `GroupRings.MonoidAlgebra.SubgroupIdeals` | Left coset coefficient sums and subgroup left ideals, inclusion and normality. |
 | `GroupRings.MonoidAlgebra.SubgroupIdealsFG` | Finite generation of subgroup left ideals and augmentation kernels. |
-| `GroupRings.MonoidAlgebra.Noetherian` | Necessary conditions for left-Noetherian monoid and group algebras. |
+| `GroupRings.MonoidAlgebra.Noetherian` | Left-Noetherian group-subalgebra descent and necessary conditions. |
+| `GroupRings.MonoidAlgebra.MapDomain` | Coefficient projection retracts pushforward and commutes with right multiplication by a group image. |
+| `GroupRings.RingTheory.Noetherian` | Ideal extension-contraction and left-Noetherian descent for additive right retractions. |
 | `GroupRings.MonoidAlgebra.Units` | Single-term units and reflection by the basis embedding. |
 | `GroupRings.MonoidAlgebra.Augmentation` | Coefficient-sum augmentation and left-ideal kernel generators. |
 | `GroupRings.MonoidAlgebra.CoefficientChange` | Naturality, kernel preimages and ideal images under coefficient change. |
@@ -238,6 +249,10 @@ is required by consumers.
 | `MonoidAlgebra.span_subgroup_isTwoSided`, `span_subgroup_isTwoSided_iff` | Normality implies two-sidedness over any ring; the converse needs nontriviality. |
 | `MonoidAlgebra.span_subgroup_fg_of_fg`, `span_subgroup_fg_iff` | Subgroup FG implies left-ideal FG over any ring; equivalence over nontrivial rings. |
 | `MonoidAlgebra.ker_augmentation_fg`, `ker_augmentation_fg_iff` | Group FG implies augmentation-kernel FG over any ring; equivalence over nontrivial rings. |
+| `MonoidAlgebra.isNoetherianRing_of_injective`, `isNoetherianRing_subgroup` | Left-Noetherianity descends along any group-to-monoid embedding, in particular to every subgroup algebra. |
+| `MonoidAlgebra.comapDomain_mapDomain`, `comapDomain_mul_mapDomain` | Coefficient retraction and right multiplication compatibility, without target cancellation. |
+| `RingHom.comap_map_eq_of_additive_retraction`, `isNoetherianRing_of_additive_retraction` | Ideal extension-contraction and regular-left Noetherianity descent for an additive right retraction. |
+| `RingHom.comap_map_eq_of_leftInverse` | Agreement with the ring-homomorphism retraction case of ideal extension-contraction. |
 | `MonoidAlgebra.subgroup_fg_of_isNoetherianRing` | Every subgroup is FG when its group algebra over a nontrivial ring is left-Noetherian. |
 | `MonoidAlgebra.augmentation_surjective` | Surjectivity over any semiring and monoid; combines with stock Noetherianity transport. |
 | `MonoidAlgebra.isUnit_coeff_of_single` | A unit single term has a unit coefficient over any semiring. |
@@ -355,7 +370,10 @@ in the pinned dependency. Augmentation reuses mathlib's `mapDomainRingHom`
 and `uniqueRingEquiv`; the kernel basis reuses its linear Finsupp restriction,
 extension and sum API, `MonoidAlgebra.coeffLinearEquiv`, `MonoidAlgebra.basis`,
 `Basis.sumCoords`, submodule equivalences and `Basis.ofRepr`.
-The left-ideal proof uses its coefficient expansion,
+Group-subalgebra Noetherianity uses its unchanged-coefficient pushforward,
+additive coefficient pullback and Finsupp retraction, coefficient multiplication
+laws, ideal span induction and well-founded-order characterization of left
+Noetherianity. The left-ideal proof uses its coefficient expansion,
 additive-homomorphism sum laws and ideal-closure API. Generating-set results
 reuse this kernel theorem and mathlib's left module quotients, stabilizers and
 closure order laws; the generic difference-membership lemmas require neither

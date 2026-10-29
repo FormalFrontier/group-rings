@@ -5,10 +5,18 @@ Authors: Formal Frontier Agents
 module
 
 public import GroupRings.MonoidAlgebra.SubgroupIdealsFG
-public import Mathlib.RingTheory.Noetherian.Basic
+public import GroupRings.MonoidAlgebra.MapDomain
+public import GroupRings.RingTheory.Noetherian
 
 /-!
-# Necessary conditions for left-Noetherian group algebras
+# Left-Noetherian group subalgebras and necessary conditions
+
+For an injective homomorphism from a group `H` into any monoid `M`,
+left Noetherianity of `R[M]` descends to `R[H]` over every semiring `R`.
+In particular, every subgroup algebra of a left-Noetherian group algebra is
+left-Noetherian, with no normality or finite-index assumption. The proof uses
+the additive right retraction supplied by coefficient projection, not a ring
+homomorphism or a freeness assertion.
 
 If the group algebra over a nontrivial ring is left-Noetherian, every subgroup
 of the group is finitely generated. The proof applies the subgroup-ideal
@@ -27,7 +35,32 @@ not the group algebra as a module over its coefficient ring.
 
 @[expose] public section
 
-universe u v
+universe u v w
+
+namespace MonoidAlgebra
+
+/-- A group subalgebra of a left-Noetherian monoid algebra is left-Noetherian.
+The coefficient semiring, source group and target monoid have independent
+universes. No cancellation in the target monoid is required. -/
+theorem isNoetherianRing_of_injective
+    {R : Type u} {H : Type v} {M : Type w}
+    [Semiring R] [Group H] [Monoid M]
+    (j : H →* M) (hj : Function.Injective j)
+    [IsNoetherianRing (MonoidAlgebra R M)] :
+    IsNoetherianRing (MonoidAlgebra R H) :=
+  (mapDomainRingHom R j).isNoetherianRing_of_additive_retraction
+    (comapDomainAddMonoidHom j hj) (comapDomain_mapDomain j hj)
+    (comapDomain_mul_mapDomain j hj)
+
+/-- Every subgroup algebra of a left-Noetherian group algebra is left-Noetherian,
+without normality or finite index, over any coefficient semiring. -/
+theorem isNoetherianRing_subgroup
+    {R : Type u} {G : Type v} [Semiring R] [Group G]
+    [IsNoetherianRing (MonoidAlgebra R G)] (K : Subgroup G) :
+    IsNoetherianRing (MonoidAlgebra R K) :=
+  isNoetherianRing_of_injective K.subtype Subtype.val_injective
+
+end MonoidAlgebra
 
 /-- Over a nontrivial ring, every subgroup of a group with left-Noetherian group
 algebra is finitely generated. The coefficient ring need not be commutative. -/

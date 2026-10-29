@@ -14,6 +14,8 @@ public import GroupRings.MonoidAlgebra.SubgroupIdeals
 public import GroupRings.MonoidAlgebra.SubgroupIdealsFG
 public import GroupRings.MonoidAlgebra.Quotient
 public import GroupRings.MonoidAlgebra.Noetherian
+public import GroupRings.MonoidAlgebra.MapDomain
+public import GroupRings.RingTheory.Noetherian
 
 /-!
 # Monoid-algebra units, augmentation, Laurent coordinates and character convolution
@@ -37,4 +39,8 @@ ring the converse holds, including for the augmentation kernel and the whole gro
 A left-Noetherian group algebra over a nontrivial ring has every subgroup finitely
 generated. Surjective augmentation also allows left-Noetherianity to descend to
 the coefficient semiring, using Mathlib's generic transport theorem.
+Over every semiring, left-Noetherianity descends from a monoid algebra to the
+algebra of any embedded group, hence to every subgroup algebra. Coefficient
+projection supplies an additive right retraction, and a generic ideal
+extension-contraction criterion transports the ascending chain condition.
 -/

@@ -33,7 +33,13 @@ project:
     Left-Noetherian group algebras over nontrivial rings have every subgroup
     finitely generated. Surjective augmentation combines with the generic
     surjective-homomorphism Noetherianity theorem for coefficient descent over
-    arbitrary semirings and monoids. No converse is asserted.
+    arbitrary semirings and monoids. For any injective homomorphism from a group
+    to a monoid, left-Noetherianity of the monoid algebra descends to the group
+    algebra over every semiring, with three independent universes. Every subgroup
+    algebra is therefore left-Noetherian, without finite index or normality.
+    The generic criterion uses an additive right retraction and ideal
+    extension-contraction; no target cancellation or freeness is assumed.
+    No sufficient-condition converse is asserted.
     No group-algebra/convolution bridge is asserted.
   authors: [Formal Frontier Agents]
   license: "Apache-2.0"
@@ -103,6 +109,11 @@ related_formalizations:
       theorems for subgroup differences. The left-Noetherian necessary conditions
       reuse every-ideal finite generation and the generic arbitrary-semiring
       transport isNoetherianRing_of_surjective, without a specialized duplicate.
+      Group-subalgebra descent reuses mapDomainRingHom,
+      comapDomainAddMonoidHom, Finsupp.comapDomain_mapDomain, coefficient
+      multiplication laws, ideal span induction and the order-theoretic
+      characterization of Noetherianity. The additive-right-retraction criterion
+      agrees with the ideal inclusion for ring-homomorphism retractions.
   - id: "CREDITS.md"
     relationship: "adapts"
     note: >-
@@ -161,13 +172,35 @@ status:
     a nontrivial ring forces finite generation of every subgroup, without
     normality or commutativity. For any semiring and monoid, surjective
     augmentation transports left-Noetherianity to the coefficient semiring via
-    the generic stock theorem. No sufficient-condition converse is asserted.
+    the generic stock theorem. Over every semiring, left-Noetherianity descends
+    along any injective group-to-monoid homomorphism, hence to every subgroup
+    algebra. No commutativity, nontriviality, additive inverses, finiteness,
+    index, normality, cancellation or target-group assumption is added. The
+    projection is additive and right-compatible, not asserted multiplicative.
+    The generic semiring criterion fixes left ideals under extension-contraction
+    and transports their ascending chain condition. No sufficient-condition
+    converse is asserted.
     The selected public interfaces below are not a census of private/generated declarations or
     client tests.
     The generated API page is a historical four-module/eight-Laurent snapshot
     with its original native-record binding, not a current whole-library
     analysis. The handwritten Fourier guide describes the current Fourier API.
   main_results:
+    - declaration: "MonoidAlgebra.isNoetherianRing_of_injective"
+      file: "GroupRings/MonoidAlgebra/Noetherian.lean"
+      note: "Over any semiring, an injective group-to-monoid homomorphism descends regular-left Noetherianity of monoid algebras, in three independent universes."
+    - declaration: "MonoidAlgebra.isNoetherianRing_subgroup"
+      file: "GroupRings/MonoidAlgebra/Noetherian.lean"
+      note: "Every subgroup algebra of a left-Noetherian group algebra is left-Noetherian, without finite index or normality."
+    - declaration: "RingHom.isNoetherianRing_of_additive_retraction"
+      file: "GroupRings/RingTheory/Noetherian.lean"
+      note: "An additive retraction E of a semiring hom f, satisfying E(b*f(a)) = E(b)*a, descends left Noetherianity via ideal extension-contraction."
+    - declaration: "RingHom.comap_map_eq_of_additive_retraction"
+      file: "GroupRings/RingTheory/Noetherian.lean"
+      note: "Extension followed by contraction fixes every left ideal under an additive right retraction; comap_map_eq_of_leftInverse supplies the RingHom specialization."
+    - declaration: "MonoidAlgebra.comapDomain_mul_mapDomain"
+      file: "GroupRings/MonoidAlgebra/MapDomain.lean"
+      note: "Coefficient pullback commutes with right multiplication by a group image in an arbitrary target monoid; coefficients retain their original order."
     - declaration: "MonoidAlgebra.subgroup_fg_of_isNoetherianRing"
       file: "GroupRings/MonoidAlgebra/Noetherian.lean"
       note: "Every subgroup of a group with left-Noetherian group algebra over a nontrivial possibly noncommutative ring is finitely generated; scalar ring is R[G], not R."

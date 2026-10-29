@@ -1,5 +1,8 @@
 # API reference and historical binding
 
+The [Noetherian guide](Noetherian.md) describes group-subalgebra descent,
+coefficient projection and the generic additive-right-retraction criterion.
+
 The [normal-subgroup quotient guide](Quotient.md) describes the canonical ring
 equivalence, its coefficient formulas, and factorization into semiring targets.
 

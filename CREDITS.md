@@ -36,6 +36,11 @@ interfaces, combined with the subgroup-difference closure and inclusion-reflecti
 results. The left-Noetherian necessary conditions combine this finite-generation
 criterion with mathlib's finite generation of every ideal of a left-Noetherian
 ring and its generic Noetherianity transport along surjective ring homomorphisms.
+Group-subalgebra descent uses mathlib's coefficient pullback, unchanged-coefficient
+pushforward, Finsupp retraction and single-term multiplication laws. The generic
+additive-right-retraction criterion uses its ideal span induction and
+well-founded-order characterization of Noetherianity, and agrees with its
+ideal inclusion for ring-homomorphism retractions.
 Lean and Lake provide the proof assistant and
 build system; Lean, mathlib and doc-gen4 retain their authorship and license notices. Generated
 Markdown contains this project's docstrings and native signatures, not copied
@@ -76,6 +81,9 @@ dependency implementation, docstrings or website assets.
   their all-ring forward implications and matrix/zero-ring public-import clients.
   Cornice also supplied augmentation surjectivity and the subgroup finite-generation
   consequence of left-Noetherianity, with the stock coefficient-descent client.
+  The additive-right-retraction ideal and Noetherianity criterion, coefficient
+  projection compatibility and arbitrary-semiring group-subalgebra descent are
+  also Cornice contributions.
 - **Lattice** supplied independent mathematical review of the Laurent contribution.
 
 ## License and rights
