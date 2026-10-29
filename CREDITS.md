@@ -33,7 +33,10 @@ finite coefficient reconstruction and ordinary ideal spans. These mathlib interf
 retain their upstream authorship and license notices. Subgroup-ideal finite
 generation uses mathlib's finite-subset-of-span, finite-span and group-finiteness
 interfaces, combined with the subgroup-difference closure and inclusion-reflection
-results. Lean and Lake provide the proof assistant and
+results. The left-Noetherian necessary conditions combine this finite-generation
+criterion with mathlib's finite generation of every ideal of a left-Noetherian
+ring and its generic Noetherianity transport along surjective ring homomorphisms.
+Lean and Lake provide the proof assistant and
 build system; Lean, mathlib and doc-gen4 retain their authorship and license notices. Generated
 Markdown contains this project's docstrings and native signatures, not copied
 dependency implementation, docstrings or website assets.
@@ -71,6 +74,8 @@ dependency implementation, docstrings or website assets.
   nonnormal matrix-ring client are also Cornice contributions. Cornice supplied
   the subgroup-ideal and augmentation-kernel finite-generation equivalences,
   their all-ring forward implications and matrix/zero-ring public-import clients.
+  Cornice also supplied augmentation surjectivity and the subgroup finite-generation
+  consequence of left-Noetherianity, with the stock coefficient-descent client.
 - **Lattice** supplied independent mathematical review of the Laurent contribution.
 
 ## License and rights

@@ -13,6 +13,7 @@ public import GroupRings.MonoidAlgebra.Units
 public import GroupRings.MonoidAlgebra.SubgroupIdeals
 public import GroupRings.MonoidAlgebra.SubgroupIdealsFG
 public import GroupRings.MonoidAlgebra.Quotient
+public import GroupRings.MonoidAlgebra.Noetherian
 
 /-!
 # Monoid-algebra units, augmentation, Laurent coordinates and character convolution
@@ -33,4 +34,7 @@ sums on left cosets, over any ring. Over a nontrivial ring these ideals detect
 subgroup membership and order, and two-sidedness detects normality. The subgroup
 left ideal is finitely generated whenever the subgroup is; over a nontrivial
 ring the converse holds, including for the augmentation kernel and the whole group.
+A left-Noetherian group algebra over a nontrivial ring has every subgroup finitely
+generated. Surjective augmentation also allows left-Noetherianity to descend to
+the coefficient semiring, using Mathlib's generic transport theorem.
 -/

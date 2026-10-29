@@ -67,6 +67,11 @@ theorem augmentation_single (m : M) (r : R) :
   rw [augmentation_apply]
   simp
 
+/-- The coefficient-sum augmentation is surjective over every semiring and monoid. -/
+theorem augmentation_surjective : Function.Surjective (augmentation R M) := by
+  intro r
+  exact ⟨single 1 r, augmentation_single R M 1 r⟩
+
 /-- Augmentation is natural with respect to monoid homomorphisms. -/
 @[simp]
 theorem augmentation_comp_mapDomainRingHom (f : M →* N) :

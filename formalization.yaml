@@ -30,6 +30,10 @@ project:
     Subgroup finite generation implies finite generation of its left group-ring
     ideal over any ring; over a nontrivial ring the converse holds. For the whole
     group this characterizes finite generation of the augmentation kernel.
+    Left-Noetherian group algebras over nontrivial rings have every subgroup
+    finitely generated. Surjective augmentation combines with the generic
+    surjective-homomorphism Noetherianity theorem for coefficient descent over
+    arbitrary semirings and monoids. No converse is asserted.
     No group-algebra/convolution bridge is asserted.
   authors: [Formal Frontier Agents]
   license: "Apache-2.0"
@@ -96,7 +100,9 @@ related_formalizations:
       reindexing framework or quotient-ring model. Subgroup-ideal finite generation
       reuses mathlib's finite subset of the original spanning set, finite-span FG
       and subgroup FG interfaces, together with the closure and inclusion-reflection
-      theorems for subgroup differences.
+      theorems for subgroup differences. The left-Noetherian necessary conditions
+      reuse every-ideal finite generation and the generic arbitrary-semiring
+      transport isNoetherianRing_of_surjective, without a specialized duplicate.
   - id: "CREDITS.md"
     relationship: "adapts"
     note: >-
@@ -151,13 +157,23 @@ status:
     converse requires Nontrivial R, but no normality. For the top subgroup this
     yields the same all-ring forward and nontrivial-ring equivalence between
     augmentation-kernel FG and Group.FG. These ideals are generated over R[G],
-    not as coefficient-ring modules.
+    not as coefficient-ring modules. Left-Noetherianity of a group algebra over
+    a nontrivial ring forces finite generation of every subgroup, without
+    normality or commutativity. For any semiring and monoid, surjective
+    augmentation transports left-Noetherianity to the coefficient semiring via
+    the generic stock theorem. No sufficient-condition converse is asserted.
     The selected public interfaces below are not a census of private/generated declarations or
     client tests.
     The generated API page is a historical four-module/eight-Laurent snapshot
     with its original native-record binding, not a current whole-library
     analysis. The handwritten Fourier guide describes the current Fourier API.
   main_results:
+    - declaration: "MonoidAlgebra.subgroup_fg_of_isNoetherianRing"
+      file: "GroupRings/MonoidAlgebra/Noetherian.lean"
+      note: "Every subgroup of a group with left-Noetherian group algebra over a nontrivial possibly noncommutative ring is finitely generated; scalar ring is R[G], not R."
+    - declaration: "MonoidAlgebra.augmentation_surjective"
+      file: "GroupRings/MonoidAlgebra/Augmentation.lean"
+      note: "Surjectivity over any semiring and monoid, with independent universes, allowing generic stock Noetherianity transport to the coefficient semiring."
     - declaration: "MonoidAlgebra.ker_mapDomainRingHom_mk'"
       file: "GroupRings/MonoidAlgebra/Quotient.lean"
       note: "For arbitrary ring coefficients, the kernel of the normal-quotient index map is the independently specified left span of the subgroup differences."
