@@ -1,5 +1,10 @@
 # API reference and historical binding
 
+The [augmentation-cotangent guide](AugmentationCotangent.md) describes the
+set-valued universal property for any coefficient ring and monoid, and the
+`R`-linear integer-tensor comparison for groups, without commutativity or
+freeness assumptions.
+
 The [Noetherian guide](Noetherian.md) describes group-subalgebra descent,
 coefficient projection and the generic additive-right-retraction criterion.
 

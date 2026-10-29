@@ -15,6 +15,17 @@ records scope and attribution, not a live release registry.
 
 ## Headline results
 
+- **Augmentation cotangents.** For any unital ring `R`, monoid `M` and left
+  `R`-module `V`, linear maps from `I/I²` to `V` are naturally equivalent, as a
+  **set**, to monoid homomorphisms `M →* Multiplicative V`. For a group `G`,
+  there is an **`R`-linear equivalence**
+  `I/I² ≃ₗ[R] R ⊗[ℤ] Additive (Abelianization G)`.
+  Here `I` is the augmentation ideal and `I²` its ordinary ideal product square.
+  No commutativity of `R` or `M`, or freeness of `G` or its abelianization, is
+  assumed. See the [universal-property module](GroupRings/MonoidAlgebra/AugmentationCotangent/Universal.lean),
+  [group tensor module](GroupRings/MonoidAlgebra/AugmentationCotangent/Tensor.lean)
+  and [augmentation-cotangent guide](docs/AugmentationCotangent.md).
+
 - **Left-Noetherian group subalgebras.** For any semiring `R`, group `H`, monoid
   `M` and injective `j : H →* M` in independent universes, left-Noetherianity of
   `R[M]` implies that of `R[H]`. Thus every subgroup algebra of a left-Noetherian
@@ -371,6 +382,12 @@ officially published revision and compatible dependency graph, then import
 `GroupRings` normally. No private native records are needed to use the library.
 
 ## References, provenance and AI involvement
+
+For classical integral augmentation-ideal and group-homology background, see
+Kenneth S. Brown, *Cohomology of Groups*, Graduate Texts in Mathematics,
+Springer, 1982, [doi:10.1007/978-1-4684-9327-6](https://doi.org/10.1007/978-1-4684-9327-6).
+The [augmentation-cotangent guide](docs/AugmentationCotangent.md) explains the
+arbitrary-ring generalization and its independent universal-property proof.
 
 The implementation reuses mathlib's `AddMonoidAlgebra.toMultiplicativeAlgEquiv`,
 `AddMonoidAlgebra.domCongr` and `FreeAbelianGroup.equivFinsupp`; it does not copy or

@@ -5,6 +5,18 @@ proofs, clients, documentation and metadata.
 
 ## Mathematical and formalization sources
 
+Kenneth S. Brown, *Cohomology of Groups*, Graduate Texts in Mathematics,
+Springer, 1982, [doi:10.1007/978-1-4684-9327-6](https://doi.org/10.1007/978-1-4684-9327-6),
+is cited as classical integral augmentation-ideal and group-homology background.
+The augmentation-cotangent result generalizes the integral comparison to any
+unital coefficient ring, including noncommutative rings.
+Its proof is an independent universal-property construction, not a proof adapted
+from Brown or another published argument. The construction uses coefficient-linear
+extension, descent through the ordinary ideal-product square, abelianization,
+and the integer tensor product. It reuses Mathlib's ideal-product induction,
+group abelianization and tensor-product APIs. The mathematical construction is
+explained in the [augmentation-cotangent guide](docs/AugmentationCotangent.md).
+
 Charles A. Weibel, *The K-book: An Introduction to Algebraic K-theory*,
 complete-book build August 29, 2013, Example I.2.1.2, motivates the free-abelian
 integral group-ring identification. Only that algebra-identification premise
