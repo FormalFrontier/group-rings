@@ -7,6 +7,7 @@ module
 public import GroupRings.FreeAbelian.LaurentPolynomial
 public import GroupRings.FiniteAbelian.RightConvolution
 public import GroupRings.MonoidAlgebra.AugmentationNilpotence.Finite
+public import GroupRings.MonoidAlgebra.FixedVectors
 public import GroupRings.MonoidAlgebra.AugmentationBasis
 public import GroupRings.MonoidAlgebra.AugmentationCotangent.Tensor
 public import GroupRings.MonoidAlgebra.AugmentationCotangent.Functoriality
@@ -38,6 +39,10 @@ group, suffices for these left-ideal generators. The kernel also has a left
 coefficient-ring module basis indexed by the nonidentity monoid elements.
 For finite `p`-groups over any ring with prime `p = 0`, the augmentation
 kernel has zero `Nat.card G`-th power, including over the zero ring.
+Every nontrivial unital module of this algebra has a nonzero vector fixed by
+all canonical group symbols. More generally, uniform nilpotence of a left
+ideal action on a nontrivial semimodule yields a nonzero common annihilated
+vector; two-sided ideals have a canonical common-annihilator submodule.
 Over nontrivial rings with prime `p = 0`, uniform augmentation-ideal
 nilpotence forces a common `p`-power exponent for an arbitrary group,
 without finiteness or commutativity; for finite groups this gives an iff.

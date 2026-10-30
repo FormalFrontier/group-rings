@@ -15,6 +15,16 @@ records scope and attribution, not a live release registry.
 
 ## Headline results
 
+- **Common annihilators and fixed vectors.** If one power of an ordinary left
+  ideal over any semiring annihilates a nontrivial semimodule, there is a
+  nonzero vector killed by the whole ideal. Two-sided ideals have a canonical
+  common-annihilator submodule, agreeing with commutative set torsion. For a
+  finite `p`-group over any possibly noncommutative ring with prime `p = 0`,
+  every nontrivial unital group-algebra module has a nonzero vector fixed by
+  all canonical group symbols. No field, coefficient commutativity, `CharP`,
+  finite generation, dimension or finite-module hypothesis is needed. See the
+  [common-annihilator and fixed-vector guide](docs/FixedVectors.md).
+
 - **Cotangent covariance and products.** For arbitrary unital rings, coefficient
   change is semilinear and commutes with monoid covariance. The group comparison
   with `R ⊗[ℤ] Additive (Abelianization G)` is natural for both variables.
@@ -306,6 +316,8 @@ Import `GroupRings`, or one of its leaf modules:
 | `GroupRings.MonoidAlgebra.Units` | Single-term units and reflection by the basis embedding. |
 | `GroupRings.MonoidAlgebra.AugmentationNilpotence` | Uniform group exponents from augmentation nilpotence over nontrivial rings of prime characteristic. |
 | `GroupRings.MonoidAlgebra.AugmentationNilpotence.Finite` | Exact cardinality bound for finite p-groups over any ring with p=0, and the finite-group criterion. |
+| `GroupRings.RingTheory.Ideal.Annihilator` | Uniformly nilpotent actions, nonzero common vectors and two-sided-ideal annihilator submodules. |
+| `GroupRings.MonoidAlgebra.FixedVectors` | Augmentation annihilation iff canonical fixedness, and nonzero fixed vectors for finite p-group modules. |
 | `GroupRings.RingTheory.Ideal.Powers` | Ordered mixed products, ideal-power iteration and extension bounds over semirings. |
 | `GroupRings.MonoidAlgebra.Augmentation` | Coefficient-sum augmentation and left-ideal kernel generators. |
 | `GroupRings.MonoidAlgebra.CoefficientIdeals` | Ordinary left coefficient ideals, coefficient kernels and quotient equivalences. |
