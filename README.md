@@ -15,6 +15,13 @@ records scope and attribution, not a live release registry.
 
 ## Headline results
 
+- **Crossed maps and the full augmentation ideal.** For any ring `R`, monoid `M`,
+  and unital left `R[M]`-module `V`, the `R[M]`-linear maps from the full
+  augmentation ideal `I` to `V` are additively equivalent to normalized maps
+  `z : M → V` satisfying `z(mn) = z(m) + [m] • z(n)`, with the canonical
+  action `[m] • v`. The forward map is `z(m) = F([m] - 1)`. See
+  [AugmentationCrossedUniversal.lean](GroupRings/MonoidAlgebra/AugmentationCrossedUniversal.lean).
+
 - **Simple modules of finite `p`-group algebras.** For any possibly
   noncommutative or zero ring `R`, prime `p` with `(p : R) = 0`, finite
   `p`-group `G` and unital left `R[G]`-module `V`, simplicity over `R[G]`

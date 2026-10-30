@@ -3,6 +3,9 @@ SPDX-License-Identifier: Apache-2.0
 Authors: Formal Frontier Agents
 -/
 module
+public import GroupRings.MonoidAlgebra.AugmentationCrossedUniversal
+
+public import GroupRings.MonoidAlgebra.AugmentationCrossedMaps
 
 public import GroupRings.FreeAbelian.LaurentPolynomial
 public import GroupRings.FiniteAbelian.RightConvolution
