@@ -60,6 +60,21 @@ theorem mem_annihilatorSubmodule_ker_augmentation_iff (x : V) :
       ∀ m : M, single m (1 : R) • x = x :=
   ker_augmentation_le_torsionOf_iff x
 
+/-- The augmentation kernel annihilates the whole module exactly when every
+canonical monoid symbol fixes every vector. -/
+theorem ker_augmentation_le_annihilator_iff :
+    RingHom.ker (augmentation R M) ≤ Module.annihilator (MonoidAlgebra R M) V ↔
+      ∀ (m : M) (x : V), single m (1 : R) • x = x := by
+  constructor
+  · intro h m x
+    apply (ker_augmentation_le_torsionOf_iff x).mp ?_ m
+    intro a ha
+    exact (Ideal.mem_torsionOf_iff x a).mpr (Module.mem_annihilator.mp (h ha) x)
+  · intro h a ha
+    exact Module.mem_annihilator.mpr fun x =>
+      (Ideal.mem_torsionOf_iff x a).mp
+        (((ker_augmentation_le_torsionOf_iff x).mpr fun m => h m x) ha)
+
 variable {G : Type v} [Group G] [Finite G]
 variable {W : Type w} [AddCommMonoid W] [Module (MonoidAlgebra R G) W] [Nontrivial W]
 

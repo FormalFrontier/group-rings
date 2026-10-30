@@ -15,6 +15,23 @@ records scope and attribution, not a live release registry.
 
 ## Headline results
 
+- **Semisimplicity under a nilpotent ideal action.** For arbitrary rings `S`,
+  `A`, a unital map `φ : S →+* A` surjective modulo a two-sided ideal `I`,
+  and any given `A`-module `V` with `∃ n, I^n ≤ Module.annihilator A V`,
+  semisimplicity over `A` is equivalent to `I` annihilating `V` together with
+  semisimplicity under the exact restriction `Module.compHom V φ`. This is
+  nilpotence of the action, not necessarily of the ideal; the exponent may be
+  zero. The ideal action also lies in the module's Jacobson radical, and the
+  same characterization holds under that weaker radical condition. See
+  [Semisimple.lean](GroupRings/RingTheory/Ideal/Semisimple.lean).
+  For any ring `R`, prime `p` with `(p : R) = 0`, finite `p`-group `G` and
+  given `R[G]`-module, semisimplicity is equivalent to canonical coefficient
+  semisimplicity **and** trivial canonical group action. In particular, every
+  group symbol fixes every vector of a semisimple module. See
+  [SemisimpleModules.lean](GroupRings/MonoidAlgebra/SemisimpleModules.lean).
+  Neither result assumes commutativity, nontriviality, finite generation or
+  finite length, and the scalar rings and module have independent universes.
+
 - **Scalar restriction and module length.** For any rings `S`, `A`, homomorphism
   `φ : S →+* A`, and given left `A`-module `V`, let `I` be a two-sided ideal
   with `∃ n, I^n ≤ Module.annihilator A V` and surjective canonical map
@@ -372,6 +389,8 @@ Import `GroupRings`, or one of its leaf modules:
 | `GroupRings.RingTheory.Ideal.ModuleDetection` | Nilpotent Nakayama and detection of injectivity and surjectivity by nilpotent ideals. |
 | `GroupRings.RingTheory.Ideal.ScalarRestriction` | Uniform ideal-action induction; quotient-surjective restriction preserves both chain conditions and composition length, including infinity. |
 | `GroupRings.MonoidAlgebra.ModuleFiniteness` | Noetherianity, Artinianity and length under canonical coefficient restriction for finite p-group algebras. |
+| `GroupRings.RingTheory.Ideal.Semisimple` | Nilpotent ideal actions on semisimple modules vanish; canonical restriction and module-radical semisimplicity criteria. |
+| `GroupRings.MonoidAlgebra.SemisimpleModules` | Semisimplicity for finite p-group algebras iff canonical coefficient semisimplicity and trivial group action. |
 | `GroupRings.RingTheory.Ideal.Powers` | Ordered mixed products, ideal-power iteration and extension bounds over semirings. |
 | `GroupRings.MonoidAlgebra.Augmentation` | Coefficient-sum augmentation and left-ideal kernel generators. |
 | `GroupRings.MonoidAlgebra.CoefficientIdeals` | Ordinary left coefficient ideals, coefficient kernels and quotient equivalences. |
@@ -522,7 +541,11 @@ The scalar-restriction induction generalizes Junyan Xu's Mathlib
 It uses Mathlib's semilinear submodule correspondence and Andrew Yang's
 composition-length formalization, including exact additivity in `ℕ∞`.
 The semiprimary induction and surjective algebra-map length comparison are
-recovered as specializations.
+recovered as specializations. The semisimplicity criterion instead takes a
+complement of the common-annihilator submodule and applies the existing
+common-annihilator theorem on that complement. Canonical restriction reuses
+Mathlib's quotient action on set-torsion modules and bijective semilinear
+semisimplicity transport; its Jacobson radical supplies the weaker criterion.
 
 Module-map detection reuses Mathlib's linear restriction, ideal multiplication
 of submodules, and `Submodule.mapQ` on the original quotients. Its general

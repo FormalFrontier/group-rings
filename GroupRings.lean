@@ -13,6 +13,7 @@ public import GroupRings.MonoidAlgebra.AugmentationNilpotence.Finite
 public import GroupRings.MonoidAlgebra.FixedVectors
 public import GroupRings.MonoidAlgebra.ModuleDetection
 public import GroupRings.MonoidAlgebra.SimpleModules
+public import GroupRings.MonoidAlgebra.SemisimpleModules
 public import GroupRings.MonoidAlgebra.ModuleFiniteness
 public import GroupRings.MonoidAlgebra.AugmentationBasis
 public import GroupRings.MonoidAlgebra.AugmentationCotangent.Tensor
@@ -53,8 +54,11 @@ A simple module has trivial group action on every vector, its action factors
 through augmentation, and it is simple exactly when
 its canonical coefficient restriction is simple. Noetherianity, Artinianity and
 composition length in `ℕ∞` also agree with the canonical coefficient restriction
-for every module. The generic comparison allows any scalar map surjective modulo
-a two-sided ideal whose action is uniformly nilpotent. More generally, uniform
+for every module. Semisimplicity is equivalent to coefficient semisimplicity
+together with trivial canonical group action. The generic comparison allows any
+scalar map surjective modulo a two-sided ideal whose action is uniformly nilpotent:
+a module is semisimple exactly when the ideal annihilates it and its canonical
+scalar restriction is semisimple. More generally, uniform
 nilpotence of a left ideal action on a nontrivial semimodule yields a nonzero common annihilated
 vector; two-sided ideals have a canonical common-annihilator submodule.
 Over nontrivial rings with prime `p = 0`, uniform augmentation-ideal
