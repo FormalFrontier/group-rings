@@ -98,3 +98,42 @@ cannot be required in the group case.
 The implementation reuses Mathlib's monoid-algebra and Finsupp maps,
 coefficient multiplication laws, ideal spans and well-founded-order formulation
 of Noetherianity. It introduces no new algebra, scalar action or projection.
+
+## Finite-index subgroups
+
+For a group `G`, a subgroup `H` and any coefficient semiring `R`,
+`MonoidAlgebra.basisSubgroup H` is a basis of `R[G]` as a **left** `R[H]`-module.
+Its index type is `Quotient (QuotientGroup.rightRel H)`, the right cosets `H * g`.
+The action is the restriction of the regular left action:
+
+```lean
+letI := Module.compHom (MonoidAlgebra R G)
+  (MonoidAlgebra.mapDomainRingHom R H.subtype)
+```
+
+The basis vector at `q` is `single q.out 1`. The finitely supported coordinates
+are `MonoidAlgebra.subgroupRepr H f`; their coefficient formula is
+
+```text
+(subgroupRepr H f q).coeff h = f.coeff ((h : G) * q.out).
+```
+
+`subgroupRepr_symm_apply`, `subgroupCoord_sum` and `subgroupRepr_sum` give
+reconstruction and both inverse identities. `subgroupCoord_mapDomain_mul`
+expresses left scalar compatibility, without commuting any coefficients.
+These laws apply even to the zero semiring and to nonnormal subgroups.
+
+If `[H.FiniteIndex]`, `MonoidAlgebra.finite_subgroup H` supplies
+`Module.Finite (MonoidAlgebra R H) (MonoidAlgebra R G)` for that same action.
+When `[Ring R]`, `MonoidAlgebra.isNoetherianRing_iff_subgroup H` states
+
+```text
+IsNoetherianRing (MonoidAlgebra R G) ↔
+  IsNoetherianRing (MonoidAlgebra R H).
+```
+
+Descent remains valid without finite index and over arbitrary semirings.
+The reverse implication uses finite-module Noetherianity over a **ring**;
+it is not a semiring ascent theorem. In particular, neither a commutative
+coefficient assumption nor a normality assumption is hidden in the ascent.
+No equality between numerical rank and subgroup index is asserted.

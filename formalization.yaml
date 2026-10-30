@@ -39,6 +39,11 @@ project:
     algebra is therefore left-Noetherian, without finite index or normality.
     The generic criterion uses an additive right retraction and ideal
     extension-contraction; no target cancellation or freeness is assumed.
+    For any semiring and subgroup, right cosets index a basis of the group
+    algebra as a left subgroup-algebra module, with explicit coefficient,
+    reconstruction and scalar compatibility laws. Finite index makes this
+    module finite over any semiring. For ring coefficients, finite-index
+    subgroup algebras and group algebras are left-Noetherian simultaneously.
     Every left ideal of an arbitrary semiring extends along monoid-algebra
     constants to exactly the elements whose coefficients lie in that ideal.
     Coefficient-change kernels are therefore extended coefficient kernels.

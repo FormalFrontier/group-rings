@@ -6,6 +6,7 @@ module
 
 public import GroupRings.MonoidAlgebra.SubgroupIdealsFG
 public import GroupRings.MonoidAlgebra.MapDomain
+public import GroupRings.MonoidAlgebra.SubgroupBasis
 public import GroupRings.RingTheory.Noetherian
 
 /-!
@@ -16,7 +17,9 @@ left Noetherianity of `R[M]` descends to `R[H]` over every semiring `R`.
 In particular, every subgroup algebra of a left-Noetherian group algebra is
 left-Noetherian, with no normality or finite-index assumption. The proof uses
 the additive right retraction supplied by coefficient projection, not a ring
-homomorphism or a freeness assertion.
+homomorphism or a freeness assertion. For a finite-index subgroup and ring
+coefficients, the subgroup basis also gives the converse: the two group
+algebras are left-Noetherian simultaneously.
 
 If the group algebra over a nontrivial ring is left-Noetherian, every subgroup
 of the group is finitely generated. The proof applies the subgroup-ideal
@@ -59,6 +62,25 @@ theorem isNoetherianRing_subgroup
     [IsNoetherianRing (MonoidAlgebra R G)] (K : Subgroup G) :
     IsNoetherianRing (MonoidAlgebra R K) :=
   isNoetherianRing_of_injective K.subtype Subtype.val_injective
+
+/-- A finite-index subgroup algebra is left-Noetherian if and only if the whole
+ group algebra is left-Noetherian, over any coefficient ring. The ascent uses
+finiteness as a left module and does not require central scalars or normality. -/
+theorem isNoetherianRing_iff_subgroup
+    {R : Type u} {G : Type v} [Ring R] [Group G]
+    (H : Subgroup G) [H.FiniteIndex] :
+    IsNoetherianRing (MonoidAlgebra R G) ↔ IsNoetherianRing (MonoidAlgebra R H) := by
+  constructor
+  · intro h
+    let := h
+    exact isNoetherianRing_subgroup H
+  · intro h
+    let := h
+    let := Module.compHom (MonoidAlgebra R G) (mapDomainRingHom R H.subtype)
+    let : IsScalarTower (MonoidAlgebra R H) (MonoidAlgebra R G)
+        (MonoidAlgebra R G) := SMul.comp.isScalarTower (mapDomainRingHom R H.subtype)
+    let := finite_subgroup (R := R) H
+    exact IsNoetherianRing.of_finite (MonoidAlgebra R H) (MonoidAlgebra R G)
 
 end MonoidAlgebra
 

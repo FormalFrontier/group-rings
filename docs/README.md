@@ -3,7 +3,9 @@
 The [augmentation-cotangent guide](AugmentationCotangent.md) describes the
 set-valued universal property for any coefficient ring and monoid, and the
 `R`-linear integer-tensor comparison for groups, without commutativity or
-freeness assumptions.
+freeness assumptions. It also covers semilinear coefficient covariance,
+tensor-comparison naturality, and the binary product splitting for arbitrary
+monoids.
 
 The [augmentation-nilpotence guide](AugmentationNilpotence.md) describes the
 exact cardinality bound for finite p-groups over arbitrary rings with p=0,

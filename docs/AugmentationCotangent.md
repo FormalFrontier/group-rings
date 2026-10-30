@@ -52,6 +52,67 @@ not over `R`. The construction factors the delta character through the group
 abelianization and uses representatives of that quotient to verify the inverse
 laws. No freeness or torsion-freeness of the abelianization is assumed.
 
+## Coefficient covariance
+
+Import `GroupRings.MonoidAlgebra.AugmentationCotangent.Functoriality`.
+For any unital ring homomorphism `f : R →+* S`,
+`augmentationCotangentCoeffMap M f` is additive and `f`-semilinear:
+
+```text
+C_f (r • x) = f r • C_f x,
+C_f (delta_R m) = delta_S m.
+```
+
+These formulas use the coefficient-left actions, even for noncommutative rings.
+The zero ring is allowed. No module structure on a set of linear maps is used.
+`augmentationCotangentCoeffMap_toAugmentationCotangent` identifies the image
+of every representative `x ∈ I_R(M)` with the class of `mapRingHom M f x`.
+Together with `_smul`, it gives the image of every scalar multiple of such a
+class. An injective coefficient map need not give an injective cotangent map:
+for the cyclic group of order two, extension from the integers to the rationals
+kills the nonzero integral cotangent.
+
+`augmentationCotangentMapRingHom M f φ` combines coefficient covariance with
+`augmentationCotangentMap`. The two orders agree, identities recover the old
+maps, and both variables respect composition. Its representative formula is
+`q_S (mapDomainRingHom S φ (mapRingHom M f x))`.
+`augmentationCotangent_semilinearMap_ext` reduces equality of semilinear maps
+to their values on delta classes; its proof restricts scalars canonically along
+`f` and uses linear-map extensionality.
+
+## Naturality of the group comparison
+
+`augmentationCotangentTensorEquiv_natural` gives naturality for fixed
+coefficients. `augmentationCotangentTensorEquiv_mapRingHom` then gives the
+square for simultaneous coefficient and group maps on every cotangent class.
+The tensor arrow `augmentationCotangentTensorMap f φ` is `TensorProduct.map`
+over `ℤ`, applied to additive `f` and the induced map on abelianizations.
+It is not defined by conjugating through the comparison.
+
+Its pure-tensor formula sends `r ⊗ a` to `f r ⊗ Ab(φ)(a)` for every `r,a`.
+It is `ℤ`-linear and coefficient-left `f`-semilinear on every tensor.
+`augmentationCotangentTensorMapSemilinear` bundles this latter property with
+the same underlying function. Identity and composition laws concern these
+integer tensor arrows; no assertion of `R`-linearity for general `f` is made.
+
+## Binary monoid products
+
+For arbitrary monoids `M,N`, `augmentationCotangentProdEquiv` gives
+
+```text
+Q_R(M × N) ≃ₗ[R] Q_R(M) × Q_R(N).
+```
+
+The forward map is the pair of projection-induced cotangent maps. Its inverse
+is the sum of the inclusion-induced maps. The API provides both inverse
+identities, forward/inverse application formulas and the delta formula
+`delta(m,n) ↦ (delta(m),delta(n))`, including scalar multiples.
+The proof uses
+`delta(m,n) = delta(m,1) + delta(1,n)`, obtained from the multiplication
+relation by decomposing `(m,n) = (m,1)*(1,n)`. It does not use inverses and
+applies to monoids with noninvertible elements. No infinite-product
+preservation is asserted.
+
 ## Commutative comparison
 
 The comparison lemma identifies the zero-class relation with that of

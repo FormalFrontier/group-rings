@@ -15,6 +15,14 @@ records scope and attribution, not a live release registry.
 
 ## Headline results
 
+- **Cotangent covariance and products.** For arbitrary unital rings, coefficient
+  change is semilinear and commutes with monoid covariance. The group comparison
+  with `R ⊗[ℤ] Additive (Abelianization G)` is natural for both variables.
+  For any two monoids, `Q_R(M × N) ≃ₗ[R] Q_R(M) × Q_R(N)` via projections and
+  the sum of inclusions. See the [cotangent guide](docs/AugmentationCotangent.md)
+  and `MonoidAlgebra.augmentationCotangentProdEquiv`.
+
+
 - **Augmentation nilpotence and finite `p`-groups.** For a prime `p`, any
   possibly noncommutative ring `R` with `(p : R) = 0`, and a finite `p`-group
   `G`, the [augmentation kernel has zero `Nat.card G`-th power](GroupRings/MonoidAlgebra/AugmentationNilpotence/Finite.lean).
@@ -60,6 +68,17 @@ records scope and attribution, not a live release registry.
   composite's range subsemiring. No nontriviality or commutativity is assumed;
   all four universes are independent. The [guide](docs/CoefficientIdeals.md)
   explains the factorization and collision boundary.
+
+- **Subgroup-coset bases.** For any semiring `R`, group `G` and subgroup `H`,
+  `R[G]` has a basis as a left `R[H]`-module indexed by right cosets `H * g`.
+  Its vectors are single terms at chosen representatives; the coordinate at
+  `q` has coefficient `f.coeff (h * q.out)` at `h : H`. The
+  [subgroup-basis module](GroupRings/MonoidAlgebra/SubgroupBasis.lean) provides
+  finitely supported coordinates, reconstruction and left scalar compatibility.
+  Finite index gives `Module.Finite` over arbitrary semirings, including zero
+  and noncommutative ones. For **ring** coefficients, finite index gives
+  `IsNoetherianRing (R[G]) ↔ IsNoetherianRing (R[H])`. No normality, finite-group
+  or numerical-rank hypothesis is imposed.
 
 - **Left-Noetherian group subalgebras.** For any semiring `R`, group `H`, monoid
   `M` and injective `j : H →* M` in independent universes, left-Noetherianity of
@@ -280,7 +299,8 @@ Import `GroupRings`, or one of its leaf modules:
 | --- | --- |
 | `GroupRings.MonoidAlgebra.SubgroupIdeals` | Left coset coefficient sums and subgroup left ideals, inclusion and normality. |
 | `GroupRings.MonoidAlgebra.SubgroupIdealsFG` | Finite generation of subgroup left ideals and augmentation kernels. |
-| `GroupRings.MonoidAlgebra.Noetherian` | Left-Noetherian group-subalgebra descent and necessary conditions. |
+| `GroupRings.MonoidAlgebra.SubgroupBasis` | Right-coset bases, left subgroup-algebra coordinates and finite-index module finiteness over semirings. |
+| `GroupRings.MonoidAlgebra.Noetherian` | Left-Noetherian group-subalgebra descent, finite-index equivalence over rings and necessary conditions. |
 | `GroupRings.MonoidAlgebra.MapDomain` | Coefficient projection retracts pushforward and commutes with right multiplication by a group image. |
 | `GroupRings.RingTheory.Noetherian` | Ideal extension-contraction and left-Noetherian descent for additive right retractions. |
 | `GroupRings.MonoidAlgebra.Units` | Single-term units and reflection by the basis embedding. |

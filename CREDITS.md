@@ -17,6 +17,13 @@ and the integer tensor product. It reuses Mathlib's ideal-product induction,
 group abelianization and tensor-product APIs. The mathematical construction is
 explained in the [augmentation-cotangent guide](docs/AugmentationCotangent.md).
 
+Cotangent coefficient covariance uses the same universal lift with canonical
+restriction of scalars. Its naturality and binary monoid-product splitting
+reuse the preceding cotangent maps and delta multiplication relation.
+The tensor-side map uses Mathlib's `TensorProduct.map`, additive integer-linear
+maps and `Abelianization.map`; the construction does not follow a separate
+published proof of these compatibility laws.
+
 D. S. Passman, *The Algebraic Structure of Group Rings*, Wiley, 1977, is
 cited as classical modular group-ring background for finite-p-group
 augmentation nilpotence. The proof here is a direct central-subgroup induction

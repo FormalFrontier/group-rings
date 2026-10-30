@@ -342,4 +342,25 @@ theorem augmentationCotangentMap_toAugmentationCotangent (φ : M →* N)
     augmentationCotangentLift_toAugmentationCotangent R M
       ((augmentationCotangentDeltaHom R N).comp φ) x
 
+/-- Semilinear maps are determined by the monoid-labelled delta classes. -/
+theorem augmentationCotangent_semilinearMap_ext
+    {S : Type*} [Semiring S] {W : Type*} [AddCommMonoid W] [Module S W]
+    {σ : R →+* S} {f g : AugmentationCotangent R M →ₛₗ[σ] W}
+    (h : ∀ m, f (augmentationCotangentDelta R M m) =
+      g (augmentationCotangentDelta R M m)) : f = g := by
+  let : Module R W := Module.compHom W σ
+  let f' : AugmentationCotangent R M →ₗ[R] W :=
+    { toFun := f, map_add' := f.map_add, map_smul' := f.map_smulₛₗ }
+  let g' : AugmentationCotangent R M →ₗ[R] W :=
+    { toFun := g, map_add' := g.map_add, map_smul' := g.map_smulₛₗ }
+  have e : f' = g' := augmentationCotangent_linearMap_ext R M h
+  exact LinearMap.ext (fun x => DFunLike.congr_fun e x)
+
+/-- Every augmentation class is the coefficient sum of its delta classes. -/
+theorem toAugmentationCotangent_eq_sum (x : RingHom.ker (augmentation R M)) :
+    toAugmentationCotangent R M x =
+      (x : MonoidAlgebra R M).coeff.sum
+        (fun m r => r • augmentationCotangentDelta R M m) := by
+  simpa using augmentationCotangentMap_toAugmentationCotangent R M (MonoidHom.id M) x
+
 end MonoidAlgebra
