@@ -77,6 +77,12 @@ project:
     Every nontrivial unital module of a finite p-group algebra over a ring with
     prime p=0 therefore has a nonzero canonical fixed vector, without finite
     generation, finite dimension or finiteness of the module.
+    Simple modules of these finite p-group algebras have trivial group action
+    on every vector, hence augmentation action. Simplicity over the group
+    algebra is equivalent to simplicity under canonical restriction along
+    singleOneRingHom, including noncommutative and zero coefficient rings.
+    The augmentation-action/trivial-monoid-action characterization is valid
+    for semirings and semimodules.
     No group-algebra/convolution bridge is asserted.
   authors: [Formal Frontier Agents]
   license: "Apache-2.0"
@@ -223,6 +229,15 @@ status:
     with its original native-record binding, not a current whole-library
     analysis. The handwritten Fourier guide describes the current Fourier API.
   main_results:
+    - declaration: "MonoidAlgebra.isSimpleModule_iff_of_isPGroup"
+      file: "GroupRings/MonoidAlgebra/SimpleModules.lean"
+      note: "For any Ring R, finite p-group G and unital module V with prime p=0 in R, simplicity over R[G] iff simplicity under the canonical coefficient restriction; independent universes and no extra module hypotheses."
+    - declaration: "MonoidAlgebra.smul_eq_augmentation_smul_of_isSimpleModule_of_isPGroup"
+      file: "GroupRings/MonoidAlgebra/SimpleModules.lean"
+      note: "Every scalar acts on every vector of a simple finite-p-group-algebra module through augmentation and the same coefficient embedding."
+    - declaration: "MonoidAlgebra.smul_eq_augmentation_smul_iff"
+      file: "GroupRings/MonoidAlgebra/SimpleModules.lean"
+      note: "For arbitrary semirings, monoids and semimodules, augmentation action iff every canonical monoid symbol fixes every vector."
     - declaration: "Ideal.exists_ne_zero_le_torsionOf_of_pow_le_annihilator"
       file: "GroupRings/RingTheory/Ideal/Annihilator.lean"
       note: "Uniformly nilpotent action of an ordinary left ideal on a nontrivial semimodule over any semiring yields a nonzero common annihilated vector."

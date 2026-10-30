@@ -8,6 +8,7 @@ public import GroupRings.FreeAbelian.LaurentPolynomial
 public import GroupRings.FiniteAbelian.RightConvolution
 public import GroupRings.MonoidAlgebra.AugmentationNilpotence.Finite
 public import GroupRings.MonoidAlgebra.FixedVectors
+public import GroupRings.MonoidAlgebra.SimpleModules
 public import GroupRings.MonoidAlgebra.AugmentationBasis
 public import GroupRings.MonoidAlgebra.AugmentationCotangent.Tensor
 public import GroupRings.MonoidAlgebra.AugmentationCotangent.Functoriality
@@ -40,7 +41,9 @@ coefficient-ring module basis indexed by the nonidentity monoid elements.
 For finite `p`-groups over any ring with prime `p = 0`, the augmentation
 kernel has zero `Nat.card G`-th power, including over the zero ring.
 Every nontrivial unital module of this algebra has a nonzero vector fixed by
-all canonical group symbols. More generally, uniform nilpotence of a left
+all canonical group symbols. A simple module has trivial group action on every
+vector, its action factors through augmentation, and it is simple exactly when
+its canonical coefficient restriction is simple. More generally, uniform nilpotence of a left
 ideal action on a nontrivial semimodule yields a nonzero common annihilated
 vector; two-sided ideals have a canonical common-annihilator submodule.
 Over nontrivial rings with prime `p = 0`, uniform augmentation-ideal

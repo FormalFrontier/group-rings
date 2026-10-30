@@ -15,6 +15,17 @@ records scope and attribution, not a live release registry.
 
 ## Headline results
 
+- **Simple modules of finite `p`-group algebras.** For any possibly
+  noncommutative or zero ring `R`, prime `p` with `(p : R) = 0`, finite
+  `p`-group `G` and unital left `R[G]`-module `V`, simplicity over `R[G]`
+  is equivalent to simplicity over `R` under canonical coefficient
+  restriction. A simple module has augmentation action: every group basis
+  element fixes every vector. No finiteness assumption on `V`, field or
+  additional nontriviality hypothesis is needed. The characterization of
+  augmentation action by trivial monoid action holds over any semiring.
+  See the [simple-module guide](docs/SimpleModules.md) and
+  [module](GroupRings/MonoidAlgebra/SimpleModules.lean).
+
 - **Common annihilators and fixed vectors.** If one power of an ordinary left
   ideal over any semiring annihilates a nontrivial semimodule, there is a
   nonzero vector killed by the whole ideal. Two-sided ideals have a canonical
