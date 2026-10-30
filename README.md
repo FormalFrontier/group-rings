@@ -15,6 +15,21 @@ records scope and attribution, not a live release registry.
 
 ## Headline results
 
+- **Detection of module maps.** Let `R` be any possibly noncommutative or zero
+  ring, `p` a prime with `(p : R) = 0`, and `G` a finite `p`-group. Every
+  `R[G]`-linear map is injective exactly when its canonical fixed-vector map is
+  injective, and surjective exactly when its canonical coinvariant map is
+  surjective. The modules may lie in independent universes and need not be
+  finitely generated. Fixed vectors are the augmentation ideal's common
+  annihilator with the canonical coefficient restriction; coinvariants are
+  the original quotient by `I • ⊤`. See
+  [ModuleDetection.lean](GroupRings/MonoidAlgebra/ModuleDetection.lean).
+  The [general ideal-module results](GroupRings/RingTheory/Ideal/ModuleDetection.lean)
+  give injectivity detection for nilpotent two-sided ideals over semirings
+  acting on additive groups, and surjectivity detection for nilpotent left
+  ideals over rings. Nilpotent Nakayama itself allows arbitrary semimodules.
+  Neither individual functor is asserted to reflect all isomorphisms.
+
 - **Crossed maps and the full augmentation ideal.** For any ring `R`, monoid `M`,
   and unital left `R[M]`-module `V`, the `R[M]`-linear maps from the full
   augmentation ideal `I` to `V` are additively equivalent to normalized maps
@@ -336,6 +351,8 @@ Import `GroupRings`, or one of its leaf modules:
 | `GroupRings.MonoidAlgebra.AugmentationNilpotence.Finite` | Exact cardinality bound for finite p-groups over any ring with p=0, and the finite-group criterion. |
 | `GroupRings.RingTheory.Ideal.Annihilator` | Uniformly nilpotent actions, nonzero common vectors and two-sided-ideal annihilator submodules. |
 | `GroupRings.MonoidAlgebra.FixedVectors` | Augmentation annihilation iff canonical fixedness, and nonzero fixed vectors for finite p-group modules. |
+| `GroupRings.MonoidAlgebra.ModuleDetection` | Canonical fixed-vector and coinvariant maps, their characteristic laws, and detection for finite p-group algebras. |
+| `GroupRings.RingTheory.Ideal.ModuleDetection` | Nilpotent Nakayama and detection of injectivity and surjectivity by nilpotent ideals. |
 | `GroupRings.RingTheory.Ideal.Powers` | Ordered mixed products, ideal-power iteration and extension bounds over semirings. |
 | `GroupRings.MonoidAlgebra.Augmentation` | Coefficient-sum augmentation and left-ideal kernel generators. |
 | `GroupRings.MonoidAlgebra.CoefficientIdeals` | Ordinary left coefficient ideals, coefficient kernels and quotient equivalences. |
@@ -480,6 +497,13 @@ Kenneth S. Brown, *Cohomology of Groups*, Graduate Texts in Mathematics,
 Springer, 1982, [doi:10.1007/978-1-4684-9327-6](https://doi.org/10.1007/978-1-4684-9327-6).
 The [augmentation-cotangent guide](docs/AugmentationCotangent.md) explains the
 arbitrary-ring generalization and its independent universal-property proof.
+
+Module-map detection reuses Mathlib's linear restriction, ideal multiplication
+of submodules, and `Submodule.mapQ` on the original quotients. Its general
+nilpotent-ideal arguments use the common-annihilator theorem and the cokernel,
+without a finite-generation version of Nakayama. For modular group-ring
+background, see D. S. Passman, *The Algebraic Structure of Group Rings*, Wiley,
+1977.
 
 The implementation reuses mathlib's `AddMonoidAlgebra.toMultiplicativeAlgEquiv`,
 `AddMonoidAlgebra.domCongr` and `FreeAbelianGroup.equivFinsupp`; it does not copy or

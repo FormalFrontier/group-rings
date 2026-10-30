@@ -83,6 +83,13 @@ project:
     singleOneRingHom, including noncommutative and zero coefficient rings.
     The augmentation-action/trivial-monoid-action characterization is valid
     for semirings and semimodules.
+    For any map of modules over a finite p-group algebra with prime p=0 in
+    any ring, canonical fixed vectors detect injectivity and canonical
+    augmentation coinvariants detect surjectivity, without finite generation
+    or coupled module universes. The generic injection theorem concerns
+    nilpotent two-sided ideals over semirings acting on additive groups;
+    quotient surjectivity detection allows nilpotent left ideals over rings.
+    Nilpotent Nakayama itself holds for arbitrary semimodules.
     No group-algebra/convolution bridge is asserted.
   authors: [Formal Frontier Agents]
   license: "Apache-2.0"
@@ -229,6 +236,21 @@ status:
     with its original native-record binding, not a current whole-library
     analysis. The handwritten Fourier guide describes the current Fourier API.
   main_results:
+    - declaration: "MonoidAlgebra.injective_iff_fixedVectorMap"
+      file: "GroupRings/MonoidAlgebra/ModuleDetection.lean"
+      note: "Every map of unital modules over any finite p-group algebra with prime p=0 in R is injective iff its canonical fixed-vector map is injective; independent universes, no finite generation, commutativity or nontriviality premise."
+    - declaration: "MonoidAlgebra.surjective_iff_coinvariantMap"
+      file: "GroupRings/MonoidAlgebra/ModuleDetection.lean"
+      note: "Surjectivity iff surjectivity on the original augmentation-ideal-action quotients, with canonical coefficient actions and the same arbitrary-ring finite-p-group hypotheses."
+    - declaration: "LinearMap.injective_iff_annihilatorSubmoduleMap"
+      file: "GroupRings/RingTheory/Ideal/ModuleDetection.lean"
+      note: "A nilpotent two-sided ideal detects genuine injectivity on common annihilators over any semiring acting on additive groups."
+    - declaration: "LinearMap.surjective_iff_mapQ_smul_top"
+      file: "GroupRings/RingTheory/Ideal/ModuleDetection.lean"
+      note: "The usual quotient-induced map modulo any nilpotent left ideal detects surjectivity over any ring, without finite generation."
+    - declaration: "Submodule.eq_bot_of_isNilpotent_of_smul_eq_self"
+      file: "GroupRings/RingTheory/Ideal/ModuleDetection.lean"
+      note: "A submodule equal to its product by a nilpotent left ideal is zero, over any semiring and semimodule."
     - declaration: "MonoidAlgebra.isSimpleModule_iff_of_isPGroup"
       file: "GroupRings/MonoidAlgebra/SimpleModules.lean"
       note: "For any Ring R, finite p-group G and unital module V with prime p=0 in R, simplicity over R[G] iff simplicity under the canonical coefficient restriction; independent universes and no extra module hypotheses."
