@@ -90,6 +90,14 @@ project:
     nilpotent two-sided ideals over semirings acting on additive groups;
     quotient surjectivity detection allows nilpotent left ideals over rings.
     Nilpotent Nakayama itself holds for arbitrary semimodules.
+    For arbitrary rings S and A, any ring homomorphism phi, a given A-module V,
+    and a two-sided ideal I with one power contained in the annihilator of V,
+    surjectivity of the canonical S-to-A/I map implies separate Noetherian and
+    Artinian equivalences and equality of composition lengths in ENat under
+    exact restriction along phi. This includes nilpotent ideals, infinite
+    length, noncentral scalar images and zero rings, without finite generation.
+    For any ring R with prime p=0 and finite p-group G, these three invariants
+    of every given R[G]-module agree with canonical coefficient restriction.
     No group-algebra/convolution bridge is asserted.
   authors: [Formal Frontier Agents]
   license: "Apache-2.0"
@@ -236,6 +244,24 @@ status:
     with its original native-record binding, not a current whole-library
     analysis. The handwritten Fourier guide describes the current Fourier API.
   main_results:
+    - declaration: "Ideal.isNoetherian_iff_of_pow_le_annihilator"
+      file: "GroupRings/RingTheory/Ideal/ScalarRestriction.lean"
+      note: "For arbitrary rings, quotient-surjective scalar restriction and a uniformly nilpotent two-sided ideal action preserve and reflect Noetherianity; exact Module.compHom action and independent universes."
+    - declaration: "Ideal.isArtinian_iff_of_pow_le_annihilator"
+      file: "GroupRings/RingTheory/Ideal/ScalarRestriction.lean"
+      note: "The separate Artinian equivalence under the same hypotheses, without finite generation or finite length."
+    - declaration: "Ideal.length_eq_of_pow_le_annihilator"
+      file: "GroupRings/RingTheory/Ideal/ScalarRestriction.lean"
+      note: "Equality of canonical composition lengths in ENat, including infinity, under the same hypotheses. Nilpotent-ideal corollaries require no module-specific bound."
+    - declaration: "MonoidAlgebra.isNoetherian_iff_of_isPGroup"
+      file: "GroupRings/MonoidAlgebra/ModuleFiniteness.lean"
+      note: "Every module of a finite p-group algebra over any ring with prime p=0 is Noetherian iff its canonical coefficient restriction is."
+    - declaration: "MonoidAlgebra.isArtinian_iff_of_isPGroup"
+      file: "GroupRings/MonoidAlgebra/ModuleFiniteness.lean"
+      note: "The corresponding separate Artinian equivalence for any given module, including noncommutative and zero coefficients."
+    - declaration: "MonoidAlgebra.length_eq_of_isPGroup"
+      file: "GroupRings/MonoidAlgebra/ModuleFiniteness.lean"
+      note: "Canonical ring-relative length over R[G] equals that under moduleCoefficientModule, including infinite length; no field-dimension claim."
     - declaration: "MonoidAlgebra.injective_iff_fixedVectorMap"
       file: "GroupRings/MonoidAlgebra/ModuleDetection.lean"
       note: "Every map of unital modules over any finite p-group algebra with prime p=0 in R is injective iff its canonical fixed-vector map is injective; independent universes, no finite generation, commutativity or nontriviality premise."

@@ -15,6 +15,23 @@ records scope and attribution, not a live release registry.
 
 ## Headline results
 
+- **Scalar restriction and module length.** For any rings `S`, `A`, homomorphism
+  `φ : S →+* A`, and given left `A`-module `V`, let `I` be a two-sided ideal
+  with `∃ n, I^n ≤ Module.annihilator A V` and surjective canonical map
+  `S → A/I`. Noetherianity and Artinianity are each equivalent over `A` and
+  the exact restriction `Module.compHom V φ`; their composition lengths agree
+  in `ℕ∞`, including infinity. In particular this holds for nilpotent `I`.
+  The map `φ` need not be injective, split, surjective itself or have central
+  image. See [ScalarRestriction.lean](GroupRings/RingTheory/Ideal/ScalarRestriction.lean).
+  For any ring `R`, prime `p` with `(p : R) = 0`, finite `p`-group `G`, and
+  arbitrary given `R[G]`-module, all three comparisons hold with its canonical
+  coefficient restriction to `R`. There is no field, commutativity, finite
+  generation or finite-length assumption. See
+  [ModuleFiniteness.lean](GroupRings/MonoidAlgebra/ModuleFiniteness.lean).
+  Only annihilated layers have equal submodule lattices, not generally the
+  whole module. The length is relative to the scalar ring, not an underlying
+  field dimension.
+
 - **Detection of module maps.** Let `R` be any possibly noncommutative or zero
   ring, `p` a prime with `(p : R) = 0`, and `G` a finite `p`-group. Every
   `R[G]`-linear map is injective exactly when its canonical fixed-vector map is
@@ -353,6 +370,8 @@ Import `GroupRings`, or one of its leaf modules:
 | `GroupRings.MonoidAlgebra.FixedVectors` | Augmentation annihilation iff canonical fixedness, and nonzero fixed vectors for finite p-group modules. |
 | `GroupRings.MonoidAlgebra.ModuleDetection` | Canonical fixed-vector and coinvariant maps, their characteristic laws, and detection for finite p-group algebras. |
 | `GroupRings.RingTheory.Ideal.ModuleDetection` | Nilpotent Nakayama and detection of injectivity and surjectivity by nilpotent ideals. |
+| `GroupRings.RingTheory.Ideal.ScalarRestriction` | Uniform ideal-action induction; quotient-surjective restriction preserves both chain conditions and composition length, including infinity. |
+| `GroupRings.MonoidAlgebra.ModuleFiniteness` | Noetherianity, Artinianity and length under canonical coefficient restriction for finite p-group algebras. |
 | `GroupRings.RingTheory.Ideal.Powers` | Ordered mixed products, ideal-power iteration and extension bounds over semirings. |
 | `GroupRings.MonoidAlgebra.Augmentation` | Coefficient-sum augmentation and left-ideal kernel generators. |
 | `GroupRings.MonoidAlgebra.CoefficientIdeals` | Ordinary left coefficient ideals, coefficient kernels and quotient equivalences. |
@@ -497,6 +516,13 @@ Kenneth S. Brown, *Cohomology of Groups*, Graduate Texts in Mathematics,
 Springer, 1982, [doi:10.1007/978-1-4684-9327-6](https://doi.org/10.1007/978-1-4684-9327-6).
 The [augmentation-cotangent guide](docs/AugmentationCotangent.md) explains the
 arbitrary-ring generalization and its independent universal-property proof.
+
+The scalar-restriction induction generalizes Junyan Xu's Mathlib
+`IsSemiprimaryRing.induction` to uniform powers of an arbitrary ideal action.
+It uses Mathlib's semilinear submodule correspondence and Andrew Yang's
+composition-length formalization, including exact additivity in `ℕ∞`.
+The semiprimary induction and surjective algebra-map length comparison are
+recovered as specializations.
 
 Module-map detection reuses Mathlib's linear restriction, ideal multiplication
 of submodules, and `Submodule.mapQ` on the original quotients. Its general

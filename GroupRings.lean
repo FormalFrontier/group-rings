@@ -13,6 +13,7 @@ public import GroupRings.MonoidAlgebra.AugmentationNilpotence.Finite
 public import GroupRings.MonoidAlgebra.FixedVectors
 public import GroupRings.MonoidAlgebra.ModuleDetection
 public import GroupRings.MonoidAlgebra.SimpleModules
+public import GroupRings.MonoidAlgebra.ModuleFiniteness
 public import GroupRings.MonoidAlgebra.AugmentationBasis
 public import GroupRings.MonoidAlgebra.AugmentationCotangent.Tensor
 public import GroupRings.MonoidAlgebra.AugmentationCotangent.Functoriality
@@ -50,8 +51,11 @@ canonical fixed vectors is injective, and surjective exactly when its map on
 augmentation coinvariants is surjective, without finite-generation assumptions.
 A simple module has trivial group action on every vector, its action factors
 through augmentation, and it is simple exactly when
-its canonical coefficient restriction is simple. More generally, uniform nilpotence of a left
-ideal action on a nontrivial semimodule yields a nonzero common annihilated
+its canonical coefficient restriction is simple. Noetherianity, Artinianity and
+composition length in `ℕ∞` also agree with the canonical coefficient restriction
+for every module. The generic comparison allows any scalar map surjective modulo
+a two-sided ideal whose action is uniformly nilpotent. More generally, uniform
+nilpotence of a left ideal action on a nontrivial semimodule yields a nonzero common annihilated
 vector; two-sided ideals have a canonical common-annihilator submodule.
 Over nontrivial rings with prime `p = 0`, uniform augmentation-ideal
 nilpotence forces a common `p`-power exponent for an arbitrary group,
