@@ -13,6 +13,7 @@ public import GroupRings.MonoidAlgebra.AugmentationNilpotence.Finite
 public import GroupRings.MonoidAlgebra.FixedVectors
 public import GroupRings.MonoidAlgebra.ModuleDetection
 public import GroupRings.MonoidAlgebra.SimpleModules
+public import GroupRings.MonoidAlgebra.ModuleRepresentation
 public import GroupRings.MonoidAlgebra.SemisimpleModules
 public import GroupRings.MonoidAlgebra.ModuleFiniteness
 public import GroupRings.MonoidAlgebra.AugmentationBasis

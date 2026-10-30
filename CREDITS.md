@@ -86,6 +86,13 @@ kernel and difference propagation from subgroup generators. The power
 calculation reuses Mathlib's singleton-span powers, characteristic binomial
 identity, ordinary ideal extension and ideal-power laws; no commutative-ring
 model replaces the group ring.
+The canonical representation on a given monoid-algebra module uses Mathlib's
+`Representation.ofDistribMulAction`, introduced in its monoid representation
+development by Antoine Labelle. Its original-module intertwiner packaging uses
+Mathlib's `Representation.IntertwiningMap` by Stepan Nesterov and Edison Xie.
+The commutative comparison uses Mathlib's existing `ofModule` and `ofModule'`
+constructions and the scalar-restriction additive equivalence. The triviality
+corollary reuses this library's finite-p-group semisimplicity theorem.
 Lean and Lake provide the proof assistant and
 build system; Lean, mathlib and doc-gen4 retain their authorship and license notices. Generated
 Markdown contains this project's docstrings and native signatures, not copied

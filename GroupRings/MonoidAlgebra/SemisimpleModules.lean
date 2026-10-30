@@ -7,6 +7,7 @@ module
 public import GroupRings.RingTheory.Ideal.Semisimple
 public import GroupRings.MonoidAlgebra.ModuleFiniteness
 public import GroupRings.MonoidAlgebra.FixedVectors
+public import GroupRings.MonoidAlgebra.ModuleRepresentation
 
 /-!
 # Semisimple modules of finite p-group algebras
@@ -53,5 +54,19 @@ theorem single_smul_eq_of_isSemisimpleModule_of_isPGroup
     {p : ℕ} (hp : p.Prime) (hR : (p : R) = 0) (hG : IsPGroup p G)
     (g : G) (x : V) : single g (1 : R) • x = x :=
   ((isSemisimpleModule_iff_of_isPGroup hp hR hG).mp inferInstance).2 g x
+
+/-- The canonical representation of a semisimple module of a finite `p`-group
+algebra is trivial when the prime `p` vanishes in the coefficient ring. -/
+theorem moduleRepresentation_isTrivial_of_isSemisimpleModule_of_isPGroup
+    [IsSemisimpleModule (MonoidAlgebra R G) V]
+    {p : ℕ} (hp : p.Prime) (hR : (p : R) = 0) (hG : IsPGroup p G) :
+    letI : Module R V := moduleCoefficientModule R G V
+    Representation.IsTrivial (moduleRepresentation R G V) := by
+  let : Module R V := moduleCoefficientModule R G V
+  refine ⟨?_⟩
+  intro g
+  ext x
+  simpa only [moduleRepresentation_apply, LinearMap.id_apply] using
+    single_smul_eq_of_isSemisimpleModule_of_isPGroup hp hR hG g x
 
 end MonoidAlgebra

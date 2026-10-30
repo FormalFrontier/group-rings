@@ -15,6 +15,17 @@ records scope and attribution, not a live release registry.
 
 ## Headline results
 
+- **Canonical representations of given modules.** Over any possibly
+  noncommutative or zero semiring `R` and any monoid `M`, a given unital
+  `R[M]`-module has a representation on its original carrier with exactly the
+  canonical coefficient restriction. Monoid-algebra linear maps give faithful
+  coefficient-linear intertwiners, preserving identity and composition. The
+  construction agrees pointwise with Mathlib's commutative constructions,
+  using the scalar-restriction equivalence where necessary. See
+  [ModuleRepresentation.lean](GroupRings/MonoidAlgebra/ModuleRepresentation.lean).
+  For a semisimple module of a finite `p`-group algebra over any ring with
+  prime `p = 0`, this canonical representation is trivial.
+
 - **Semisimplicity under a nilpotent ideal action.** For arbitrary rings `S`,
   `A`, a unital map `φ : S →+* A` surjective modulo a two-sided ideal `I`,
   and any given `A`-module `V` with `∃ n, I^n ≤ Module.annihilator A V`,
