@@ -23,6 +23,13 @@ records scope and attribution, not a live release registry.
   induced by the action on a vector. See
   [AugmentationAveraging.lean](GroupRings/MonoidAlgebra/AugmentationAveraging.lean).
 
+- **Artinian Laurent polynomial rings.** For every possibly noncommutative or zero
+  ring `R`, the original Laurent polynomial ring `LaurentPolynomial R` is left
+  Artinian over itself exactly when `R` is subsingleton. The supporting API proves
+  that `T 1 - C r` is regular for every coefficient `r`, and that `T 1 - 1` is
+  not a unit over a nontrivial ring. No domain or commutativity assumption is
+  needed. See [Artinian.lean](GroupRings/LaurentPolynomial/Artinian.lean).
+
 - **Projectivity from coefficient projectivity.** For a finite group `G` whose
   order is a unit in any possibly noncommutative or zero semiring `R`, a given
   `R[G]`-module that is projective under its canonical coefficient restriction
@@ -416,6 +423,7 @@ Import `GroupRings`, or one of its leaf modules:
 
 | Module | Contents |
 | --- | --- |
+| `GroupRings.LaurentPolynomial.Artinian` | Coefficient multiplication laws, regular monic Laurent differences and the arbitrary-ring Artinian criterion. |
 | `GroupRings.MonoidAlgebra.SubgroupIdeals` | Left coset coefficient sums and subgroup left ideals, inclusion and normality. |
 | `GroupRings.MonoidAlgebra.SubgroupIdealsFG` | Finite generation of subgroup left ideals and augmentation kernels. |
 | `GroupRings.MonoidAlgebra.SubgroupBasis` | Right-coset bases, left subgroup-algebra coordinates and finite-index module finiteness over semirings. |
@@ -591,6 +599,15 @@ Kenneth S. Brown, *Cohomology of Groups*, Graduate Texts in Mathematics,
 Springer, 1982, [doi:10.1007/978-1-4684-9327-6](https://doi.org/10.1007/978-1-4684-9327-6).
 The [augmentation-cotangent guide](docs/AugmentationCotangent.md) explains the
 arbitrary-ring generalization and its independent universal-property proof.
+
+The Laurent Artinian criterion follows the regular-nonunit obstruction used for
+polynomial rings in `MultivariatePolynomials.Artinian` from the
+[multivariate-polynomials library](https://github.com/FormalFrontier/multivariate-polynomials).
+It reuses Mathlib's Laurent polynomial model and coefficient API, its generic
+Artinian regular-element theorem, and `AddMonoidAlgebra.liftNCRingHom` for evaluation
+at one with noncommutative coefficients. The Laurent-specific regularity proof uses
+the largest exponent in a finite support; the polynomial variable alone is not an
+obstruction because it is a unit after passing to Laurent polynomials.
 
 The scalar-restriction induction generalizes Junyan Xu's Mathlib
 `IsSemiprimaryRing.induction` to uniform powers of an arbitrary ideal action.
