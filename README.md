@@ -18,11 +18,18 @@ records scope and attribution, not a live release registry.
 - **Canonical representations of given modules.** Over any possibly
   noncommutative or zero semiring `R` and any monoid `M`, a given unital
   `R[M]`-module has a representation on its original carrier with exactly the
-  canonical coefficient restriction. Monoid-algebra linear maps give faithful
-  coefficient-linear intertwiners, preserving identity and composition. The
-  construction agrees pointwise with Mathlib's commutative constructions,
-  using the scalar-restriction equivalence where necessary. See
-  [ModuleRepresentation.lean](GroupRings/MonoidAlgebra/ModuleRepresentation.lean).
+  canonical coefficient restriction. Original monoid-algebra linear maps are
+  additively equivalent to coefficient-linear intertwiners between these
+  representations, without changing their values; the modules may be arbitrary
+  additive commutative monoids in independent universes. Packaging preserves
+  identity and composition, and the equivalence reflects existence of lifts
+  `q.comp f = h` for original module maps, without assuming surjectivity or
+  projectivity. See
+  [ModuleRepresentationEquiv.lean](GroupRings/MonoidAlgebra/ModuleRepresentationEquiv.lean).
+  For commutative coefficients the inverse agrees with Mathlib's Hom
+  correspondence through both canonical `asModuleEquiv` transports; the
+  [representation construction](GroupRings/MonoidAlgebra/ModuleRepresentation.lean)
+  also agrees pointwise with Mathlib's scalar-restriction constructions.
   For a semisimple module of a finite `p`-group algebra over any ring with
   prime `p = 0`, this canonical representation is trivial.
 
@@ -185,7 +192,16 @@ records scope and attribution, not a live release registry.
   This uses the algebra as a left module over itself, not over `R`.
   See the [necessary-condition module](GroupRings/MonoidAlgebra/Noetherian.lean)
   and [public-import client](tests/GroupRingsTest/NoetherianClient.lean).
-  No converse is asserted.
+  No converse for arbitrary groups is asserted.
+
+- **Cyclic and finite-index Noetherianity.** For every ring `R`, including
+  noncommutative and zero rings, `R[Multiplicative ℤ]` is left-Noetherian iff
+  `R` is. An equivalence with the infinite cyclic group, or a finite-index
+  infinite cyclic subgroup, gives the same criterion, without normality.
+  This includes products with finite groups. Import
+  `GroupRings.MonoidAlgebra.CyclicNoetherian` directly; the root does not
+  re-export it. Laurent ascent comes from `multivariate-polynomials`;
+  see [credits](CREDITS.md).
 
 - **Normal-subgroup quotients.** For any ring `R`, group `G` and normal subgroup
   `N`, the canonical index map identifies `R[G/N]` with the quotient of `R[G]`
@@ -389,6 +405,7 @@ Import `GroupRings`, or one of its leaf modules:
 | `GroupRings.MonoidAlgebra.SubgroupIdealsFG` | Finite generation of subgroup left ideals and augmentation kernels. |
 | `GroupRings.MonoidAlgebra.SubgroupBasis` | Right-coset bases, left subgroup-algebra coordinates and finite-index module finiteness over semirings. |
 | `GroupRings.MonoidAlgebra.Noetherian` | Left-Noetherian group-subalgebra descent, finite-index equivalence over rings and necessary conditions. |
+| `GroupRings.MonoidAlgebra.CyclicNoetherian` | Direct import: cyclic coefficient criterion, group-equivalence and finite-index transport, finite-group products. |
 | `GroupRings.MonoidAlgebra.MapDomain` | Coefficient projection retracts pushforward and commutes with right multiplication by a group image. |
 | `GroupRings.RingTheory.Noetherian` | Ideal extension-contraction and left-Noetherian descent for additive right retractions. |
 | `GroupRings.MonoidAlgebra.Units` | Single-term units and reflection by the basis embedding. |
@@ -396,6 +413,9 @@ Import `GroupRings`, or one of its leaf modules:
 | `GroupRings.MonoidAlgebra.AugmentationNilpotence.Finite` | Exact cardinality bound for finite p-groups over any ring with p=0, and the finite-group criterion. |
 | `GroupRings.RingTheory.Ideal.Annihilator` | Uniformly nilpotent actions, nonzero common vectors and two-sided-ideal annihilator submodules. |
 | `GroupRings.MonoidAlgebra.FixedVectors` | Augmentation annihilation iff canonical fixedness, and nonzero fixed vectors for finite p-group modules. |
+| `GroupRings.MonoidAlgebra.ModuleRepresentation` | Canonical representations and faithful intertwiner packaging on given modules over any semiring. |
+| `GroupRings.MonoidAlgebra.ModuleRepresentationEquiv` | Additive Hom correspondence on original modules, inverse evaluation, lift reflection and the commutative Mathlib comparison. |
+| `GroupRings.MonoidAlgebra.ModuleMaps` | Coefficient-and-basis criterion for linearity over any monoid algebra. |
 | `GroupRings.MonoidAlgebra.ModuleDetection` | Canonical fixed-vector and coinvariant maps, their characteristic laws, and detection for finite p-group algebras. |
 | `GroupRings.RingTheory.Ideal.ModuleDetection` | Nilpotent Nakayama and detection of injectivity and surjectivity by nilpotent ideals. |
 | `GroupRings.RingTheory.Ideal.ScalarRestriction` | Uniform ideal-action induction; quotient-surjective restriction preserves both chain conditions and composition length, including infinity. |
@@ -426,6 +446,8 @@ is required by consumers.
 | `MonoidAlgebra.span_subgroup_isTwoSided`, `span_subgroup_isTwoSided_iff` | Normality implies two-sidedness over any ring; the converse needs nontriviality. |
 | `MonoidAlgebra.span_subgroup_fg_of_fg`, `span_subgroup_fg_iff` | Subgroup FG implies left-ideal FG over any ring; equivalence over nontrivial rings. |
 | `MonoidAlgebra.ker_augmentation_fg`, `ker_augmentation_fg_iff` | Group FG implies augmentation-kernel FG over any ring; equivalence over nontrivial rings. |
+| `MonoidAlgebra.isNoetherianRing_multiplicative_int_iff`, `isNoetherianRing_iff_of_mulEquiv_int` | Infinite cyclic coefficient criterion over every ring. |
+| `MonoidAlgebra.isNoetherianRing_iff_of_finiteIndex_mulEquiv_int`, `isNoetherianRing_multiplicative_int_prod_iff` | Finite-index cyclic and finite-group-product coefficient criteria, without normality. |
 | `MonoidAlgebra.isNoetherianRing_of_injective`, `isNoetherianRing_subgroup` | Left-Noetherianity descends along any group-to-monoid embedding, in particular to every subgroup algebra. |
 | `MonoidAlgebra.comapDomain_mapDomain`, `comapDomain_mul_mapDomain` | Coefficient retraction and right multiplication compatibility, without target cancellation. |
 | `RingHom.comap_map_eq_of_additive_retraction`, `isNoetherianRing_of_additive_retraction` | Ideal extension-contraction and regular-left Noetherianity descent for an additive right retraction. |
@@ -509,9 +531,13 @@ every custom simp set or a performance improvement.
 ## Reproducible build and checks
 
 Install [elan](https://github.com/leanprover/elan). The checkout pins Lean
-`leanprover/lean4:v4.34.0-rc2`, mathlib
-`83abb3e776bdefcbc447a1e44d0debe4010039e5`, and eight transitive packages in
-`lake-manifest.json`. There are no other Formal Frontier library dependencies.
+`leanprover/lean4:v4.34.0-rc2`. The direct library dependencies are Mathlib
+`83abb3e776bdefcbc447a1e44d0debe4010039e5` and released
+[multivariate-polynomials](https://github.com/FormalFrontier/multivariate-polynomials)
+at `2c9624942362c6d8de7389e77a5ca7ba7838af78`.
+`lake-manifest.json` resolves thirteen pinned packages, including the transitive
+Formal Frontier libraries `coherent-modules`, `algebraic-direct-limits`, and
+`group-theory`.
 The native module interface requires the pinned toolchain; an older Lean release
 is not supported by this checkout.
 

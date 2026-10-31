@@ -44,6 +44,9 @@ project:
     reconstruction and scalar compatibility laws. Finite index makes this
     module finite over any semiring. For ring coefficients, finite-index
     subgroup algebras and group algebras are left-Noetherian simultaneously.
+    Over every ring, the infinite cyclic group algebra is left-Noetherian iff
+    its coefficient ring is. Group equivalences and finite-index infinite
+    cyclic subgroups transport this criterion, including finite-group products.
     Every left ideal of an arbitrary semiring extends along monoid-algebra
     constants to exactly the elements whose coefficients lie in that ideal.
     Coefficient-change kernels are therefore extended coefficient kernels.
@@ -56,7 +59,7 @@ project:
     Surjective coefficients give the algebra of the index range; if the index
     map is also surjective the full target is available. No nontriviality or
     commutativity is imposed, and the target coefficients need only be a semiring.
-    No sufficient-condition converse is asserted.
+    No sufficient-condition converse for arbitrary groups is asserted.
     Over a nontrivial possibly noncommutative ring with prime p equal to zero,
     nilpotence of the augmentation kernel implies one common p-power exponent
     for an arbitrary group, hence IsPGroup p G, without finiteness. Uniform
@@ -130,7 +133,8 @@ related_formalizations:
   - id: "https://github.com/leanprover-community/mathlib4/tree/83abb3e776bdefcbc447a1e44d0debe4010039e5"
     relationship: "builds-on"
     note: >-
-      The only direct library dependency. Uses FreeAbelianGroup.equivFinsupp,
+      One of two direct library dependencies, together with the released
+      multivariate-polynomials library. Uses FreeAbelianGroup.equivFinsupp,
       AddMonoidAlgebra.toMultiplicativeAlgEquiv and AddMonoidAlgebra.domCongr,
       with their native injectivity and single-term laws. The Laurent leaf
       imports Mathlib.Algebra.FreeAbelianGroup.Finsupp and
@@ -352,6 +356,18 @@ status:
     - declaration: "Polynomial.map_ker_toMultiplicative_toFinsuppIso"
       file: "GroupRings/Polynomial/CoefficientIdeals.lean"
       note: "The stock polynomial equivalence followed by the additive-to-multiplicative index equivalence transports coefficient kernels; companion laws preserve arbitrary coefficient ideals, polynomials and constants."
+    - declaration: "MonoidAlgebra.isNoetherianRing_multiplicative_int_iff"
+      file: "GroupRings/MonoidAlgebra/CyclicNoetherian.lean"
+      note: "For every ring, including noncommutative and zero rings, the infinite cyclic group algebra is left-Noetherian iff its coefficient ring is; uses Laurent ascent from multivariate-polynomials and Mathlib ring transport."
+    - declaration: "MonoidAlgebra.isNoetherianRing_iff_of_mulEquiv_int"
+      file: "GroupRings/MonoidAlgebra/CyclicNoetherian.lean"
+      note: "A supplied group equivalence with Multiplicative Int transports the coefficient criterion, with independent coefficient and group universes and no scalar or carrier replacement."
+    - declaration: "MonoidAlgebra.isNoetherianRing_iff_of_finiteIndex_mulEquiv_int"
+      file: "GroupRings/MonoidAlgebra/CyclicNoetherian.lean"
+      note: "For a finite-index subgroup supplied with an equivalence to the infinite cyclic group, left-Noetherianity of the whole group algebra is equivalent to that of the arbitrary coefficient ring; no normality is needed."
+    - declaration: "MonoidAlgebra.isNoetherianRing_multiplicative_int_prod_iff"
+      file: "GroupRings/MonoidAlgebra/CyclicNoetherian.lean"
+      note: "Products of the infinite cyclic group with any finite group satisfy the same coefficient-ring criterion, using the second projection kernel and its first-coordinate group equivalence."
     - declaration: "MonoidAlgebra.isNoetherianRing_of_injective"
       file: "GroupRings/MonoidAlgebra/Noetherian.lean"
       note: "Over any semiring, an injective group-to-monoid homomorphism descends regular-left Noetherianity of monoid algebras, in three independent universes."

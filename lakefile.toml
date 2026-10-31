@@ -14,13 +14,18 @@ name = "mathlib"
 git = "https://github.com/leanprover-community/mathlib4.git"
 rev = "83abb3e776bdefcbc447a1e44d0debe4010039e5"
 
+[[require]]
+name = "multivariate-polynomials"
+git = "https://github.com/FormalFrontier/multivariate-polynomials.git"
+rev = "2c9624942362c6d8de7389e77a5ca7ba7838af78"
+
 [[lean_lib]]
 name = "GroupRings"
 
 [[lean_lib]]
 name = "GroupRingsTest"
 srcDir = "tests"
-roots = ["GroupRingsTest.PublicAPIClient", "GroupRingsTest.GeneratorSimpClient", "GroupRingsTest.FiniteAbelianRightConvolutionClient", "GroupRingsTest.AugmentationClient", "GroupRingsTest.SingleUnitsClient", "GroupRingsTest.AugmentationBasisClient", "GroupRingsTest.AugmentationGeneratorsClient", "GroupRingsTest.SubgroupIdealsClient", "GroupRingsTest.CoefficientChangeClient", "GroupRingsTest.SubgroupIdealsFGClient", "GroupRingsTest.QuotientClient", "GroupRingsTest.NoetherianClient", "GroupRingsTest.AugmentationCotangentClient", "GroupRingsTest.KernelRangeClient", "GroupRingsTest.AugmentationNilpotenceClient", "GroupRingsTest.FixedVectorsClient", "GroupRingsTest.SimpleModulesClient"]
+roots = ["GroupRingsTest.PublicAPIClient", "GroupRingsTest.GeneratorSimpClient", "GroupRingsTest.FiniteAbelianRightConvolutionClient", "GroupRingsTest.AugmentationClient", "GroupRingsTest.SingleUnitsClient", "GroupRingsTest.AugmentationBasisClient", "GroupRingsTest.AugmentationGeneratorsClient", "GroupRingsTest.SubgroupIdealsClient", "GroupRingsTest.CoefficientChangeClient", "GroupRingsTest.SubgroupIdealsFGClient", "GroupRingsTest.QuotientClient", "GroupRingsTest.NoetherianClient", "GroupRingsTest.CyclicNoetherianClient", "GroupRingsTest.AugmentationCotangentClient", "GroupRingsTest.KernelRangeClient", "GroupRingsTest.AugmentationNilpotenceClient", "GroupRingsTest.FixedVectorsClient", "GroupRingsTest.SimpleModulesClient"]
 
 [lean_lib.leanOptions]
 # Public-import clients retain their proof declarations privately.

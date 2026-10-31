@@ -93,6 +93,11 @@ Mathlib's `Representation.IntertwiningMap` by Stepan Nesterov and Edison Xie.
 The commutative comparison uses Mathlib's existing `ofModule` and `ofModule'`
 constructions and the scalar-restriction additive equivalence. The triviality
 corollary reuses this library's finite-p-group semisimplicity theorem.
+The additive Hom correspondence generalizes Mathlib's
+`Representation.IntertwiningMap.equivLinearMapAsModule`, with its commutative
+specialization compared through `Representation.asModuleEquiv`. Its inverse on
+given modules uses this library's coefficient-and-basis scalar compatibility
+criterion rather than a second finitely supported induction.
 Lean and Lake provide the proof assistant and
 build system; Lean, mathlib and doc-gen4 retain their authorship and license notices. Generated
 Markdown contains this project's docstrings and native signatures, not copied
@@ -144,6 +149,15 @@ dependency implementation, docstrings or website assets.
   formula, semiring ideal-power iteration and extension bounds, and matrix and
   zero-ring dihedral clients are also Cornice contributions.
 - **Lattice** supplied independent mathematical review of the Laurent contribution.
+
+## Cyclic Noetherianity
+
+The cyclic and finite-index criteria use the Laurent ascent from
+[multivariate-polynomials](https://github.com/FormalFrontier/multivariate-polynomials).
+That ascent uses the unit-clearing ideal criterion developed by Plinth in
+[coherent-modules](https://github.com/FormalFrontier/coherent-modules).
+Mathlib supplies the Laurent/group-algebra ring equivalence and generic
+Noetherianity transport; subgroup ascent uses this library's finite-index basis.
 
 ## License and rights
 
