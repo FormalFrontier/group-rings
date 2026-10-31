@@ -98,6 +98,12 @@ The additive Hom correspondence generalizes Mathlib's
 specialization compared through `Representation.asModuleEquiv`. Its inverse on
 given modules uses this library's coefficient-and-basis scalar compatibility
 criterion rather than a second finitely supported induction.
+Projectivity ascent uses the given-lift averaging theorem in
+[Group Theory](https://github.com/FormalFrontier/group-theory/tree/da81dc691eabf38306f427465ea8a4af350f0aef),
+which extends the averaging construction in Mathlib's Maschke formalization
+from arbitrary coefficient-linear lifts. The proof combines that theorem
+with the original-module Hom correspondence and Mathlib's projectivity lifting
+property and free-cover characterization; it does not repeat the averaging proof.
 Lean and Lake provide the proof assistant and
 build system; Lean, mathlib and doc-gen4 retain their authorship and license notices. Generated
 Markdown contains this project's docstrings and native signatures, not copied

@@ -15,6 +15,13 @@ records scope and attribution, not a live release registry.
 
 ## Headline results
 
+- **Projectivity from coefficient projectivity.** For a finite group `G` whose
+  order is a unit in any possibly noncommutative or zero semiring `R`, a given
+  `R[G]`-module that is projective under its canonical coefficient restriction
+  is projective over `R[G]`. Additive commutative monoids and independent
+  coefficient, group and module universes suffice. See
+  [Projective.lean](GroupRings/MonoidAlgebra/Projective.lean).
+
 - **Canonical representations of given modules.** Over any possibly
   noncommutative or zero semiring `R` and any monoid `M`, a given unital
   `R[M]`-module has a representation on its original carrier with exactly the
@@ -531,13 +538,15 @@ every custom simp set or a performance improvement.
 ## Reproducible build and checks
 
 Install [elan](https://github.com/leanprover/elan). The checkout pins Lean
-`leanprover/lean4:v4.34.0-rc2`. The direct library dependencies are Mathlib
-`83abb3e776bdefcbc447a1e44d0debe4010039e5` and released
+`leanprover/lean4:v4.34.0-rc2`. The three direct library dependencies are Mathlib
+`83abb3e776bdefcbc447a1e44d0debe4010039e5`, released
 [multivariate-polynomials](https://github.com/FormalFrontier/multivariate-polynomials)
-at `2c9624942362c6d8de7389e77a5ca7ba7838af78`.
-`lake-manifest.json` resolves thirteen pinned packages, including the transitive
-Formal Frontier libraries `coherent-modules`, `algebraic-direct-limits`, and
-`group-theory`.
+at `2c9624942362c6d8de7389e77a5ca7ba7838af78`, and released
+[group-theory](https://github.com/FormalFrontier/group-theory)
+at `da81dc691eabf38306f427465ea8a4af350f0aef`.
+`lake-manifest.json` resolves thirteen pinned packages in total, including the
+transitive Formal Frontier libraries `coherent-modules` and
+`algebraic-direct-limits`.
 The native module interface requires the pinned toolchain; an older Lean release
 is not supported by this checkout.
 

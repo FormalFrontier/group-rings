@@ -139,11 +139,11 @@
    "type": "git",
    "subDir": null,
    "scope": "",
-   "rev": "41da4c034205f7a6e701388a1adb82ca0875242f",
+   "rev": "da81dc691eabf38306f427465ea8a4af350f0aef",
    "name": "groupTheory",
    "manifestFile": "lake-manifest.json",
-   "inputRev": "41da4c034205f7a6e701388a1adb82ca0875242f",
-   "inherited": true,
+   "inputRev": "da81dc691eabf38306f427465ea8a4af350f0aef",
+   "inherited": false,
    "configFile": "lakefile.toml"
   },
   {

@@ -19,6 +19,11 @@ name = "multivariate-polynomials"
 git = "https://github.com/FormalFrontier/multivariate-polynomials.git"
 rev = "2c9624942362c6d8de7389e77a5ca7ba7838af78"
 
+[[require]]
+name = "groupTheory"
+git = "https://github.com/FormalFrontier/group-theory.git"
+rev = "da81dc691eabf38306f427465ea8a4af350f0aef"
+
 [[lean_lib]]
 name = "GroupRings"
 

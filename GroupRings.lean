@@ -15,6 +15,7 @@ public import GroupRings.MonoidAlgebra.ModuleDetection
 public import GroupRings.MonoidAlgebra.SimpleModules
 public import GroupRings.MonoidAlgebra.ModuleRepresentation
 public import GroupRings.MonoidAlgebra.ModuleRepresentationEquiv
+public import GroupRings.MonoidAlgebra.Projective
 public import GroupRings.MonoidAlgebra.SemisimpleModules
 public import GroupRings.MonoidAlgebra.ModuleFiniteness
 public import GroupRings.MonoidAlgebra.ModuleMaps
