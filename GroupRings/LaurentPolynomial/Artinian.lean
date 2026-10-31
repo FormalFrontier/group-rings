@@ -4,6 +4,7 @@ Authors: Formal Frontier Agents
 -/
 module
 
+public import GroupRings.MonoidAlgebra.Regular
 public import Mathlib.Algebra.Polynomial.Laurent
 public import Mathlib.RingTheory.Artinian.Module
 
@@ -17,7 +18,9 @@ coefficient ring is subsingleton. Coefficient multiplication need not be commuta
 The scalar ring in `IsArtinianRing` is the Laurent polynomial ring itself, not its
 coefficient ring.
 
-The obstruction is the regular nonunit `T 1 - 1`. The generic Artinian regularity
+Regularity is a specialization of the infinite-order basis-element theorem for
+cancellative monoid algebras. The obstruction is the regular nonunit `T 1 - 1`.
+The generic Artinian regularity
 criterion is the same one used for polynomial rings in
 `MultivariatePolynomials.Artinian`; the polynomial variable itself cannot serve as
 this obstruction because it becomes a unit in the Laurent polynomial ring.
@@ -71,40 +74,13 @@ section Ring
 
 variable [Ring R]
 
--- A nonzero finite support has a largest exponent, whose successor coefficient vanishes.
-private theorem eq_zero_of_coeff_succ (f : LaurentPolynomial R)
-    (h : ∀ n : ℤ, f.coeff (n + 1) = 0 → f.coeff n = 0) : f = 0 := by
-  classical
-  apply LaurentPolynomial.ext
-  intro n
-  change f.coeff n = 0
-  by_contra hn
-  have hs : f.coeff.support.Nonempty := ⟨n, Finsupp.mem_support_iff.mpr hn⟩
-  let m := f.coeff.support.max' hs
-  have hm : m ∈ f.coeff.support := Finset.max'_mem _ _
-  have hz : f.coeff (m + 1) = 0 := by
-    apply Finsupp.notMem_support_iff.mp
-    intro hmem
-    have hle : m + 1 ≤ m := Finset.le_max' _ _ hmem
-    omega
-  exact Finsupp.mem_support_iff.mp hm (h m hz)
-
 /-- The monic Laurent difference `T 1 - C r` is left- and right-regular, even when
 coefficients do not commute or the coefficient ring is trivial. -/
 theorem isRegular_T_sub_C (r : R) : IsRegular (T 1 - C r) := by
-  constructor
-  · apply isLeftRegular_iff_right_eq_zero_of_mul.mpr
-    intro f hf
-    apply eq_zero_of_coeff_succ f
-    intro n hn
-    have hc := congrArg (fun g : LaurentPolynomial R ↦ g.coeff (n + 1)) hf
-    simpa [sub_mul, hn] using hc
-  · apply isRightRegular_iff_left_eq_zero_of_mul.mpr
-    intro f hf
-    apply eq_zero_of_coeff_succ f
-    intro n hn
-    have hc := congrArg (fun g : LaurentPolynomial R ↦ g.coeff (n + 1)) hf
-    simpa [mul_sub, hn] using hc
+  apply AddMonoidAlgebra.isRegular_single_sub_single (R := R) (g := (1 : ℤ)) _ r
+  apply injective_nsmul_iff_not_isOfFinAddOrder.mp
+  intro n m h
+  exact_mod_cast (show (n : ℤ) = m by simpa using h)
 
 /-- Evaluation at one shows that `T 1 - 1` is not a unit over a nontrivial ring.
 No commutativity of the coefficients is needed. -/

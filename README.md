@@ -23,6 +23,16 @@ records scope and attribution, not a live release registry.
   induced by the action on a vector. See
   [AugmentationAveraging.lean](GroupRings/MonoidAlgebra/AugmentationAveraging.lean).
 
+- **Regular monoid-algebra differences and an Artinian obstruction.** For an
+  arbitrary ring `R` and a cancellative monoid `M`, if `g : M` has infinite
+  order, then `single g 1 - single 1 r` is left- and right-regular for every
+  coefficient `r : R`. The additive-index version specializes to Laurent
+  polynomials, without a domain or commutativity assumption. Consequently, if
+  `R` is nontrivial and `MonoidAlgebra R M` is left Artinian over itself, every
+  element of `M` has finite order. This is a necessary condition, not a claim
+  that `M` is finite. See
+  [Regular.lean](GroupRings/MonoidAlgebra/Regular.lean).
+
 - **Artinian Laurent polynomial rings.** For every possibly noncommutative or zero
   ring `R`, the original Laurent polynomial ring `LaurentPolynomial R` is left
   Artinian over itself exactly when `R` is subsingleton. The supporting API proves
@@ -423,6 +433,7 @@ Import `GroupRings`, or one of its leaf modules:
 
 | Module | Contents |
 | --- | --- |
+| `GroupRings.MonoidAlgebra.Regular` | Regular monic basis differences for cancellative monoids, additive transport and the necessary Artinian torsion condition. |
 | `GroupRings.LaurentPolynomial.Artinian` | Coefficient multiplication laws, regular monic Laurent differences and the arbitrary-ring Artinian criterion. |
 | `GroupRings.MonoidAlgebra.SubgroupIdeals` | Left coset coefficient sums and subgroup left ideals, inclusion and normality. |
 | `GroupRings.MonoidAlgebra.SubgroupIdealsFG` | Finite generation of subgroup left ideals and augmentation kernels. |
