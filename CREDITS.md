@@ -165,6 +165,16 @@ That ascent uses the unit-clearing ideal criterion developed by Plinth in
 Mathlib supplies the Laurent/group-algebra ring equivalence and generic
 Noetherianity transport; subgroup ascent uses this library's finite-index basis.
 
+## Finite-group crossed maps
+
+Crossed-map principalization uses the classical finite-group averaging argument
+in Brown’s book cited above. The formalization applies additive-action cocycle
+averaging and additive-map naturality from
+[Group Theory](https://github.com/FormalFrontier/group-theory/blob/da81dc691eabf38306f427465ea8a4af350f0aef/GroupTheory/CocycleAveraging.lean)
+to the canonical coefficient restriction of the given group-algebra module.
+The augmentation-ideal consequence uses this library’s full group-algebra-linear
+crossed-map universal property.
+
 ## License and rights
 
 Original project contributions and identified project adaptations use

@@ -15,6 +15,14 @@ records scope and attribution, not a live release registry.
 
 ## Headline results
 
+- **Principal crossed maps for given group-algebra modules.** If a finite group
+  has unit order in a possibly noncommutative or zero ring, every crossed map
+  for a given unital left group-algebra module is principal. The witness is the
+  negative inverse-order sum, and this sum construction commutes with additive
+  maps. Every group-algebra-linear map from the full augmentation ideal is
+  induced by the action on a vector. See
+  [AugmentationAveraging.lean](GroupRings/MonoidAlgebra/AugmentationAveraging.lean).
+
 - **Projectivity from coefficient projectivity.** For a finite group `G` whose
   order is a unit in any possibly noncommutative or zero semiring `R`, a given
   `R[G]`-module that is projective under its canonical coefficient restriction
