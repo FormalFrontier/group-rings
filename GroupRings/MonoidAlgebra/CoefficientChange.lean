@@ -5,9 +5,20 @@ Authors: Formal Frontier Agents
 module
 
 public import GroupRings.MonoidAlgebra.Augmentation
+public import GroupRings.RingTheory.Artinian
 
 /-!
-# Augmentation ideals under coefficient change
+# Coefficient change in monoid algebras
+
+An additive retraction of a coefficient homomorphism extends coefficientwise
+using Mathlib's `MonoidAlgebra.map`. Compatibility with right multiplication
+by the coefficient image extends to the monoid algebras. Consequently, left
+Artinianity descends along such a coefficient homomorphism. The coefficients
+may be noncommutative or zero, and the monoid is arbitrary.
+
+The bundled additive map used for Artinian descent is the composite of
+Mathlib's coefficient additive equivalences and `Finsupp.mapRange.addMonoidHom`;
+no new coefficient-map construction is needed.
 
 Augmentation commutes with any unital homomorphism of semirings. Its kernel
 pulls back to the preimage of the coefficient kernel. When the source
@@ -27,6 +38,48 @@ variable {R : Type u} {S : Type v} {M : Type w}
 section Semiring
 
 variable [Semiring R] [Semiring S] [Monoid M]
+
+/-- A coefficientwise additive left inverse retracts coefficient change. -/
+theorem map_mapRingHom_of_leftInverse (φ : R →+* S) (E : S →+ R)
+    (hE : ∀ r, E (φ r) = r) (x : MonoidAlgebra R M) :
+    map E (mapRingHom M φ x) = x := by
+  ext m
+  simpa using hE (x.coeff m)
+
+/-- A coefficient map compatible with right multiplication by a coefficient
+image is compatible with right multiplication by the entire monoid-algebra image. -/
+theorem map_mul_mapRingHom (φ : R →+* S) (E : S →+ R)
+    (hmul : ∀ s r, E (s * φ r) = E s * r)
+    (x : MonoidAlgebra S M) (y : MonoidAlgebra R M) :
+    map E (x * mapRingHom M φ y) = map E x * y := by
+  induction x using induction_linear with
+  | zero => simp
+  | add x z hx hz =>
+    simp only [add_mul, MonoidAlgebra.map_add, hx, hz]
+  | single m s =>
+    induction y using induction_linear with
+    | zero => simp
+    | add y z hy hz =>
+      simp only [map_add, mul_add, MonoidAlgebra.map_add, hy, hz]
+    | single n r => simp [single_mul_single, hmul]
+
+/-- Left Artinianity of a monoid algebra descends along a coefficient
+homomorphism with an additive retraction compatible with right multiplication
+by the coefficient image. No Artinian restriction-of-scalars assumption is needed. -/
+theorem isArtinianRing_of_coefficient_additive_retraction
+    (φ : R →+* S) (E : S →+ R)
+    (hE : ∀ r, E (φ r) = r)
+    (hmul : ∀ s r, E (s * φ r) = E s * r)
+    [IsArtinianRing (MonoidAlgebra S M)] : IsArtinianRing (MonoidAlgebra R M) := by
+  let E' : MonoidAlgebra S M →+ MonoidAlgebra R M :=
+    coeffAddEquiv.symm.toAddMonoidHom.comp
+      ((Finsupp.mapRange.addMonoidHom E).comp coeffAddEquiv.toAddMonoidHom)
+  have hE'_apply (x : MonoidAlgebra S M) : E' x = map E x := rfl
+  apply (mapRingHom M φ).isArtinianRing_of_additive_retraction E'
+  · intro x
+    simpa only [hE'_apply] using map_mapRingHom_of_leftInverse φ E hE x
+  · intro x y
+    simpa only [hE'_apply] using map_mul_mapRingHom φ E hmul x y
 
 /-- Augmentation commutes with coefficient change as a ring homomorphism. -/
 theorem augmentation_comp_mapRingHom (φ : R →+* S) :
