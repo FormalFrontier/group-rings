@@ -15,6 +15,14 @@ records scope and attribution, not a live release registry.
 
 ## Headline results
 
+- **Left ideals finite over the coefficients.** If `R` is any semiring and `M`
+  is a cancellative monoid, a nonzero left ideal of `MonoidAlgebra R M` that
+  is finite as an `R`-module forces `M` to be finite. The module hypothesis
+  uses the ordinary coefficient restriction `I.restrictScalars R`; coefficients
+  need not commute or form a nontrivial semiring. A supporting lemma bounds
+  the supports of every finitely generated coefficient submodule by one finite
+  set. See [FiniteCoefficientIdeal.lean](GroupRings/MonoidAlgebra/FiniteCoefficientIdeal.lean).
+
 - **Principal crossed maps for given group-algebra modules.** If a finite group
   has unit order in a possibly noncommutative or zero ring, every crossed map
   for a given unital left group-algebra module is principal. The witness is the
@@ -459,6 +467,7 @@ Import `GroupRings`, or one of its leaf modules:
 | `GroupRings.RingTheory.Ideal.Powers` | Ordered mixed products, ideal-power iteration and extension bounds over semirings. |
 | `GroupRings.MonoidAlgebra.Augmentation` | Coefficient-sum augmentation and left-ideal kernel generators. |
 | `GroupRings.MonoidAlgebra.CoefficientIdeals` | Ordinary left coefficient ideals, coefficient kernels and quotient equivalences. |
+| `GroupRings.MonoidAlgebra.FiniteCoefficientIdeal` | Uniform support bounds and finiteness of a cancellative monoid from a nonzero coefficient-finite left ideal. |
 | `GroupRings.MonoidAlgebra.MixedQuotient` | Simultaneous coefficient/index kernels and range or surjective quotients. |
 | `GroupRings.Polynomial.CoefficientIdeals` | Constant, coefficient, ideal and kernel transport from polynomials. |
 | `GroupRings.MonoidAlgebra.CoefficientChange` | Naturality, kernel preimages and ideal images under coefficient change. |

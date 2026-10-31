@@ -26,6 +26,7 @@ public import GroupRings.MonoidAlgebra.AugmentationCotangent.Functoriality
 public import GroupRings.MonoidAlgebra.AugmentationGenerators
 public import GroupRings.MonoidAlgebra.CoefficientChange
 public import GroupRings.MonoidAlgebra.CoefficientIdeals
+public import GroupRings.MonoidAlgebra.FiniteCoefficientIdeal
 public import GroupRings.MonoidAlgebra.MixedQuotient
 public import GroupRings.Polynomial.CoefficientIdeals
 public import GroupRings.MonoidAlgebra.Units
