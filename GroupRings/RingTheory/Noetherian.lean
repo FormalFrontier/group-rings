@@ -72,6 +72,19 @@ theorem comap_map_eq_of_leftInverse
       change g (b * f a) = g b * a
       rw [map_mul, h]) J
 
+/-- Extension of left ideals reflects inclusion in the presence of an additive
+retraction compatible with right multiplication by the image. -/
+theorem ideal_map_le_iff_of_additive_retraction
+    (f : A →+* B) (E : B →+ A)
+    (hE : ∀ a, E (f a) = a)
+    (hmul : ∀ b a, E (b * f a) = E b * a) (I J : Ideal A) :
+    Ideal.map f I ≤ Ideal.map f J ↔ I ≤ J := by
+  constructor
+  · intro h
+    simpa only [f.comap_map_eq_of_additive_retraction E hE hmul] using
+      (Ideal.comap_mono (f := f) h)
+  · exact Ideal.map_mono
+
 /-- Left Noetherianity descends along a semiring homomorphism with an additive
 right retraction. This concerns the regular left modules, not restriction of
 scalars on the whole target semiring. -/
@@ -80,12 +93,8 @@ theorem isNoetherianRing_of_additive_retraction
     (hE : ∀ a, E (f a) = a)
     (hmul : ∀ b a, E (b * f a) = E b * a)
     [IsNoetherianRing B] : IsNoetherianRing A := by
-  let e : Ideal A ↪o Ideal B := OrderEmbedding.ofMapLEIff (Ideal.map f) fun I J => by
-    constructor
-    · intro h
-      simpa only [f.comap_map_eq_of_additive_retraction E hE hmul] using
-        (Ideal.comap_mono (f := f) h)
-    · exact Ideal.map_mono
+  let e : Ideal A ↪o Ideal B := OrderEmbedding.ofMapLEIff (Ideal.map f)
+    (f.ideal_map_le_iff_of_additive_retraction E hE hmul)
   exact isNoetherian_mk e.wellFoundedGT
 
 end RingHom

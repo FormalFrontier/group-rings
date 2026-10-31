@@ -38,6 +38,7 @@ public import GroupRings.MonoidAlgebra.KernelRange
 public import GroupRings.MonoidAlgebra.Noetherian
 public import GroupRings.MonoidAlgebra.MapDomain
 public import GroupRings.RingTheory.Noetherian
+public import GroupRings.RingTheory.Artinian
 public import GroupRings.LaurentPolynomial.Artinian
 
 /-!

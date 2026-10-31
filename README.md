@@ -224,6 +224,16 @@ records scope and attribution, not a live release registry.
   additive right retraction, ideal extension-contraction and the distinction
   between right compatibility and ordinary regular-left Noetherianity.
 
+- **Left-Artinian descent along additive right retractions.** For semirings
+  `A`, `B` in independent universes, a unital homomorphism `f : A →+* B`
+  and additive map `E : B →+ A` with `E 1 = 1` and
+  `E (b * f a) = E b * a` give extension-contraction equality and order
+  reflection for ordinary left ideals. Thus left Artinianity of `B` implies
+  left Artinianity of `A`. No commutativity, nontriviality or additive inverses
+  are required, and `E` need not preserve multiplication or be left-linear.
+  The API uses the equivalent retraction condition `E (f a) = a`.
+  See [Artinian.lean](GroupRings/RingTheory/Artinian.lean).
+
 - **Left-Noetherian necessary conditions.** If `R[M]` is left-Noetherian, then
   `R` is left-Noetherian, for any semiring `R` and monoid `M`: augmentation is
   surjective, so Mathlib's generic surjective-homomorphism theorem applies.
