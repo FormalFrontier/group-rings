@@ -46,6 +46,22 @@ def moduleMonoidAction : DistribMulAction M V where
 def moduleCoefficientModule : Module R V :=
   Module.compHom V ((singleOneRingHom : R →+* MonoidAlgebra R M))
 
+/-- Coefficient scalars act by the corresponding constant monoid-algebra element. -/
+theorem moduleCoefficientModule_apply (r : R) (v : V) :
+    (moduleCoefficientModule R M V).smul r v = (single 1 r : MonoidAlgebra R M) • v := rfl
+
+/-- The canonical coefficient restriction forms a scalar tower with the ordinary
+coefficientwise action on the monoid algebra. This theorem can be installed locally. -/
+theorem moduleCoefficientModule_isScalarTower :
+    @IsScalarTower R (MonoidAlgebra R M) V inferInstance inferInstance
+      (moduleCoefficientModule R M V).toDistribMulAction.toMulAction.toSMul := by
+  let : Module R V := moduleCoefficientModule R M V
+  constructor
+  intro r a v
+  change (r • a) • v = (moduleCoefficientModule R M V).smul r (a • v)
+  rw [moduleCoefficientModule_apply, ← smul_one_mul r a, one_def,
+    smul_single', mul_one, mul_smul]
+
 /-- The action formula holds for every label and every vector. -/
 theorem moduleMonoidAction_apply (m : M) (v : V) :
     (moduleMonoidAction R M V).smul m v = (single m (1 : R) : MonoidAlgebra R M) • v := rfl
@@ -54,9 +70,7 @@ theorem moduleMonoidAction_apply (m : M) (v : V) :
 theorem moduleMonoidAction_coefficient (r : R) (m : M) (v : V) :
     (single m r : MonoidAlgebra R M) • v =
       (moduleCoefficientModule R M V).smul r ((moduleMonoidAction R M V).smul m v) := by
-  change (single m r : MonoidAlgebra R M) • v =
-    (single 1 r : MonoidAlgebra R M) • ((single m 1 : MonoidAlgebra R M) • v)
-  rw [← mul_smul]
+  rw [moduleCoefficientModule_apply, moduleMonoidAction_apply, ← mul_smul]
   simp
 
 end ModuleAction

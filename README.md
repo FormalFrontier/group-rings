@@ -447,6 +447,8 @@ is required by consumers.
 
 | Declaration | Purpose |
 | --- | --- |
+| `MonoidAlgebra.moduleCoefficientModule_apply` | The canonical coefficient action is the action of `single 1 r` in the given module, over any semiring and monoid. |
+| `MonoidAlgebra.moduleCoefficientModule_isScalarTower` | A locally installable scalar tower for the ordinary coefficientwise action on `R[M]` and the canonical coefficient restriction on the given module. |
 | `MonoidAlgebra.cosetSum`, `cosetSum_single`, `cosetSum_apply` | Coefficient-linear coset projection, basis simp law and finite-support formula. |
 | `MonoidAlgebra.mem_span_subgroup_iff` | Subgroup left-span membership iff every left-coset coefficient sum vanishes, over any ring. |
 | `MonoidAlgebra.single_sub_one_mem_span_subgroup_iff`, `span_subgroup_le_iff` | Over a nontrivial ring, reflect subgroup membership and inclusion. |
