@@ -2,7 +2,8 @@
 SPDX-License-Identifier: Apache-2.0
 Authors: Formal Frontier Agents
 
-The ideal-action induction adapts Mathlib/RingTheory/HopkinsLevitzki.lean,
+The ideal-action induction and finiteness argument adapt
+Mathlib/RingTheory/HopkinsLevitzki.lean,
 whose original notice is:
 Copyright (c) 2025 Junyan Xu. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
@@ -25,12 +26,19 @@ In particular, this applies to every module when `I` is nilpotent.
 Only the submodule lattices of the annihilated layers are identified. The
 submodule lattices of the original module need not agree.
 
+Without the surjectivity assumption, if `A ⧸ I` is finite over compatible
+base scalars `S`, every Noetherian `A`-module annihilated by a power of `I`
+is finite over `S`. Here `S` may be any ring whose action on `A` is
+compatible with multiplication on the right.
+
 ## References
 
 The ideal-action induction generalizes Junyan Xu's formalization of
 `IsSemiprimaryRing.induction` in Mathlib, retaining its submodule/quotient
-argument but allowing any uniformly nilpotent ideal action. Length transport
-uses Mathlib's semilinear submodule correspondence and Andrew Yang's
+argument but allowing any uniformly nilpotent ideal action. The finiteness
+criterion similarly extends `IsSemiprimaryRing.finite_of_isNoetherian` from
+that file to arbitrary two-sided ideals acting uniformly nilpotently.
+Length transport uses Mathlib's semilinear submodule correspondence and Andrew Yang's
 formalization of composition length and its exact-sequence additivity.
 -/
 
@@ -104,6 +112,50 @@ theorem induction_on_pow_le_annihilator
       exact fun m i hi ↦ Submodule.smul_mem_smul (Ideal.pow_le_self n.succ_ne_zero hi) trivial
 
 end Ideal
+
+namespace Ideal
+
+variable {S : Type uS} {A : Type uA} [Ring S] [Ring A] [Module S A]
+variable (V : Type uV) [AddCommGroup V] [Module S V] [Module A V]
+variable [IsScalarTower S A V] (I : Ideal A)
+
+/-- A Noetherian module annihilated by a power of a two-sided ideal is finite
+over the base scalars if the quotient ring is finite over those scalars.
+The base ring need not map surjectively onto the quotient ring, and the ideal
+itself need not be nilpotent: only its action on the module must be uniformly nilpotent.
+
+This extends the finite-generation argument of Mathlib's
+`IsSemiprimaryRing.finite_of_isNoetherian` using ideal-action induction. -/
+theorem finite_of_pow_le_annihilator [IsScalarTower S A A] [I.IsTwoSided]
+    [IsNoetherian A V] [Module.Finite S (A ⧸ I)]
+    (hIV : ∃ n : ℕ, I ^ n ≤ Module.annihilator A V) : Module.Finite S V := by
+  suffices IsNoetherian A V → Module.Finite S V from this inferInstance
+  refine induction_on_pow_le_annihilator (S := S) V I
+    (P := fun M _ _ _ ↦ IsNoetherian A M → Module.Finite S M) ?_ ?_ hIV
+  · intro M _ _ _ _ h hM
+    let := h.module
+    have : Module.Finite (A ⧸ I) M :=
+      Module.Finite.of_surjective h.semilinearMap Function.surjective_id
+    exact Module.Finite.trans (A ⧸ I) M
+  · intro M _ _ _ _ N hN hQ hM
+    have : Module.Finite S (N.restrictScalars S) := hN inferInstance
+    have : Module.Finite S (M ⧸ N) := hQ inferInstance
+    have : Module.Finite S (M ⧸ N.restrictScalars S) :=
+      Module.Finite.equiv (Submodule.Quotient.restrictScalarsEquiv S N).symm
+    exact Module.Finite.of_submodule_quotient (N.restrictScalars S)
+
+end Ideal
+
+/-- The Jacobson-ideal specialization of ideal-action finiteness recovers
+Mathlib's finite-generation criterion for Noetherian modules over semiprimary rings. -/
+theorem IsSemiprimaryRing.finite_of_isNoetherian_via_ideal
+    (S : Type uS) (A : Type uA) (V : Type uV) [Ring S] [Ring A] [Module S A]
+    [AddCommGroup V] [Module S V] [Module A V] [IsScalarTower S A V]
+    [IsScalarTower S A A] [IsSemiprimaryRing A] [IsNoetherian A V]
+    [Module.Finite S (A ⧸ Ring.jacobson A)] : Module.Finite S V := by
+  obtain ⟨_, n, hn⟩ := (isSemiprimaryRing_iff A).mp inferInstance
+  exact Ideal.finite_of_pow_le_annihilator (S := S) V (Ring.jacobson A)
+    ⟨n, by rw [hn]; exact bot_le⟩
 
 /-- Recovery of the semiprimary module-induction principle from uniform
 ideal-action induction, with the same auxiliary scalar structures. -/
