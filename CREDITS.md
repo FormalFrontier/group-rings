@@ -118,58 +118,38 @@ build system; Lean, mathlib and doc-gen4 retain their authorship and license not
 Markdown contains this project's docstrings and native signatures, not copied
 dependency implementation, docstrings or website assets.
 
-## Project contributions and expression origins
+## Formalization lineage
 
-- **Prism (AI agent)** authored the integral source diagnostic and the
-  coefficient-generic Laurent implementation, native interfaces, clients and
-  metadata. The equivalence composition, forward basis proof and
-  canonical/generator pattern adapt that diagnostic; inverse basis laws,
-  coefficient generality and independent universes extend it. The integer
-  generator client also follows an expression in a source adapter; restricted-simp
-  and priority tests are separate diagnostic work. The source-local abbreviation
-  is not exported. These are actual Lean expression origins, not only a
-  mathematical citation or a claim to an entirely original proof.
-- **Anchor (AI agent)** authored the Ideal Completion Markdown documentation
-  adapter, tests and recipe adapted by Prism for this library's module inventory,
-  native signature/source-range handling and binding. Prism also supplied retained
-  input hashes and explicit source-only/parentless refresh controls.
-- **Beacon (AI agent)** supplied the finite-abelian character experiment adapted
-  by the generic-field Fourier implementation, and related documentation
-  portability design advice, not copied documentation implementation.
-- **Other Formal Frontier AI contributors** supplied the generic-field character
-  and convolution mathematics, reusable library API, Fourier applications
-  and mathematical review.
-- **Cornice (AI agent)** supplied the single-term unit reflection proofs, the
-  local basis-embedding instance, the coefficient/index unit criterion, its
-  public-import clients and documentation, as well as the pointed Finsupp
-  sum-kernel equivalence, its coefficient-module augmentation-kernel basis
-  specialization, characteristic laws and matrix-ring client. Cornice also
-  supplied the arbitrary-ring left-ideal difference-membership interfaces,
-  their augmentation generating-set applications and the free-monoid and
-  infinite-cyclic public-import clients. The subgroup coset-sum API, its
-  characteristic left-span theorem, membership/order/normality reflection and
-  nonnormal matrix-ring client are also Cornice contributions. Cornice supplied
-  the subgroup-ideal and augmentation-kernel finite-generation equivalences,
-  their all-ring forward implications and matrix/zero-ring public-import clients.
-  Cornice also supplied augmentation surjectivity and the subgroup finite-generation
-  consequence of left-Noetherianity, with the stock coefficient-descent client.
-  The additive-right-retraction ideal and Noetherianity criterion, coefficient
-  projection compatibility and arbitrary-semiring group-subalgebra descent are
-  also Cornice contributions. Cornice supplied the general coefficient-ideal
-  membership and kernel theorem, polynomial transport bridges and simultaneous
-  coefficient/index kernel and quotient API. Cornice also supplied the
-  ordered-list left-ideal power API and arbitrary-group uniform augmentation-
-  nilpotence converse, their public-import clients and documentation. The finite
-  p-group exact cardinality bound and criterion, normal cyclic quotient-kernel
-  formula, semiring ideal-power iteration and extension bounds, and matrix and
-  zero-ring dihedral clients are also Cornice contributions.
-- **Lattice** supplied independent mathematical review of the Laurent contribution.
+The coefficient-generic Laurent construction adapts an earlier integral
+coordinate formalization: the equivalence composition, forward basis proof and
+canonical/generator pattern follow that construction. Inverse basis laws,
+coefficient generality and independent universes extend it. The integer generator
+expression also follows an earlier adapter; restricted-simp and priority clients
+are separate diagnostic work. These are Lean expression origins, not merely a
+bibliographic citation or a claim to an entirely original proof.
+
+The documentation's module inventory, native signature/source-range handling and
+binding adapt the earlier Ideal Completion documentation adapter and recipe. Generic-field
+Fourier formalization adapts an earlier finite-abelian character experiment;
+related design advice is distinct from copied documentation implementation.
+Further collective AI contributions include the character/convolution API and
+applications, single-term unit and pointed sum-kernel proofs, subgroup difference
+ideals and coset sums, coefficient and mixed quotients, and augmentation-nilpotence
+bounds and their clients.
+
+The ideal-action induction and finiteness argument adapt Junyan Xu's Mathlib
+`IsSemiprimaryRing.induction` and `IsSemiprimaryRing.finite_of_isNoetherian` in
+`Mathlib/RingTheory/HopkinsLevitzki.lean`, extending them to arbitrary uniformly
+nilpotent ideal actions. The original human copyright and authorship notice is
+retained in [ScalarRestriction.lean](GroupRings/RingTheory/Ideal/ScalarRestriction.lean).
+Length transport reuses Andrew Yang's composition-length formalization and exact
+additivity in `ℕ∞`.
 
 ## Cyclic Noetherianity
 
 The cyclic and finite-index criteria use the Laurent ascent from
 [multivariate-polynomials](https://github.com/FormalFrontier/multivariate-polynomials).
-That ascent uses the unit-clearing ideal criterion developed by Plinth in
+That ascent uses the unit-clearing ideal criterion provided by
 [coherent-modules](https://github.com/FormalFrontier/coherent-modules).
 Mathlib supplies the Laurent/group-algebra ring equivalence and generic
 Noetherianity transport; subgroup ascent uses this library's finite-index basis.
@@ -189,5 +169,5 @@ crossed-map universal property.
 Original project contributions and identified project adaptations use
 [Apache-2.0](LICENSE). Dependencies retain their own licenses and notices.
 Contributor credit and bibliographic citation do not establish copyright
-ownership or grant permission to redistribute third-party expression. No human
-mathematical review, source-author endorsement or source-coverage claim is made.
+ownership or grant permission to redistribute third-party expression.
+Bibliographic references do not imply source-author endorsement.
