@@ -63,9 +63,11 @@ criterion with mathlib's finite generation of every ideal of a left-Noetherian
 ring and its generic Noetherianity transport along surjective ring homomorphisms.
 Group-subalgebra descent uses mathlib's coefficient pullback, unchanged-coefficient
 pushforward, Finsupp retraction and single-term multiplication laws. The generic
-additive-right-retraction criterion uses its ideal span induction and
-well-founded-order characterization of Noetherianity, and agrees with its
-ideal inclusion for ring-homomorphism retractions.
+additive-right-retraction criterion is provided by
+[coherent-modules](https://github.com/FormalFrontier/coherent-modules) in
+`CoherentModules.RingTheory.Noetherian.Retraction`. Its proof uses Mathlib's ideal
+span induction and well-founded-order characterization of Noetherianity, and
+agrees with Mathlib's ideal inclusion for ring-homomorphism retractions.
 Coefficient-ideal membership uses Mathlib's ordinary left ideal span induction,
 ordered convolution and finite coefficient reconstruction. Its polynomial
 bridges use `Polynomial.toFinsuppIso` and

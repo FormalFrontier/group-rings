@@ -7,7 +7,7 @@ module
 public import GroupRings.MonoidAlgebra.SubgroupIdealsFG
 public import GroupRings.MonoidAlgebra.MapDomain
 public import GroupRings.MonoidAlgebra.SubgroupBasis
-public import GroupRings.RingTheory.Noetherian
+public import CoherentModules.RingTheory.Noetherian.Retraction
 
 import Mathlib.Algebra.Group.TypeTags.Hom
 import Mathlib.LinearAlgebra.Finsupp.LinearCombination

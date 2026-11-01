@@ -115,11 +115,11 @@
    "type": "git",
    "subDir": null,
    "scope": "",
-   "rev": "e848789ef591afbad356aa8bda7a0a61c2d5cd38",
+   "rev": "c22b6cc43e81a2ef1649ac37b19e66f8ea9e107d",
    "name": "«coherent-modules»",
    "manifestFile": "lake-manifest.json",
-   "inputRev": "e848789ef591afbad356aa8bda7a0a61c2d5cd38",
-   "inherited": true,
+   "inputRev": "c22b6cc43e81a2ef1649ac37b19e66f8ea9e107d",
+   "inherited": false,
    "configFile": "lakefile.toml"
   },
   {

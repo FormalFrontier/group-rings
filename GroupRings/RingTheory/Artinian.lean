@@ -4,7 +4,7 @@ Authors: Formal Frontier Agents
 -/
 module
 
-public import GroupRings.RingTheory.Noetherian
+public import CoherentModules.RingTheory.Noetherian.Retraction
 public import Mathlib.RingTheory.Artinian.Defs
 
 /-!

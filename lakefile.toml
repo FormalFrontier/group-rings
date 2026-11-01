@@ -15,6 +15,11 @@ git = "https://github.com/leanprover-community/mathlib4.git"
 rev = "83abb3e776bdefcbc447a1e44d0debe4010039e5"
 
 [[require]]
+name = "coherent-modules"
+git = "https://github.com/FormalFrontier/coherent-modules.git"
+rev = "c22b6cc43e81a2ef1649ac37b19e66f8ea9e107d"
+
+[[require]]
 name = "multivariate-polynomials"
 git = "https://github.com/FormalFrontier/multivariate-polynomials.git"
 rev = "616945c1c06d1655887100fe8a40e06a4a4a6d76"
@@ -26,7 +31,7 @@ rev = "07948c9888686ade711654c1433c3efb2652e1aa"
 
 [[lean_lib]]
 name = "GroupRings"
-roots = ["GroupRings", "GroupRings.RepresentationTheory.AveragingProjector", "GroupRings.RepresentationTheory.AveragingProjectorComparison"]
+roots = ["GroupRings", "GroupRings.RingTheory.Noetherian", "GroupRings.RepresentationTheory.AveragingProjector", "GroupRings.RepresentationTheory.AveragingProjectorComparison"]
 
 [[lean_lib]]
 name = "GroupRingsTest"

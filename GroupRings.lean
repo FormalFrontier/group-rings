@@ -41,7 +41,7 @@ public import GroupRings.MonoidAlgebra.Quotient
 public import GroupRings.MonoidAlgebra.KernelRange
 public import GroupRings.MonoidAlgebra.Noetherian
 public import GroupRings.MonoidAlgebra.MapDomain
-public import GroupRings.RingTheory.Noetherian
+public import CoherentModules.RingTheory.Noetherian.Retraction
 public import GroupRings.RingTheory.Artinian
 public import GroupRings.RingTheory.Module.QuotientActions
 public import GroupRings.RingTheory.SimpleRing.Module
