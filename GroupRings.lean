@@ -48,6 +48,8 @@ public import CoherentModules.RingTheory.Noetherian.Retraction
 public import GroupRings.RingTheory.Artinian
 public import GroupRings.RingTheory.IdempotentCentrality
 public import GroupRings.RingTheory.Module.QuotientActions
+public import GroupRings.RingTheory.Module.ScalarRestriction
+public import GroupRings.RingTheory.Ideal.SquareQuotient
 public import GroupRings.RingTheory.SimpleRing.Module
 public import GroupRings.LaurentPolynomial.Artinian
 
@@ -121,4 +123,10 @@ maps of the original modules. The representation construction in
 an additive commutative monoid. Its comparison with Mathlib's invariant-space
 averaging map over a commutative ring is in
 `GroupTheory.RepresentationAveragingProjectorComparison`.
+
+Every Noetherian semimodule over a semiring with compatible restricted scalars
+has a greatest submodule finite over those scalars, preserved by every linear
+endomorphism. For a left-Noetherian semiring acting on itself, this greatest
+finite left ideal is two-sided; the restricted scalars need not be Noetherian
+or commutative.
 -/

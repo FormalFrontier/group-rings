@@ -187,7 +187,12 @@ consumer example, build commands and references.
   commuting ring actions therefore remain commuting after both scalar rings
   are quotiented by annihilating ideals. The rings may be noncommutative and
   the three carriers have independent universes; no finiteness is required.
-  For two-sided ideals these are the quotient-ring module actions.
+  For two-sided ideals these are the quotient-ring module actions. For any
+  two-sided ideal `I` of a ring `A`, the ordinary quotient
+  `I ⧸ Submodule.comap I.subtype (I ^ 2)` has commuting left and right actions of `A`
+  and of `A ⧸ I`, retaining compatible commutative base scalars. Left or right
+  Noetherianity of `A` gives Noetherianity of the corresponding action on this
+  quotient. See [SquareQuotient.lean](../GroupRings/RingTheory/Ideal/SquareQuotient.lean).
 
 - **Noetherian modules over simple algebras.** A simple algebra over a commutative
   ring that acts on a nontrivial compatible module Noetherian over that ring

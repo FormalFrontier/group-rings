@@ -88,7 +88,12 @@ module and declaration inventories.
   a simple algebra over a commutative ring admitting a nontrivial compatible
   module Noetherian over that base is itself Noetherian, hence finite, over
   the base; the base ring need not be Noetherian.
-  [Statements and hypotheses](docs/HeadlineResults.md#given-modules-and-scalar-restriction).
+  A Noetherian `A`-semimodule also has a greatest `A`-submodule
+  finite over compatible scalars `S`, preserved by every `A`-linear
+  endomorphism. For the regular module this is a two-sided ideal. Both
+  scalar semirings may be noncommutative, and `S` need not be Noetherian.
+  [Greatest finite submodules](GroupRings/RingTheory/Module/ScalarRestriction.lean) ·
+  [other statements and hypotheses](docs/HeadlineResults.md#given-modules-and-scalar-restriction).
 
 - **Subgroup ideals and coset bases.** Over any ring, a subgroup's left
   difference ideal consists of elements whose coefficient sums vanish on
@@ -116,9 +121,12 @@ module and declaration inventories.
 - **Commuting scalar actions and central idempotents.** Commuting ring
   actions on a module remain commuting after quotienting both rings by
   annihilating ideals; two-sidedness is needed for quotient rings, not just
-  their scalar actions. In any ring, an idempotent central modulo a nilpotent
-  two-sided ideal `I` is central if **both** off-diagonal corner maps send `I`
-  into `I²`; quotient centrality alone is insufficient.
+  their scalar actions. For any ring `A` and two-sided ideal `I`, the
+  [first ideal-square quotient](GroupRings/RingTheory/Ideal/SquareQuotient.lean)
+  `I/I²` has commuting left and right `A ⧸ I`-actions. In any ring, an idempotent
+  central modulo a nilpotent two-sided ideal `I` is central if **both**
+  off-diagonal corner maps send `I` into `I²`; quotient centrality alone is
+  insufficient.
   [Actions](docs/HeadlineResults.md#given-modules-and-scalar-restriction) ·
   [centrality criterion](docs/HeadlineResults.md#chain-conditions-and-regularity).
 

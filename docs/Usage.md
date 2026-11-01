@@ -79,6 +79,7 @@ group-algebra module. Generic Noetherian retraction descent comes from
 | `GroupRings.MonoidAlgebra.ModuleDetection` | Canonical fixed-vector and coinvariant maps, their characteristic laws, and detection for finite p-group algebras. |
 | `GroupRings.RingTheory.Ideal.ModuleDetection` | Nilpotent Nakayama and detection of injectivity and surjectivity by nilpotent ideals. |
 | `GroupRings.RingTheory.Ideal.ScalarRestriction` | Uniform ideal-action induction; quotient-surjective restriction preserves both chain conditions and composition length, including infinity. |
+| `GroupRings.RingTheory.Ideal.SquareQuotient` | Canonical commuting left and right quotient-ring actions on an ideal modulo its square, with Noetherian inheritance. |
 | `GroupRings.MonoidAlgebra.ModuleFiniteness` | Noetherianity, Artinianity and length under canonical coefficient restriction for finite p-group algebras. |
 | `GroupRings.RingTheory.Ideal.Semisimple` | Nilpotent ideal actions on semisimple modules vanish; canonical restriction and module-radical semisimplicity criteria. |
 | `GroupRings.MonoidAlgebra.SemisimpleModules` | Semisimplicity for finite p-group algebras iff canonical coefficient semisimplicity and trivial group action. |
@@ -101,6 +102,7 @@ group-algebra module. Generic Noetherian retraction descent comes from
 | `GroupRings.RingTheory.Artinian` | Left-Artinian descent along additive right-compatible retractions over arbitrary semirings. |
 | `GroupRings.RingTheory.IdempotentCentrality` | Positive-layer corner propagation and centrality modulo nilpotent two-sided ideals with both first-layer corner conditions. |
 | `GroupRings.RingTheory.Module.QuotientActions` | Commuting actions descend to annihilating-ideal scalar quotients; two-sided ideals give quotient-ring modules. |
+| `GroupRings.RingTheory.Module.ScalarRestriction` | Greatest scalar-finite submodules of Noetherian semimodules, endomorphism invariance, and the two-sided regular-module ideal. |
 | `GroupRings.RingTheory.SimpleRing.Module` | A simple algebra with a nontrivial base-Noetherian module is Noetherian and finite over its commutative base ring. |
 | `CoherentModules.RingTheory.Noetherian.Retraction` | Dependency-supplied ideal extension-contraction and left-Noetherian descent along additive right retractions; preferred over the compatibility import. |
 | `GroupRings.RepresentationTheory.AveragingProjector` | Compatibility import of the canonical `GroupTheory.RepresentationAveragingProjector` dependency module. |
