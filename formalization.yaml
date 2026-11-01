@@ -116,6 +116,11 @@ project:
     Group-algebra centrality over any semiring is equivalent to central
     coefficients and conjugation invariance. A nonzero coefficient of a central
     element has a finite conjugation orbit, even when the group is infinite.
+    At any one fixed group index, coefficients of all right products determine
+    a group-algebra element; left-product tests independently do so. Either
+    family detects zero, over any possibly zero or noncommutative semiring and
+    any group, without finiteness. Identity evaluation is the index-one case,
+    not augmentation.
     No group-algebra/convolution bridge is asserted.
   authors: [Formal Frontier Agents]
   license: "Apache-2.0"
@@ -167,6 +172,10 @@ related_formalizations:
       augmentation for coefficient reflection, coefficient-vanishing laws for
       left and right index inverses, and mathlib's commuting-factor, product-unit
       and local-homomorphism APIs. No new algebra or map model is introduced.
+      Product-coefficient separation uses the canonical coefficient view and its
+      injectivity, finitely supported extensionality and group translations;
+      zero-characterization laws reuse the equality criteria. It introduces no
+      new pairing, algebra carrier or augmentation model.
       Dependency implementation is not vendored; upstream authorship and notices
       remain upstream. The Lake manifest is generated dependency resolution
       metadata, not original dependency implementation. No inter-deliverable
@@ -267,12 +276,29 @@ status:
     The generic semiring criterion fixes left ideals under extension-contraction
     and transports their ascending chain condition. No sufficient-condition
     converse is asserted.
+    For a group over any semiring, equality is detected by one fixed coefficient
+    after all right multiplications, and independently after all left
+    multiplications. Both families detect zero, with no subtraction, nontriviality,
+    commutativity or finite-group hypothesis. The identity coefficient is obtained
+    by selecting index one, without replacing the canonical algebra or its product.
     The selected public interfaces below are not a census of private/generated declarations or
     client tests.
     The generated API page is a historical four-module/eight-Laurent snapshot
     with its original native-record binding, not a current whole-library
     analysis. The handwritten Fourier guide describes the current Fourier API.
   main_results:
+    - declaration: "MonoidAlgebra.eq_iff_forall_mul_coeff_eq_right"
+      file: "GroupRings/MonoidAlgebra/ProductCoefficients.lean"
+      note: "For any semiring and group in independent universes, equality is equivalent to equality at one fixed arbitrary coefficient in every right product. Zero and noncommutative coefficients and infinite groups are allowed."
+    - declaration: "MonoidAlgebra.eq_iff_forall_mul_coeff_eq_left"
+      file: "GroupRings/MonoidAlgebra/ProductCoefficients.lean"
+      note: "The separate criterion for every left product, preserving coefficient multiplication order."
+    - declaration: "MonoidAlgebra.eq_zero_iff_forall_mul_coeff_eq_zero_right"
+      file: "GroupRings/MonoidAlgebra/ProductCoefficients.lean"
+      note: "Vanishing of one fixed coefficient in every right product detects the zero element over any semiring."
+    - declaration: "MonoidAlgebra.eq_zero_iff_forall_mul_coeff_eq_zero_left"
+      file: "GroupRings/MonoidAlgebra/ProductCoefficients.lean"
+      note: "The corresponding zero characterization for all left products; index one specializes to identity-coefficient separation without an extra declaration."
     - declaration: "MonoidAlgebra.mem_center_iff"
       file: "GroupRings/MonoidAlgebra/Center.lean"
       note: "For arbitrary semirings and groups in independent universes, centrality is equivalent to central coefficients and conjugation invariance, including zero and noncommutative coefficients."

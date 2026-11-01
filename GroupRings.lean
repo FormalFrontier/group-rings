@@ -24,6 +24,7 @@ public import GroupRings.MonoidAlgebra.SemisimpleModules
 public import GroupRings.MonoidAlgebra.ModuleFiniteness
 public import GroupRings.MonoidAlgebra.ModuleMaps
 public import GroupRings.MonoidAlgebra.Center
+public import GroupRings.MonoidAlgebra.ProductCoefficients
 public import GroupRings.MonoidAlgebra.AugmentationBasis
 public import GroupRings.MonoidAlgebra.AugmentationCotangent.Tensor
 public import GroupRings.MonoidAlgebra.AugmentationCotangent.Functoriality
@@ -57,6 +58,9 @@ as well as generic-field character bases, right convolution, diagonalization
 and rank on finite abelian groups. Monoid algebras commute canonically with
 finite square matrix semirings, preserving every coefficient entry, over any
 semiring and monoid, including empty matrix indices and zero coefficients.
+For any group over any semiring, one fixed coefficient in every right product
+determines the element; left-product tests independently do so and either family
+detects zero. The identity coefficient is a special case, not augmentation.
 Monoid-algebra augmentation is available over any semiring, with its kernel
 generated as a left ideal by basis differences
 over any ring. A monoid generating set, or a subgroup generating set for a

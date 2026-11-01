@@ -15,6 +15,14 @@ records scope and attribution, not a live release registry.
 
 ## Headline results
 
+- **Product-coefficient separation.** For any group over a possibly zero or
+  noncommutative semiring, fix one arbitrary group index. Two group-algebra
+  elements agree exactly when their coefficients at that index agree after every
+  right multiplication; independently, every left multiplication gives the same
+  criterion. Either family detects zero. The identity coefficient is the index
+  `1` case, and no finite-group assumption or augmentation map is required. See
+  [ProductCoefficients.lean](GroupRings/MonoidAlgebra/ProductCoefficients.lean).
+
 - **Centers of group algebras.** Over any possibly zero or noncommutative semiring,
   a group-algebra element is central exactly when every coefficient is central and
   its coefficients are invariant under conjugation. A nonzero coefficient of a
