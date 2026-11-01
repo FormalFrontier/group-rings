@@ -15,6 +15,15 @@ records scope and attribution, not a live release registry.
 
 ## Headline results
 
+- **Centers of group algebras.** Over any possibly zero or noncommutative semiring,
+  a group-algebra element is central exactly when every coefficient is central and
+  its coefficients are invariant under conjugation. A nonzero coefficient of a
+  central element forces that label's conjugation orbit to be finite; coefficients
+  therefore vanish on infinite conjugation orbits. Coefficient centrality also
+  holds for monoid algebras, and the identity-group and commutative-coefficient
+  reductions are included in
+  [`MonoidAlgebra/Center.lean`](GroupRings/MonoidAlgebra/Center.lean).
+
 - **Finite matrices and monoid algebras.** For any semiring `R`, monoid `M`
   and finite decidable index type `n`, there is a canonical ring equivalence
   `MonoidAlgebra (Matrix n n R) M ≃+* Matrix n n (MonoidAlgebra R M)`.
@@ -713,6 +722,14 @@ nilpotent-ideal arguments use the common-annihilator theorem and the cokernel,
 without a finite-generation version of Nakayama. For modular group-ring
 background, see D. S. Passman, *The Algebraic Structure of Group Rings*, Wiley,
 1977.
+
+For the center over commutative rings, compare the identity-twist specialization of
+Praveen Manju and Rajendra Kumar Sharma, *(σ, τ)-Derivations of Group Rings with Applications*,
+arXiv:2303.04372v3 (2024), [§4.2, Lemma 4.12](https://arxiv.org/html/2303.04372v3#S4.Thmtheorem12).
+Its finite conjugacy-class-sum description concerns arbitrary groups with commutative
+unital ring coefficients. The coefficient criterion and finite-support consequences here
+are proved independently for arbitrary semirings, keeping coefficient centrality explicit;
+no twisted-center or class-sum basis construction is claimed.
 
 The implementation reuses mathlib's `AddMonoidAlgebra.toMultiplicativeAlgEquiv`,
 `AddMonoidAlgebra.domCongr` and `FreeAbelianGroup.equivFinsupp`; it does not copy or

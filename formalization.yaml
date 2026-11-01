@@ -113,6 +113,9 @@ project:
     preserving every coefficient entry. The equivalence requires a semiring,
     a monoid and a finite decidable matrix index type in independent universes;
     empty indices and zero or noncommutative coefficients are allowed.
+    Group-algebra centrality over any semiring is equivalent to central
+    coefficients and conjugation invariance. A nonzero coefficient of a central
+    element has a finite conjugation orbit, even when the group is infinite.
     No group-algebra/convolution bridge is asserted.
   authors: [Formal Frontier Agents]
   license: "Apache-2.0"
@@ -270,6 +273,27 @@ status:
     with its original native-record binding, not a current whole-library
     analysis. The handwritten Fourier guide describes the current Fourier API.
   main_results:
+    - declaration: "MonoidAlgebra.mem_center_iff"
+      file: "GroupRings/MonoidAlgebra/Center.lean"
+      note: "For arbitrary semirings and groups in independent universes, centrality is equivalent to central coefficients and conjugation invariance, including zero and noncommutative coefficients."
+    - declaration: "MonoidAlgebra.coeff_mem_center"
+      file: "GroupRings/MonoidAlgebra/Center.lean"
+      note: "Every coefficient of a central monoid-algebra element is central, for any semiring and monoid; no group assumption is needed."
+    - declaration: "MonoidAlgebra.coeff_conj_of_mem_center"
+      file: "GroupRings/MonoidAlgebra/Center.lean"
+      note: "Coefficients of central group-algebra elements are invariant under conjugation."
+    - declaration: "MonoidAlgebra.finite_conjAct_orbit_of_coeff_ne_zero"
+      file: "GroupRings/MonoidAlgebra/Center.lean"
+      note: "A nonzero coefficient of a central element forces that label's canonical conjugation orbit to be finite, not the group to be finite or the label central."
+    - declaration: "MonoidAlgebra.coeff_eq_zero_of_not_finite_conjAct_orbit"
+      file: "GroupRings/MonoidAlgebra/Center.lean"
+      note: "Every coefficient of a central group-algebra element vanishes on an infinite conjugation orbit."
+    - declaration: "MonoidAlgebra.mem_center_iff_of_subsingleton"
+      file: "GroupRings/MonoidAlgebra/Center.lean"
+      note: "For a one-element group, centrality reduces to centrality of the identity coefficient, without commutativity or nontriviality of coefficients."
+    - declaration: "MonoidAlgebra.mem_center_iff_coeff_conj"
+      file: "GroupRings/MonoidAlgebra/Center.lean"
+      note: "For commutative semiring coefficients, centrality is equivalent to conjugation invariance alone."
     - declaration: "MonoidAlgebra.matrixRingEquiv"
       file: "GroupRings/MonoidAlgebra/Matrix.lean"
       note: "Canonical ring equivalence between a monoid algebra of finite square matrices and matrices of monoid-algebra entries, with forward/inverse coefficient and single-term laws over arbitrary semirings and monoids, including empty matrix indices."

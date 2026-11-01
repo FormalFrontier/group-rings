@@ -23,6 +23,7 @@ public import GroupRings.MonoidAlgebra.Projective
 public import GroupRings.MonoidAlgebra.SemisimpleModules
 public import GroupRings.MonoidAlgebra.ModuleFiniteness
 public import GroupRings.MonoidAlgebra.ModuleMaps
+public import GroupRings.MonoidAlgebra.Center
 public import GroupRings.MonoidAlgebra.AugmentationBasis
 public import GroupRings.MonoidAlgebra.AugmentationCotangent.Tensor
 public import GroupRings.MonoidAlgebra.AugmentationCotangent.Functoriality
