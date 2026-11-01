@@ -55,6 +55,22 @@ records scope and attribution, not a live release registry.
   coefficient, group and module universes suffice. See
   [Projective.lean](GroupRings/MonoidAlgebra/Projective.lean).
 
+- **Normalized norm on given group-algebra modules.** Let `G` be finite and
+  let its order be a unit in any possibly noncommutative or zero semiring `R`.
+  On every given `R[G]`-module whose addition is a commutative monoid, the
+  normalized norm is an `R[G]`-linear idempotent. It fixes exactly the vectors
+  fixed by all `single g 1`, and its range is their full `R[G]`-span. Every unit
+  representing the order gives the same coefficient-and-basis sum, independently
+  of enumeration; only `Finite G` is required by the constructor. The mean is
+  natural for every original `R[G]`-linear map and is the unique retraction onto
+  the fixed vectors among original `R[G]`-endomorphisms. The coefficient-linear
+  representation construction is provided by
+  `GroupTheory.RepresentationAveragingProjector` in `group-theory`. It agrees
+  with Mathlib's `averageMap` when the coefficients form a commutative ring,
+  addition is a group, and `Fintype G` and an `Invertible` order are supplied;
+  this comparison is in `GroupTheory.RepresentationAveragingProjectorComparison`.
+  See [AveragingProjector.lean](GroupRings/MonoidAlgebra/AveragingProjector.lean).
+
 - **Canonical representations of given modules.** Over any possibly
   noncommutative or zero semiring `R` and any monoid `M`, a given unital
   `R[M]`-module has a representation on its original carrier with exactly the
@@ -471,7 +487,10 @@ next update. For a specific release, replace `main` with its full commit from
 that history. Libraries used together must share a compatible Lean toolchain
 and the same mathlib revision.
 
-Import `GroupRings`, or one of its leaf modules:
+Import `GroupRings`, or one of its leaf modules. The representation-level
+averaging modules below come from the released `group-theory` dependency and
+are re-exported by `GroupRings`; the group-algebra adapter acts on the original
+given module.
 
 | Module | Contents |
 | --- | --- |
@@ -491,6 +510,9 @@ Import `GroupRings`, or one of its leaf modules:
 | `GroupRings.MonoidAlgebra.FixedVectors` | Augmentation annihilation iff canonical fixedness, and nonzero fixed vectors for finite p-group modules. |
 | `GroupRings.MonoidAlgebra.ModuleRepresentation` | Canonical representations and faithful intertwiner packaging on given modules over any semiring. |
 | `GroupRings.MonoidAlgebra.ModuleRepresentationEquiv` | Additive Hom correspondence on original modules, inverse evaluation, lift reflection and the commutative Mathlib comparison. |
+| `GroupTheory.RepresentationAveragingProjector` | Normalized representation norm over any semiring, fixed range, idempotence, naturality and self-intertwiner uniqueness. |
+| `GroupTheory.RepresentationAveragingProjectorComparison` | Agreement with Mathlib's invariant-space averaging map under its commutative-ring hypotheses. |
+| `GroupRings.MonoidAlgebra.AveragingProjector` | Finite-only normalized norm on given group-algebra modules, every-unit sum formula, full fixed-vector span and naturality. |
 | `GroupRings.MonoidAlgebra.ModuleMaps` | Coefficient-and-basis criterion for linearity over any monoid algebra. |
 | `GroupRings.MonoidAlgebra.ModuleDetection` | Canonical fixed-vector and coinvariant maps, their characteristic laws, and detection for finite p-group algebras. |
 | `GroupRings.RingTheory.Ideal.ModuleDetection` | Nilpotent Nakayama and detection of injectivity and surjectivity by nilpotent ideals. |
@@ -614,10 +636,10 @@ Install [elan](https://github.com/leanprover/elan). The checkout pins Lean
 `leanprover/lean4:v4.34.0-rc2`. The three direct library dependencies are Mathlib
 `83abb3e776bdefcbc447a1e44d0debe4010039e5`, released
 [multivariate-polynomials](https://github.com/FormalFrontier/multivariate-polynomials)
-at `2c9624942362c6d8de7389e77a5ca7ba7838af78`, and released
+at `616945c1c06d1655887100fe8a40e06a4a4a6d76`, and released
 [group-theory](https://github.com/FormalFrontier/group-theory)
-at `da81dc691eabf38306f427465ea8a4af350f0aef`.
-`lake-manifest.json` resolves thirteen pinned packages in total, including the
+at `07948c9888686ade711654c1433c3efb2652e1aa`.
+`lake-manifest.json` resolves fourteen pinned packages in total, including the
 transitive Formal Frontier libraries `coherent-modules` and
 `algebraic-direct-limits`.
 The native module interface requires the pinned toolchain; an older Lean release

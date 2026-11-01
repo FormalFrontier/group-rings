@@ -22,10 +22,11 @@ rev = "616945c1c06d1655887100fe8a40e06a4a4a6d76"
 [[require]]
 name = "groupTheory"
 git = "https://github.com/FormalFrontier/group-theory.git"
-rev = "da81dc691eabf38306f427465ea8a4af350f0aef"
+rev = "07948c9888686ade711654c1433c3efb2652e1aa"
 
 [[lean_lib]]
 name = "GroupRings"
+roots = ["GroupRings", "GroupRings.RepresentationTheory.AveragingProjector", "GroupRings.RepresentationTheory.AveragingProjectorComparison"]
 
 [[lean_lib]]
 name = "GroupRingsTest"

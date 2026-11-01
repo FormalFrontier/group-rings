@@ -104,6 +104,13 @@ which extends the averaging construction in Mathlib's Maschke formalization
 from arbitrary coefficient-linear lifts. The proof combines that theorem
 with the original-module Hom correspondence and Mathlib's projectivity lifting
 property and free-cover characterization; it does not repeat the averaging proof.
+The normalized representation norm and its comparison with Mathlib's
+invariant-space averaging map are provided by
+[Group Theory](https://github.com/FormalFrontier/group-theory) in
+`GroupTheory.RepresentationAveragingProjector` and
+`GroupTheory.RepresentationAveragingProjectorComparison`. The group-algebra
+adapter transports that self-intertwiner through the original-module Hom
+correspondence, preserving the carrier, coefficient action and values.
 Lean and Lake provide the proof assistant and
 build system; Lean, mathlib and doc-gen4 retain their authorship and license notices. Generated
 Markdown contains this project's docstrings and native signatures, not copied

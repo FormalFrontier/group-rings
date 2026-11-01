@@ -4,6 +4,9 @@ Authors: Formal Frontier Agents
 -/
 module
 public import GroupRings.MonoidAlgebra.AugmentationAveraging
+public import GroupRings.MonoidAlgebra.AveragingProjector
+public import GroupTheory.RepresentationAveragingProjector
+public import GroupTheory.RepresentationAveragingProjectorComparison
 public import GroupRings.MonoidAlgebra.AugmentationCrossedUniversal
 
 public import GroupRings.MonoidAlgebra.AugmentationCrossedMaps
@@ -96,4 +99,13 @@ extension-contraction criterion transports the ascending chain condition.
 For a group-to-monoid homomorphism, its group-ring pushforward has kernel the
 left ideal of kernel-subgroup relations. The quotient is the monoid algebra of
 the range submonoid, with unique factorization into any semiring target.
+
+For a finite group over any semiring with unit group order, the normalized norm
+is an idempotent endomorphism of each given group-algebra semimodule. Its range
+is the full group-algebra span of the fixed vectors, and it is natural for all
+maps of the original modules. The representation construction in
+`GroupTheory.RepresentationAveragingProjector` requires only a finite group and
+an additive commutative monoid. Its comparison with Mathlib's invariant-space
+averaging map over a commutative ring is in
+`GroupTheory.RepresentationAveragingProjectorComparison`.
 -/
