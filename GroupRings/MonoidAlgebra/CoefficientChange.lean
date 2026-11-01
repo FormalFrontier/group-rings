@@ -7,6 +7,10 @@ module
 public import GroupRings.MonoidAlgebra.Augmentation
 public import GroupRings.RingTheory.Artinian
 
+import Mathlib.Algebra.Field.Opposite
+import Mathlib.Algebra.Module.Opposite
+import Mathlib.LinearAlgebra.Basis.VectorSpace
+
 /-!
 # Coefficient change in monoid algebras
 
@@ -18,7 +22,10 @@ may be noncommutative or zero, and the monoid is arbitrary.
 
 The bundled additive map used for Artinian descent is the composite of
 Mathlib's coefficient additive equivalences and `Finsupp.mapRange.addMonoidHom`;
-no new coefficient-map construction is needed.
+no new coefficient-map construction is needed. In particular, left Artinianity
+descends along any homomorphism from a division ring to a nontrivial semiring.
+A linear functional for the right division-ring action, normalized at `1`,
+supplies the additive retraction; no centrality or finite-dimensionality is needed.
 
 Augmentation commutes with any unital homomorphism of semirings. Its kernel
 pulls back to the preimage of the coefficient kernel. When the source
@@ -101,6 +108,39 @@ theorem comap_ker_augmentation_mapRingHom (φ : R →+* S) :
   simp only [Ideal.mem_comap, RingHom.mem_ker, augmentation_mapRingHom]
 
 end Semiring
+
+/-- Left Artinianity of a monoid algebra descends along any homomorphism from
+a division ring to a nontrivial semiring. The monoid is arbitrary, and the
+division ring need not be commutative or finite-dimensional over its centre.
+
+This concerns the original left regular modules, not restriction of scalars.
+Nontriviality of the target is needed to normalize a right-linear functional at `1`. -/
+theorem isArtinianRing_of_divisionRing_hom
+    {D : Type u} [DivisionRing D] [Semiring S] [Nontrivial S] [Monoid M]
+    (φ : D →+* S) [IsArtinianRing (MonoidAlgebra S M)] :
+    IsArtinianRing (MonoidAlgebra D M) := by
+  -- Restrict the opposite regular action: `op d • s = s * φ d`.
+  let : Module Dᵐᵒᵖ S := Module.compHom S φ.op
+  -- The additive group is derived, without changing the given semiring structure.
+  let : AddCommGroup S := Module.addCommMonoidToAddCommGroup Dᵐᵒᵖ
+  have h1 : (1 : S) ∉ (⊥ : Submodule Dᵐᵒᵖ S) := by
+    simpa only [Submodule.mem_bot] using (one_ne_zero : (1 : S) ≠ 0)
+  obtain ⟨ψ, -, hψ⟩ := LinearMap.exists_extend_of_notMem
+    (0 : (⊥ : Submodule Dᵐᵒᵖ S) →ₗ[Dᵐᵒᵖ] Dᵐᵒᵖ) h1 (1 : Dᵐᵒᵖ)
+  let E : S →+ D :=
+    (MulOpposite.opAddEquiv : D ≃+ Dᵐᵒᵖ).symm.toAddMonoidHom.comp ψ.toAddMonoidHom
+  have hmul : ∀ s d, E (s * φ d) = E s * d := by
+    intro s d
+    have h := ψ.map_smul (MulOpposite.op d) s
+    change ψ (s * φ d) = MulOpposite.op d * ψ s at h
+    change MulOpposite.unop (ψ (s * φ d)) = MulOpposite.unop (ψ s) * d
+    simpa only [MulOpposite.unop_mul, MulOpposite.unop_op] using
+      congrArg MulOpposite.unop h
+  have hE1 : E 1 = 1 := by
+    change MulOpposite.unop (ψ 1) = 1
+    simpa only [MulOpposite.unop_one] using congrArg MulOpposite.unop hψ
+  exact isArtinianRing_of_coefficient_additive_retraction φ E
+    (fun d => by simpa only [one_mul, hE1] using hmul 1 d) hmul
 
 section Ring
 

@@ -401,6 +401,11 @@ and the [proof strategy](Usage.md#central-summands-detected-by-characters).
   Artinianity, not Artinianity after coefficient restriction. See
   `MonoidAlgebra.isArtinianRing_of_coefficient_additive_retraction` in
   [CoefficientChange.lean](../GroupRings/MonoidAlgebra/CoefficientChange.lean).
+  For any homomorphism `D →+* S` from a division ring to a nontrivial semiring,
+  a normalized right-linear functional supplies this retraction. Thus
+  `MonoidAlgebra.isArtinianRing_of_divisionRing_hom` gives the same descent for
+  every monoid, without coefficient centrality, finite dimension over the centre,
+  or Artinianity after restriction of scalars.
 
 - **Left ideals finite over the coefficients.** If `R` is any semiring and `M`
   is a cancellative monoid, a nonzero left ideal of `MonoidAlgebra R M` that

@@ -92,7 +92,7 @@ group-algebra module. Generic Noetherian retraction descent comes from
 | `GroupRings.MonoidAlgebra.FiniteCoefficientIdeal` | Uniform support bounds and finiteness of a cancellative monoid from a nonzero coefficient-finite left ideal. |
 | `GroupRings.MonoidAlgebra.MixedQuotient` | Simultaneous coefficient/index kernels and range or surjective quotients. |
 | `GroupRings.Polynomial.CoefficientIdeals` | Constant, coefficient, ideal and kernel transport from polynomials. |
-| `GroupRings.MonoidAlgebra.CoefficientChange` | Augmentation naturality, kernel preimages and ideal extension; left-Artinian descent along right-compatible additive coefficient retractions. |
+| `GroupRings.MonoidAlgebra.CoefficientChange` | Augmentation naturality, kernel preimages and ideal extension; left-Artinian descent along right-compatible additive coefficient retractions, including every homomorphism from a division ring to a nontrivial semiring. |
 | `GroupRings.MonoidAlgebra.AugmentationGenerators` | Kernel generators from monoid or subgroup generating sets. |
 | `GroupRings.RingTheory.Ideal.MonoidHom` | Difference-membership propagation through monoid and subgroup closure in any ring's left ideals. |
 | `GroupRings.LinearAlgebra.Finsupp.SumKernel` | Pointed coefficient-sum kernel equivalence for modules over semirings. |

@@ -142,6 +142,8 @@ module and declaration inventories.
   cancellative monoid over any semiring, a **nonzero** left ideal finite over
   the coefficients forces the monoid to be finite. Additive right-compatible
   coefficient retractions give left-Artinian descent without multiplicativity.
+  Such a retraction exists for every homomorphism from a division ring to a
+  nontrivial semiring, without centrality or finite-dimensionality assumptions.
   Left-Noetherianity descends to embedded group algebras over any semiring;
   finite-index subgroup algebras over rings share it with the whole algebra.
   Over nontrivial rings it forces every subgroup to be finitely generated,
