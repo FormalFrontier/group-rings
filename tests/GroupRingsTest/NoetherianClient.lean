@@ -7,11 +7,13 @@ module
 import GroupRings
 
 /-!
-# Left-Noetherian necessary conditions through the public import
+# Left-Noetherian criteria through the public import
 
 Coefficient descent uses the stock generic surjective-homomorphism theorem,
 without a coefficient commutativity or nontriviality assumption. The group
 conclusion applies to every subgroup without a normality or prior FG premise.
+For a finitely generated commutative monoid, ascent and coefficient descent
+combine into the left-Noetherian criterion over an arbitrary coefficient ring.
 -/
 
 universe u v
@@ -26,3 +28,15 @@ private theorem every_subgroup_fg
     (R : Type u) [Ring R] [Nontrivial R] {G : Type v} [Group G]
     [IsNoetherianRing (MonoidAlgebra R G)] (H : Subgroup G) : H.FG :=
   MonoidAlgebra.subgroup_fg_of_isNoetherianRing R H
+
+/-- Ascent and coefficient descent give the criterion through the public API. -/
+private theorem monoidAlgebra_noetherian_iff
+    (R : Type u) [Ring R] (M : Type v) [CommMonoid M] [Monoid.FG M] :
+    IsNoetherianRing (MonoidAlgebra R M) ↔ IsNoetherianRing R := by
+  constructor
+  · intro h
+    let := h
+    exact coefficient_noetherian R M
+  · intro h
+    let := h
+    exact MonoidAlgebra.isNoetherianRing_of_fg R M

@@ -151,10 +151,10 @@
    "type": "git",
    "subDir": null,
    "scope": "",
-   "rev": "2c9624942362c6d8de7389e77a5ca7ba7838af78",
+   "rev": "616945c1c06d1655887100fe8a40e06a4a4a6d76",
    "name": "«multivariate-polynomials»",
    "manifestFile": "lake-manifest.json",
-   "inputRev": "2c9624942362c6d8de7389e77a5ca7ba7838af78",
+   "inputRev": "616945c1c06d1655887100fe8a40e06a4a4a6d76",
    "inherited": false,
    "configFile": "lakefile.toml"
   }

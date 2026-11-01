@@ -9,8 +9,13 @@ public import GroupRings.MonoidAlgebra.MapDomain
 public import GroupRings.MonoidAlgebra.SubgroupBasis
 public import GroupRings.RingTheory.Noetherian
 
+import Mathlib.Algebra.Group.TypeTags.Hom
+import Mathlib.LinearAlgebra.Finsupp.LinearCombination
+import Mathlib.RingTheory.Finiteness.Defs
+import MultivariatePolynomials.Noetherian
+
 /-!
-# Left-Noetherian group subalgebras and necessary conditions
+# Left-Noetherian monoid algebras and subgroup algebras
 
 For an injective homomorphism from a group `H` into any monoid `M`,
 left Noetherianity of `R[M]` descends to `R[H]` over every semiring `R`.
@@ -30,10 +35,17 @@ For any semiring and monoid, the coefficient semiring is a surjective image
 under `MonoidAlgebra.augmentation`. Its left-Noetherianity therefore follows
 from that of the monoid algebra by Mathlib's `isNoetherianRing_of_surjective`,
 using `MonoidAlgebra.augmentation_surjective`. No specialized transport theorem
-is needed. These are necessary conditions; no converse is asserted.
+is needed. For finitely generated commutative monoids and ring coefficients,
+the converse holds: a surjective exponent presentation reduces the ascent to
+finite-coordinate polynomial Noetherianity. The coefficient ring need not commute.
 
 Here `IsNoetherianRing A` concerns the left regular module of `A` over itself,
 not the group algebra as a module over its coefficient ring.
+
+## References
+
+* `MultivariatePolynomials.Noetherian`: the finite-coordinate theorem
+  `AddMonoidAlgebra.isNoetherianRing_finsupp`, used for the commutative-monoid ascent.
 -/
 
 @[expose] public section
@@ -41,6 +53,28 @@ not the group algebra as a module over its coefficient ring.
 universe u v w
 
 namespace MonoidAlgebra
+
+/-- A finitely generated commutative monoid algebra over a left-Noetherian ring
+is left-Noetherian. The coefficient ring need not be commutative.
+
+The proof uses `AddMonoidAlgebra.isNoetherianRing_finsupp` through a surjective
+presentation of the exponent monoid by a finite-coordinate free commutative monoid. -/
+theorem isNoetherianRing_of_fg
+    (A : Type u) [Ring A] [IsNoetherianRing A]
+    (N : Type v) [CommMonoid N] [Monoid.FG N] :
+    IsNoetherianRing (MonoidAlgebra A N) := by
+  classical
+  obtain ⟨n, s, hs⟩ := Module.Finite.exists_fin (R := ℕ) (M := Additive N)
+  let j : Multiplicative (Fin n →₀ ℕ) →* N :=
+    AddMonoidHom.toMultiplicativeLeft (Finsupp.linearCombination ℕ s).toAddMonoidHom
+  have hj : Function.Surjective j :=
+    (span_range_eq_top_iff_surjective_finsuppLinearCombination (R := ℕ) (v := s)).mp hs
+  let : IsNoetherianRing (AddMonoidAlgebra A (Fin n →₀ ℕ)) :=
+    AddMonoidAlgebra.isNoetherianRing_finsupp A (Fin n)
+  let e := AddMonoidAlgebra.toMultiplicative (R := A) (M := Fin n →₀ ℕ)
+  exact isNoetherianRing_of_surjective _ _
+    ((mapDomainRingHom A j).comp e.toRingHom)
+    ((mapDomainRingHom_surjective (R := A) (M := _) (N := N) j hj).comp e.surjective)
 
 /-- A group subalgebra of a left-Noetherian monoid algebra is left-Noetherian.
 The coefficient semiring, source group and target monoid have independent

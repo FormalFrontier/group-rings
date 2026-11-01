@@ -234,13 +234,22 @@ records scope and attribution, not a live release registry.
   The API uses the equivalent retraction condition `E (f a) = a`.
   See [Artinian.lean](GroupRings/RingTheory/Artinian.lean).
 
+- **Finitely generated commutative monoid algebras.** For any left-Noetherian
+  ring `A` and finitely generated commutative monoid `N`, the monoid algebra
+  `A[N]` is left-Noetherian. The coefficient ring may be noncommutative or zero,
+  the two types have independent universes, and `N` need not be finite.
+  `MonoidAlgebra.isNoetherianRing_of_fg` gives ascent; the coefficient-sum
+  augmentation gives the reverse implication. The proof combines a finite
+  free-commutative-monoid presentation with finite-coordinate ascent from
+  `multivariate-polynomials`, without an extra scalar action on coefficients.
+
 - **Left-Noetherian necessary conditions.** If `R[M]` is left-Noetherian, then
   `R` is left-Noetherian, for any semiring `R` and monoid `M`: augmentation is
   surjective, so Mathlib's generic surjective-homomorphism theorem applies.
   Over a **nontrivial**, possibly noncommutative ring `R`, left-Noetherianity
   of `R[G]` implies that **every** subgroup of `G` is finitely generated.
   This uses the algebra as a left module over itself, not over `R`.
-  See the [necessary-condition module](GroupRings/MonoidAlgebra/Noetherian.lean)
+  See the [Noetherian module](GroupRings/MonoidAlgebra/Noetherian.lean)
   and [public-import client](tests/GroupRingsTest/NoetherianClient.lean).
   No converse for arbitrary groups is asserted.
 
@@ -503,6 +512,7 @@ is required by consumers.
 | `MonoidAlgebra.ker_augmentation_fg`, `ker_augmentation_fg_iff` | Group FG implies augmentation-kernel FG over any ring; equivalence over nontrivial rings. |
 | `MonoidAlgebra.isNoetherianRing_multiplicative_int_iff`, `isNoetherianRing_iff_of_mulEquiv_int` | Infinite cyclic coefficient criterion over every ring. |
 | `MonoidAlgebra.isNoetherianRing_iff_of_finiteIndex_mulEquiv_int`, `isNoetherianRing_multiplicative_int_prod_iff` | Finite-index cyclic and finite-group-product coefficient criteria, without normality. |
+| `MonoidAlgebra.isNoetherianRing_of_fg` | A finitely generated commutative monoid algebra over any left-Noetherian ring is left-Noetherian. |
 | `MonoidAlgebra.isNoetherianRing_of_injective`, `isNoetherianRing_subgroup` | Left-Noetherianity descends along any group-to-monoid embedding, in particular to every subgroup algebra. |
 | `MonoidAlgebra.comapDomain_mapDomain`, `comapDomain_mul_mapDomain` | Coefficient retraction and right multiplication compatibility, without target cancellation. |
 | `RingHom.comap_map_eq_of_additive_retraction`, `isNoetherianRing_of_additive_retraction` | Ideal extension-contraction and regular-left Noetherianity descent for an additive right retraction. |

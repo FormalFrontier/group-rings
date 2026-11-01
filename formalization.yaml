@@ -33,7 +33,11 @@ project:
     Left-Noetherian group algebras over nontrivial rings have every subgroup
     finitely generated. Surjective augmentation combines with the generic
     surjective-homomorphism Noetherianity theorem for coefficient descent over
-    arbitrary semirings and monoids. For any injective homomorphism from a group
+    arbitrary semirings and monoids. For a finitely generated commutative monoid,
+    its monoid algebra over any left-Noetherian ring is left-Noetherian, in
+    independent universes and without coefficient commutativity. Augmentation
+    gives the reverse implication; the exponent monoid need not be finite.
+    For any injective homomorphism from a group
     to a monoid, left-Noetherianity of the monoid algebra descends to the group
     algebra over every semiring, with three independent universes. Every subgroup
     algebra is therefore left-Noetherian, without finite index or normality.
@@ -382,6 +386,9 @@ status:
     - declaration: "MonoidAlgebra.isNoetherianRing_multiplicative_int_prod_iff"
       file: "GroupRings/MonoidAlgebra/CyclicNoetherian.lean"
       note: "Products of the infinite cyclic group with any finite group satisfy the same coefficient-ring criterion, using the second projection kernel and its first-coordinate group equivalence."
+    - declaration: "MonoidAlgebra.isNoetherianRing_of_fg"
+      file: "GroupRings/MonoidAlgebra/Noetherian.lean"
+      note: "A finitely generated commutative monoid algebra over an arbitrary left-Noetherian ring is left-Noetherian, in independent universes. The exponent monoid need not be finite and coefficients need not commute. Uses finite-coordinate ascent from multivariate-polynomials and a surjective exponent presentation with coefficient-preserving ring transport."
     - declaration: "MonoidAlgebra.isNoetherianRing_of_injective"
       file: "GroupRings/MonoidAlgebra/Noetherian.lean"
       note: "Over any semiring, an injective group-to-monoid homomorphism descends regular-left Noetherianity of monoid algebras, in three independent universes."
