@@ -28,6 +28,7 @@ public import GroupRings.MonoidAlgebra.AugmentationCotangent.Tensor
 public import GroupRings.MonoidAlgebra.AugmentationCotangent.Functoriality
 public import GroupRings.MonoidAlgebra.AugmentationGenerators
 public import GroupRings.MonoidAlgebra.CoefficientChange
+public import GroupRings.MonoidAlgebra.Matrix
 public import GroupRings.MonoidAlgebra.CoefficientIdeals
 public import GroupRings.MonoidAlgebra.FiniteCoefficientIdeal
 public import GroupRings.MonoidAlgebra.MixedQuotient
@@ -52,8 +53,11 @@ public import GroupRings.LaurentPolynomial.Artinian
 The public entry point for the multivariable Laurent model, explicit-coordinate
 algebra equivalence and canonical free-abelian specialization with basis laws,
 as well as generic-field character bases, right convolution, diagonalization
-and rank on finite abelian groups. Monoid-algebra augmentation is available over
-any semiring, with its kernel generated as a left ideal by basis differences
+and rank on finite abelian groups. Monoid algebras commute canonically with
+finite square matrix semirings, preserving every coefficient entry, over any
+semiring and monoid, including empty matrix indices and zero coefficients.
+Monoid-algebra augmentation is available over any semiring, with its kernel
+generated as a left ideal by basis differences
 over any ring. A monoid generating set, or a subgroup generating set for a
 group, suffices for these left-ideal generators. The kernel also has a left
 coefficient-ring module basis indexed by the nonidentity monoid elements.

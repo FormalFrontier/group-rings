@@ -109,6 +109,10 @@ project:
     canonical coefficient restriction implies projectivity of the original
     group-algebra module. Noncommutative and zero semirings, additive commutative
     monoids and independent coefficient, group and module universes are allowed.
+    Monoid algebras commute canonically with finite square matrix semirings,
+    preserving every coefficient entry. The equivalence requires a semiring,
+    a monoid and a finite decidable matrix index type in independent universes;
+    empty indices and zero or noncommutative coefficients are allowed.
     No group-algebra/convolution bridge is asserted.
   authors: [Formal Frontier Agents]
   license: "Apache-2.0"
@@ -266,6 +270,9 @@ status:
     with its original native-record binding, not a current whole-library
     analysis. The handwritten Fourier guide describes the current Fourier API.
   main_results:
+    - declaration: "MonoidAlgebra.matrixRingEquiv"
+      file: "GroupRings/MonoidAlgebra/Matrix.lean"
+      note: "Canonical ring equivalence between a monoid algebra of finite square matrices and matrices of monoid-algebra entries, with forward/inverse coefficient and single-term laws over arbitrary semirings and monoids, including empty matrix indices."
     - declaration: "Ideal.isNoetherian_iff_of_pow_le_annihilator"
       file: "GroupRings/RingTheory/Ideal/ScalarRestriction.lean"
       note: "For arbitrary rings, quotient-surjective scalar restriction and a uniformly nilpotent two-sided ideal action preserve and reflect Noetherianity; exact Module.compHom action and independent universes."

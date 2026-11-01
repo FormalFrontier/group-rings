@@ -15,6 +15,15 @@ records scope and attribution, not a live release registry.
 
 ## Headline results
 
+- **Finite matrices and monoid algebras.** For any semiring `R`, monoid `M`
+  and finite decidable index type `n`, there is a canonical ring equivalence
+  `MonoidAlgebra (Matrix n n R) M ≃+* Matrix n n (MonoidAlgebra R M)`.
+  It preserves every matrix entry of every monoid coefficient, with forward
+  and inverse coefficient and single-term simplification laws. Ordinary matrix
+  multiplication and monoid convolution retain both factor orders. The three
+  universes are independent; empty indices and zero or noncommutative
+  coefficients are allowed. See [Matrix.lean](GroupRings/MonoidAlgebra/Matrix.lean).
+
 - **Left ideals finite over the coefficients.** If `R` is any semiring and `M`
   is a cancellative monoid, a nonzero left ideal of `MonoidAlgebra R M` that
   is finite as an `R`-module forces `M` to be finite. The module hypothesis
@@ -494,6 +503,7 @@ given module.
 
 | Module | Contents |
 | --- | --- |
+| `GroupRings.MonoidAlgebra.Matrix` | Canonical finite-matrix / monoid-algebra ring equivalence, coefficient and single laws, and matrix-unit products. |
 | `GroupRings.MonoidAlgebra.Regular` | Regular monic basis differences for cancellative monoids, additive transport and the necessary Artinian torsion condition. |
 | `GroupRings.LaurentPolynomial.Artinian` | Coefficient multiplication laws, regular monic Laurent differences and the arbitrary-ring Artinian criterion. |
 | `GroupRings.MonoidAlgebra.SubgroupIdeals` | Left coset coefficient sums and subgroup left ideals, inclusion and normality. |
