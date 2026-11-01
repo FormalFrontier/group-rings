@@ -15,6 +15,13 @@ records scope and attribution, not a live release registry.
 
 ## Headline results
 
+- **Powers of coefficient kernels.** For any homomorphism `f : R →+* S`
+  between possibly zero or noncommutative semirings and any monoid `M`, the
+  kernel of `mapRingHom M f` has zero `n`-th power exactly when `ker f` does,
+  at the same exponent, including `n = 0`. No surjectivity, finite monoid or
+  group hypothesis is needed. See
+  [KernelPowers.lean](GroupRings/MonoidAlgebra/KernelPowers.lean).
+
 - **Product-coefficient separation.** For any group over a possibly zero or
   noncommutative semiring, fix one arbitrary group index. Two group-algebra
   elements agree exactly when their coefficients at that index agree after every
@@ -550,6 +557,7 @@ given module.
 | `GroupRings.RingTheory.Ideal.Powers` | Ordered mixed products, ideal-power iteration and extension bounds over semirings. |
 | `GroupRings.MonoidAlgebra.Augmentation` | Coefficient-sum augmentation and left-ideal kernel generators. |
 | `GroupRings.MonoidAlgebra.CoefficientIdeals` | Ordinary left coefficient ideals, coefficient kernels and quotient equivalences. |
+| `GroupRings.MonoidAlgebra.KernelPowers` | Coefficient change preserves and reflects zero kernel powers at each fixed exponent over arbitrary semirings and monoids. |
 | `GroupRings.MonoidAlgebra.FiniteCoefficientIdeal` | Uniform support bounds and finiteness of a cancellative monoid from a nonzero coefficient-finite left ideal. |
 | `GroupRings.MonoidAlgebra.MixedQuotient` | Simultaneous coefficient/index kernels and range or surjective quotients. |
 | `GroupRings.Polynomial.CoefficientIdeals` | Constant, coefficient, ideal and kernel transport from polynomials. |

@@ -54,6 +54,8 @@ project:
     Every left ideal of an arbitrary semiring extends along monoid-algebra
     constants to exactly the elements whose coefficients lie in that ideal.
     Coefficient-change kernels are therefore extended coefficient kernels.
+    Their powers vanish at exactly the same exponents as the coefficient kernel,
+    including degree zero, for arbitrary semiring homomorphisms and monoids.
     With ring source and semiring target coefficients, surjectivity identifies
     the quotient with the target monoid algebra; otherwise it is the range
     subsemiring. Polynomial transport preserves constants, every coefficient,
@@ -287,6 +289,9 @@ status:
     with its original native-record binding, not a current whole-library
     analysis. The handwritten Fourier guide describes the current Fourier API.
   main_results:
+    - declaration: "MonoidAlgebra.ker_mapRingHom_pow_eq_bot_iff"
+      file: "GroupRings/MonoidAlgebra/KernelPowers.lean"
+      note: "For any homomorphism between independently universed semirings and any monoid, the coefficient-map kernel has zero n-th power iff the coefficient kernel does, at the same n including zero; no commutativity, nontriviality, surjectivity or finiteness."
     - declaration: "MonoidAlgebra.eq_iff_forall_mul_coeff_eq_right"
       file: "GroupRings/MonoidAlgebra/ProductCoefficients.lean"
       note: "For any semiring and group in independent universes, equality is equivalent to equality at one fixed arbitrary coefficient in every right product. Zero and noncommutative coefficients and infinite groups are allowed."

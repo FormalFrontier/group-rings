@@ -32,6 +32,7 @@ public import GroupRings.MonoidAlgebra.AugmentationGenerators
 public import GroupRings.MonoidAlgebra.CoefficientChange
 public import GroupRings.MonoidAlgebra.Matrix
 public import GroupRings.MonoidAlgebra.CoefficientIdeals
+public import GroupRings.MonoidAlgebra.KernelPowers
 public import GroupRings.MonoidAlgebra.FiniteCoefficientIdeal
 public import GroupRings.MonoidAlgebra.MixedQuotient
 public import GroupRings.Polynomial.CoefficientIdeals
@@ -87,6 +88,8 @@ vector; two-sided ideals have a canonical common-annihilator submodule.
 Over nontrivial rings with prime `p = 0`, uniform augmentation-ideal
 nilpotence forces a common `p`-power exponent for an arbitrary group,
 without finiteness or commutativity; for finite groups this gives an iff.
+Coefficient change preserves and reflects zero kernel powers at each same
+exponent, including zero, over arbitrary semirings and monoids.
 Vanishing of ideal powers over any semiring
 is equivalent to vanishing of all ordered mixed products of the given length,
 including zero.
