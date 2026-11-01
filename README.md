@@ -278,6 +278,14 @@ records scope and attribution, not a live release registry.
   group structure on the target is assumed; see the
   [kernel and range guide](docs/KernelRange.md).
 
+- **Commuting quotient scalar actions.** On a module annihilated by an ideal,
+  the [quotient scalar action](GroupRings/RingTheory/Module/QuotientActions.lean)
+  commutes with every action commuting with the original ring action. Two
+  commuting ring actions therefore remain commuting after both scalar rings
+  are quotiented by annihilating ideals. The rings may be noncommutative and
+  the three carriers have independent universes; no finiteness is required.
+  For two-sided ideals these are the quotient-ring module actions.
+
 - **Coefficient change.** For any unital homomorphism `φ : R →+* S` from
   a possibly noncommutative ring to a semiring, and any monoid `M`,
   [coefficient change](GroupRings/MonoidAlgebra/CoefficientChange.lean)
