@@ -73,6 +73,13 @@ records scope and attribution, not a live release registry.
   For a semisimple module of a finite `p`-group algebra over any ring with
   prime `p = 0`, this canonical representation is trivial.
 
+- **Noetherian modules over simple algebras.** A simple algebra over a commutative
+  ring that acts on a nontrivial compatible module Noetherian over that ring
+  is itself Noetherian, and hence finite, over the base ring. Consequently, a
+  simple algebra that is not finite over the base ring has no nontrivial
+  compatible module Noetherian over the base ring. See
+  [Module.lean](GroupRings/RingTheory/SimpleRing/Module.lean).
+
 - **Semisimplicity under a nilpotent ideal action.** For arbitrary rings `S`,
   `A`, a unital map `φ : S →+* A` surjective modulo a two-sided ideal `I`,
   and any given `A`-module `V` with `∃ n, I^n ≤ Module.annihilator A V`,
