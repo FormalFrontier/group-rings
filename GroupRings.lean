@@ -47,11 +47,13 @@ public import GroupRings.MonoidAlgebra.MapDomain
 public import CoherentModules.RingTheory.Noetherian.Retraction
 public import GroupRings.RingTheory.Artinian
 public import GroupRings.RingTheory.Artinian.FiniteCharacterBlock
+public import GroupRings.RingTheory.Congruence.Coatomic
 public import GroupRings.RingTheory.IdempotentCentrality
 public import GroupRings.RingTheory.Module.QuotientActions
 public import GroupRings.RingTheory.Module.ScalarRestriction
 public import GroupRings.RingTheory.Ideal.SquareQuotient
 public import GroupRings.RingTheory.SimpleRing.Module
+public import GroupRings.RingTheory.SimpleRing.Quotient
 public import GroupRings.LaurentPolynomial.Artinian
 
 /-!
@@ -130,4 +132,10 @@ has a greatest submodule finite over those scalars, preserved by every linear
 endomorphism. For a left-Noetherian semiring acting on itself, this greatest
 finite left ideal is two-sided; the restricted scalars need not be Noetherian
 or commutative.
+
+Ring congruences form a coatomic lattice when multiplication has an absorbing zero
+and an identity, including over the zero ring. For unital rings with possibly nonassociative
+multiplication, a congruence quotient is simple exactly when its congruence is a coatom;
+every nontrivial such ring therefore has a nonzero simple quotient, with its canonical
+quotient map.
 -/

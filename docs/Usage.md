@@ -9,6 +9,7 @@ Noetherian and Fourier APIs, the catalogue also links the dedicated guides.
 
 - [Library and release scope](#library-and-release-scope)
 - [Using the library and choosing imports](#using-the-library)
+- [Simple ring quotients](#simple-ring-quotients)
 - [Central summands detected by characters](#central-summands-detected-by-characters)
 - [Reproducible build and checks](#reproducible-build-and-checks)
 - [References, provenance and AI involvement](#references-provenance-and-ai-involvement)
@@ -106,6 +107,8 @@ group-algebra module. Generic Noetherian retraction descent comes from
 | `GroupRings.RingTheory.IdempotentCentrality` | Positive-layer corner propagation and centrality modulo nilpotent two-sided ideals with both first-layer corner conditions. |
 | `GroupRings.RingTheory.Module.QuotientActions` | Commuting actions descend to annihilating-ideal scalar quotients; two-sided ideals give quotient-ring modules. |
 | `GroupRings.RingTheory.Module.ScalarRestriction` | Greatest scalar-finite submodules of Noetherian semimodules, endomorphism invariance, and the two-sided regular-module ideal. |
+| `GroupRings.RingTheory.Congruence.Coatomic` | Compactness of the greatest ring congruence and coatomicity with only addition and `MulZeroOneClass`. |
+| `GroupRings.RingTheory.SimpleRing.Quotient` | Simplicity of a congruence quotient iff its congruence is a coatom, and a nonzero simple quotient of every nontrivial unital ring. |
 | `GroupRings.RingTheory.SimpleRing.Module` | A simple algebra with a nontrivial base-Noetherian module is Noetherian and finite over its commutative base ring. |
 | `CoherentModules.RingTheory.Noetherian.Retraction` | Dependency-supplied ideal extension-contraction and left-Noetherian descent along additive right retractions; preferred over the compatibility import. |
 | `GroupRings.RepresentationTheory.AveragingProjector` | Compatibility import of the canonical `GroupTheory.RepresentationAveragingProjector` dependency module. |
@@ -116,6 +119,9 @@ is required by consumers.
 
 | Declaration | Purpose |
 | --- | --- |
+| `RingCon.isCompactElement_top` | The greatest congruence is compact for `[Add R] [MulZeroOneClass R]`; supplies `IsCoatomic (RingCon R)`. |
+| `RingCon.isSimpleRing_quotient_iff_isCoatom` | For `[NonAssocRing R]`, characterize simple canonical quotients without assuming the source or quotient nontrivial. |
+| `RingCon.exists_isSimpleRing_quotient` | For `[NonAssocRing R] [Nontrivial R]`, obtain a congruence whose canonical quotient is nonzero and simple. |
 | `MonoidAlgebra.moduleCoefficientModule_apply` | The canonical coefficient action is the action of `single 1 r` in the given module, over any semiring and monoid. |
 | `MonoidAlgebra.moduleCoefficientModule_isScalarTower` | A locally installable scalar tower for the ordinary coefficientwise action on `R[M]` and the canonical coefficient restriction on the given module. |
 | `MonoidAlgebra.cosetSum`, `cosetSum_single`, `cosetSum_apply` | Coefficient-linear coset projection, basis simp law and finite-support formula. |
@@ -206,6 +212,25 @@ break the restricted-simp regression despite passing ordinary `simp` tests.
 The priority change preserves the theorem's statement and proof and avoids its
 observed `simpNF` redundancy finding. It does not promise compatibility with
 every custom simp set or a performance improvement.
+
+## Simple ring quotients
+
+Import `GroupRings.RingTheory.SimpleRing.Quotient` (or `GroupRings`). For
+`[NonAssocRing R] [Nontrivial R]`,
+`RingCon.exists_isSimpleRing_quotient (R := R)` yields a congruence `c` and
+`hc : IsSimpleRing c.Quotient`. Installing `hc` as a local instance also gives
+`Nontrivial c.Quotient` by Mathlib's simplicity API. The map is the existing
+`c.mk' : R →+* c.Quotient`, with surjectivity `c.mk'_surjective`; no new
+quotient representation or chosen quotient construction is involved.
+
+For a specified congruence, use `RingCon.isSimpleRing_quotient_iff_isCoatom`.
+For a specified proper congruence, the generic lattice theorem
+`eq_top_or_exists_le_coatom` supplies a larger coatom. These results need no
+commutativity, associativity, Artinianity, Noetherianity or finiteness.
+Coatomicity itself uses only `[Add R] [MulZeroOneClass R]` and remains true for
+a subsingleton ring. Only the existence of a nonzero simple quotient requires
+`Nontrivial R`: the top congruence, and every congruence of the zero ring, has
+a trivial quotient and is not a coatom.
 
 ## Central summands detected by characters
 

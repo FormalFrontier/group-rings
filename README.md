@@ -194,6 +194,12 @@ Import `GroupRings` for the aggregate API, or choose a leaf from the
 its direct import as noted above. No private import or documentation artifact
 is needed by consumers.
 
+The generic [ring-congruence API](docs/Usage.md#simple-ring-quotients) is also
+re-exported: congruences are coatomic even over the zero ring, and a unital
+ring's congruence quotient is simple exactly at a coatom. Every nontrivial
+unital ring therefore has a nonzero simple quotient, using the canonical
+quotient and map; multiplication need not be associative or commutative.
+
 The aggregate import provides the canonical free-abelian equivalence:
 
 ```lean
