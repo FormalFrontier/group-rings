@@ -59,6 +59,7 @@ group-algebra module. Generic Noetherian retraction descent comes from
 | --- | --- |
 | `GroupRings.MonoidAlgebra.Matrix` | Canonical finite-matrix / monoid-algebra ring equivalence, coefficient and single laws, and matrix-unit products. |
 | `GroupRings.MonoidAlgebra.Regular` | Regular monic basis differences for cancellative monoids, additive transport and the necessary Artinian torsion condition. |
+| `GroupRings.MonoidAlgebra.Artinian` | The arbitrary-ring left-Artinian group-algebra criterion, including the zero-ring alternative and direct group finiteness over nontrivial coefficients. |
 | `GroupRings.LaurentPolynomial.Artinian` | Coefficient multiplication laws, regular monic Laurent differences and the arbitrary-ring Artinian criterion. |
 | `GroupRings.MonoidAlgebra.SubgroupIdeals` | Left coset coefficient sums and subgroup left ideals, inclusion and normality. |
 | `GroupRings.MonoidAlgebra.SubgroupIdealsFG` | Finite generation of subgroup left ideals and augmentation kernels. |
@@ -316,6 +317,18 @@ Kenneth S. Brown, *Cohomology of Groups*, Graduate Texts in Mathematics,
 Springer, 1982, [doi:10.1007/978-1-4684-9327-6](https://doi.org/10.1007/978-1-4684-9327-6).
 The [augmentation-cotangent guide](AugmentationCotangent.md) explains the
 arbitrary-ring generalization and its independent universal-property proof.
+
+The group-algebra Artinian criterion is classical; see Passman's book cited
+below. The proof here first passes to a nonzero simple two-sided coefficient
+quotient and then descends to its centre field using the right-linear
+coefficient retraction. Mathlib supplies the centre-field theorem and opposite
+and inversion equivalences. Only at this commutative field stage is the
+opposite group algebra known to be left Artinian. This library's
+finite-character block theorem gives a nonzero ideal finite over the field;
+its finite-support criterion gives group finiteness. Augmentation gives
+coefficient necessity, and Mathlib's finite coefficient-module instance and
+finite-module Artinian ascent give the converse. No finite centre degree or
+right-Artinian assumption on the original coefficients is used.
 
 The Laurent Artinian criterion follows the regular-nonunit obstruction used for
 polynomial rings in `MultivariatePolynomials.Artinian` from the

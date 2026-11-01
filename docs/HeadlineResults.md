@@ -483,6 +483,19 @@ and the [proof strategy](Usage.md#central-summands-detected-by-characters).
   that `M` is finite. See
   [Regular.lean](../GroupRings/MonoidAlgebra/Regular.lean).
 
+- **Left-Artinian group algebras.** For any ring `R` and group `G`,
+  `MonoidAlgebra.isArtinianRing_iff` gives
+  `IsArtinianRing (MonoidAlgebra R G) ↔
+  IsArtinianRing R ∧ (Subsingleton R ∨ Finite G)`.
+  `MonoidAlgebra.finite_of_isArtinianRing` gives the finiteness conclusion
+  directly when `R` is nontrivial. These are left regular chain conditions;
+  coefficient commutativity, right Artinianity and a finite-degree condition
+  over the centre are not hypotheses. The universes are independent and the
+  zero-ring alternative is essential. This is the classical Artinian
+  group-ring criterion; see Passman, *The Algebraic Structure of Group Rings*.
+  See [Artinian.lean](../GroupRings/MonoidAlgebra/Artinian.lean) for the
+  simple-quotient, centre-field and finite-support proof.
+
 - **Artinian Laurent polynomial rings.** For every possibly noncommutative or zero
   ring `R`, the original Laurent polynomial ring `LaurentPolynomial R` is left
   Artinian over itself exactly when `R` is subsingleton. The supporting API proves

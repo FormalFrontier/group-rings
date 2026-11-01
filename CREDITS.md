@@ -30,6 +30,16 @@ augmentation nilpotence. The proof here is a direct central-subgroup induction
 using Mathlib's group-theoretic results, extended to arbitrary coefficient rings,
 not a transcription of a proof from that book.
 
+The arbitrary-ring left-Artinian group-algebra criterion is also classical;
+see Passman's book cited above. The proof here passes to a nonzero simple
+two-sided coefficient quotient and then its centre field, using this library's
+right-linear coefficient retraction. Group inversion over the field permits
+use of this library's finite-character block theorem and finite-support
+criterion. Mathlib supplies the centre-field theorem, opposite equivalences,
+surjective Artinian transport and finite-module Artinian ascent. This is not
+a transcription of a proof from Passman's book, and no finite degree over the
+centre is assumed.
+
 Charles A. Weibel, *The K-book: An Introduction to Algebraic K-theory*,
 complete-book build August 29, 2013, Example I.2.1.2, motivates the free-abelian
 integral group-ring identification. Only that algebra-identification premise

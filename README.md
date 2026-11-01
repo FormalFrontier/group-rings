@@ -151,9 +151,17 @@ module and declaration inventories.
   criteria reduce to the coefficient ring; import
   `GroupRings.MonoidAlgebra.CyclicNoetherian` directly for these.
   Over any ring, infinite-order elements of cancellative monoids give regular
-  monic basis differences. Left-Artinianity with nontrivial coefficients
-  forces torsion, not finiteness; `LaurentPolynomial R` is left-Artinian iff
-  `R` is subsingleton, even for noncommutative or zero rings.
+  monic basis differences, forcing torsion in left-Artinian monoid algebras
+  with nontrivial coefficients. For any ring `R` and group `G`,
+  [`MonoidAlgebra.isArtinianRing_iff`](GroupRings/MonoidAlgebra/Artinian.lean)
+  gives that `R[G]` is left-Artinian iff `R` is left-Artinian and
+  `Subsingleton R ∨ Finite G`.
+  `MonoidAlgebra.finite_of_isArtinianRing` gives group finiteness directly
+  over any nontrivial ring. The zero ring is allowed in the criterion, the
+  universes are independent, and no commutativity or right-Artinian hypothesis
+  is imposed.
+  Separately, `LaurentPolynomial R` is left-Artinian iff `R` is subsingleton,
+  even for noncommutative or zero rings.
   [Statements and modules](docs/HeadlineResults.md#chain-conditions-and-regularity).
 
 - **Laurent coordinates.** Supplied coordinates `G ≃+ (σ →₀ ℤ)` identify an
