@@ -14,10 +14,11 @@ import Mathlib.LinearAlgebra.Matrix.CharP
 
 The degree-zero bridge works for every semiring, without nontriviality or
 subtraction. The infinite cyclic group cannot have nilpotent augmentation over
-the noncommutative coefficient ring of two-by-two matrices over `ZMod 2`.
+any nontrivial coefficient ring, regardless of characteristic.
 For the nonabelian dihedral group of order eight, the forward bound kills all
-mixed products of length eight over that matrix ring. The zero coefficient
-ring also satisfies the exact bound, although its characteristic is not two.
+mixed products of length eight over the ring of two-by-two matrices over `ZMod 2`.
+The zero coefficient ring satisfies both the finite-group bound and nilpotence
+for the infinite cyclic group.
 -/
 
 private theorem zero_degree_iff (A : Type*) [Semiring A] (I : Ideal A) :
@@ -25,14 +26,20 @@ private theorem zero_degree_iff (A : Type*) [Semiring A] (I : Ideal A) :
   rw [Ideal.pow_eq_bot_iff_forall_list_prod_eq_zero]
   simp
 
-private theorem infinite_cyclic_augmentation_not_nilpotent :
-    ¬ IsNilpotent (RingHom.ker (MonoidAlgebra.augmentation
-      (Matrix (Fin 2) (Fin 2) (ZMod 2)) (Multiplicative ℤ))) := by
+private theorem infinite_cyclic_augmentation_not_nilpotent
+    (R : Type*) [Ring R] [Nontrivial R] :
+    ¬ IsNilpotent (RingHom.ker (MonoidAlgebra.augmentation R (Multiplicative ℤ))) := by
   intro hI
-  obtain ⟨k, hk⟩ := MonoidAlgebra.exists_pow_eq_one_of_isNilpotent_augmentation
-    Nat.prime_two (CharP.cast_eq_zero (Matrix (Fin 2) (Fin 2) (ZMod 2)) 2) hI
-  have h := congrArg Multiplicative.toAdd (hk (Multiplicative.ofAdd (1 : ℤ)))
-  simp at h
+  rcases MonoidAlgebra.subsingleton_or_finite_of_isNilpotent_augmentation hI with hR | hG
+  · exact zero_ne_one (hR.elim _ _)
+  · let := hG
+    exact not_finite (Multiplicative ℤ)
+
+private theorem zero_ring_infinite_cyclic_augmentation_nilpotent :
+    IsNilpotent (RingHom.ker (MonoidAlgebra.augmentation (ZMod 1) (Multiplicative ℤ))) := by
+  apply (MonoidAlgebra.isNilpotent_augmentation_iff_finite_isPGroup
+    Nat.prime_two (Subsingleton.elim _ _)).mpr
+  exact Or.inl inferInstance
 
 private theorem dihedral_matrix_mixed_products
     (l : List (MonoidAlgebra (Matrix (Fin 2) (Fin 2) (ZMod 2)) (DihedralGroup 4)))

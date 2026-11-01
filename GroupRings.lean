@@ -13,7 +13,7 @@ public import GroupRings.MonoidAlgebra.AugmentationCrossedMaps
 
 public import GroupRings.FreeAbelian.LaurentPolynomial
 public import GroupRings.FiniteAbelian.RightConvolution
-public import GroupRings.MonoidAlgebra.AugmentationNilpotence.Finite
+public import GroupRings.MonoidAlgebra.AugmentationNilpotence.Converse
 public import GroupRings.MonoidAlgebra.FixedVectors
 public import GroupRings.MonoidAlgebra.ModuleDetection
 public import GroupRings.MonoidAlgebra.SimpleModules

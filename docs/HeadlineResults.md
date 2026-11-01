@@ -123,15 +123,19 @@ consumer example, build commands and references.
 
 ## Finite p-groups and fixed vectors
 
-- **Augmentation nilpotence and finite `p`-groups.** For a prime `p`, any
-  possibly noncommutative ring `R` with `(p : R) = 0`, and a finite `p`-group
-  `G`, the [augmentation kernel has zero `Nat.card G`-th power](../GroupRings/MonoidAlgebra/AugmentationNilpotence/Finite.lean).
+- **Augmentation nilpotence and group finiteness.** For any possibly
+  noncommutative ring `R` and any group `G`, [nilpotence of the augmentation
+  kernel forces `Subsingleton R ∨ Finite G`](../GroupRings/MonoidAlgebra/AugmentationNilpotence/Converse.lean),
+  with no characteristic assumption. For a prime `p` with `(p : R) = 0`,
+  nilpotence is equivalent to `Subsingleton R ∨ (Finite G ∧ IsPGroup p G)`,
+  with no finiteness hypothesis on `G`. Under these hypotheses, a finite
+  `p`-group `G` has [augmentation kernel with zero
+  `Nat.card G`-th power](../GroupRings/MonoidAlgebra/AugmentationNilpotence/Finite.lean).
   Thus every mixed ordered product of that length vanishes, including over
-  the zero coefficient ring. Conversely, for **nontrivial** `R` and **any**
-  group `G`, nilpotence implies `∃ k, ∀ g : G, g ^ (p ^ k) = 1`, hence
-  `IsPGroup p G`. This gives the finite-group iff. The supporting left-ideal
-  API over **any semiring** identifies zero `n`-th powers with vanishing of
-  all length-`n` ordered products, including degree zero. See the
+  the zero coefficient ring. For **nontrivial** `R`, nilpotence moreover
+  implies `∃ k, ∀ g : G, g ^ (p ^ k) = 1`. The supporting left-ideal API
+  over **any semiring** identifies zero `n`-th powers with vanishing of all
+  length-`n` ordered products, including degree zero. See the
   [augmentation-nilpotence guide](AugmentationNilpotence.md).
 
 - **Common annihilators and fixed vectors.** If one power of an ordinary left
