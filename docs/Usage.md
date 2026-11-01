@@ -9,6 +9,7 @@ Noetherian and Fourier APIs, the catalogue also links the dedicated guides.
 
 - [Library and release scope](#library-and-release-scope)
 - [Using the library and choosing imports](#using-the-library)
+- [Central summands detected by characters](#central-summands-detected-by-characters)
 - [Reproducible build and checks](#reproducible-build-and-checks)
 - [References, provenance and AI involvement](#references-provenance-and-ai-involvement)
 
@@ -68,6 +69,7 @@ group-algebra module. Generic Noetherian retraction descent comes from
 | `GroupRings.MonoidAlgebra.Units` | Single-term units and reflection by the basis embedding. |
 | `GroupRings.MonoidAlgebra.AugmentationNilpotence` | Uniform group exponents from augmentation nilpotence over nontrivial rings of prime characteristic. |
 | `GroupRings.MonoidAlgebra.AugmentationNilpotence.Finite` | Exact cardinality bound for finite p-groups over any ring with p=0, and the finite-group criterion. |
+| `GroupRings.MonoidAlgebra.AugmentationNilpotence.Converse` | Nilpotence forces zero coefficients or group finiteness; arbitrary-group prime-characteristic classification. |
 | `GroupRings.RingTheory.Ideal.Annihilator` | Uniformly nilpotent actions, nonzero common vectors and two-sided-ideal annihilator submodules. |
 | `GroupRings.MonoidAlgebra.FixedVectors` | Augmentation annihilation iff canonical fixedness, and nonzero fixed vectors for finite p-group modules. |
 | `GroupRings.MonoidAlgebra.ModuleRepresentation` | Canonical representations and faithful intertwiner packaging on given modules over any semiring. |
@@ -100,6 +102,7 @@ group-algebra module. Generic Noetherian retraction descent comes from
 | `GroupRings.MonoidAlgebra.ProductCoefficients` | Equality and zero detection by one chosen coefficient after all right products, or all left products, over groups and arbitrary semirings. |
 | `GroupRings.MonoidAlgebra.Center` | Central coefficients, conjugation criteria and vanishing on infinite conjugacy orbits over arbitrary semirings. |
 | `GroupRings.RingTheory.Artinian` | Left-Artinian descent along additive right-compatible retractions over arbitrary semirings. |
+| `GroupRings.RingTheory.Artinian.FiniteCharacterBlock` | Central summands finite over the commutative base ring, detected by characters of algebras Artinian on both sides. |
 | `GroupRings.RingTheory.IdempotentCentrality` | Positive-layer corner propagation and centrality modulo nilpotent two-sided ideals with both first-layer corner conditions. |
 | `GroupRings.RingTheory.Module.QuotientActions` | Commuting actions descend to annihilating-ideal scalar quotients; two-sided ideals give quotient-ring modules. |
 | `GroupRings.RingTheory.Module.ScalarRestriction` | Greatest scalar-finite submodules of Noetherian semimodules, endomorphism invariance, and the two-sided regular-module ideal. |
@@ -203,6 +206,42 @@ break the restricted-simp regression despite passing ordinary `simp` tests.
 The priority change preserves the theorem's statement and proof and avoids its
 observed `simpNF` redundancy finding. It does not promise compatibility with
 every custom simp set or a performance improvement.
+
+## Central summands detected by characters
+
+The [central-summand theorem](HeadlineResults.md#central-summands-finite-over-the-base-ring)
+uses the given central `R`-algebra structure on `A` and its inherited action
+on `Ideal.span ({e} : Set A)`. It does not replace this action, assume the
+whole algebra finite over `R`, or identify module finiteness with a field
+dimension. Both left and right Artinianity of `A` are hypotheses; the
+character is split-surjective, so Artinianity of `R` follows rather than
+being an additional assumption.
+
+The greatest finite-base left ideal in the semisimple Jacobson quotient is
+two-sided and centrally idempotent-generated. Its support acts identically on
+every compatible base-Noetherian representation. Applied on both sides of the
+first radical layer, this makes the two support operators agree. An idempotent
+lift is then central, and nilpotent ideal-action finiteness measures its left
+ideal. The character is compared in `R ⧸ Ring.jacobson R`, rather than in `R`.
+
+More explicitly, writing `J = Ring.jacobson A` and `S = A ⧸ J`, the greatest
+finite-base supports for `S` and `Sᵐᵒᵖ` are compared first on the regular
+bimodule, then on the ordinary first layer
+`J ⧸ Submodule.comap J.subtype (J ^ 2)`. This layer keeps its original `R`
+action and the commuting left and right quotient actions. Its two
+Noetherian actions follow from the corresponding chain conditions on `A`
+and `Aᵐᵒᵖ`. Equality of the support operators gives both first-layer corner
+conditions for the centrality criterion, not merely centrality modulo `J`.
+
+For the lifted central idempotent `e`, put `M = A e` and
+`N = Module.annihilator A M`. The quotient `A ⧸ (J ⊔ N)` is a finite-base
+image of the quotient principal ideal, and nilpotence of `J` implies that
+some power of `J ⊔ N` annihilates `M`. The ideal-action finiteness theorem
+therefore applies to `M`, not to all of `A`. Finally, the character induces
+`S →ₐ[R] R ⧸ Ring.jacobson R`; its value on `e` is one in this quotient.
+An idempotent congruent to one modulo the Jacobson radical is a unit and
+hence equals one. These arguments include zero and nonreduced base rings
+and do not require a map `S →ₐ[R] R`.
 
 ## Reproducible build and checks
 

@@ -56,19 +56,19 @@ module and declaration inventories.
   `Nat.card G`-th power. Every nontrivial unital `R[G]`-module has a nonzero
   canonical fixed vector; simplicity is equivalent to simplicity under
   canonical coefficient restriction, and simple modules have trivial group
-  action. Conversely, over nontrivial `R`, nilpotence for **any** group forces
-  one common `p`-power exponent. The finite-group iff does not extend to
-  arbitrary infinite groups.
+  action. For any group over any ring, augmentation nilpotence forces
+  `Subsingleton R ∨ Finite G`, without a characteristic assumption. If
+  `(p : R) = 0`, nilpotence is equivalent to
+  `Subsingleton R ∨ (Finite G ∧ IsPGroup p G)`; over nontrivial `R` it also
+  forces one common `p`-power exponent.
   [Statements and guides](docs/HeadlineResults.md#finite-p-groups-and-fixed-vectors).
 
 - **Given modules and scalar restriction.** Over any semiring and monoid,
   canonical representations and an additive Hom/intertwiner correspondence
-  retain the original module carriers and coefficient actions. For a finite
-  group whose order is a unit in the coefficient semiring, canonical coefficient
-  projectivity implies group-algebra projectivity. The original-module adapter
-  of Group Theory's normalized norm is an idempotent, natural for `R[G]`-linear maps, with
-  range exactly the fixed vectors' full `R[G]`-span. Its uniqueness is among
-  `R[G]`-linear retractions, not all coefficient-linear projections.
+  retain the given carriers and coefficient actions. For finite groups of
+  unit order in the coefficient semiring, coefficient projectivity implies
+  group-algebra projectivity. The normalized norm is natural for `R[G]`-linear
+  maps and is the unique `R[G]`-linear retraction onto the fixed vectors' span.
   For rings `S`, `A`, a map `φ : S →+* A` surjective modulo a
   two-sided ideal `I`, and an `A`-module `V` with
   `∃ n, I^n ≤ Module.annihilator A V`, the exact restriction
@@ -130,19 +130,24 @@ module and declaration inventories.
   [Actions](docs/HeadlineResults.md#given-modules-and-scalar-restriction) ·
   [centrality criterion](docs/HeadlineResults.md#chain-conditions-and-regularity).
 
+- **Central summands detected by characters.** For a commutative ring `R`
+  and an `R`-algebra `A` Artinian on both sides, every `χ : A →ₐ[R] R`
+  is one on a central idempotent whose principal left ideal is finite over
+  `R` with its inherited action. Zero and nonreduced base rings are allowed;
+  the whole algebra need not be finite over `R`.
+  [Statement and proof strategy](docs/HeadlineResults.md#central-summands-finite-over-the-base-ring).
+
 - **Chain conditions and regularity.** A finitely generated **commutative**
   monoid algebra over any left-Noetherian ring is left-Noetherian. For a
   cancellative monoid over any semiring, a **nonzero** left ideal finite over
   the coefficients forces the monoid to be finite. Additive right-compatible
   coefficient retractions give left-Artinian descent without multiplicativity.
-  Left-Noetherianity descends from `R[M]`
-  to every embedded group algebra over any semiring. Finite-index subgroup
-  algebras over rings are left-Noetherian exactly when the whole algebra is.
-  Over nontrivial rings, left-Noetherianity forces every subgroup to be
-  finitely generated; no general converse is asserted. The infinite cyclic
-  and finite-index infinite cyclic criteria reduce to the coefficient ring,
-  using Laurent ascent from `multivariate-polynomials` (see [credits](CREDITS.md)).
-  Import `GroupRings.MonoidAlgebra.CyclicNoetherian` directly, not just the root.
+  Left-Noetherianity descends to embedded group algebras over any semiring;
+  finite-index subgroup algebras over rings share it with the whole algebra.
+  Over nontrivial rings it forces every subgroup to be finitely generated,
+  without a general converse. The infinite cyclic and finite-index cyclic
+  criteria reduce to the coefficient ring; import
+  `GroupRings.MonoidAlgebra.CyclicNoetherian` directly for these.
   Over any ring, infinite-order elements of cancellative monoids give regular
   monic basis differences. Left-Artinianity with nontrivial coefficients
   forces torsion, not finiteness; `LaurentPolynomial R` is left-Artinian iff
@@ -187,11 +192,7 @@ Import `GroupRings` for the aggregate API, or choose a leaf from the
 its direct import as noted above. No private import or documentation artifact
 is needed by consumers.
 
-This aggregate-import example uses the canonical free-abelian equivalence and
-its generator simp law. It uses the
-API exercised by the default-target [public client](tests/GroupRingsTest/PublicAPIClient.lean)
-and [generator client](tests/GroupRingsTest/GeneratorSimpClient.lean).
-It needs no additional namespace, `open` or universe declarations:
+The aggregate import provides the canonical free-abelian equivalence:
 
 ```lean
 import GroupRings
@@ -202,16 +203,10 @@ example (A : Type*) [CommSemiring A] (σ : Type*) :
     MonoidAlgebra A (Multiplicative (FreeAbelianGroup σ)) ≃ₐ[A]
       MvLaurentPolynomial σ A :=
   FreeAbelianGroup.monoidAlgebraEquivMvLaurentPolynomial A σ
-
-example (A : Type*) [CommSemiring A] (σ : Type*) (i : σ) (a : A) :
-    FreeAbelianGroup.monoidAlgebraEquivMvLaurentPolynomial A σ
-        (MonoidAlgebra.single (.ofAdd (FreeAbelianGroup.of i)) a) =
-      AddMonoidAlgebra.single (Finsupp.single i 1) a := by
-  simp
 ```
 
-See the [usage guide](docs/Usage.md) for inverse formulas, client commands and
-the historical native-signature snapshot's scope.
+See the [usage guide](docs/Usage.md) for basis and inverse formulas,
+public-import clients, and the historical signature snapshot's scope.
 
 ## Reproducible build and checks
 
@@ -246,26 +241,15 @@ See the [full mathematical scope](docs/HeadlineResults.md#mathematical-scope).
 
 ## References
 
-- Kenneth S. Brown, *Cohomology of Groups*, Springer, 1982,
-  [doi:10.1007/978-1-4684-9327-6](https://doi.org/10.1007/978-1-4684-9327-6): classical augmentation and group-homology background.
-- D. S. Passman, *The Algebraic Structure of Group Rings*, Wiley, 1977:
-  modular group-ring background.
-- Charles A. Weibel, *The K-book: An Introduction to Algebraic K-theory*,
-  complete-book build August 29, 2013, Example I.2.1.2: the algebra-identification
-  premise only, not its projective-freeness conclusion.
-
-For the center over commutative rings, compare the identity-twist specialization of
-Praveen Manju and Rajendra Kumar Sharma, *(σ, τ)-Derivations of Group Rings with Applications*,
-arXiv:2303.04372v3 (2024), [§4.2, Lemma 4.12](https://arxiv.org/html/2303.04372v3#S4.Thmtheorem12).
-Its finite conjugacy-class-sum description concerns arbitrary groups with commutative
-unital ring coefficients. The coefficient criterion and finite-support consequences here
-are proved independently for arbitrary semirings, keeping coefficient centrality explicit;
-no twisted-center or class-sum basis construction is claimed.
-
 The [full references and formalization sources](docs/Usage.md#references-provenance-and-ai-involvement)
 and [CREDITS.md](CREDITS.md) explain the Mathlib reuse, named upstream work,
 Group Theory averaging, and Laurent ascent from multivariate-polynomials and
-coherent-modules.
+coherent-modules. Mathematical background includes Brown's *Cohomology of
+Groups* and Passman's *The Algebraic Structure of Group Rings*. Weibel's
+*K-book*, Example I.2.1.2, motivates only the Laurent algebra identification,
+not projective freeness. The centre criterion is compared with Manju and
+Sharma's identity-twist specialization for commutative coefficients in the
+guides; the arbitrary-semiring proof here is independent.
 
 ## Credits and license
 

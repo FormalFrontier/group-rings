@@ -16,6 +16,7 @@ consumer example, build commands and references.
 - [Given modules and scalar restriction](#given-modules-and-scalar-restriction)
 - [Subgroup ideals and coset bases](#subgroup-ideals-and-coset-bases)
 - [Coefficient and index quotients](#coefficient-and-index-quotients)
+- [Central summands finite over the base ring](#central-summands-finite-over-the-base-ring)
 - [Chain conditions and regularity](#chain-conditions-and-regularity)
 - [Laurent coordinates](#laurent-coordinates)
 - [Characters and right convolution](#characters-and-right-convolution)
@@ -375,6 +376,19 @@ consumer example, build commands and references.
   composite's range subsemiring. No nontriviality or commutativity is assumed;
   all four universes are independent. The [guide](CoefficientIdeals.md)
   explains the factorization and collision boundary.
+
+## Central summands finite over the base ring
+
+Let `R` be a commutative ring and `A` a possibly noncommutative `R`-algebra
+that is Artinian on both the left and the right. Every `R`-algebra character
+`χ : A →ₐ[R] R` has a central idempotent `e` with `χ e = 1` whose principal
+left ideal `Ideal.span ({e} : Set A)` is finitely generated over `R`, with
+the inherited scalar action. The base ring need not be a field or reduced,
+and the whole algebra need not be finite over it. The zero ring is allowed,
+the idempotent need not be primitive, and `R` and `A` have independent
+universes. See
+[FiniteCharacterBlock.lean](../GroupRings/RingTheory/Artinian/FiniteCharacterBlock.lean)
+and the [proof strategy](Usage.md#central-summands-detected-by-characters).
 
 ## Chain conditions and regularity
 
