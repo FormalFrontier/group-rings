@@ -10,7 +10,14 @@ public import Mathlib.GroupTheory.OrderOfElement
 public import Mathlib.RingTheory.Artinian.Module
 
 /-!
-# Regular differences of monoid basis elements
+# Regular elements in monoid algebras
+
+A single term is left-regular exactly when its coefficient is left-regular and
+either the coefficient semiring is subsingleton or its index is left-regular.
+The analogous statement holds on the right. The index type needs only a
+multiplication; no global cancellation or nontriviality is required.
+These criteria use Mathlib's finite-convolution coefficient-recovery and
+single-term injectivity API.
 
 For an infinite-order element of a cancellative monoid, a monic basis element minus
 any constant is regular over an arbitrary coefficient ring. An annihilator would
@@ -27,6 +34,84 @@ augmentation sends the difference of two coefficient-one basis elements to zero.
 universe u v
 
 namespace MonoidAlgebra
+
+section Single
+
+variable {R : Type u} {M : Type v} [Semiring R] [Mul M]
+
+/-- A single term is left-regular exactly when its coefficient is left-regular and
+its index is left-regular, unless the coefficient semiring is subsingleton. -/
+theorem isLeftRegular_single_iff (m : M) (r : R) :
+    IsLeftRegular (single m r : MonoidAlgebra R M) ↔
+      IsLeftRegular r ∧ (Subsingleton R ∨ IsLeftRegular m) := by
+  constructor
+  · intro hs
+    constructor
+    · intro x y hxy
+      apply single_right_injective (m := m)
+      apply hs
+      simpa only [single_mul_single] using congrArg (single (m * m)) hxy
+    · rcases subsingleton_or_nontrivial R with hR | hR
+      · exact Or.inl hR
+      · let : Nontrivial R := hR
+        right
+        intro x y hxy
+        apply single_left_injective (R := R) (r := 1) one_ne_zero
+        apply hs
+        simpa only [single_mul_single, mul_one] using
+          congrArg (fun z : M => single z r) hxy
+  · rintro ⟨hr, hR | hm⟩
+    · let : Subsingleton R := hR
+      intro f g _
+      ext x
+      exact Subsingleton.elim _ _
+    · have hcoeff (f : MonoidAlgebra R M) (x : M) :
+          (single m r * f).coeff (m * x) = r * f.coeff x :=
+        coeff_single_mul_eq_mul_coeff x
+          (fun y _ => ⟨fun h => hm h, fun h => congrArg (m * ·) h⟩)
+      intro f g hfg
+      ext x
+      apply hr
+      simpa only [hcoeff] using
+        congrArg (fun a : MonoidAlgebra R M => a.coeff (m * x)) hfg
+
+/-- A single term is right-regular exactly when its coefficient is right-regular and
+its index is right-regular, unless the coefficient semiring is subsingleton. -/
+theorem isRightRegular_single_iff (m : M) (r : R) :
+    IsRightRegular (single m r : MonoidAlgebra R M) ↔
+      IsRightRegular r ∧ (Subsingleton R ∨ IsRightRegular m) := by
+  constructor
+  · intro hs
+    constructor
+    · intro x y hxy
+      apply single_right_injective (m := m)
+      apply hs
+      simpa only [single_mul_single] using congrArg (single (m * m)) hxy
+    · rcases subsingleton_or_nontrivial R with hR | hR
+      · exact Or.inl hR
+      · let : Nontrivial R := hR
+        right
+        intro x y hxy
+        apply single_left_injective (R := R) (r := 1) one_ne_zero
+        apply hs
+        simpa only [single_mul_single, one_mul] using
+          congrArg (fun z : M => single z r) hxy
+  · rintro ⟨hr, hR | hm⟩
+    · let : Subsingleton R := hR
+      intro f g _
+      ext x
+      exact Subsingleton.elim _ _
+    · have hcoeff (f : MonoidAlgebra R M) (x : M) :
+          (f * single m r).coeff (x * m) = f.coeff x * r :=
+        coeff_mul_single_eq_coeff_mul x
+          (fun y _ => ⟨fun h => hm h, fun h => congrArg (· * m) h⟩)
+      intro f g hfg
+      ext x
+      apply hr
+      simpa only [hcoeff] using
+        congrArg (fun a : MonoidAlgebra R M => a.coeff (x * m)) hfg
+
+end Single
 
 variable {R : Type u} {M : Type v} [Ring R] [CancelMonoid M]
 
@@ -92,6 +177,20 @@ theorem isOfFinOrder_of_isArtinianRing (R : Type u) {M : Type v} [Ring R]
   exact not_isUnit_zero hz
 
 end MonoidAlgebra
+
+/-- Left-regular coefficients and indices give left-regular single terms. -/
+theorem IsLeftRegular.monoidAlgebra_single {R : Type u} {M : Type v}
+    [Semiring R] [Mul M] {r : R} {m : M}
+    (hr : IsLeftRegular r) (hm : IsLeftRegular m) :
+    IsLeftRegular (MonoidAlgebra.single m r : MonoidAlgebra R M) :=
+  (MonoidAlgebra.isLeftRegular_single_iff m r).mpr ⟨hr, Or.inr hm⟩
+
+/-- Right-regular coefficients and indices give right-regular single terms. -/
+theorem IsRightRegular.monoidAlgebra_single {R : Type u} {M : Type v}
+    [Semiring R] [Mul M] {r : R} {m : M}
+    (hr : IsRightRegular r) (hm : IsRightRegular m) :
+    IsRightRegular (MonoidAlgebra.single m r : MonoidAlgebra R M) :=
+  (MonoidAlgebra.isRightRegular_single_iff m r).mpr ⟨hr, Or.inr hm⟩
 
 namespace AddMonoidAlgebra
 

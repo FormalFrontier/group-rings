@@ -10,6 +10,7 @@ public import Mathlib.RingTheory.Artinian.Defs
 import CoherentModules.RingTheory.Artinian.Regular
 import GroupRings.MonoidAlgebra.CoefficientChange
 import GroupRings.MonoidAlgebra.FiniteCoefficientIdeal
+import GroupRings.MonoidAlgebra.Regular
 import GroupRings.MonoidAlgebra.Units
 import GroupRings.RingTheory.Artinian.FiniteCharacterBlock
 import GroupRings.RingTheory.SimpleRing.Quotient
@@ -146,15 +147,8 @@ nontrivial semiring is left Artinian. The monoid need not be cancellative. -/
 theorem isUnit_of_isRightRegular_of_isArtinianRing (R : Type u) {M : Type v}
     [Semiring R] [Monoid M] [Nontrivial R] [IsArtinianRing (MonoidAlgebra R M)]
     (m : M) (hm : IsRightRegular m) : IsUnit m := by
-  -- Recover each original coefficient at its injectively reindexed position.
-  have hcoeff (f : MonoidAlgebra R M) (x : M) :
-      (f * single m (1 : R)).coeff (x * m) = f.coeff x := by
-    simpa only [mul_one] using coeff_mul_single_eq_coeff_mul (r := (1 : R)) x
-      (fun y _ => ⟨fun h => hm h, fun h => congrArg (· * m) h⟩)
-  have hregular : IsRightRegular (single m (1 : R)) := by
-    intro f g h
-    ext x
-    simpa only [hcoeff] using congrArg (fun a : MonoidAlgebra R M => a.coeff (x * m)) h
+  have hregular : IsRightRegular (single m (1 : R)) :=
+    isRegular_one.right.monoidAlgebra_single hm
   exact ((isUnit_single_iff m (1 : R)).mp
     (IsArtinianRing.isUnit_iff_isRightRegular.mpr hregular)).2
 
@@ -164,15 +158,8 @@ nontrivial ring is left Artinian. Left regularity means injectivity of
 theorem isUnit_of_isLeftRegular_of_isArtinianRing (R : Type u) {M : Type v}
     [Ring R] [Monoid M] [Nontrivial R] [IsArtinianRing (MonoidAlgebra R M)]
     (m : M) (hm : IsLeftRegular m) : IsUnit m := by
-  -- Recover each original coefficient at its injectively reindexed position.
-  have hcoeff (f : MonoidAlgebra R M) (x : M) :
-      (single m (1 : R) * f).coeff (m * x) = f.coeff x := by
-    simpa only [one_mul] using coeff_single_mul_eq_mul_coeff (r := (1 : R)) x
-      (fun y _ => ⟨fun h => hm h, fun h => congrArg (m * ·) h⟩)
-  have hregular : IsLeftRegular (single m (1 : R)) := by
-    intro f g h
-    ext x
-    simpa only [hcoeff] using congrArg (fun a : MonoidAlgebra R M => a.coeff (m * x)) h
+  have hregular : IsLeftRegular (single m (1 : R)) :=
+    isRegular_one.left.monoidAlgebra_single hm
   exact ((isUnit_single_iff m (1 : R)).mp hregular.isUnit_of_isArtinianRing).2
 
 section RightCancel

@@ -16,7 +16,11 @@ module and declaration inventories.
 
 - **Single terms and augmentation.** Over a nontrivial semiring and any monoid,
   `IsUnit (single m r) ↔ IsUnit r ∧ IsUnit m`; coefficient-unit reflection
-  also allows the zero semiring. Augmentation is the coefficient-sum ring
+  also allows the zero semiring. Over any semiring and an index type with
+  only multiplication, a single term is left-regular iff its coefficient is
+  left-regular and either the coefficients are subsingleton or its index is
+  left-regular; the [right-hand criterion](GroupRings/MonoidAlgebra/Regular.lean)
+  is analogous. Augmentation is the coefficient-sum ring
   homomorphism over any semiring. Over a ring its kernel is the **left** span
   of `single m 1 - 1`, with monoid or subgroup generating-set refinements.
   `MonoidAlgebra.augmentationKerBasis` is a basis over the coefficient ring
