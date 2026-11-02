@@ -7,6 +7,7 @@ module
 public import GroupRings.MonoidAlgebra.Augmentation
 public import Mathlib.RingTheory.Artinian.Defs
 
+import CoherentModules.RingTheory.Artinian.Regular
 import GroupRings.MonoidAlgebra.CoefficientChange
 import GroupRings.MonoidAlgebra.FiniteCoefficientIdeal
 import GroupRings.MonoidAlgebra.Units
@@ -22,22 +23,24 @@ import Mathlib.RingTheory.SimpleRing.Field
 /-!
 # Left-Artinian monoid and group algebras
 
-For any ring `R` and right-cancellative monoid `G`, the monoid algebra `R[G]`
-is left Artinian exactly when `R` is left Artinian and either `R` is
-subsingleton or `G` is finite. In particular, over a nontrivial coefficient
-ring, left Artinianity forces the monoid to be finite. This includes the
-classical group-algebra criterion. The coefficients need not commute.
+For any ring `R` and either a left-cancellative or a right-cancellative monoid
+`G`, the monoid algebra `R[G]` is left Artinian exactly when `R` is left Artinian
+and either `R` is subsingleton or `G` is finite. In particular, over a nontrivial
+coefficient ring, left Artinianity forces the monoid to be finite. This includes
+the classical group-algebra criterion. The coefficients need not commute.
 
 For a monoid algebra over a nontrivial semiring, left Artinianity makes each
-right-regular monoid element a unit. This reduces the right-cancellative
-monoid criterion over rings to the group case.
+right-regular monoid element a unit. Over a nontrivial ring, each left-regular
+monoid element is also a unit. These local results require no global
+cancellation. They reduce the respective cancellative criteria to the group case.
 
 The subsingleton alternative includes the zero monoid algebra of an infinite
 monoid over the zero ring. All chain conditions here concern left regular
 modules over the respective semirings, not the monoid algebra merely as a module
 over its coefficients. The coefficient and monoid universes are independent.
-The local unit theorem allows semiring coefficients, but the global criterion
-requires a ring: finite-module Artinian ascent does not hold over all semirings.
+The right-local unit theorem allows semiring coefficients; the left-local result
+and global criteria use rings. Finite-module Artinian ascent does not hold over
+all semirings.
 
 ## Proof strategy
 
@@ -48,6 +51,12 @@ and single-term unit reflection makes `m` a unit. For a right-cancellative
 monoid, every element is thus in the image of the canonical units group.
 Its coercion is a multiplicative equivalence; the induced ring equivalence
 transports Artinianity to the group algebra without changing monoid operations.
+
+For the left-regular case over a ring, Hopkins–Levitzki gives finite length of
+the left regular module. The Fitting decomposition for right multiplication
+then converts left regularity into invertibility, without right Artinianity.
+Once all monoid elements are units, right cancellation also follows for the
+original multiplication, allowing the same finiteness criterion to apply.
 
 For the group criterion, pass to a nonzero simple two-sided quotient of the coefficients. Its centre
 is a field, and a right-linear coefficient retraction descends left Artinianity
@@ -65,8 +74,11 @@ Artinian ascent; coefficient necessity uses the surjective augmentation.
 * D. S. Passman, *The Algebraic Structure of Group Rings*, Wiley, 1977:
   the classical Artinian group-ring criterion. The proof here uses the simple-quotient
   reduction and the finite-character block argument described above.
-* Mathlib, `Mathlib.RingTheory.SimpleRing.Field` and
-  `Mathlib.RingTheory.Artinian.Module`: the centre field and Artinian transport.
+* Mathlib, `Mathlib.RingTheory.SimpleRing.Field`,
+  `Mathlib.RingTheory.Artinian.Module`, and `Mathlib.RingTheory.HopkinsLevitzki`:
+  the centre field, Artinian transport, Fitting decomposition, and finite length.
+* `CoherentModules.RingTheory.Artinian.Regular`: left-regular elements of left-Artinian rings
+  are units.
 * `GroupRings.RingTheory.Artinian.FiniteCharacterBlock` and
   `GroupRings.MonoidAlgebra.FiniteCoefficientIdeal`: the finite ideal and support arguments.
 -/
@@ -146,6 +158,25 @@ theorem isUnit_of_isRightRegular_of_isArtinianRing (R : Type u) {M : Type v}
   exact ((isUnit_single_iff m (1 : R)).mp
     (IsArtinianRing.isUnit_iff_isRightRegular.mpr hregular)).2
 
+/-- A left-regular monoid element is a unit if its monoid algebra over a
+nontrivial ring is left Artinian. Left regularity means injectivity of
+`x ↦ m * x`; neither global cancellation nor right Artinianity is required. -/
+theorem isUnit_of_isLeftRegular_of_isArtinianRing (R : Type u) {M : Type v}
+    [Ring R] [Monoid M] [Nontrivial R] [IsArtinianRing (MonoidAlgebra R M)]
+    (m : M) (hm : IsLeftRegular m) : IsUnit m := by
+  -- Recover each original coefficient at its injectively reindexed position.
+  have hcoeff (f : MonoidAlgebra R M) (x : M) :
+      (single m (1 : R) * f).coeff (m * x) = f.coeff x := by
+    simpa only [one_mul] using coeff_single_mul_eq_mul_coeff (r := (1 : R)) x
+      (fun y _ => ⟨fun h => hm h, fun h => congrArg (m * ·) h⟩)
+  have hregular : IsLeftRegular (single m (1 : R)) := by
+    intro f g h
+    ext x
+    simpa only [hcoeff] using congrArg (fun a : MonoidAlgebra R M => a.coeff (m * x)) h
+  exact ((isUnit_single_iff m (1 : R)).mp hregular.isUnit_of_isArtinianRing).2
+
+section RightCancel
+
 variable {R : Type u} {G : Type v} [Ring R] [Monoid G] [IsRightCancelMul G]
 
 /-- A left-Artinian right-cancellative monoid algebra over a nontrivial ring
@@ -187,5 +218,48 @@ theorem isArtinianRing_iff :
     · let : IsArtinianRing R := hR
       let : Finite G := h
       exact IsArtinianRing.of_finite R (MonoidAlgebra R G)
+
+end RightCancel
+
+section LeftCancel
+
+variable {R : Type u} {G : Type v} [Ring R] [Monoid G] [IsLeftCancelMul G]
+
+/-- A left-Artinian left-cancellative monoid algebra over a nontrivial ring
+has a finite index monoid. This extends the classical Artinian group-ring
+criterion to left-cancellative monoids; see Passman,
+*The Algebraic Structure of Group Rings*. -/
+theorem finite_of_isArtinianRing_of_isLeftCancelMul [Nontrivial R]
+    [IsArtinianRing (MonoidAlgebra R G)] : Finite G := by
+  let : IsRightCancelMul G :=
+    ⟨fun g =>
+      (isUnit_of_isLeftRegular_of_isArtinianRing R g
+        (IsLeftRegular.all g)).isRegular.right⟩
+  exact finite_of_isArtinianRing (R := R)
+
+/-- A left-cancellative monoid algebra is left Artinian exactly when its
+coefficient ring is left Artinian and either that ring is subsingleton or the
+monoid is finite. The coefficients need not commute, and no right-Artinian
+hypothesis on the coefficient ring or monoid algebra is required. For groups,
+this is the classical criterion in Passman, *The Algebraic Structure of Group Rings*. -/
+theorem isArtinianRing_iff_of_isLeftCancelMul :
+    IsArtinianRing (MonoidAlgebra R G) ↔
+      IsArtinianRing R ∧ (Subsingleton R ∨ Finite G) := by
+  constructor
+  · intro h
+    let : IsArtinianRing (MonoidAlgebra R G) := h
+    refine ⟨(augmentation_surjective R G).isArtinianRing, ?_⟩
+    rcases subsingleton_or_nontrivial R with hR | hR
+    · exact Or.inl hR
+    · let : Nontrivial R := hR
+      exact Or.inr (finite_of_isArtinianRing_of_isLeftCancelMul (R := R))
+  · rintro ⟨hR, h | h⟩
+    · let : Subsingleton R := h
+      exact isArtinian_of_finite (R := MonoidAlgebra R G) (M := MonoidAlgebra R G)
+    · let : IsArtinianRing R := hR
+      let : Finite G := h
+      exact IsArtinianRing.of_finite R (MonoidAlgebra R G)
+
+end LeftCancel
 
 end MonoidAlgebra

@@ -163,15 +163,19 @@ module and declaration inventories.
   `GroupRings.MonoidAlgebra.CyclicNoetherian` directly for these.
   Over any ring, infinite-order elements of cancellative monoids give regular
   monic basis differences, forcing torsion in left-Artinian monoid algebras
-  with nontrivial coefficients. For any ring `R` and right-cancellative monoid `G`,
-  [`MonoidAlgebra.isArtinianRing_iff`](GroupRings/MonoidAlgebra/Artinian.lean)
-  gives that `R[G]` is left-Artinian iff `R` is left-Artinian and
-  `Subsingleton R ∨ Finite G`.
-  `MonoidAlgebra.finite_of_isArtinianRing` gives monoid finiteness directly
-  over any nontrivial ring, specializing to the classical group criterion.
+  with nontrivial coefficients. For any ring `R` and either a left-cancellative
+  or a right-cancellative monoid `G`,
+  [`MonoidAlgebra.isArtinianRing_iff_of_isLeftCancelMul` and
+  `MonoidAlgebra.isArtinianRing_iff`](GroupRings/MonoidAlgebra/Artinian.lean)
+  give that `R[G]` is left-Artinian iff `R` is left-Artinian and
+  `Subsingleton R ∨ Finite G`. The corresponding `finite_of_isArtinianRing`
+  theorems give monoid finiteness directly over any nontrivial ring,
+  specializing to the classical group criterion.
   Locally, over a nontrivial **semiring** and any monoid, left Artinianity
-  makes every right-regular index a unit. The global iff requires **ring**
-  coefficients. All these conditions use the original left regular action.
+  makes every right-regular index a unit; over a nontrivial **ring**, it also
+  makes every left-regular index a unit, without global cancellation.
+  The global criteria require **ring** coefficients. All these conditions
+  use the original left regular action.
   The zero ring is allowed in the criterion, the
   universes are independent, and no commutativity or right-Artinian hypothesis
   is imposed.

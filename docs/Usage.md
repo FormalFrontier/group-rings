@@ -323,7 +323,7 @@ Install [elan](https://github.com/leanprover/elan). The checkout pins Lean
 `leanprover/lean4:v4.34.0-rc2`. The five direct library dependencies are Mathlib
 `83abb3e776bdefcbc447a1e44d0debe4010039e5`, released
 [coherent-modules](https://github.com/FormalFrontier/coherent-modules)
-at `c22b6cc43e81a2ef1649ac37b19e66f8ea9e107d`, released
+at `06c4813040b015763b561e917105a7d8456f0f6a`, released
 [multivariate-polynomials](https://github.com/FormalFrontier/multivariate-polynomials)
 at `616945c1c06d1655887100fe8a40e06a4a4a6d76`, released
 [group-theory](https://github.com/FormalFrontier/group-theory)
