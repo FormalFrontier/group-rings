@@ -1,6 +1,41 @@
-# Left-Noetherian group subalgebras
+# Left-Noetherian monoid and group algebras
 
 Import `GroupRings.MonoidAlgebra.Noetherian` or the aggregate `GroupRings`.
+Here `IsNoetherianRing A` concerns the regular **left** module of `A` over
+itself, not the algebra as a module over its coefficients. All the criteria
+below allow independent coefficient and index universes.
+
+## Commutative monoids and groups
+
+For `[Ring R] [CommMonoid M] [Monoid.FG M]`,
+`MonoidAlgebra.isNoetherianRing_iff_of_fg` gives
+
+```text
+IsNoetherianRing (MonoidAlgebra R M) ↔ IsNoetherianRing R.
+```
+
+This packages the commutative-monoid ascent with surjective augmentation;
+it is not a new ascent proof. In particular, it applies to any finitely
+generated commutative group using Mathlib's group-to-monoid FG instance,
+without a chosen set of coordinates or a decomposition into cyclic factors.
+
+For `[Ring R] [CommGroup G]`, without assuming FG,
+`MonoidAlgebra.isNoetherianRing_iff_of_commGroup` gives
+
+```text
+IsNoetherianRing (MonoidAlgebra R G) ↔
+  IsNoetherianRing R ∧ (Subsingleton R ∨ Group.FG G).
+```
+
+Over a nonzero ring, necessity follows by applying subgroup FG necessity to
+the top subgroup. Over the zero ring the group algebra is zero and hence
+Noetherian, irrespective of group FG. Thus neither dropping the zero-ring
+alternative nor assuming nontrivial coefficients throughout gives the same
+criterion. The coefficient ring need not be commutative. These are ring
+criteria, not arbitrary-semiring converses.
+
+## Group subalgebra descent
+
 For arbitrary types in independent universes, the hypotheses are
 
 ```lean
@@ -85,7 +120,9 @@ left-Noetherianity to the coefficient semiring by Mathlib's generic
 surjective-homomorphism theorem. Over a nontrivial ring,
 `MonoidAlgebra.subgroup_fg_of_isNoetherianRing` additionally forces every
 subgroup to be finitely generated. These are necessary conditions, not a
-sufficient-condition converse.
+sufficient-condition converse for arbitrary noncommutative groups. The
+commutative-group criterion above combines this necessity with the existing
+commutative-monoid ascent.
 
 The group-source hypothesis in subalgebra descent is essential: arbitrary
 submonoids do not inherit Noetherianity of their algebras. Over a nonzero field,
@@ -137,3 +174,24 @@ The reverse implication uses finite-module Noetherianity over a **ring**;
 it is not a semiring ascent theorem. In particular, neither a commutative
 coefficient assumption nor a normality assumption is hidden in the ascent.
 No equality between numerical rank and subgroup index is asserted.
+
+If the same inherited subgroup also has `[IsMulCommutative H]` and
+`[Group.FG H]`, then
+`MonoidAlgebra.isNoetherianRing_iff_of_finiteIndex_comm_fg H` gives
+
+```text
+IsNoetherianRing (MonoidAlgebra R G) ↔ IsNoetherianRing R.
+```
+
+The stock scoped commutativity promotion extends `H`'s given group structure;
+no unrelated group or scalar structure is supplied. Neither `G`'s
+commutativity nor `H`'s normality is required. The result composes the
+finite-index equivalence with the FG commutative-monoid coefficient criterion.
+
+The four cyclic compatibility results remain in the direct-import module
+`GroupRings.MonoidAlgebra.CyclicNoetherian`: the integer criterion specializes
+the FG monoid criterion, equivalences transport it, and a finite-index cyclic
+subgroup specializes the finite-index FG commutative-subgroup result.
+Products of the infinite cyclic group with finite groups use that chain.
+The module also preserves its public Laurent Noetherian import; see
+[credits](../CREDITS.md) for the earlier Laurent proof's formalization lineage.

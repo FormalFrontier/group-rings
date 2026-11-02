@@ -426,14 +426,29 @@ and the [proof strategy](Usage.md#central-summands-detected-by-characters).
   the supports of every finitely generated coefficient submodule by one finite
   set. See [FiniteCoefficientIdeal.lean](../GroupRings/MonoidAlgebra/FiniteCoefficientIdeal.lean).
 
-- **Finitely generated commutative monoid algebras.** For any left-Noetherian
-  ring `A` and finitely generated commutative monoid `N`, the monoid algebra
-  `A[N]` is left-Noetherian. The coefficient ring may be noncommutative or zero,
-  the two types have independent universes, and `N` need not be finite.
-  `MonoidAlgebra.isNoetherianRing_of_fg` gives ascent; the coefficient-sum
-  augmentation gives the reverse implication. The proof combines a finite
-  free-commutative-monoid presentation with finite-coordinate ascent from
-  `multivariate-polynomials`, without an extra scalar action on coefficients.
+- **Finitely generated commutative monoid algebras.** For any ring `R` and
+  finitely generated commutative monoid `M`,
+  `MonoidAlgebra.isNoetherianRing_iff_of_fg` gives
+  `IsNoetherianRing (R[M]) ↔ IsNoetherianRing R`.
+  The coefficient ring may be noncommutative or zero, the two types have
+  independent universes, and `M` need not be finite. This combines the
+  existing `MonoidAlgebra.isNoetherianRing_of_fg` ascent with surjective
+  augmentation; the ascent uses a finite free-commutative-monoid presentation
+  and finite-coordinate Noetherianity from `multivariate-polynomials`.
+
+- **Commutative groups and finite-index extensions.** For any ring `R` and
+  commutative group `G`, `MonoidAlgebra.isNoetherianRing_iff_of_commGroup` gives
+  `IsNoetherianRing (R[G]) ↔
+  IsNoetherianRing R ∧ (Subsingleton R ∨ Group.FG G)`.
+  The zero-ring alternative is essential; no decomposition of `G` is supplied
+  or required. For a subgroup `H` of any group `G`, with `[H.FiniteIndex]`,
+  `[IsMulCommutative H]` and `[Group.FG H]`,
+  `MonoidAlgebra.isNoetherianRing_iff_of_finiteIndex_comm_fg H` gives
+  `IsNoetherianRing (R[G]) ↔ IsNoetherianRing R`. These hypotheses concern
+  the inherited subgroup operations, without normality or ambient
+  commutativity. Both criteria allow noncommutative coefficients and
+  independent universes and concern the regular **left** module, not the
+  coefficient module. See the [Noetherian guide](Noetherian.md).
 
 - **Left-Artinian descent along additive right retractions.** For semirings
   `A`, `B` in independent universes, a unital homomorphism `f : A →+* B`
@@ -481,8 +496,9 @@ and the [proof strategy](Usage.md#central-summands-detected-by-characters).
   infinite cyclic subgroup, gives the same criterion, without normality.
   This includes products with finite groups. Import
   `GroupRings.MonoidAlgebra.CyclicNoetherian` directly; the root does not
-  re-export it. Laurent ascent comes from `multivariate-polynomials`;
-  see [credits](../CREDITS.md).
+  re-export it. These specialize the commutative-monoid and finite-index
+  criteria above; the public Laurent import is preserved. See
+  [credits](../CREDITS.md) for the earlier Laurent proof's lineage.
 
 - **Regular monoid-algebra differences and an Artinian obstruction.** For an
   arbitrary ring `R` and a cancellative monoid `M`, if `g : M` has infinite

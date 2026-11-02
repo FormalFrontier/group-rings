@@ -9,6 +9,7 @@ public import GroupRings.MonoidAlgebra.MapDomain
 public import GroupRings.MonoidAlgebra.SubgroupBasis
 public import CoherentModules.RingTheory.Noetherian.Retraction
 
+import Mathlib.Algebra.Group.IsCommutative
 import Mathlib.Algebra.Group.TypeTags.Hom
 import Mathlib.LinearAlgebra.Finsupp.LinearCombination
 import Mathlib.RingTheory.Finiteness.Defs
@@ -38,6 +39,12 @@ using `MonoidAlgebra.augmentation_surjective`. No specialized transport theorem
 is needed. For finitely generated commutative monoids and ring coefficients,
 the converse holds: a surjective exponent presentation reduces the ascent to
 finite-coordinate polynomial Noetherianity. The coefficient ring need not commute.
+
+For a commutative group, the group algebra is left-Noetherian exactly when the
+coefficient ring is left-Noetherian and either the coefficient ring is zero or
+the group is finitely generated. A finite-index finitely generated commutative
+subgroup gives the same coefficient-ring criterion, without requiring the
+ambient group to commute or the subgroup to be normal.
 
 Here `IsNoetherianRing A` concerns the left regular module of `A` over itself,
 not the group algebra as a module over its coefficient ring.
@@ -75,6 +82,21 @@ theorem isNoetherianRing_of_fg
   exact isNoetherianRing_of_surjective _ _
     ((mapDomainRingHom A j).comp e.toRingHom)
     ((mapDomainRingHom_surjective (R := A) (M := _) (N := N) j hj).comp e.surjective)
+
+/-- A finitely generated commutative monoid algebra is left-Noetherian exactly
+when its coefficient ring is left-Noetherian. The coefficient ring may be
+noncommutative or zero, and its universe is independent of the monoid's. -/
+theorem isNoetherianRing_iff_of_fg
+    {R : Type u} [Ring R] {M : Type v} [CommMonoid M] [Monoid.FG M] :
+    IsNoetherianRing (MonoidAlgebra R M) ↔ IsNoetherianRing R := by
+  constructor
+  · intro h
+    let := h
+    exact isNoetherianRing_of_surjective (MonoidAlgebra R M) R
+      (augmentation R M) (augmentation_surjective R M)
+  · intro h
+    let := h
+    exact isNoetherianRing_of_fg R M
 
 /-- A group subalgebra of a left-Noetherian monoid algebra is left-Noetherian.
 The coefficient semiring, source group and target monoid have independent
@@ -124,3 +146,42 @@ theorem MonoidAlgebra.subgroup_fg_of_isNoetherianRing
     (R : Type u) [Ring R] [Nontrivial R] {G : Type v} [Group G]
     [IsNoetherianRing (MonoidAlgebra R G)] (H : Subgroup G) : H.FG := by
   exact (MonoidAlgebra.span_subgroup_fg_iff R H).mp (Ideal.fg_of_isNoetherianRing _)
+
+namespace MonoidAlgebra
+
+/-- A commutative group algebra is left-Noetherian exactly when its coefficient
+ring is left-Noetherian and either that ring is zero or the group is finitely
+generated. The coefficient ring need not be commutative, and the coefficient
+and group universes are independent. -/
+theorem isNoetherianRing_iff_of_commGroup
+    {R : Type u} [Ring R] {G : Type v} [CommGroup G] :
+    IsNoetherianRing (MonoidAlgebra R G) ↔
+      IsNoetherianRing R ∧ (Subsingleton R ∨ Group.FG G) := by
+  constructor
+  · intro h
+    let := h
+    refine ⟨isNoetherianRing_of_surjective (MonoidAlgebra R G) R
+      (augmentation R G) (augmentation_surjective R G), ?_⟩
+    rcases subsingleton_or_nontrivial R with hR | hR
+    · exact Or.inl hR
+    · let := hR
+      exact Or.inr (Group.fg_def.mpr (subgroup_fg_of_isNoetherianRing R ⊤))
+  · rintro ⟨hR, hzero | hfg⟩
+    · let := hzero
+      exact isNoetherian_of_subsingleton _ _
+    · let := hfg
+      exact isNoetherianRing_iff_of_fg.mpr hR
+
+open scoped IsMulCommutative in
+/-- A finite-index finitely generated commutative subgroup gives the
+left-Noetherian coefficient-ring criterion for the whole group algebra.
+Commutativity and finite generation refer to the subgroup's inherited group
+operations. Neither ambient commutativity nor normality is required, and the
+coefficient ring may be noncommutative or zero. -/
+theorem isNoetherianRing_iff_of_finiteIndex_comm_fg
+    {R : Type u} [Ring R] {G : Type v} [Group G]
+    (H : Subgroup G) [H.FiniteIndex] [IsMulCommutative H] [Group.FG H] :
+    IsNoetherianRing (MonoidAlgebra R G) ↔ IsNoetherianRing R :=
+  (isNoetherianRing_iff_subgroup (R := R) H).trans isNoetherianRing_iff_of_fg
+
+end MonoidAlgebra

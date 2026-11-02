@@ -139,8 +139,12 @@ module and declaration inventories.
   the whole algebra need not be finite over `R`.
   [Statement and proof strategy](docs/HeadlineResults.md#central-summands-finite-over-the-base-ring).
 
-- **Chain conditions and regularity.** A finitely generated **commutative**
-  monoid algebra over any left-Noetherian ring is left-Noetherian. For a
+- **Chain conditions and regularity.** For any ring `R` and finitely generated
+  **commutative** monoid `M`, `R[M]` is left-Noetherian iff `R` is.
+  For a commutative group `G`, the exact criterion is left-Noetherianity of `R`
+  and `Subsingleton R ∨ Group.FG G`. A finite-index finitely generated
+  commutative subgroup gives the coefficient-ring criterion even when the
+  ambient group is noncommutative and the subgroup is not normal. For a
   cancellative monoid over any semiring, a **nonzero** left ideal finite over
   the coefficients forces the monoid to be finite. Additive right-compatible
   coefficient retractions give left-Artinian descent without multiplicativity.

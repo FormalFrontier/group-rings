@@ -155,14 +155,24 @@ retained in [ScalarRestriction.lean](GroupRings/RingTheory/Ideal/ScalarRestricti
 Length transport reuses Andrew Yang's composition-length formalization and exact
 additivity in `ℕ∞`.
 
-## Cyclic Noetherianity
+## Commutative-monoid and cyclic Noetherianity
 
-The cyclic and finite-index criteria use the Laurent ascent from
+The commutative-group classification and finite-index commutative-subgroup
+criterion combine this library's commutative-monoid ascent, augmentation,
+subgroup finite-generation necessity and finite-index equivalence. The ascent
+uses `AddMonoidAlgebra.isNoetherianRing_finsupp` from
 [multivariate-polynomials](https://github.com/FormalFrontier/multivariate-polynomials).
-That ascent uses the unit-clearing ideal criterion provided by
+Mathlib supplies group-finiteness conversions, operation-preserving
+commutativity promotions and Noetherianity of modules over the zero ring.
+The cyclic criteria specialize this general API and retain their earlier
+group-equivalence and finite-product constructions.
+
+The earlier cyclic proof used the Laurent ascent from multivariate-polynomials
+and Mathlib's Laurent/group-algebra ring equivalence and generic Noetherianity
+transport. That ascent uses the unit-clearing ideal criterion provided by
 [coherent-modules](https://github.com/FormalFrontier/coherent-modules).
-Mathlib supplies the Laurent/group-algebra ring equivalence and generic
-Noetherianity transport; subgroup ascent uses this library's finite-index basis.
+This earlier formalization is part of the cyclic API's lineage; its public
+Laurent import is retained. Subgroup ascent uses this library's finite-index basis.
 
 ## Finite-group crossed maps
 

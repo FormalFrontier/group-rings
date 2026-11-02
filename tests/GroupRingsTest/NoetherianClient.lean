@@ -29,14 +29,8 @@ private theorem every_subgroup_fg
     [IsNoetherianRing (MonoidAlgebra R G)] (H : Subgroup G) : H.FG :=
   MonoidAlgebra.subgroup_fg_of_isNoetherianRing R H
 
-/-- Ascent and coefficient descent give the criterion through the public API. -/
+/-- The coefficient criterion is available through the aggregate public import. -/
 private theorem monoidAlgebra_noetherian_iff
     (R : Type u) [Ring R] (M : Type v) [CommMonoid M] [Monoid.FG M] :
-    IsNoetherianRing (MonoidAlgebra R M) ↔ IsNoetherianRing R := by
-  constructor
-  · intro h
-    let := h
-    exact coefficient_noetherian R M
-  · intro h
-    let := h
-    exact MonoidAlgebra.isNoetherianRing_of_fg R M
+    IsNoetherianRing (MonoidAlgebra R M) ↔ IsNoetherianRing R :=
+  MonoidAlgebra.isNoetherianRing_iff_of_fg
