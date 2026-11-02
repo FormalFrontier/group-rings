@@ -10,6 +10,7 @@ Noetherian and Fourier APIs, the catalogue also links the dedicated guides.
 - [Library and release scope](#library-and-release-scope)
 - [Using the library and choosing imports](#using-the-library)
 - [Simple ring quotients](#simple-ring-quotients)
+- [Artinian monoid algebras](#artinian-monoid-algebras)
 - [Central summands detected by characters](#central-summands-detected-by-characters)
 - [Reproducible build and checks](#reproducible-build-and-checks)
 - [References, provenance and AI involvement](#references-provenance-and-ai-involvement)
@@ -59,7 +60,7 @@ group-algebra module. Generic Noetherian retraction descent comes from
 | --- | --- |
 | `GroupRings.MonoidAlgebra.Matrix` | Canonical finite-matrix / monoid-algebra ring equivalence, coefficient and single laws, and matrix-unit products. |
 | `GroupRings.MonoidAlgebra.Regular` | Regular monic basis differences for cancellative monoids, additive transport and the necessary Artinian torsion condition. |
-| `GroupRings.MonoidAlgebra.Artinian` | The arbitrary-ring left-Artinian group-algebra criterion, including the zero-ring alternative and direct group finiteness over nontrivial coefficients. |
+| `GroupRings.MonoidAlgebra.Artinian` | The arbitrary-ring left-Artinian right-cancellative monoid-algebra criterion, including groups and the zero-ring alternative; local right-regular index units over nontrivial semirings. |
 | `GroupRings.LaurentPolynomial.Artinian` | Coefficient multiplication laws, regular monic Laurent differences and the arbitrary-ring Artinian criterion. |
 | `GroupRings.MonoidAlgebra.SubgroupIdeals` | Left coset coefficient sums and subgroup left ideals, inclusion and normality. |
 | `GroupRings.MonoidAlgebra.SubgroupIdealsFG` | Finite generation of subgroup left ideals and augmentation kernels. |
@@ -132,6 +133,9 @@ is required by consumers.
 | `MonoidAlgebra.span_subgroup_isTwoSided`, `span_subgroup_isTwoSided_iff` | Normality implies two-sidedness over any ring; the converse needs nontriviality. |
 | `MonoidAlgebra.span_subgroup_fg_of_fg`, `span_subgroup_fg_iff` | Subgroup FG implies left-ideal FG over any ring; equivalence over nontrivial rings. |
 | `MonoidAlgebra.ker_augmentation_fg`, `ker_augmentation_fg_iff` | Group FG implies augmentation-kernel FG over any ring; equivalence over nontrivial rings. |
+| `MonoidAlgebra.isUnit_of_isRightRegular_of_isArtinianRing` | Over a nontrivial semiring and any monoid, left-Artinianity of the algebra makes any specified right-regular index a unit. |
+| `MonoidAlgebra.finite_of_isArtinianRing` | Over a nontrivial ring, left-Artinianity of a right-cancellative monoid algebra forces the monoid to be finite. |
+| `MonoidAlgebra.isArtinianRing_iff` | For any ring and right-cancellative monoid, left-Artinianity iff coefficient left-Artinianity and either zero coefficients or a finite monoid. |
 | `MonoidAlgebra.isNoetherianRing_multiplicative_int_iff`, `isNoetherianRing_iff_of_mulEquiv_int` | Infinite cyclic coefficient criterion over every ring. |
 | `MonoidAlgebra.isNoetherianRing_iff_of_finiteIndex_mulEquiv_int`, `isNoetherianRing_multiplicative_int_prod_iff` | Finite-index cyclic and finite-group-product coefficient criteria, without normality. |
 | `MonoidAlgebra.isNoetherianRing_of_fg`, `isNoetherianRing_iff_of_fg` | Ascent and the coefficient-ring criterion for finitely generated commutative monoid algebras over any ring. |
@@ -237,6 +241,41 @@ a subsingleton ring. Only the existence of a nonzero simple quotient requires
 `Nontrivial R`: the top congruence, and every congruence of the zero ring, has
 a trivial quotient and is not a coatom.
 
+## Artinian monoid algebras
+
+Import `GroupRings.MonoidAlgebra.Artinian` or `GroupRings`. For
+`[Ring R] [Monoid G] [IsRightCancelMul G]`, use
+`MonoidAlgebra.isArtinianRing_iff (R := R) (G := G)`. Its right-hand side is
+`IsArtinianRing R ∧ (Subsingleton R ∨ Finite G)`. The named `R` and `G`
+arguments also serve ordinary group-algebra applications, with cancellation
+inferred from the group structure. Over `[Nontrivial R]`,
+`MonoidAlgebra.finite_of_isArtinianRing (R := R) (G := G)` directly gives
+`Finite G` from the Artinian-algebra instance.
+
+For `[Semiring R] [Nontrivial R] [Monoid M]`, the local theorem
+`MonoidAlgebra.isUnit_of_isRightRegular_of_isArtinianRing R m hm` only needs
+`hm : IsRightRegular m` and `[IsArtinianRing (MonoidAlgebra R M)]`.
+Here right regularity means injectivity of `x ↦ x * m`, the side compatible
+with the original **left** regular module. No global cancellation or ring
+hypothesis is needed for this unit conclusion. In particular it applies to
+finite algebras over the Boolean semiring, which is not a ring.
+
+The global criterion allows zero and noncommutative coefficient rings in a
+universe independent of the monoid's. It does not replace the multiplication
+with a group structure: after all indices are units, the canonical map
+`Units.coeHom G` identifies `Gˣ` with `G`, and its induced **ring** equivalence
+transports left Artinianity to the units-group algebra. This needs no central
+coefficient action, right-Artinian hypothesis or finite centre degree.
+
+The global ring hypothesis cannot be weakened to semiring. For example, the
+tropical semifield `T = ℝ ∪ {−∞}` with max/addition has only zero and top
+ideals. But in `T[C₂]`, pairs with both coordinates finite and
+`|x - y| ≤ t`, together with the zero pair, form a left ideal for every
+`t ≥ 0`. Coordinatewise max, common shifts and swapping coordinates preserve
+these sets, hence so does convolution. Taking `t = 1/(n+1)` gives a strictly
+descending chain. Thus finite monoid size and Artinian coefficients alone do
+not imply Artinianity over general semirings.
+
 ## Central summands detected by characters
 
 The [central-summand theorem](HeadlineResults.md#central-summands-finite-over-the-base-ring)
@@ -332,7 +371,11 @@ finite-character block theorem gives a nonzero ideal finite over the field;
 its finite-support criterion gives group finiteness. Augmentation gives
 coefficient necessity, and Mathlib's finite coefficient-module instance and
 finite-module Artinian ascent give the converse. No finite centre degree or
-right-Artinian assumption on the original coefficients is used.
+right-Artinian assumption on the original coefficients is used. The
+right-cancellative monoid extension uses Mathlib's semiring Artinian
+regular-element criterion and this library's single-term unit reflection,
+then transports along the canonical units-group equivalence. This leaves
+the group proof and the original left regular actions unchanged.
 
 The Laurent Artinian criterion follows the regular-nonunit obstruction used for
 polynomial rings in `MultivariatePolynomials.Artinian` from the

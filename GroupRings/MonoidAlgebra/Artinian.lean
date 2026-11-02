@@ -9,6 +9,7 @@ public import Mathlib.RingTheory.Artinian.Defs
 
 import GroupRings.MonoidAlgebra.CoefficientChange
 import GroupRings.MonoidAlgebra.FiniteCoefficientIdeal
+import GroupRings.MonoidAlgebra.Units
 import GroupRings.RingTheory.Artinian.FiniteCharacterBlock
 import GroupRings.RingTheory.SimpleRing.Quotient
 import Mathlib.Algebra.MonoidAlgebra.Basic
@@ -19,21 +20,36 @@ import Mathlib.RingTheory.Finiteness.Finsupp
 import Mathlib.RingTheory.SimpleRing.Field
 
 /-!
-# Left-Artinian group algebras
+# Left-Artinian monoid and group algebras
 
-For any ring `R` and group `G`, the group algebra `R[G]` is left Artinian exactly
-when `R` is left Artinian and either `R` is subsingleton or `G` is finite. In
-particular, over a nontrivial coefficient ring, left Artinianity forces the
-group to be finite. The coefficients need not commute.
+For any ring `R` and right-cancellative monoid `G`, the monoid algebra `R[G]`
+is left Artinian exactly when `R` is left Artinian and either `R` is
+subsingleton or `G` is finite. In particular, over a nontrivial coefficient
+ring, left Artinianity forces the monoid to be finite. This includes the
+classical group-algebra criterion. The coefficients need not commute.
 
-The subsingleton alternative includes the zero group algebra of an infinite
-group over the zero ring. All chain conditions here concern left regular
-modules over the respective rings, not the group algebra merely as a module
-over its coefficient ring. The coefficient and group universes are independent.
+For a monoid algebra over a nontrivial semiring, left Artinianity makes each
+right-regular monoid element a unit. This reduces the right-cancellative
+monoid criterion over rings to the group case.
+
+The subsingleton alternative includes the zero monoid algebra of an infinite
+monoid over the zero ring. All chain conditions here concern left regular
+modules over the respective semirings, not the monoid algebra merely as a module
+over its coefficients. The coefficient and monoid universes are independent.
+The local unit theorem allows semiring coefficients, but the global criterion
+requires a ring: finite-module Artinian ascent does not hold over all semirings.
 
 ## Proof strategy
 
-Pass to a nonzero simple two-sided quotient of the coefficients. Its centre
+Right multiplication by `single m 1` reindexes coefficients by `x ↦ x * m`.
+Right regularity of `m` therefore makes this multiplication injective.
+Mathlib's Artinian regular-element criterion makes the basis term a unit,
+and single-term unit reflection makes `m` a unit. For a right-cancellative
+monoid, every element is thus in the image of the canonical units group.
+Its coercion is a multiplicative equivalence; the induced ring equivalence
+transports Artinianity to the group algebra without changing monoid operations.
+
+For the group criterion, pass to a nonzero simple two-sided quotient of the coefficients. Its centre
 is a field, and a right-linear coefficient retraction descends left Artinianity
 to the group algebra over that field. Only there do group inversion and
 commutativity of the coefficients give right Artinianity. The finite-character
@@ -60,6 +76,8 @@ Artinian ascent; coefficient necessity uses the surjective augmentation.
 universe u v
 
 namespace MonoidAlgebra
+
+section Group
 
 variable {R : Type u} {G : Type v} [Ring R] [Group G]
 
@@ -95,10 +113,7 @@ private theorem finite_of_isArtinianRing_field {K : Type u} [Field K]
   intro h
   exact he (Ideal.span_singleton_eq_bot.mp h)
 
-/-- A left-Artinian group algebra over a nontrivial ring has a finite group.
-This is the necessity direction of the classical Artinian group-ring criterion;
-see Passman, *The Algebraic Structure of Group Rings*. -/
-theorem finite_of_isArtinianRing [Nontrivial R]
+private theorem finite_of_isArtinianRing_of_group [Nontrivial R]
     [IsArtinianRing (MonoidAlgebra R G)] : Finite G := by
   obtain ⟨c, hc⟩ := RingCon.exists_isSimpleRing_quotient (R := R)
   let S := c.Quotient
@@ -112,10 +127,49 @@ theorem finite_of_isArtinianRing [Nontrivial R]
     isArtinianRing_of_divisionRing_hom (M := G) (algebraMap K S)
   exact finite_of_isArtinianRing_field (K := K)
 
-/-- A group algebra is left Artinian exactly when its coefficient ring is left
-Artinian and either the coefficient ring is subsingleton or the group is finite.
-No commutativity or right-Artinian hypothesis is required. This is the classical
-Artinian group-ring criterion; see Passman, *The Algebraic Structure of Group Rings*. -/
+end Group
+
+/-- A right-regular monoid element is a unit if its monoid algebra over a
+nontrivial semiring is left Artinian. The monoid need not be cancellative. -/
+theorem isUnit_of_isRightRegular_of_isArtinianRing (R : Type u) {M : Type v}
+    [Semiring R] [Monoid M] [Nontrivial R] [IsArtinianRing (MonoidAlgebra R M)]
+    (m : M) (hm : IsRightRegular m) : IsUnit m := by
+  -- Recover each original coefficient at its injectively reindexed position.
+  have hcoeff (f : MonoidAlgebra R M) (x : M) :
+      (f * single m (1 : R)).coeff (x * m) = f.coeff x := by
+    simpa only [mul_one] using coeff_mul_single_eq_coeff_mul (r := (1 : R)) x
+      (fun y _ => ⟨fun h => hm h, fun h => congrArg (· * m) h⟩)
+  have hregular : IsRightRegular (single m (1 : R)) := by
+    intro f g h
+    ext x
+    simpa only [hcoeff] using congrArg (fun a : MonoidAlgebra R M => a.coeff (x * m)) h
+  exact ((isUnit_single_iff m (1 : R)).mp
+    (IsArtinianRing.isUnit_iff_isRightRegular.mpr hregular)).2
+
+variable {R : Type u} {G : Type v} [Ring R] [Monoid G] [IsRightCancelMul G]
+
+/-- A left-Artinian right-cancellative monoid algebra over a nontrivial ring
+has a finite index monoid. The proof reduces through the canonical units group
+to the classical Artinian group-ring criterion; see Passman,
+*The Algebraic Structure of Group Rings*. -/
+theorem finite_of_isArtinianRing [Nontrivial R]
+    [IsArtinianRing (MonoidAlgebra R G)] : Finite G := by
+  have hsurj : Function.Surjective (Units.coeHom G) := by
+    intro g
+    obtain ⟨u, hu⟩ := isUnit_of_isRightRegular_of_isArtinianRing R g (.all g)
+    exact ⟨u, hu⟩
+  let e : Gˣ ≃* G :=
+    MulEquiv.ofBijective (Units.coeHom G) ⟨Units.coeHom_injective, hsurj⟩
+  let : IsArtinianRing (MonoidAlgebra R Gˣ) :=
+    (mapDomainRingEquiv R e).symm.isArtinianRing
+  let : Finite Gˣ := finite_of_isArtinianRing_of_group (R := R)
+  exact Finite.of_surjective (Units.coeHom G) hsurj
+
+/-- A right-cancellative monoid algebra is left Artinian exactly when its
+coefficient ring is left Artinian and either that ring is subsingleton or the
+monoid is finite. No coefficient commutativity or right-Artinian hypothesis
+is required. For groups this is the classical Artinian group-ring criterion;
+see Passman, *The Algebraic Structure of Group Rings*. -/
 theorem isArtinianRing_iff :
     IsArtinianRing (MonoidAlgebra R G) ↔
       IsArtinianRing R ∧ (Subsingleton R ∨ Finite G) := by

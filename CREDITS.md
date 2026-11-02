@@ -39,6 +39,13 @@ criterion. Mathlib supplies the centre-field theorem, opposite equivalences,
 surjective Artinian transport and finite-module Artinian ascent. This is not
 a transcription of a proof from Passman's book, and no finite degree over the
 centre is assumed.
+The right-cancellative monoid extension reduces to that group criterion through
+the canonical units group, without changing the index operations. The local
+semiring argument uses Mathlib's coefficient multiplication laws and Artinian
+regular-element criterion together with this library's single-term unit
+reflection. Mathlib supplies the units coercion, multiplicative equivalence
+and index-induced ring equivalence. The group criterion's simple-quotient and
+finite-character proof is reused without alteration.
 
 Charles A. Weibel, *The K-book: An Introduction to Algebraic K-theory*,
 complete-book build August 29, 2013, Example I.2.1.2, motivates the free-abelian
