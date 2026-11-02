@@ -63,7 +63,12 @@ module and declaration inventories.
   forces one common `p`-power exponent. For locally finite `p`-groups over
   any ring with `(p : R) = 0`, every augmentation-zero element is nilpotent,
   with an element-dependent exponent; no uniform kernel power is asserted.
-  [Statements and guides](docs/HeadlineResults.md#finite-p-groups-and-fixed-vectors).
+  Under these same locally finite hypotheses, the Jacobson radical is the
+  augmentation preimage of the coefficient radical. In particular, a single
+  term is radical exactly when its coefficient is, and a zero coefficient
+  radical gives the augmentation kernel. See the
+  [radical guide](docs/Jacobson.md) and
+  [statements and guides](docs/HeadlineResults.md#finite-p-groups-and-fixed-vectors).
 
 - **Given modules and scalar restriction.** Over any semiring and monoid,
   canonical representations and an additive Hom/intertwiner correspondence

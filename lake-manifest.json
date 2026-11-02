@@ -169,6 +169,30 @@
    "inputRev": "616945c1c06d1655887100fe8a40e06a4a4a6d76",
    "inherited": false,
    "configFile": "lakefile.toml"
+  },
+  {
+   "url": "https://github.com/FormalFrontier/adic-modules.git",
+   "type": "git",
+   "subDir": null,
+   "scope": "",
+   "rev": "d0ce9c7ea73e0f995d7318e448af3e14f2e473bd",
+   "name": "«adic-modules»",
+   "manifestFile": "lake-manifest.json",
+   "inputRev": "d0ce9c7ea73e0f995d7318e448af3e14f2e473bd",
+   "inherited": true,
+   "configFile": "lakefile.toml"
+  },
+  {
+   "url": "https://github.com/FormalFrontier/general-linear-groups.git",
+   "type": "git",
+   "subDir": null,
+   "scope": "",
+   "rev": "1acc67fe773d8b70d3e199e1f2a74e94138ff20a",
+   "name": "«general-linear-groups»",
+   "manifestFile": "lake-manifest.json",
+   "inputRev": "1acc67fe773d8b70d3e199e1f2a74e94138ff20a",
+   "inherited": false,
+   "configFile": "lakefile.toml"
   }
  ],
  "name": "«group-rings»",

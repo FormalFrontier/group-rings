@@ -29,6 +29,11 @@ name = "groupTheory"
 git = "https://github.com/FormalFrontier/group-theory.git"
 rev = "07948c9888686ade711654c1433c3efb2652e1aa"
 
+[[require]]
+name = "general-linear-groups"
+git = "https://github.com/FormalFrontier/general-linear-groups.git"
+rev = "1acc67fe773d8b70d3e199e1f2a74e94138ff20a"
+
 [[lean_lib]]
 name = "GroupRings"
 roots = ["GroupRings", "GroupRings.RingTheory.Noetherian", "GroupRings.RepresentationTheory.AveragingProjector", "GroupRings.RepresentationTheory.AveragingProjectorComparison"]

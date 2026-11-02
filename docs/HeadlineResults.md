@@ -150,6 +150,18 @@ consumer example, build commands and references.
   or abelian. See
   [LocallyFinite.lean](../GroupRings/MonoidAlgebra/AugmentationNilpotence/LocallyFinite.lean).
 
+- **Jacobson radicals of locally finite `p`-group algebras.** Under the same
+  hypotheses on `R`, `p` and `G`,
+  `Ring.jacobson R[G] = Ideal.comap (augmentation R G) (Ring.jacobson R)`.
+  Here `Ring.jacobson` is the two-sided Jacobson radical, represented as an
+  `Ideal`, even for noncommutative rings. Thus `x` lies in the radical exactly
+  when its coefficient sum does, and `single g r` lies in the radical exactly
+  when `r` does. The case `g = 1` is the coefficient-inclusion criterion.
+  If `Ring.jacobson R = ⊥`, the radical of `R[G]` equals the augmentation
+  kernel. These statements require neither a uniform nilpotence exponent nor
+  a vanishing power of that kernel. See [Jacobson.lean](../GroupRings/MonoidAlgebra/Jacobson.lean)
+  and the [radical guide](Jacobson.md).
+
 - **Common annihilators and fixed vectors.** If one power of an ordinary left
   ideal over any semiring annihilates a nontrivial semimodule, there is a
   nonzero vector killed by the whole ideal. Two-sided ideals have a canonical

@@ -15,6 +15,7 @@ public import GroupRings.FreeAbelian.LaurentPolynomial
 public import GroupRings.FiniteAbelian.RightConvolution
 public import GroupRings.MonoidAlgebra.AugmentationNilpotence.Converse
 public import GroupRings.MonoidAlgebra.AugmentationNilpotence.LocallyFinite
+public import GroupRings.MonoidAlgebra.Jacobson
 public import GroupRings.MonoidAlgebra.FixedVectors
 public import GroupRings.MonoidAlgebra.ModuleDetection
 public import GroupRings.MonoidAlgebra.SimpleModules
@@ -100,6 +101,10 @@ For locally finite `p`-groups over any ring with prime `p = 0`, every augmentati
 element is nilpotent, with an element-dependent exponent. This does not assert a
 uniform exponent or a vanishing power of the whole augmentation kernel.
 Noncommutative and zero coefficient rings are included.
+Under the same hypotheses, the Jacobson radical is the augmentation preimage
+of the coefficient ring's Jacobson radical. Membership is detected by augmentation;
+a single term is radical exactly when its coefficient is. If the coefficient
+radical is zero, the group-algebra radical is precisely the augmentation kernel.
 
 Coefficient change preserves and reflects zero kernel powers at each same
 exponent, including zero, over arbitrary semirings and monoids.

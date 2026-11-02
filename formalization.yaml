@@ -78,6 +78,14 @@ project:
     finite-group augmentation nilpotence is equivalent to IsPGroup p G.
     The proof uses central subgroups of order p, canonical cyclic quotient
     kernels, ideal extension bounds and multiplication of power degrees.
+    For locally finite p-groups over any ring with prime p=0, each
+    augmentation-zero element is nilpotent, with an element-dependent exponent.
+    Under these same hypotheses, the Jacobson radical is the augmentation
+    preimage of the coefficient radical. Radical membership is detected by
+    augmentation, and a basis term is radical exactly when its coefficient is.
+    If the coefficient radical is zero, the group-algebra radical equals the
+    augmentation kernel. No uniform kernel exponent or vanishing kernel power
+    is asserted; noncommutative and zero coefficient rings are allowed.
     Uniform nilpotence of an ordinary left-ideal action over any semiring
     yields a nonzero common annihilated vector in every nontrivial semimodule.
     Two-sided ideals have a canonical common-annihilator submodule, agreeing
@@ -155,8 +163,9 @@ related_formalizations:
   - id: "https://github.com/leanprover-community/mathlib4/tree/83abb3e776bdefcbc447a1e44d0debe4010039e5"
     relationship: "builds-on"
     note: >-
-      One of three direct library dependencies, together with the released
-      multivariate-polynomials and group-theory libraries. Uses FreeAbelianGroup.equivFinsupp,
+      One of five direct library dependencies, together with the released
+      coherent-modules, multivariate-polynomials, group-theory and
+      general-linear-groups libraries. Uses FreeAbelianGroup.equivFinsupp,
       AddMonoidAlgebra.toMultiplicativeAlgEquiv and AddMonoidAlgebra.domCongr,
       with their native injectivity and single-term laws. The Laurent leaf
       imports Mathlib.Algebra.FreeAbelianGroup.Finsupp and
@@ -212,6 +221,14 @@ related_formalizations:
       characterization, it supplies projectivity ascent without commutativity,
       nontriviality or smallness assumptions. Dependency implementation and
       authorship notices remain upstream.
+  - id: "https://github.com/FormalFrontier/general-linear-groups/tree/1acc67fe773d8b70d3e199e1f2a74e94138ff20a"
+    relationship: "builds-on"
+    note: >-
+      GeneralLinearGroups.QuasiregularIdeal supplies the quasiregular-ideal
+      criterion used to place the elementwise nil augmentation kernel in the
+      Jacobson radical. Mathlib's surjective Jacobson-radical correspondence
+      then gives the augmentation-preimage equality, without a uniform
+      nilpotence assumption. Dependency implementation and notices remain upstream.
   - id: "CREDITS.md"
     relationship: "adapts"
     note: >-
@@ -289,6 +306,12 @@ status:
     on the element; no uniform exponent or vanishing power of the whole kernel
     is asserted. The coefficient and group universes are independent; G need
     not be finite or abelian.
+    Under these same hypotheses, Ring.jacobson R[G] is the augmentation
+    preimage of Ring.jacobson R. Membership is determined by the coefficient
+    sum; single g r is radical exactly when r is, with g=1 giving canonical
+    coefficient inclusion. If Ring.jacobson R is zero, the radical is precisely
+    the augmentation kernel. These radical statements require no additional
+    finiteness, coefficient commutativity, nontriviality or CharP premise.
     The selected public interfaces below are not a census of private/generated declarations or
     client tests.
     The generated API page is a historical four-module/eight-Laurent snapshot
@@ -400,6 +423,18 @@ status:
     - declaration: "MonoidAlgebra.isNilpotent_of_augmentation_eq_zero"
       file: "GroupRings/MonoidAlgebra/AugmentationNilpotence/LocallyFinite.lean"
       note: "For any Ring R, prime p with (p : R) = 0, and Group G with IsPGroup p G and finite subgroup closure of every finite subset, each augmentation-zero element is nilpotent; no uniform exponent or zero power of the whole kernel is asserted. The coefficient and group universes are independent."
+    - declaration: "MonoidAlgebra.jacobson_eq_comap_augmentation"
+      file: "GroupRings/MonoidAlgebra/Jacobson.lean"
+      note: "For any possibly noncommutative or zero Ring R, prime p with (p : R) = 0, and Group G with IsPGroup p G and finite subgroup closure of every finite subset, Ring.jacobson R[G] is the augmentation preimage of Ring.jacobson R; independent coefficient and group universes, with no uniform nilpotence assumption."
+    - declaration: "MonoidAlgebra.mem_jacobson_iff_augmentation_mem"
+      file: "GroupRings/MonoidAlgebra/Jacobson.lean"
+      note: "Under the same locally finite p-group hypotheses, an element lies in the Jacobson radical exactly when its coefficient sum lies in the coefficient radical."
+    - declaration: "MonoidAlgebra.single_mem_jacobson_iff"
+      file: "GroupRings/MonoidAlgebra/Jacobson.lean"
+      note: "Under the same hypotheses, single g r lies in the radical exactly when r does; g=1 gives canonical coefficient inclusion."
+    - declaration: "MonoidAlgebra.jacobson_eq_ker_augmentation_of_jacobson_eq_bot"
+      file: "GroupRings/MonoidAlgebra/Jacobson.lean"
+      note: "Under the same hypotheses and Ring.jacobson R = bottom, the group-algebra Jacobson radical is the canonical augmentation kernel."
     - declaration: "MonoidAlgebra.ker_mapDomainRingHom_mk'_zpowers"
       file: "GroupRings/MonoidAlgebra/Quotient.lean"
       note: "For a normal cyclic subgroup, the quotient index-map kernel is the left ideal generated by the single generator difference, over any ring."
