@@ -139,6 +139,17 @@ consumer example, build commands and references.
   length-`n` ordered products, including degree zero. See the
   [augmentation-nilpotence guide](AugmentationNilpotence.md).
 
+- **Elementwise nilpotence for locally finite `p`-group algebras.** Let `R`
+  be any possibly noncommutative or zero ring, `p` a prime with `(p : R) = 0`,
+  and `G` a group with `IsPGroup p G` such that every finite subset generates
+  a finite subgroup, expressed as
+  `∀ s : Finset G, Finite (Subgroup.closure (s : Set G))`.
+  Every augmentation-zero element of `R[G]` is nilpotent; the exponent may
+  depend on the element, and no vanishing power of the whole kernel is asserted.
+  The coefficient and group universes are independent; `G` need not be finite
+  or abelian. See
+  [LocallyFinite.lean](../GroupRings/MonoidAlgebra/AugmentationNilpotence/LocallyFinite.lean).
+
 - **Common annihilators and fixed vectors.** If one power of an ordinary left
   ideal over any semiring annihilates a nontrivial semimodule, there is a
   nonzero vector killed by the whole ideal. Two-sided ideals have a canonical

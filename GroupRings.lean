@@ -14,6 +14,7 @@ public import GroupRings.MonoidAlgebra.AugmentationCrossedMaps
 public import GroupRings.FreeAbelian.LaurentPolynomial
 public import GroupRings.FiniteAbelian.RightConvolution
 public import GroupRings.MonoidAlgebra.AugmentationNilpotence.Converse
+public import GroupRings.MonoidAlgebra.AugmentationNilpotence.LocallyFinite
 public import GroupRings.MonoidAlgebra.FixedVectors
 public import GroupRings.MonoidAlgebra.ModuleDetection
 public import GroupRings.MonoidAlgebra.SimpleModules
@@ -94,6 +95,12 @@ vector; two-sided ideals have a canonical common-annihilator submodule.
 Over nontrivial rings with prime `p = 0`, uniform augmentation-ideal
 nilpotence forces a common `p`-power exponent for an arbitrary group,
 without finiteness or commutativity; for finite groups this gives an iff.
+
+For locally finite `p`-groups over any ring with prime `p = 0`, every augmentation-zero
+element is nilpotent, with an element-dependent exponent. This does not assert a
+uniform exponent or a vanishing power of the whole augmentation kernel.
+Noncommutative and zero coefficient rings are included.
+
 Coefficient change preserves and reflects zero kernel powers at each same
 exponent, including zero, over arbitrary semirings and monoids.
 Vanishing of ideal powers over any semiring

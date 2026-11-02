@@ -60,7 +60,9 @@ module and declaration inventories.
   `Subsingleton R ∨ Finite G`, without a characteristic assumption. If
   `(p : R) = 0`, nilpotence is equivalent to
   `Subsingleton R ∨ (Finite G ∧ IsPGroup p G)`; over nontrivial `R` it also
-  forces one common `p`-power exponent.
+  forces one common `p`-power exponent. For locally finite `p`-groups over
+  any ring with `(p : R) = 0`, every augmentation-zero element is nilpotent,
+  with an element-dependent exponent; no uniform kernel power is asserted.
   [Statements and guides](docs/HeadlineResults.md#finite-p-groups-and-fixed-vectors).
 
 - **Given modules and scalar restriction.** Over any semiring and monoid,
