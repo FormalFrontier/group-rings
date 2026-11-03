@@ -17,7 +17,7 @@ rev = "83abb3e776bdefcbc447a1e44d0debe4010039e5"
 [[require]]
 name = "coherent-modules"
 git = "https://github.com/FormalFrontier/coherent-modules.git"
-rev = "06c4813040b015763b561e917105a7d8456f0f6a"
+rev = "b9bb233399aab0f864a2a1a1bb3d414dff530812"
 
 [[require]]
 name = "multivariate-polynomials"
