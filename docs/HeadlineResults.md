@@ -17,6 +17,7 @@ consumer example, build commands and references.
 - [Subgroup ideals and coset bases](#subgroup-ideals-and-coset-bases)
 - [Coefficient and index quotients](#coefficient-and-index-quotients)
 - [Central summands finite over the base ring](#central-summands-finite-over-the-base-ring)
+- [Finite presentation](#finite-presentation)
 - [Chain conditions and regularity](#chain-conditions-and-regularity)
 - [Laurent coordinates](#laurent-coordinates)
 - [Characters and right convolution](#characters-and-right-convolution)
@@ -412,6 +413,18 @@ the idempotent need not be primitive, and `R` and `A` have independent
 universes. See
 [FiniteCharacterBlock.lean](../GroupRings/RingTheory/Artinian/FiniteCharacterBlock.lean)
 and the [proof strategy](Usage.md#central-summands-detected-by-characters).
+
+## Finite presentation
+
+For any commutative ring `R` and finitely generated commutative monoid `M`,
+`MonoidAlgebra.finitePresentation_of_fg` supplies
+`Algebra.FinitePresentation R (MonoidAlgebra R M)` for the canonical scalar algebra.
+`AddMonoidAlgebra.finitePresentation_of_fg` supplies the additive counterpart.
+Coefficient and exponent universes are independent; no Noetherianity,
+cancellation, nontriviality or finite-carrier assumption is needed.
+See the [module](../GroupRings/MonoidAlgebra/FinitePresentation.lean) and
+[public-import clients](../tests/GroupRingsTest/PublicAPIClient.lean), which use
+scalar base change and additive `ℕ` over the non-Noetherian ring `ℕ → ℤ`.
 
 ## Chain conditions and regularity
 

@@ -66,6 +66,7 @@ group-algebra module. Generic Noetherian retraction descent comes from
 | `GroupRings.MonoidAlgebra.SubgroupIdealsFG` | Finite generation of subgroup left ideals and augmentation kernels. |
 | `GroupRings.MonoidAlgebra.SubgroupBasis` | Right-coset bases, left subgroup-algebra coordinates and finite-index module finiteness over semirings. |
 | `GroupRings.MonoidAlgebra.Noetherian` | Coefficient criterion for finitely generated commutative monoids, commutative-group classification with the zero-ring alternative, finite-index FG commutative subgroups, group-subalgebra descent and necessary conditions. |
+| `GroupRings.MonoidAlgebra.FinitePresentation` | Canonical algebra finite presentation for finitely generated commutative monoids and additive commutative monoids over any commutative ring. |
 | `GroupRings.MonoidAlgebra.CyclicNoetherian` | Direct import: cyclic coefficient criterion, group-equivalence and finite-index transport, finite-group products. |
 | `GroupRings.MonoidAlgebra.MapDomain` | Coefficient projection retracts pushforward and commutes with right multiplication by a group image. |
 | `GroupRings.RingTheory.Noetherian` | Deprecated compatibility import for `CoherentModules.RingTheory.Noetherian.Retraction`, the ideal extension-contraction and left-Noetherian descent API for additive right retractions. |
@@ -140,6 +141,7 @@ is required by consumers.
 | `MonoidAlgebra.isNoetherianRing_multiplicative_int_iff`, `isNoetherianRing_iff_of_mulEquiv_int` | Infinite cyclic coefficient criterion over every ring. |
 | `MonoidAlgebra.isNoetherianRing_iff_of_finiteIndex_mulEquiv_int`, `isNoetherianRing_multiplicative_int_prod_iff` | Finite-index cyclic and finite-group-product coefficient criteria, without normality. |
 | `MonoidAlgebra.isNoetherianRing_of_fg`, `isNoetherianRing_iff_of_fg` | Ascent and the coefficient-ring criterion for finitely generated commutative monoid algebras over any ring. |
+| `MonoidAlgebra.finitePresentation_of_fg`, `AddMonoidAlgebra.finitePresentation_of_fg` | Finite presentation as canonical algebras over arbitrary commutative coefficient rings, without cancellation or finite-carrier hypotheses. |
 | `MonoidAlgebra.isNoetherianRing_iff_of_commGroup` | For a commutative group, left-Noetherianity iff coefficient left-Noetherianity and either zero coefficients or group FG. |
 | `MonoidAlgebra.isNoetherianRing_iff_of_finiteIndex_comm_fg` | Coefficient-ring criterion from a finite-index FG subgroup with commutative inherited multiplication, without normality. |
 | `MonoidAlgebra.isNoetherianRing_of_injective`, `isNoetherianRing_subgroup` | Left-Noetherianity descends along any group-to-monoid embedding, in particular to every subgroup algebra. |

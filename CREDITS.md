@@ -162,6 +162,14 @@ retained in [ScalarRestriction.lean](GroupRings/RingTheory/Ideal/ScalarRestricti
 Length transport reuses Andrew Yang's composition-length formalization and exact
 additivity in `ℕ∞`.
 
+## Finite presentation
+
+Finite presentation of commutative monoid algebras combines Mathlib's finite-type
+and finite-presentation theory (Johan Commelin), monoid finite generation
+(Riccardo Brasca), finite-presentation base-change stability (Christian Merten),
+and monoid-algebra scalar base change (Michał Mrugała). The additive instance
+uses Mathlib's coefficient-preserving multiplicative type-tag equivalence.
+
 ## Commutative-monoid and cyclic Noetherianity
 
 The commutative-group classification and finite-index commutative-subgroup

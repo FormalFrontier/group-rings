@@ -148,6 +148,13 @@ module and declaration inventories.
   the whole algebra need not be finite over `R`.
   [Statement and proof strategy](docs/HeadlineResults.md#central-summands-finite-over-the-base-ring).
 
+- **Finite presentation.** For any commutative ring `R` and finitely generated
+  commutative monoid `M`, the canonical `R`-algebra `R[M]` is finitely presented.
+  The additive-monoid version is also an instance. Coefficients need not be
+  Noetherian, and exponents need not be cancellative or finite.
+  [Module](GroupRings/MonoidAlgebra/FinitePresentation.lean) ·
+  [statements and use](docs/HeadlineResults.md#finite-presentation).
+
 - **Chain conditions and regularity.** For any ring `R` and finitely generated
   **commutative** monoid `M`, `R[M]` is left-Noetherian iff `R` is.
   For a commutative group `G`, the exact criterion is left-Noetherianity of `R`
