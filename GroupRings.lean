@@ -52,6 +52,10 @@ public import GroupRings.MonoidAlgebra.FiniteType
 public import GroupRings.MonoidAlgebra.FinitePresentation
 public import GroupRings.MonoidAlgebra.Artinian
 public import GroupRings.MonoidAlgebra.MapDomain
+public import GroupRings.MonoidAlgebra.MapDomainSpan
+public import GroupRings.MonoidAlgebra.MapDomainFinite
+public import GroupRings.MonoidAlgebra.MonomialSubalgebra
+public import GroupRings.MonoidAlgebra.MonomialFinite
 public import CoherentModules.RingTheory.Noetherian.Retraction
 public import GroupRings.RingTheory.Artinian
 public import GroupRings.RingTheory.Artinian.FiniteCharacterBlock
@@ -144,6 +148,14 @@ maps of the original modules. The representation construction in
 an additive commutative monoid. Its comparison with Mathlib's invariant-space
 averaging map over a commutative ring is in
 `GroupTheory.RepresentationAveragingProjectorComparison`.
+
+For any semiring `R` and monoid homomorphism `f : M →* N`, the left regular module
+`R[N]` restricted along `mapDomainRingHom R f` is finite exactly when there is a
+finite set `T` with every `n` of the form `f m * t`, `t ∈ T`, or the coefficients
+are subsingleton. The source image acts on the left; neither monoid nor the
+coefficients need commute. The monomial-subalgebra criteria retain commutative
+coefficients and the inclusion-induced left action; finite covers are sufficient,
+and over nontrivial coefficients they are necessary.
 
 Over any commutative semiring, a monoid algebra is of finite type exactly when
 its monoid is finitely generated or its coefficients are subsingleton. The monoid

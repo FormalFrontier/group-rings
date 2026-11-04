@@ -156,6 +156,18 @@ module and declaration inventories.
   hypothesis is needed.
   [Statements and modules](docs/HeadlineResults.md#uniform-binomial-kernels).
 
+- **Relative module finiteness.** For any semiring `R` and homomorphism
+  `f : M →* N` of arbitrary monoids, `R[N]` is finite as a left `R[M]`-module
+  for its regular action restricted along `mapDomainRingHom R f` iff there is
+  a finite set `T` with every `n` expressible as `f m * t`, `t ∈ T`, or `R`
+  is subsingleton.
+  The source image is on the **left**; coefficients may be noncommutative,
+  and neither cancellation nor finite generation is assumed. Monomial
+  subalgebra inclusions over nontrivial commutative coefficients satisfy the
+  corresponding finite-cover criterion with their inclusion-induced action.
+  [Statements and boundaries](docs/HeadlineResults.md#relative-module-finiteness) ·
+  [imports and API](docs/Usage.md#relative-module-finiteness).
+
 - **Finite type.** For any commutative semiring `R` and any monoid `M`,
   `Algebra.FiniteType R (MonoidAlgebra R M)` is equivalent to
   `Monoid.FG M ∨ Subsingleton R`. Nontrivial coefficients give simply finite

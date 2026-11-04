@@ -18,6 +18,7 @@ consumer example, build commands and references.
 - [Coefficient and index quotients](#coefficient-and-index-quotients)
 - [Central summands finite over the base ring](#central-summands-finite-over-the-base-ring)
 - [Uniform binomial kernels](#uniform-binomial-kernels)
+- [Relative module finiteness](#relative-module-finiteness)
 - [Finite type](#finite-type)
 - [Finite presentation](#finite-presentation)
 - [Chain conditions and regularity](#chain-conditions-and-regularity)
@@ -438,6 +439,70 @@ arbitrary coefficient-ring relations are not assumed to be integer images.
 See [the all-fiber theorem](../GroupRings/MonoidAlgebra/BinomialKernel.lean),
 [the finite-generation theorems](../GroupRings/MonoidAlgebra/UniformBinomialKernel.lean)
 and [coefficientwise normalization](../GroupRings/MonoidAlgebra/FiberNormalization.lean).
+
+## Relative module finiteness
+
+For any semiring `R` and monoids `M`, `N`, all in independent universes, and
+homomorphism `f : M →* N`,
+[`MonoidAlgebra.moduleFinite_mapDomainRingHom_iff`](../GroupRings/MonoidAlgebra/MapDomainFinite.lean)
+states:
+
+```lean
+@Module.Finite (MonoidAlgebra R M) (MonoidAlgebra R N)
+  inferInstance inferInstance ((MonoidAlgebra.mapDomainRingHom R f).toModule) ↔
+  (∃ T : Set N, T.Finite ∧ ∀ n : N, ∃ m : M, ∃ t ∈ T, n = f m * t) ∨
+    Subsingleton R
+```
+
+This is the target's **left regular action restricted along the given map**:
+`a • p = mapDomainRingHom R f a * p`. It is not an assertion about an arbitrary
+module action, `RingHom.Finite`, or a new algebra structure. The cover has the
+source image on the **left**, `Set.range f * T`, not `T * Set.range f`.
+Neither coefficients nor monoids need commute. No ring, cancellation, group,
+Noetherianity, finite generation or finite-carrier hypothesis is imposed.
+
+With `[Nontrivial R]`, `moduleFinite_mapDomainRingHom_iff_of_nontrivial` removes
+the subsingleton alternative. A finite cover gives the coefficient-one module
+generators `single t 1`, `t ∈ T`, even for zero coefficients; this is
+`moduleFinite_mapDomainRingHom_of_finite_cover`. Conversely,
+`exists_finite_cover_of_moduleFinite_mapDomainRingHom` extracts a finite
+remainder set from the union of coefficient supports of module generators,
+under nontrivial coefficients.
+
+The pointwise engine
+[`mem_span_single_mapDomainRingHom_iff`](../GroupRings/MonoidAlgebra/MapDomainSpan.lean)
+works for **any** label set `T : Set N`: for the same restricted action, `p`
+lies in the `R[M]`-span of `{single t 1 | t ∈ T}` exactly when
+`(↑p.coeff.support : Set N) ⊆ Set.range f * T`.
+The set need not be finite, multiplicatively closed or stable under scalars.
+For empty labels, membership in the zero span is equivalent to empty support.
+This support criterion includes zero coefficients without an extra alternative;
+finite generation of the whole target requires a finite covering remainder set.
+
+Identity and surjective maps have remainder set `{1}`, even for monoids that
+are not finitely generated. Surjectivity is not necessary: doubling on the
+additive monoid `ℕ`, viewed multiplicatively, has remainders `0` and `1`.
+For a map from the one-element monoid to an infinite monoid there is no finite
+cover, but subsingleton coefficients still give a finite, trivial target
+module. With nontrivial commutative coefficients and target `Multiplicative ℕ`,
+the coefficient algebra is of finite type but is not module-finite along that
+one-element-source map. Thus this criterion is distinct from algebra finite
+type and from finite generation of the target monoid.
+
+For a commutative semiring `R` and submonoids `S ≤ U` of any monoid `M`, the
+[monomial-subalgebra API](../GroupRings/MonoidAlgebra/MonomialSubalgebra.lean)
+retains its support-membership characterization. For any set `E : Set M`, the
+span of `single e 1`, `e ∈ E`, over `monomialSubalgebra R S`, restricted to `R`,
+equals `supported R R ((S : Set M) * E)`.
+The [finite-cover criterion](../GroupRings/MonoidAlgebra/MonomialFinite.lean)
+uses the original inclusion-induced left action: over nontrivial coefficients,
+`monomialSubalgebra R U` is finite over `monomialSubalgebra R S` exactly when
+there is a finite `E ⊆ U` with `U ⊆ S * E`. Sufficiency also allows zero
+coefficients. These are specializations of the map-domain engine, not a
+separate span or cover criterion; the subalgebra objects retain their
+commutative-coefficient hypothesis, without exponent commutativity or
+cancellation. See the [usage inventory](Usage.md#relative-module-finiteness)
+and [credits](../CREDITS.md#relative-module-finiteness-and-monomial-subalgebras).
 
 ## Finite type
 

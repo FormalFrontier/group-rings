@@ -186,6 +186,33 @@ multiplicative type-tag equivalence supplies the additive criterion. These are
 formalization and proof-approach credits; the dependencies retain their own
 licenses and notices as described below.
 
+## Relative module finiteness and monomial subalgebras
+
+The map-domain support-span and finite-cover engine generalizes the
+polynomial-support → monoid-algebra supported-span → finite-support-union
+formalization approach by Formal Frontier Agents in
+[Toric Ideals' monomial-subalgebra API](https://github.com/FormalFrontier/toric-ideals/blob/be9082bc88281b6b2cde171029265a6057a54aed/ToricIdeals/MonoidAlgebra/MonomialSubalgebra.lean)
+and its
+[finite-cover proofs](https://github.com/FormalFrontier/toric-ideals/blob/be9082bc88281b6b2cde171029265a6057a54aed/ToricIdeals/MonoidAlgebra/MonomialFinite.lean).
+These predecessors already allow arbitrary exponent monoids over commutative
+semirings. The given-map criterion also allows noncommutative coefficient
+semirings; the monomial-subalgebra span and three generic finite-cover
+statements use that same engine with their original inclusion actions.
+The monomial-subalgebra definition and its characteristic support API retain
+expression from these Formal Frontier modules. The scalar-action span and
+finite-module proofs use the one generalized map-domain engine. This credits
+expression lineage and the proof approach separately.
+
+Mathlib supplies finite generation (Johan Commelin), monoid-algebra modules and
+restricted support (Johannes Hölzl, Yury Kudryashov and Kim Morrison), support
+estimates (Damiano Testa), adjoining and subalgebra lattices (Kenny Lau and
+Yury Kudryashov), and scalar restriction (Nathaniel Thomas, Jeremy Avigad,
+Johannes Hölzl and Mario Carneiro). Its span API is due to Johannes Hölzl,
+Mario Carneiro, Kevin Buzzard, Yury Kudryashov, Frédéric Dupuis and Heather
+Macbeth. Original Formal Frontier expression is Apache-2.0; authentic dependency
+licenses and notices remain with their contributions. These academic credits
+are separate from copyright ownership or permission to redistribute expression.
+
 ## Finite presentation
 
 Finite presentation of commutative monoid algebras combines Mathlib's finite-type

@@ -9,6 +9,7 @@ simple-module, Noetherian and Fourier APIs, the catalogue also links the dedicat
 
 - [Library and release scope](#library-and-release-scope)
 - [Using the library and choosing imports](#using-the-library)
+- [Relative module finiteness](#relative-module-finiteness)
 - [Simple ring quotients](#simple-ring-quotients)
 - [Artinian monoid algebras](#artinian-monoid-algebras)
 - [Central summands detected by characters](#central-summands-detected-by-characters)
@@ -73,6 +74,10 @@ group-algebra module. Generic Noetherian retraction descent comes from
 | `GroupRings.MonoidAlgebra.FinitePresentation` | Canonical algebra finite presentation for finitely generated commutative monoids and additive commutative monoids over any commutative ring. |
 | `GroupRings.MonoidAlgebra.CyclicNoetherian` | Direct import: cyclic coefficient criterion, group-equivalence and finite-index transport, finite-group products. |
 | `GroupRings.MonoidAlgebra.MapDomain` | Coefficient projection retracts pushforward and commutes with right multiplication by a group image. |
+| `GroupRings.MonoidAlgebra.MapDomainSpan` | Arbitrary-label monomial spans for the left regular action restricted along a given monoid-algebra map, over any semiring. |
+| `GroupRings.MonoidAlgebra.MapDomainFinite` | Module finiteness for that exact action iff a finite left-image cover exists or coefficients are subsingleton; nontrivial-coefficient criterion and both directions. |
+| `GroupRings.MonoidAlgebra.MonomialSubalgebra` | Coefficient-one monomial adjoins over commutative semirings, universal property, support membership, single-term and monotonicity laws, and arbitrary-label spans via the map-domain core. |
+| `GroupRings.MonoidAlgebra.MonomialFinite` | Three generic finite-cover endpoints for monomial-subalgebra inclusions with their original left action, via the map-domain criterion. |
 | `GroupRings.RingTheory.Noetherian` | Deprecated compatibility import for `CoherentModules.RingTheory.Noetherian.Retraction`, the ideal extension-contraction and left-Noetherian descent API for additive right retractions. |
 | `GroupRings.MonoidAlgebra.Units` | Single-term units and reflection by the basis embedding. |
 | `GroupRings.MonoidAlgebra.AugmentationNilpotence` | Uniform group exponents from augmentation nilpotence over nontrivial rings of prime characteristic. |
@@ -154,6 +159,17 @@ is required by consumers.
 | `MonoidAlgebra.isNoetherianRing_iff_of_finiteIndex_comm_fg` | Coefficient-ring criterion from a finite-index FG subgroup with commutative inherited multiplication, without normality. |
 | `MonoidAlgebra.isNoetherianRing_of_injective`, `isNoetherianRing_subgroup` | Left-Noetherianity descends along any group-to-monoid embedding, in particular to every subgroup algebra. |
 | `MonoidAlgebra.comapDomain_mapDomain`, `comapDomain_mul_mapDomain` | Coefficient retraction and right multiplication compatibility, without target cancellation. |
+| `MonoidAlgebra.mem_span_single_mapDomainRingHom_iff` | For any label set, membership in the source-action monomial span iff coefficient support lies in `Set.range f * T`. |
+| `MonoidAlgebra.moduleFinite_mapDomainRingHom_iff` | Sharp finite-cover-or-subsingleton criterion for the target's left regular module restricted along the given map, over any semiring. |
+| `MonoidAlgebra.moduleFinite_mapDomainRingHom_iff_of_nontrivial` | Finite-cover equivalence without the subsingleton alternative over nontrivial coefficients. |
+| `MonoidAlgebra.moduleFinite_mapDomainRingHom_of_finite_cover`, `exists_finite_cover_of_moduleFinite_mapDomainRingHom` | Finite-cover sufficiency, including zero coefficients, and necessity over nontrivial coefficients. |
+| `MonoidAlgebra.monomialSubalgebra`, `monomialSubalgebra_eq_adjoin`, `monomialSubalgebra_le_iff` | Coefficient-one monomial adjoin and its universal property over commutative semirings. |
+| `MonoidAlgebra.monomialSubalgebra_toSubmodule`, `mem_monomialSubalgebra_iff` | Underlying coefficient module and membership characterized by support in the exponent submonoid. |
+| `MonoidAlgebra.single_mem_monomialSubalgebra_iff`, `monomialSubalgebra_mono` | Single-term membership iff exponent membership or zero coefficient, and monotonicity. |
+| `MonoidAlgebra.monomialSubalgebraEquiv` | Coefficient-preserving algebra equivalence from `R[S]` to the monomial subalgebra over any commutative semiring. |
+| `MonoidAlgebra.monomialSubalgebraEquiv_apply`, `monomialSubalgebraEquiv_mapDomain` | Ambient subtype pushforward and commutation with exponent and subalgebra inclusions. |
+| `MonoidAlgebra.span_single_restrictScalars_monomialSubalgebra` | Arbitrary-label span over the monomial subalgebra, restricted to coefficients, is supported on `S * E`. |
+| `MonoidAlgebra.moduleFinite_monomialSubalgebra_of_subset_mul`, `exists_finite_cover_of_moduleFinite_monomialSubalgebra`, `moduleFinite_monomialSubalgebra_iff` | Finite-cover sufficiency over commutative semirings, and necessity and equivalence over nontrivial coefficients, with the inclusion-induced action. |
 | `RingHom.comap_map_eq_of_additive_retraction`, `isNoetherianRing_of_additive_retraction` | Ideal extension-contraction and regular-left Noetherianity descent for an additive right retraction. |
 | `RingHom.comap_map_eq_of_leftInverse` | Agreement with the ring-homomorphism retraction case of ideal extension-contraction. |
 | `MonoidAlgebra.subgroup_fg_of_isNoetherianRing` | Every subgroup is FG when its group algebra over a nontrivial ring is left-Noetherian. |
@@ -236,6 +252,35 @@ break the restricted-simp regression despite passing ordinary `simp` tests.
 The priority change preserves the theorem's statement and proof and avoids its
 observed `simpNF` redundancy finding. It does not promise compatibility with
 every custom simp set or a performance improvement.
+
+## Relative module finiteness
+
+Import `GroupRings.MonoidAlgebra.MapDomainFinite` for the criterion and its
+support-span API, or `GroupRings.MonoidAlgebra.MapDomainSpan` for spans alone.
+Both are re-exported by `GroupRings`. For `[Semiring R] [Monoid M] [Monoid N]`
+and `f : M →* N`, `MonoidAlgebra.moduleFinite_mapDomainRingHom_iff (R := R) f`
+concerns exactly the module record `(MonoidAlgebra.mapDomainRingHom R f).toModule`.
+In a proof using its span or finite-generation operations, install that record
+locally; do not supply an unrelated `Module` instance or an `Algebra` structure.
+
+Use `MonoidAlgebra.moduleFinite_mapDomainRingHom_of_finite_cover (R := R) f hT hcover`
+when `hT : T.Finite` and
+`hcover : ∀ n : N, ∃ m : M, ∃ t ∈ T, n = f m * t` are given.
+For the converse, pass the finite-module witness explicitly to
+`MonoidAlgebra.exists_finite_cover_of_moduleFinite_mapDomainRingHom (R := R) f`
+under `[Nontrivial R]`. For arbitrary labels, apply
+`MonoidAlgebra.mem_span_single_mapDomainRingHom_iff f T p`; its right side uses
+`p.coeff.support` and the ordered product `Set.range f * T`.
+See the [detailed statement and boundary cases](HeadlineResults.md#relative-module-finiteness)
+for the distinction from algebra finite type.
+
+`GroupRings.MonoidAlgebra.MonomialSubalgebra` and
+`GroupRings.MonoidAlgebra.MonomialFinite` are also re-exported. Their objects
+retain `[CommSemiring R]` and the existing support, single-term and universal
+property API. For `hSU : S ≤ U`, the finite-cover endpoints use precisely
+`(Subalgebra.inclusion (MonoidAlgebra.monomialSubalgebra_mono (R := R) hSU)).toRingHom.toModule`.
+The coefficient-preserving identifications with `R[S]` and `R[U]` respect
+inclusion and transport this action to the same map-domain criterion.
 
 ## Simple ring quotients
 
