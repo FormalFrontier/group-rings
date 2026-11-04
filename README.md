@@ -156,6 +156,14 @@ module and declaration inventories.
   hypothesis is needed.
   [Statements and modules](docs/HeadlineResults.md#uniform-binomial-kernels).
 
+- **Finite type.** For any commutative semiring `R` and any monoid `M`,
+  `Algebra.FiniteType R (MonoidAlgebra R M)` is equivalent to
+  `Monoid.FG M ∨ Subsingleton R`. Nontrivial coefficients give simply finite
+  generation of `M`; neither commutativity nor cancellation of `M` is needed.
+  The additive-monoid counterpart uses the same criterion.
+  [Module](GroupRings/MonoidAlgebra/FiniteType.lean) ·
+  [statements and use](docs/HeadlineResults.md#finite-type).
+
 - **Finite presentation.** For any commutative ring `R` and finitely generated
   commutative monoid `M`, the canonical `R`-algebra `R[M]` is finitely presented.
   The additive-monoid version is also an instance. Coefficients need not be

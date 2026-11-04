@@ -48,6 +48,7 @@ public import GroupRings.MonoidAlgebra.FiberNormalization
 public import GroupRings.MonoidAlgebra.BinomialKernel
 public import GroupRings.MonoidAlgebra.UniformBinomialKernel
 public import GroupRings.MonoidAlgebra.Noetherian
+public import GroupRings.MonoidAlgebra.FiniteType
 public import GroupRings.MonoidAlgebra.FinitePresentation
 public import GroupRings.MonoidAlgebra.Artinian
 public import GroupRings.MonoidAlgebra.MapDomain
@@ -143,6 +144,11 @@ maps of the original modules. The representation construction in
 an additive commutative monoid. Its comparison with Mathlib's invariant-space
 averaging map over a commutative ring is in
 `GroupTheory.RepresentationAveragingProjectorComparison`.
+
+Over any commutative semiring, a monoid algebra is of finite type exactly when
+its monoid is finitely generated or its coefficients are subsingleton. The monoid
+need not commute, be cancellative or be a group. Additive monoid algebras have
+the same criterion, and nontrivial coefficients remove the zero alternative.
 
 Every Noetherian semimodule over a semiring with compatible restricted scalars
 has a greatest submodule finite over those scalars, preserved by every linear

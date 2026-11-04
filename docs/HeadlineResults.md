@@ -18,6 +18,7 @@ consumer example, build commands and references.
 - [Coefficient and index quotients](#coefficient-and-index-quotients)
 - [Central summands finite over the base ring](#central-summands-finite-over-the-base-ring)
 - [Uniform binomial kernels](#uniform-binomial-kernels)
+- [Finite type](#finite-type)
 - [Finite presentation](#finite-presentation)
 - [Chain conditions and regularity](#chain-conditions-and-regularity)
 - [Laurent coordinates](#laurent-coordinates)
@@ -437,6 +438,29 @@ arbitrary coefficient-ring relations are not assumed to be integer images.
 See [the all-fiber theorem](../GroupRings/MonoidAlgebra/BinomialKernel.lean),
 [the finite-generation theorems](../GroupRings/MonoidAlgebra/UniformBinomialKernel.lean)
 and [coefficientwise normalization](../GroupRings/MonoidAlgebra/FiberNormalization.lean).
+
+## Finite type
+
+For any commutative semiring `R` and monoid `M` in independent universes,
+`MonoidAlgebra.finiteType_iff_fg_or_subsingleton` states
+
+```lean
+Algebra.FiniteType R (MonoidAlgebra R M) ↔ Monoid.FG M ∨ Subsingleton R
+```
+
+The algebra is the canonical coefficient algebra, with its possibly
+noncommutative semiring target. No commutativity, cancellation, group or
+finite-carrier hypothesis is imposed on `M`, and `R` need not be a ring or
+Noetherian. The zero-coefficient alternative is essential. With `[Nontrivial R]`,
+`MonoidAlgebra.finiteType_iff_fg_of_nontrivial` gives finite type iff
+`Monoid.FG M`, recovering Mathlib's ring criterion at `CommRing` coefficients.
+Finite generation gives a forward finite-type instance; there is no converse
+finite-generation instance. The additive counterparts are transported through
+Mathlib's coefficient-preserving multiplicative type-tag algebra equivalence.
+This concerns algebra finite type, not module finiteness or finite presentation.
+See the [module](../GroupRings/MonoidAlgebra/FiniteType.lean) and
+[public-import client](../tests/GroupRingsTest/PublicAPIClient.lean), which uses
+`ℕ` coefficients and the noncommutative two-letter free monoid.
 
 ## Finite presentation
 

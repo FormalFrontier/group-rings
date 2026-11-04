@@ -169,6 +169,23 @@ retained in [ScalarRestriction.lean](GroupRings/RingTheory/Ideal/ScalarRestricti
 Length transport reuses Andrew Yang's composition-length formalization and exact
 additivity in `ℕ∞`.
 
+## Finite type
+
+The semiring finite-type criterion adapts Johan Commelin's finite-support
+extraction and support-span argument in
+[`Mathlib.RingTheory.FiniteType`](https://github.com/leanprover-community/mathlib4/blob/83abb3e776bdefcbc447a1e44d0debe4010039e5/Mathlib/RingTheory/FiniteType.lean),
+following the additive criterion's support-span proof and extending the
+commutative-ring monoid-algebra criteria to commutative semirings, with the
+zero-coefficient alternative. Its authentic copyright and
+authorship notice is retained in the
+[finite-type module](GroupRings/MonoidAlgebra/FiniteType.lean). The proof reuses Mathlib's
+semiring support-generation, free-algebra lifting and finite-type surjection
+APIs, algebra-adjoin span formula, and monoid-label span detection; it does not
+repeat their supporting constructions. Mathlib's coefficient-preserving
+multiplicative type-tag equivalence supplies the additive criterion. These are
+formalization and proof-approach credits; the dependencies retain their own
+licenses and notices as described below.
+
 ## Finite presentation
 
 Finite presentation of commutative monoid algebras combines Mathlib's finite-type

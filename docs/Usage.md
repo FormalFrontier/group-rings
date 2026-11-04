@@ -69,6 +69,7 @@ group-algebra module. Generic Noetherian retraction descent comes from
 | `GroupRings.MonoidAlgebra.BinomialKernel` | The all-fiber unit-binomial left-ideal kernel formula for arbitrary monoid homomorphisms and rings. |
 | `GroupRings.MonoidAlgebra.UniformBinomialKernel` | Coefficient-independent finite fiber-pair generation for FG commutative sources, and the integer-kernel-FG conditional. |
 | `GroupRings.MonoidAlgebra.Noetherian` | Coefficient criterion for finitely generated commutative monoids, commutative-group classification with the zero-ring alternative, finite-index FG commutative subgroups, group-subalgebra descent and necessary conditions. |
+| `GroupRings.MonoidAlgebra.FiniteType` | Algebra finite type iff monoid finite generation or zero coefficients over arbitrary commutative semirings, including noncommutative monoids; additive type-tag transport and nontrivial-coefficient criteria. |
 | `GroupRings.MonoidAlgebra.FinitePresentation` | Canonical algebra finite presentation for finitely generated commutative monoids and additive commutative monoids over any commutative ring. |
 | `GroupRings.MonoidAlgebra.CyclicNoetherian` | Direct import: cyclic coefficient criterion, group-equivalence and finite-index transport, finite-group products. |
 | `GroupRings.MonoidAlgebra.MapDomain` | Coefficient projection retracts pushforward and commutes with right multiplication by a group image. |
