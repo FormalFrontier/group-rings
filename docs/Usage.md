@@ -65,6 +65,9 @@ group-algebra module. Generic Noetherian retraction descent comes from
 | `GroupRings.MonoidAlgebra.SubgroupIdeals` | Left coset coefficient sums and subgroup left ideals, inclusion and normality. |
 | `GroupRings.MonoidAlgebra.SubgroupIdealsFG` | Finite generation of subgroup left ideals and augmentation kernels. |
 | `GroupRings.MonoidAlgebra.SubgroupBasis` | Right-coset bases, left subgroup-algebra coordinates and finite-index module finiteness over semirings. |
+| `GroupRings.MonoidAlgebra.FiberNormalization` | Coefficientwise normalization in left ideals, for arbitrary target index types and ring coefficients. |
+| `GroupRings.MonoidAlgebra.BinomialKernel` | The all-fiber unit-binomial left-ideal kernel formula for arbitrary monoid homomorphisms and rings. |
+| `GroupRings.MonoidAlgebra.UniformBinomialKernel` | Coefficient-independent finite fiber-pair generation for FG commutative sources, and the integer-kernel-FG conditional. |
 | `GroupRings.MonoidAlgebra.Noetherian` | Coefficient criterion for finitely generated commutative monoids, commutative-group classification with the zero-ring alternative, finite-index FG commutative subgroups, group-subalgebra descent and necessary conditions. |
 | `GroupRings.MonoidAlgebra.FinitePresentation` | Canonical algebra finite presentation for finitely generated commutative monoids and additive commutative monoids over any commutative ring. |
 | `GroupRings.MonoidAlgebra.CyclicNoetherian` | Direct import: cyclic coefficient criterion, group-equivalence and finite-index transport, finite-group products. |
@@ -140,6 +143,10 @@ is required by consumers.
 | `MonoidAlgebra.isArtinianRing_iff` | For any ring and right-cancellative monoid, left-Artinianity iff coefficient left-Artinianity and either zero coefficients or a finite monoid. |
 | `MonoidAlgebra.isNoetherianRing_multiplicative_int_iff`, `isNoetherianRing_iff_of_mulEquiv_int` | Infinite cyclic coefficient criterion over every ring. |
 | `MonoidAlgebra.isNoetherianRing_iff_of_finiteIndex_mulEquiv_int`, `isNoetherianRing_multiplicative_int_prod_iff` | Finite-index cyclic and finite-group-product coefficient criteria, without normality. |
+| `AddMonoidAlgebra.mem_ideal_of_mapDomain_eq_zero`, `ker_mapDomainRingHom_le` | All-coefficient basis normalization contains mapped-zero elements and the induced-map kernel in a left ideal. |
+| `AddMonoidAlgebra.ideal_eq_ker_mapDomainRingHom`, `mem_ideal_iff_mapDomain_eq_zero` | Kernel equality and membership once the separate ideal-to-kernel containment is supplied. |
+| `MonoidAlgebra.ker_mapDomainRingHom_eq_span_fiber` | Arbitrary monoid-map kernels are left spans of same-fiber unit-basis differences, over every ring. |
+| `MonoidAlgebra.uniform_fiber_span_of_integer_kernel_fg`, `uniform_fiber_span_of_fg` | One finite family of fiber pairs works over every ring; the unconditional theorem assumes an FG commutative source only. |
 | `MonoidAlgebra.isNoetherianRing_of_fg`, `isNoetherianRing_iff_of_fg` | Ascent and the coefficient-ring criterion for finitely generated commutative monoid algebras over any ring. |
 | `MonoidAlgebra.finitePresentation_of_fg`, `AddMonoidAlgebra.finitePresentation_of_fg` | Finite presentation as canonical algebras over arbitrary commutative coefficient rings, without cancellation or finite-carrier hypotheses. |
 | `MonoidAlgebra.isNoetherianRing_iff_of_commGroup` | For a commutative group, left-Noetherianity iff coefficient left-Noetherianity and either zero coefficients or group FG. |

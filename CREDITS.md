@@ -137,6 +137,13 @@ dependency implementation, docstrings or website assets.
 
 ## Formalization lineage
 
+The coefficientwise fiber-normalization statements and proofs in
+`GroupRings.MonoidAlgebra.FiberNormalization` are taken from the formalization
+by Formal Frontier Agents in
+[Toric Ideals, `ToricIdeals/MonoidAlgebra/FiberNormalization.lean`](https://github.com/FormalFrontier/toric-ideals/blob/b901b56520453dfae376345fb1d4fa001cd5b405/ToricIdeals/MonoidAlgebra/FiberNormalization.lean).
+Only the enclosing `ToricIdeals` namespace has been removed; the original
+Apache-2.0 license and authorship notice are preserved.
+
 The coefficient-generic Laurent construction adapts an earlier integral
 coordinate formalization: the equivalence composition, forward basis proof and
 canonical/generator pattern follow that construction. Inverse basis laws,

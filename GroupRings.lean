@@ -44,6 +44,9 @@ public import GroupRings.MonoidAlgebra.SubgroupIdealsFG
 public import GroupRings.MonoidAlgebra.SubgroupBasis
 public import GroupRings.MonoidAlgebra.Quotient
 public import GroupRings.MonoidAlgebra.KernelRange
+public import GroupRings.MonoidAlgebra.FiberNormalization
+public import GroupRings.MonoidAlgebra.BinomialKernel
+public import GroupRings.MonoidAlgebra.UniformBinomialKernel
 public import GroupRings.MonoidAlgebra.Noetherian
 public import GroupRings.MonoidAlgebra.FinitePresentation
 public import GroupRings.MonoidAlgebra.Artinian

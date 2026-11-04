@@ -148,6 +148,14 @@ module and declaration inventories.
   the whole algebra need not be finite over `R`.
   [Statement and proof strategy](docs/HeadlineResults.md#central-summands-finite-over-the-base-ring).
 
+- **Uniform binomial kernels.** For any monoid homomorphism and any ring,
+  its monoid-algebra kernel is the left span of equal-image unit-basis
+  differences. If the source is finitely generated and commutative, one finite
+  family of index pairs works over **every** coefficient ring. Neither the
+  target monoid nor the coefficients need commute; no coefficient-Noetherian
+  hypothesis is needed.
+  [Statements and modules](docs/HeadlineResults.md#uniform-binomial-kernels).
+
 - **Finite presentation.** For any commutative ring `R` and finitely generated
   commutative monoid `M`, the canonical `R`-algebra `R[M]` is finitely presented.
   The additive-monoid version is also an instance. Coefficients need not be

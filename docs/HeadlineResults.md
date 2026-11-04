@@ -17,6 +17,7 @@ consumer example, build commands and references.
 - [Subgroup ideals and coset bases](#subgroup-ideals-and-coset-bases)
 - [Coefficient and index quotients](#coefficient-and-index-quotients)
 - [Central summands finite over the base ring](#central-summands-finite-over-the-base-ring)
+- [Uniform binomial kernels](#uniform-binomial-kernels)
 - [Finite presentation](#finite-presentation)
 - [Chain conditions and regularity](#chain-conditions-and-regularity)
 - [Laurent coordinates](#laurent-coordinates)
@@ -413,6 +414,29 @@ the idempotent need not be primitive, and `R` and `A` have independent
 universes. See
 [FiniteCharacterBlock.lean](../GroupRings/RingTheory/Artinian/FiniteCharacterBlock.lean)
 and the [proof strategy](Usage.md#central-summands-detected-by-characters).
+
+## Uniform binomial kernels
+
+For arbitrary monoids `N`, `M`, any homomorphism `f : N →* M`, and any ring `R`,
+`MonoidAlgebra.ker_mapDomainRingHom_eq_span_fiber` identifies the induced
+monoid-algebra kernel with the left ideal spanned by all
+`single a 1 - single b 1` satisfying `f a = f b`.
+
+When `N` is commutative and finitely generated,
+`MonoidAlgebra.uniform_fiber_span_of_fg` chooses one finite set of such index
+pairs **before** quantifying over the coefficient ring. The same pairs generate
+all these kernels, including over noncommutative, zero or non-Noetherian rings.
+The target monoid need not commute, be finitely generated, or be covered by `f`.
+The source, target and coefficient universes are independent.
+
+The more general `MonoidAlgebra.uniform_fiber_span_of_integer_kernel_fg` needs
+only monoid structures on source and target, with finite generation of the
+integer kernel as an explicit premise. Finite extraction is made over the
+integers, then unit-coefficient binomials and ideal spans are transported;
+arbitrary coefficient-ring relations are not assumed to be integer images.
+See [the all-fiber theorem](../GroupRings/MonoidAlgebra/BinomialKernel.lean),
+[the finite-generation theorems](../GroupRings/MonoidAlgebra/UniformBinomialKernel.lean)
+and [coefficientwise normalization](../GroupRings/MonoidAlgebra/FiberNormalization.lean).
 
 ## Finite presentation
 

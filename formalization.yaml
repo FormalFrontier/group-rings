@@ -37,6 +37,12 @@ project:
     its monoid algebra over any left-Noetherian ring is left-Noetherian, in
     independent universes and without coefficient commutativity. Augmentation
     gives the reverse implication; the exponent monoid need not be finite.
+    For any monoid homomorphism over any ring, its monoid-algebra kernel is
+    the left ideal spanned by all equal-image unit-basis differences. A finitely
+    generated commutative source admits one finite pair family that works over
+    every coefficient ring, without coefficient Noetherianity or target
+    commutativity, finite generation or surjectivity. More generally, finite
+    generation of the integer kernel is an explicit sufficient premise.
     For any injective homomorphism from a group
     to a monoid, left-Noetherianity of the monoid algebra descends to the group
     algebra over every semiring, with three independent universes. Every subgroup
@@ -525,6 +531,27 @@ status:
     - declaration: "MonoidAlgebra.existsUnique_comp_mapDomainRingHom_mk'_iff"
       file: "GroupRings/MonoidAlgebra/Quotient.lean"
       note: "An arbitrary unital ring homomorphism into any semiring factors uniquely through the quotient index map exactly when every subgroup basis unit maps to one; the three universes are independent."
+    - declaration: "AddMonoidAlgebra.mem_ideal_of_mapDomain_eq_zero"
+      file: "GroupRings/MonoidAlgebra/FiberNormalization.lean"
+      note: "All-coefficient basis normalization puts mapped-zero elements in a left ideal, over any ring and additive source monoid with an arbitrary target index type."
+    - declaration: "AddMonoidAlgebra.ker_mapDomainRingHom_le"
+      file: "GroupRings/MonoidAlgebra/FiberNormalization.lean"
+      note: "The normalization principle contains an additive-monoid map kernel in the specified left ideal; no surjectivity or section law is required."
+    - declaration: "AddMonoidAlgebra.ideal_eq_ker_mapDomainRingHom"
+      file: "GroupRings/MonoidAlgebra/FiberNormalization.lean"
+      note: "All-coefficient normalization plus the separate ideal-to-kernel containment gives kernel equality."
+    - declaration: "AddMonoidAlgebra.mem_ideal_iff_mapDomain_eq_zero"
+      file: "GroupRings/MonoidAlgebra/FiberNormalization.lean"
+      note: "Membership in a normalized left ideal is equivalent to vanishing under the additive monomial map once the ideal is contained in the kernel."
+    - declaration: "MonoidAlgebra.ker_mapDomainRingHom_eq_span_fiber"
+      file: "GroupRings/MonoidAlgebra/BinomialKernel.lean"
+      note: "For arbitrary monoids and any ring, the induced-map kernel is the ordinary left span of all equal-image unit-basis differences, in independent universes."
+    - declaration: "MonoidAlgebra.uniform_fiber_span_of_integer_kernel_fg"
+      file: "GroupRings/MonoidAlgebra/UniformBinomialKernel.lean"
+      note: "For arbitrary source and target monoids, finite generation of the integer kernel supplies one finite same-fiber pair set generating every ring-coefficient kernel as a left ideal."
+    - declaration: "MonoidAlgebra.uniform_fiber_span_of_fg"
+      file: "GroupRings/MonoidAlgebra/UniformBinomialKernel.lean"
+      note: "An FG commutative source and arbitrary monoid target admit one finite pair set before quantification over every independently universed ring; no coefficient-Noetherian or target-generation assumption."
     - declaration: "MonoidAlgebra.ker_mapDomainRingHom"
       file: "GroupRings/MonoidAlgebra/KernelRange.lean"
       note: "For any group-to-monoid homomorphism and any ring, its algebra pushforward kernel is the independently generated left subgroup relation ideal; no surjectivity, coefficient nontriviality or target group assumption is needed."
