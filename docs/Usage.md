@@ -9,6 +9,7 @@ simple-module, Noetherian and Fourier APIs, the catalogue also links the dedicat
 
 - [Library and release scope](#library-and-release-scope)
 - [Using the library and choosing imports](#using-the-library)
+- [Units with two unique products](#units-with-two-unique-products)
 - [Relative module finiteness](#relative-module-finiteness)
 - [Simple ring quotients](#simple-ring-quotients)
 - [Artinian monoid algebras](#artinian-monoid-algebras)
@@ -18,9 +19,9 @@ simple-module, Noetherian and Fourier APIs, the catalogue also links the dedicat
 
 ## Library and release scope
 
-Monoid-algebra single-term units and augmentation-kernel bases, group algebras with
-explicit free abelian coordinates, and algebraic finite-abelian character
-convolution, formalized in Lean.
+Monoid-algebra units for two-unique-product monoids, general single-term unit
+criteria and augmentation-kernel bases, group algebras with explicit free abelian
+coordinates, and algebraic finite-abelian character convolution, formalized in Lean.
 
 Authors: Formal Frontier Agents
 
@@ -79,7 +80,8 @@ group-algebra module. Generic Noetherian retraction descent comes from
 | `GroupRings.MonoidAlgebra.MonomialSubalgebra` | Coefficient-one monomial adjoins over commutative semirings, universal property, support membership, single-term and monotonicity laws, and arbitrary-label spans via the map-domain core. |
 | `GroupRings.MonoidAlgebra.MonomialFinite` | Three generic finite-cover endpoints for monomial-subalgebra inclusions with their original left action, via the map-domain criterion. |
 | `GroupRings.RingTheory.Noetherian` | Deprecated compatibility import for `CoherentModules.RingTheory.Noetherian.Retraction`, the ideal extension-contraction and left-Noetherian descent API for additive right retractions. |
-| `GroupRings.MonoidAlgebra.Units` | Single-term units and reflection by the basis embedding. |
+| `GroupRings.MonoidAlgebra.Units` | Coefficient-unit reflection over any semiring and monoid; coefficient-and-index unit criterion for already-single terms over nontrivial semirings, requiring neither `NoZeroDivisors` nor `TwoUniqueProds`. |
+| `GroupRings.MonoidAlgebra.UnitsUniqueProds` | Monomial-unit classification over a no-zero-divisor semiring and a two-unique-product monoid, including the zero semiring; additive indices use `TwoUniqueSums` and `AddUnits`, with coefficient and algebra units still multiplicative. |
 | `GroupRings.MonoidAlgebra.SupportUniqueProds` | Convolution support cardinality exceeds one whenever the product of input support cardinalities does, over a no-zero-divisor semiring and a two-unique-products magma. |
 | `GroupRings.MonoidAlgebra.AugmentationNilpotence` | Uniform group exponents from augmentation nilpotence over nontrivial rings of prime characteristic. |
 | `GroupRings.MonoidAlgebra.AugmentationNilpotence.Finite` | Exact cardinality bound for finite p-groups over any ring with p=0, and the finite-group criterion. |
@@ -179,7 +181,9 @@ is required by consumers.
 | `MonoidAlgebra.augmentation_surjective` | Surjectivity over any semiring and monoid; combines with stock Noetherianity transport. |
 | `MonoidAlgebra.isUnit_coeff_of_single` | A unit single term has a unit coefficient over any semiring. |
 | `MonoidAlgebra.isLocalHom_of` | Basis embedding reflects units over a nontrivial semiring. |
-| `MonoidAlgebra.isUnit_single_iff` | A single term is a unit iff its coefficient and index are units, over a nontrivial semiring. |
+| `MonoidAlgebra.isUnit_single_iff` | Over a nontrivial semiring and any monoid, an already-single term is a unit iff its coefficient and index are units; neither `NoZeroDivisors R` nor `TwoUniqueProds M` is required. |
+| `MonoidAlgebra.isUnit_iff_exists_single_units` | For `[Semiring R] [NoZeroDivisors R] [Monoid M] [TwoUniqueProds M]`, an arbitrary `f : R[M]` is a unit iff `f = single m.val r.val` for some `m : Units M` and `r : Units R`; independent universes and the zero semiring are allowed. |
+| `AddMonoidAlgebra.isUnit_iff_exists_single_units` | Under `[Semiring R] [NoZeroDivisors R] [AddMonoid A] [TwoUniqueSums A]`, `IsUnit f` iff `f = single a.val r.val` for some `a : AddUnits A` and `r : Units R`; only the index units are additive. |
 | `MonoidAlgebra.augmentation` | Coefficient-sum ring homomorphism over any semiring and monoid. |
 | `MonoidAlgebra.finite_and_isUnit_natCard_of_projective_augmentation` | For a nontrivial semiring and a group, projectivity of the coefficient carrier under `a • r = augmentation R G a * r` implies `Finite G ∧ IsUnit (Nat.card G : R)`. |
 | `MonoidAlgebra.augmentation_apply`, `MonoidAlgebra.augmentation_single` | Coefficient-sum formula and single-term simp law. |
@@ -256,6 +260,32 @@ break the restricted-simp regression despite passing ordinary `simp` tests.
 The priority change preserves the theorem's statement and proof and avoids its
 observed `simpNF` redundancy finding. It does not promise compatibility with
 every custom simp set or a performance improvement.
+
+## Units with two unique products
+
+Import `GroupRings.MonoidAlgebra.UnitsUniqueProds` or `GroupRings`. Under
+`[Semiring R] [NoZeroDivisors R] [Monoid M] [TwoUniqueProds M]`, apply
+`MonoidAlgebra.isUnit_iff_exists_single_units f` to an arbitrary
+`f : MonoidAlgebra R M`. Its forward implication gives
+`m : Units M`, `r : Units R` and `f = MonoidAlgebra.single m.val r.val`;
+its reverse implication proves invertibility from such a presentation.
+The coefficient, index and algebra units are multiplicative, and `R` and `M`
+may lie in independent universes.
+
+For additive indices under `[AddMonoid A] [TwoUniqueSums A]`, use
+`AddMonoidAlgebra.isUnit_iff_exists_single_units f` with the same coefficient
+hypotheses. Its witnesses are `a : AddUnits A` and `r : Units R`; coefficient
+and algebra invertibility are multiplicative, not additive.
+
+For an already-single term over `[Nontrivial R]`, use
+`MonoidAlgebra.isUnit_single_iff m r` from `GroupRings.MonoidAlgebra.Units`.
+It works for any monoid without `NoZeroDivisors` or `TwoUniqueProds`.
+`MonoidAlgebra.isUnit_coeff_of_single` reflects the coefficient unit even over
+the zero semiring. The arbitrary-element theorem allows the zero coefficient
+semiring, using identity unit witnesses; it does not assert support cardinality
+one or reflection of an arbitrary displayed index in that case. See the
+[detailed statement and boundaries](HeadlineResults.md#units-with-two-unique-products)
+and [proof-approach credits](../CREDITS.md#units-and-unique-products).
 
 ## Relative module finiteness
 

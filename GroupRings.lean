@@ -40,6 +40,7 @@ public import GroupRings.MonoidAlgebra.FiniteCoefficientIdeal
 public import GroupRings.MonoidAlgebra.MixedQuotient
 public import GroupRings.Polynomial.CoefficientIdeals
 public import GroupRings.MonoidAlgebra.Units
+public import GroupRings.MonoidAlgebra.UnitsUniqueProds
 public import GroupRings.MonoidAlgebra.SupportUniqueProds
 public import GroupRings.MonoidAlgebra.SubgroupIdeals
 public import GroupRings.MonoidAlgebra.SubgroupIdealsFG

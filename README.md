@@ -31,6 +31,15 @@ module and declaration inventories.
   finite and `(Nat.card G : R)` to be a unit; coefficients need not commute.
   See the [augmentation-projectivity theorem](GroupRings/MonoidAlgebra/AugmentationProjective.lean).
 
+- **Units with two unique products.** Over a no-zero-divisor semiring `R`
+  and a monoid `M` with `TwoUniqueProds M`, an arbitrary `f : R[M]` is a unit
+  iff `f = single m.val r.val` for some `m : Units M` and `r : Units R`.
+  Both kinds of units are multiplicative; `R` may be the zero semiring.
+  For an additive monoid `A` with `TwoUniqueSums A`, the companion theorem
+  uses `a : AddUnits A`; coefficient and algebra units remain multiplicative.
+  See the [unit theorem](GroupRings/MonoidAlgebra/UnitsUniqueProds.lean) and
+  [precise scope and zero-semiring boundary](docs/HeadlineResults.md#units-with-two-unique-products).
+
 - **Convolution support.** Over a no-zero-divisor semiring and a magma with
   two unique products, a product of input support cardinalities greater than
   one forces the convolution support cardinality to be greater than one.
@@ -320,9 +329,13 @@ universes are independent in the general APIs; semiring, ring, commutative-semir
 and field hypotheses are result-specific, as are nontriviality assumptions.
 Nilpotence of an ideal **action** need not mean the ideal is nilpotent.
 
-Single-term unit results do not classify arbitrary sums. Laurent coordinates
-do not prove projective freeness or K-theory, and Fourier results do not assert
-a group-algebra/convolution equivalence or a nonabelian character basis.
+The arbitrary-element unit classification requires no zero divisors and two
+unique products; the general single-term criterion has neither hypothesis.
+Over the zero semiring, the existential classification does not imply
+support cardinality one or reflection of an arbitrary displayed index.
+Laurent coordinates do not prove projective freeness or K-theory, and Fourier
+results do not assert a group-algebra/convolution equivalence or a nonabelian
+character basis.
 See the [full mathematical scope](docs/HeadlineResults.md#mathematical-scope).
 
 ## References

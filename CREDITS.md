@@ -250,6 +250,36 @@ to the canonical coefficient restriction of the given group-algebra module.
 The augmentation-ideal consequence uses this library’s full group-algebra-linear
 crossed-map universal property.
 
+## Units and unique products
+
+Andrzej Strojnowski, *A note on u.p. groups* (1980), supplies the classical
+passage from unique-product **groups** to two unique products, as credited in
+Mathlib's `Algebra.Group.UniqueProds.Basic`. The multiplicative theorem
+`MonoidAlgebra.isUnit_iff_exists_single_units` in
+`GroupRings.MonoidAlgebra.UnitsUniqueProds` instead assumes a two-unique-product
+monoid and a no-zero-divisor semiring. This broader monoid/semiring
+classification and its proof are not attributed to Strojnowski's group theorem.
+
+The proof applies this library's convolution support estimate
+`MonoidAlgebra.one_lt_card_support_coeff_mul` to a unit and its inverse, then
+Mathlib's `Finsupp.card_support_le_one'` theorem to obtain a single-term
+presentation. It passes the original unit hypothesis to this library's
+already-single criterion `MonoidAlgebra.isUnit_single_iff`, whose index
+reflection uses both left and right inverse identities. Mathlib supplies
+`MonoidAlgebra.coeff_single`, `MonoidAlgebra.ext`, `MonoidAlgebra.coeff_zero`
+and the identity-support APIs.
+When the coefficient semiring is subsingleton, the proof uses identity unit
+witnesses rather than a support-cardinality-one assertion. These mathematical and formalization-approach
+credits do not assert a transcription of the article or permission to
+redistribute its text.
+
+The additive-index counterpart reuses the multiplicative classification through
+Mathlib's `AddMonoidAlgebra.toMultiplicative` ring equivalence and its single-term
+law, generic multiplicative-equivalence unit transport, and the public type-tag
+laws and index-unit constructors. Both index inverse equations are preserved;
+the coefficient semiring and its multiplicative units are unchanged. No second
+classification argument is introduced.
+
 ## Convolution support and unique products
 
 The convolution support-cardinality estimate in

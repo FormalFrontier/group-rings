@@ -9,6 +9,7 @@ consumer example, build commands and references.
 ## Families
 
 - [Single terms and augmentation](#single-terms-and-augmentation)
+- [Units with two unique products](#units-with-two-unique-products)
 - [Convolution support](#convolution-support)
 - [Coefficient tests and finite matrices](#coefficient-tests-and-finite-matrices)
 - [Crossed maps and averaging](#crossed-maps-and-averaging)
@@ -33,8 +34,9 @@ consumer example, build commands and references.
   trivial. Over a **nontrivial** semiring, the
   [basis embedding reflects units](../GroupRings/MonoidAlgebra/Units.lean), and
   `IsUnit (single m r) ↔ IsUnit r ∧ IsUnit m`. No ring, commutativity, group,
-  cancellation, domain or finiteness hypothesis is required. This classifies
-  single terms, not units represented by arbitrary finite sums.
+  cancellation, domain or finiteness hypothesis is required. This criterion
+  concerns an already-single term; the [arbitrary-element classification](#units-with-two-unique-products)
+  has additional hypotheses.
 
 - **Augmentation kernel generators.** For any possibly noncommutative ring `R`
   and any monoid `M` in independent universes, the
@@ -74,6 +76,48 @@ consumer example, build commands and references.
   over the zero semiring the coefficient semimodule is projective even for an
   infinite group. This theorem asserts necessity, not a converse construction.
 
+## Units with two unique products
+
+For `[Semiring R] [NoZeroDivisors R] [Monoid M] [TwoUniqueProds M]` in
+independent universes,
+[`MonoidAlgebra.isUnit_iff_exists_single_units`](../GroupRings/MonoidAlgebra/UnitsUniqueProds.lean)
+classifies arbitrary elements `f : MonoidAlgebra R M`:
+
+```lean
+IsUnit f ↔ ∃ (m : Units M) (r : Units R),
+  f = MonoidAlgebra.single m.val r.val
+```
+
+In this multiplicative-index statement, index, coefficient and algebra units
+are all multiplicative. Neither coefficient commutativity, a group or order on
+`M`, a ring structure, finiteness nor nontriviality of `R` is assumed. The
+product is canonical convolution, not pointwise multiplication.
+
+For `[AddMonoid A] [TwoUniqueSums A]` with the same coefficient hypotheses,
+[`AddMonoidAlgebra.isUnit_iff_exists_single_units`](../GroupRings/MonoidAlgebra/UnitsUniqueProds.lean)
+states, for `f : AddMonoidAlgebra R A`, the additive-index counterpart:
+
+```lean
+IsUnit f ↔ ∃ (a : AddUnits A) (r : Units R),
+  f = AddMonoidAlgebra.single a.val r.val
+```
+
+Only the index units are additive. Coefficient and algebra units are still
+multiplicative; the algebra identity is `1`, at index `0` with coefficient `1`.
+This counterpart reuses the multiplicative classification through Mathlib's
+coefficient-preserving index-tag ring equivalence.
+
+The zero semiring is included: every algebra element equals
+`single (1 : M) (1 : R)`, so the identity units supply the existential witnesses.
+Its coefficient support is empty, not of cardinality one. The theorem does
+not reflect unit status of an arbitrary index appearing in a single-term
+presentation over zero coefficients. With nontrivial coefficients a unit does
+have support cardinality one. In contrast, the already-single criterion
+`MonoidAlgebra.isUnit_single_iff` requires `Nontrivial R` but works for **any**
+monoid, with neither `NoZeroDivisors R` nor `TwoUniqueProds M`.
+See the [usage guide](Usage.md#units-with-two-unique-products) and
+[formalization credits](../CREDITS.md#units-and-unique-products).
+
 ## Convolution support
 
 For any `[Semiring R] [NoZeroDivisors R]` and independently polymorphic
@@ -85,8 +129,9 @@ states that, for `f g : R[M]`,
 the premise multiplies the two input support cardinalities, not the number
 of distinct product labels. Neither coefficient commutativity nor an index
 identity or associativity is assumed. Zero coefficient semirings are allowed:
-the premise then cannot hold. This is a support estimate, not a statement
-classifying arbitrary units.
+the premise then cannot hold. This is a support estimate; with a monoid
+identity and associativity it supplies the support step in the
+[unit classification](#units-with-two-unique-products).
 
 ## Coefficient tests and finite matrices
 
