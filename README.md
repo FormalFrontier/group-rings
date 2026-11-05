@@ -26,6 +26,10 @@ module and declaration inventories.
   `MonoidAlgebra.augmentationKerBasis` is a basis over the coefficient ring
   `R`, **not** over `R[M]`, indexed by nonidentity monoid elements.
   [Statements and modules](docs/HeadlineResults.md#single-terms-and-augmentation).
+  Over a nontrivial semiring and any group `G`, projectivity of `R` over
+  `R[G]` for the canonical **left augmentation action** forces `G` to be
+  finite and `(Nat.card G : R)` to be a unit; coefficients need not commute.
+  See the [augmentation-projectivity theorem](GroupRings/MonoidAlgebra/AugmentationProjective.lean).
 
 - **Convolution support.** Over a no-zero-divisor semiring and a magma with
   two unique products, a product of input support cardinalities greater than

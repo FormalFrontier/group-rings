@@ -265,6 +265,15 @@ unique products. The magma/semiring support estimate is not attributed to
 that group theorem or a transcription of the article's proof. This mathematical
 and formalization credit does not imply permission to redistribute the article.
 
+## Augmentation projectivity
+
+The necessity theorem for the canonical augmentation semimodule combines
+Mathlib's generic projective lifting property, its monoid-algebra
+single-product coefficient formula, Finsupp support and finite-sum APIs, and
+its commuting-product unit criterion. The action is scalar restriction along
+this library's coefficient-sum augmentation. These formalization-approach
+credits are separate from the dependency licenses and notices retained below.
+
 ## License and rights
 
 Original project contributions and identified project adaptations use

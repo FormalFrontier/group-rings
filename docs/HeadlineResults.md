@@ -62,6 +62,18 @@ consumer example, build commands and references.
   from a chosen point, and invert by extension minus the coefficient sum at that
   point. A semiring coefficient basis assertion would be false in general.
 
+- **Necessary conditions for augmentation projectivity.** For any nontrivial
+  semiring `R` and any group `G` in independent universes,
+  [`MonoidAlgebra.finite_and_isUnit_natCard_of_projective_augmentation`](../GroupRings/MonoidAlgebra/AugmentationProjective.lean)
+  states that projectivity of `R` as a **left `R[G]`-semimodule** with action
+  `a • r = MonoidAlgebra.augmentation R G a * r` implies
+  `Finite G ∧ IsUnit (Nat.card G : R)`. This is the coefficient carrier with
+  the canonical augmentation action, not the regular `R[G]`-module or an
+  arbitrary action on `R`. Neither coefficient commutativity, additive inverses,
+  a domain condition nor group finiteness is assumed. Nontriviality matters:
+  over the zero semiring the coefficient semimodule is projective even for an
+  infinite group. This theorem asserts necessity, not a converse construction.
+
 ## Convolution support
 
 For any `[Semiring R] [NoZeroDivisors R]` and independently polymorphic
