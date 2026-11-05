@@ -16,6 +16,11 @@ Coefficient centrality and conjugation invariance characterize the center of a g
 The coefficient condition also applies to monoid algebras. Nonzero coefficients of central
 elements have finite conjugation orbits.
 
+Commutation with a coefficient scalar is detected coefficientwise; this criterion only needs
+a unital magma of indices. Commutation with a group basis element is equivalent to invariance
+of coefficients under conjugation by its label. These local criteria use Mathlib's coefficient
+formulas for products with singleton terms.
+
 The center, coefficient map, and conjugation action are those of Mathlib.
 
 For commutative-ring coefficients, the ordinary-center specialization of Manju and Sharma,
@@ -36,6 +41,26 @@ specialized to the identity; no twisted-center or class-sum basis construction i
 universe u v w
 
 namespace MonoidAlgebra
+
+section MulOneClass
+
+variable {R : Type u} {M : Type w} [Semiring R] [MulOneClass M]
+
+/-- A coefficient scalar commutes with an element exactly when it commutes with every
+coefficient of that element. -/
+theorem single_one_commute_iff (r : R) (z : R[M]) :
+    Commute (single 1 r) z ↔ ∀ m : M, Commute r (z.coeff m) := by
+  constructor
+  · intro h m
+    simpa only [commute_iff_eq, coeff_single_one_mul, coeff_mul_single_one] using
+      congrArg (fun x : R[M] => x.coeff m) h.eq
+  · intro h
+    apply (commute_iff_eq _ _).mpr
+    apply coeff_injective
+    ext m
+    simpa only [coeff_single_one_mul, coeff_mul_single_one] using (h m).eq
+
+end MulOneClass
 
 section Monoid
 
@@ -77,6 +102,20 @@ end Monoid
 section Group
 
 variable {R : Type u} {G : Type v} [Semiring R] [Group G]
+
+/-- A group basis element commutes with an element exactly when conjugation by its label
+preserves every coefficient. -/
+theorem of_commute_iff_coeff_conj (h : G) (z : R[G]) :
+    Commute (of R G h) z ↔ ∀ g : G, z.coeff (h * g * h⁻¹) = z.coeff g := by
+  constructor
+  · intro hc g
+    simpa [of_apply, mul_assoc] using
+      (congrArg (fun x : R[G] => x.coeff (h * g)) hc.eq).symm
+  · intro hc
+    apply (commute_iff_eq _ _).mpr
+    apply coeff_injective
+    ext g
+    simpa [of_apply, mul_assoc] using (hc (h⁻¹ * g)).symm
 
 /-- A group-algebra element is central exactly when its coefficients are central and invariant
 under conjugation.
