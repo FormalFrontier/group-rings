@@ -21,8 +21,13 @@ module and declaration inventories.
   left-regular and either the coefficients are subsingleton or its index is
   left-regular; the [right-hand criterion](GroupRings/MonoidAlgebra/Regular.lean)
   is analogous. Augmentation is the coefficient-sum ring
-  homomorphism over any semiring. Over a ring its kernel is the **left** span
-  of `single m 1 - 1`, with monoid or subgroup generating-set refinements.
+  homomorphism over any semiring. For a right-cancellative monoid `M`, a nonzero
+  `R[M]`-linear map from `R` with its left augmentation action into the left
+  regular `R[M]` forces `M` finite; all such maps vanish when `M` is infinite,
+  including infinite groups. No coefficient nontriviality or domain condition
+  is needed. See the [augmentation Hom theorems](GroupRings/MonoidAlgebra/AugmentationHom.lean).
+  Over a ring its kernel is the **left** span of `single m 1 - 1`, with monoid
+  or subgroup generating-set refinements.
   `MonoidAlgebra.augmentationKerBasis` is a basis over the coefficient ring
   `R`, **not** over `R[M]`, indexed by nonidentity monoid elements.
   [Statements and modules](docs/HeadlineResults.md#single-terms-and-augmentation).

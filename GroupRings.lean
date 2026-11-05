@@ -11,6 +11,7 @@ public import GroupRings.MonoidAlgebra.AugmentationCrossedUniversal
 
 public import GroupRings.MonoidAlgebra.AugmentationCrossedMaps
 public import GroupRings.MonoidAlgebra.AugmentationProjective
+public import GroupRings.MonoidAlgebra.AugmentationHom
 
 public import GroupRings.FreeAbelian.LaurentPolynomial
 public import GroupRings.FiniteAbelian.RightConvolution

@@ -4,7 +4,7 @@ Authors: Formal Frontier Agents
 -/
 module
 
-public import GroupRings.MonoidAlgebra.Augmentation
+public import GroupRings.MonoidAlgebra.AugmentationHom
 public import Mathlib.Algebra.Module.Projective
 public import Mathlib.Algebra.Module.RingHom
 public import Mathlib.Algebra.MonoidAlgebra.Support
@@ -38,6 +38,7 @@ theorem finite_and_isUnit_natCard_of_projective_augmentation
       ((MonoidAlgebra.augmentation R G).toModule)) :
     Finite G ∧ IsUnit (Nat.card G : R) := by
   let _ : Module (MonoidAlgebra R G) R := (augmentation R G).toModule
+  let _ : Module (MonoidAlgebra R G) (MonoidAlgebra R G) := Semiring.toModule
   let _ : Module.Projective (MonoidAlgebra R G) R := hprojective
   obtain ⟨σ, hσ⟩ := Module.projective_lifting_property
     (Module.compHom.toLinearMap (augmentation R G))
@@ -45,30 +46,17 @@ theorem finite_and_isUnit_natCard_of_projective_augmentation
   let x : MonoidAlgebra R G := σ 1
   have hx_augmentation : augmentation R G x = 1 :=
     LinearMap.congr_fun hσ 1
-  have hx_fixed (g : G) : single g 1 * x = x := by
-    have haction : (single g (1 : R) : MonoidAlgebra R G) • (1 : R) = 1 := by
-      rw [RingHom.toModule_smul, augmentation_single, one_mul]
-    calc
-      single g 1 * x = σ ((single g (1 : R) : MonoidAlgebra R G) • (1 : R)) :=
-        (σ.map_smul (single g 1) 1).symm
-      _ = x := by rw [haction]
+  have hσ_ne_zero : σ ≠ 0 := by
+    intro hzero
+    apply (zero_ne_one : (0 : R) ≠ 1)
+    simpa only [x, hzero, LinearMap.zero_apply, map_zero] using hx_augmentation
+  have hfinite : Finite G := finite_of_linearMap_from_augmentation_ne_zero σ hσ_ne_zero
+  have hx_fixed (g : G) : single g 1 * x = x :=
+    single_one_mul_linearMap_from_augmentation_apply σ g 1
   classical
   have hx_coeff (g : G) : x.coeff g = x.coeff 1 := by
     have h := congrArg (fun y : MonoidAlgebra R G => y.coeff 1) (hx_fixed g⁻¹)
     simpa only [coeff_single_mul_apply, one_mul, inv_inv, mul_one] using h
-  have hc : x.coeff 1 ≠ 0 := by
-    intro hc
-    have hx_zero : x.coeff = 0 := Finsupp.ext fun g => (hx_coeff g).trans hc
-    apply (zero_ne_one : (0 : R) ≠ 1)
-    calc
-      (0 : R) = augmentation R G x := by
-        rw [augmentation_apply, hx_zero, Finsupp.sum_zero_index]
-      _ = 1 := hx_augmentation
-  have hsupport (g : G) : g ∈ x.coeff.support := by
-    rw [Finsupp.mem_support_iff, hx_coeff]
-    exact hc
-  have hfinite : Finite G := Finite.of_finite_univ
-    (x.coeff.support.finite_toSet.subset fun g _ => hsupport g)
   let _ : Finite G := hfinite
   let _ := Fintype.ofFinite G
   have hcard : (Nat.card G : R) * x.coeff 1 = 1 := by

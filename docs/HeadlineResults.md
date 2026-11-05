@@ -64,6 +64,20 @@ consumer example, build commands and references.
   from a chosen point, and invert by extension minus the coefficient sum at that
   point. A semiring coefficient basis assertion would be false in general.
 
+- **Maps from augmentation modules.** For any semiring `R` and right-cancellative
+  monoid `M` in independent universes,
+  [`MonoidAlgebra.finite_of_linearMap_from_augmentation_ne_zero`](../GroupRings/MonoidAlgebra/AugmentationHom.lean)
+  says that a nonzero `R[M]`-linear map from the coefficient carrier `R`, with
+  action `a • r = augmentation R M a * r`, into the **left regular** `R[M]`
+  forces `Finite M`. With `Infinite M`,
+  `MonoidAlgebra.linearMap_from_augmentation_eq_zero` says every such map is zero;
+  infinite groups are included. Neither coefficient commutativity, nontriviality
+  nor a domain condition is imposed. Infinitude matters: the trivial monoid
+  admits the nonzero map `r ↦ single 1 r` over nontrivial coefficients.
+  Right cancellation is sufficient, not asserted necessary; an infinite monoid
+  with a right zero `z` admits the nonzero map `r ↦ single z r` over
+  nontrivial coefficients.
+
 - **Necessary conditions for augmentation projectivity.** For any nontrivial
   semiring `R` and any group `G` in independent universes,
   [`MonoidAlgebra.finite_and_isUnit_natCard_of_projective_augmentation`](../GroupRings/MonoidAlgebra/AugmentationProjective.lean)

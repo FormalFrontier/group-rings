@@ -60,6 +60,7 @@ group-algebra module. Generic Noetherian retraction descent comes from
 
 | Module | Contents |
 | --- | --- |
+| `GroupRings.MonoidAlgebra.AugmentationHom` | Maps from the coefficient carrier with left augmentation action into the left regular monoid algebra: cyclic evaluation and fixedness identities, nonzero-map finiteness over right-cancellative monoids, and vanishing for infinite right-cancellative monoids over any semiring. |
 | `GroupRings.MonoidAlgebra.Matrix` | Canonical finite-matrix / monoid-algebra ring equivalence, coefficient and single laws, and matrix-unit products. |
 | `GroupRings.MonoidAlgebra.Regular` | Regular monic basis differences for cancellative monoids, additive transport and the necessary Artinian torsion condition. |
 | `GroupRings.MonoidAlgebra.Artinian` | The arbitrary-ring left-Artinian right-cancellative monoid-algebra criterion, including groups and the zero-ring alternative; local right-regular index units over nontrivial semirings. |
