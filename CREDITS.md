@@ -250,6 +250,21 @@ to the canonical coefficient restriction of the given group-algebra module.
 The augmentation-ideal consequence uses this library’s full group-algebra-linear
 crossed-map universal property.
 
+## Convolution support and unique products
+
+The convolution support-cardinality estimate in
+`GroupRings.MonoidAlgebra.SupportUniqueProds` combines Mathlib's public
+two-unique-products field and uniqueness eliminator (from Damiano Testa's
+unique-product development) with its convolution coefficient, Finsupp support
+and finite-set cardinality APIs. It applies already to a magma of indices over
+a no-zero-divisor semiring.
+
+Andrzej Strojnowski, *A note on u.p. groups* (1980), supplies the classical
+group ingredient underlying Mathlib's passage from unique products to two
+unique products. The magma/semiring support estimate is not attributed to
+that group theorem or a transcription of the article's proof. This mathematical
+and formalization credit does not imply permission to redistribute the article.
+
 ## License and rights
 
 Original project contributions and identified project adaptations use

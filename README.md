@@ -27,6 +27,14 @@ module and declaration inventories.
   `R`, **not** over `R[M]`, indexed by nonidentity monoid elements.
   [Statements and modules](docs/HeadlineResults.md#single-terms-and-augmentation).
 
+- **Convolution support.** Over a no-zero-divisor semiring and a magma with
+  two unique products, a product of input support cardinalities greater than
+  one forces the convolution support cardinality to be greater than one.
+  Coefficients need not commute, and no monoid or nontriviality assumption is
+  imposed. See
+  [`MonoidAlgebra.one_lt_card_support_coeff_mul`](GroupRings/MonoidAlgebra/SupportUniqueProds.lean)
+  and the [precise support bound](docs/HeadlineResults.md#convolution-support).
+
 - **Coefficient tests, centers and finite matrices.** Over any possibly zero
   or noncommutative semiring, a group-algebra element is determined by one
   chosen coefficient after all right multiplications, and independently after

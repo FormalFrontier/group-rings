@@ -80,6 +80,7 @@ group-algebra module. Generic Noetherian retraction descent comes from
 | `GroupRings.MonoidAlgebra.MonomialFinite` | Three generic finite-cover endpoints for monomial-subalgebra inclusions with their original left action, via the map-domain criterion. |
 | `GroupRings.RingTheory.Noetherian` | Deprecated compatibility import for `CoherentModules.RingTheory.Noetherian.Retraction`, the ideal extension-contraction and left-Noetherian descent API for additive right retractions. |
 | `GroupRings.MonoidAlgebra.Units` | Single-term units and reflection by the basis embedding. |
+| `GroupRings.MonoidAlgebra.SupportUniqueProds` | Convolution support cardinality exceeds one whenever the product of input support cardinalities does, over a no-zero-divisor semiring and a two-unique-products magma. |
 | `GroupRings.MonoidAlgebra.AugmentationNilpotence` | Uniform group exponents from augmentation nilpotence over nontrivial rings of prime characteristic. |
 | `GroupRings.MonoidAlgebra.AugmentationNilpotence.Finite` | Exact cardinality bound for finite p-groups over any ring with p=0, and the finite-group criterion. |
 | `GroupRings.MonoidAlgebra.AugmentationNilpotence.LocallyFinite` | Elementwise nilpotence of the augmentation kernel for locally finite p-groups over any ring with p=0. |
@@ -133,6 +134,7 @@ is required by consumers.
 
 | Declaration | Purpose |
 | --- | --- |
+| `MonoidAlgebra.one_lt_card_support_coeff_mul` | The convolution support-cardinality bound for `[Semiring R] [NoZeroDivisors R] [Mul M] [TwoUniqueProds M]`, with independent universes. |
 | `RingCon.isCompactElement_top` | The greatest congruence is compact for `[Add R] [MulZeroOneClass R]`; supplies `IsCoatomic (RingCon R)`. |
 | `RingCon.isSimpleRing_quotient_iff_isCoatom` | For `[NonAssocRing R]`, characterize simple canonical quotients without assuming the source or quotient nontrivial. |
 | `RingCon.exists_isSimpleRing_quotient` | For `[NonAssocRing R] [Nontrivial R]`, obtain a congruence whose canonical quotient is nonzero and simple. |

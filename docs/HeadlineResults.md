@@ -9,6 +9,7 @@ consumer example, build commands and references.
 ## Families
 
 - [Single terms and augmentation](#single-terms-and-augmentation)
+- [Convolution support](#convolution-support)
 - [Coefficient tests and finite matrices](#coefficient-tests-and-finite-matrices)
 - [Crossed maps and averaging](#crossed-maps-and-averaging)
 - [Augmentation cotangents](#augmentation-cotangents)
@@ -60,6 +61,20 @@ consumer example, build commands and references.
   works for any semiring acting on an additive commutative group: restrict away
   from a chosen point, and invert by extension minus the coefficient sum at that
   point. A semiring coefficient basis assertion would be false in general.
+
+## Convolution support
+
+For any `[Semiring R] [NoZeroDivisors R]` and independently polymorphic
+`[Mul M] [TwoUniqueProds M]`,
+[`MonoidAlgebra.one_lt_card_support_coeff_mul`](../GroupRings/MonoidAlgebra/SupportUniqueProds.lean)
+states that, for `f g : R[M]`,
+`1 < f.coeff.support.card * g.coeff.support.card` implies
+`1 < (f * g).coeff.support.card`. The product is canonical convolution;
+the premise multiplies the two input support cardinalities, not the number
+of distinct product labels. Neither coefficient commutativity nor an index
+identity or associativity is assumed. Zero coefficient semirings are allowed:
+the premise then cannot hold. This is a support estimate, not a statement
+classifying arbitrary units.
 
 ## Coefficient tests and finite matrices
 
